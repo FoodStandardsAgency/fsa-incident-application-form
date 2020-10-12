@@ -1,0 +1,79 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<form method="POST" action="">
+
+    <fieldset>
+
+        <legend>{{ i18n.sections.yourDetails }}:</legend>
+
+        <label for="notifier-type">{{ i18n.notifierType.label }}:</label>
+
+        <select name="notifier-type" id="notifier-type">
+            <option value="">--{{ i18n.notifierType.defaultValue }}--</option>
+            <option value="industry">{{ i18n.notifierType.industry }}</option>
+            <option value="local-authority">{{ i18n.notifierType.localAuthority }}</option>
+        </select>
+
+        {% if errors and errors['notifier-type'] %}
+            <div id="notifier-type-errors">{{ errors['notifier-type'].msg }}</div>
+        {% endif %}
+
+
+<br/>
+
+
+        <label for="contact-name">Contact Name:</label>
+
+        <input type="text" 
+               id="contact-name" 
+               name="contact-name" 
+               minlength="1"
+               maxlength="100" 
+        />
+
+        {% if errors and errors['contact-name'] %}
+            <div id="contact-name-errors">{{ errors['contact-name'].msg }}</div>
+        {% endif %}
+
+
+<br/>
+
+        <label for="position">Position:</label>
+
+        <input type="text" 
+               id="position" 
+               name="position" 
+               maxlength="100" 
+        />
+
+        {% if errors and errors['position'] %}
+            <div id="position-errors">{{ errors['position'].msg }}</div>
+        {% endif %}
+
+
+<br/>
+
+        <label for="organisation">Organisation:</label>
+
+        <input type="text" 
+               id="organisation" 
+               name="organisation" 
+               maxlength="100" 
+        />
+
+        {% if errors and errors['organisation'] %}
+            <div id="organisation-errors">{{ errors['organisation'].msg }}</div>
+        {% endif %}
+
+
+
+        <button type="submit">Submit</button>
+
+    </fieldset>
+
+
+</form>
+{% endblock %}
+
+
