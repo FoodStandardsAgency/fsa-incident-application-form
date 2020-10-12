@@ -1,0 +1,19 @@
+{
+  "name": "fsa-incident-application-form",
+  "version": "1.0.0",
+  "description": "incident application form",
+  "scripts": {
+    "start": "docker-compose up --build",
+    "test": "docker-compose up -d --build && cd test && npm install && npx cypress run && docker-compose down"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notbinary/dtfs2.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/notbinary/dtfs2/issues"
+  },
+  "homepage": "https://github.com/notbinary/dtfs2#readme"
+}

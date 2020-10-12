@@ -1,0 +1,10 @@
+version: "3"
+services:
+
+  incident-application-form:
+    build: ./incident-application-form
+    image: fsa/incident-application-form
+    restart: always
+    ports:
+      - "3000:3000"
+    command: npm start
