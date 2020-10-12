@@ -1,8 +1,8 @@
 # fsa-incident-application-form
 
 # pre-requisites:
-node.js ^13.8.0
-docker
+* node.js ^13.8.0
+* docker
 
 # getting started
 ```
