@@ -18,9 +18,11 @@ var unitsRouter = require("./lookupMocks/units");
 var app = express();
 
 // view engine setup
-nunjucks.configure("views", {
-  express: app,
+nunjucks.configure(["node_modules/govuk-frontend/", "views"], {
   autoescape: true,
+  express: app,
+  noCache: true,
+  watch: true,
 });
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "njk");
@@ -40,6 +42,16 @@ app.use("/lookup/country", countryRouter);
 app.use("/lookup/notifierType", notifierTypeRouter);
 app.use("/lookup/productType", productTypeRouter);
 app.use("/lookup/units", unitsRouter);
+
+app.use(
+  "/assets",
+  express.static(
+    path.join(__dirname, "/node_modules/govuk-frontend/govuk/assets")
+  )
+);
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
+app.use("/your-details", yourDetailsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

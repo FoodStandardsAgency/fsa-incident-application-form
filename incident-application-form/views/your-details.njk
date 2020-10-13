@@ -1,9 +1,113 @@
 {% extends "layout.njk" %}
 
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
 
+{% block pageTitle %}
+{{ i18n.pageTitle[i18n.languageCode] }}
+{% endblock %}
 
 {% block content %}
+
 <form method="POST" action="">
+
+    {% call govukFieldset({
+        legend: {
+            text: i18n.sections.yourDetails[i18n.languageCode],
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+        }
+    }) %}
+
+    {{ govukSelect({
+        id: "notifier-type",
+        name: "notifier-type",
+        attributes : {
+            "data-cy": "notifier-type"
+        },
+        label: {
+            text: i18n.notifierType.label[i18n.languageCode]
+        },
+        items: [
+            {
+                value: "published",
+                text: "Recently published"
+            },
+            {
+                value: "updated",
+                text: "Recently updated",
+                selected: true
+            },
+            {
+                value: "views",
+                text: "Most views"
+            },
+            {
+                value: "comments",
+                text: "Most comments"
+            }
+        ],
+        errorMessage: {
+            text: "errors",
+            attributes : {
+                "data-cy": "notifier-type-errors"
+            }
+        }
+    }) }}
+
+    {{ govukInput({
+        label: {
+            text: "Contact Name"
+        },
+        classes: "govuk-!-width-two-thirds",
+        id: "contact-name",
+        name: "contact-name",
+        attributes : {
+            "data-cy": "contact-name"
+        },
+        errorMessage: {
+            text: "errors and errors['contact-name'] and errors['contact-name'].msg",
+            "attributes" : {
+                "data-cy": "contact-name-errors"
+            }
+        }
+    }) }}
+
+    {{ govukInput({
+        label: {
+            text: "Position"
+        },
+        classes: "govuk-!-width-two-thirds",
+        id: "position",
+        name: "position",
+        errorMessage: {
+            text: "errors and errors['position'] and errors['position'].msg",
+            attributes : {
+                "data-cy": "position-errors"
+            }
+        }
+    }) }}
+
+    {{ govukInput({
+        label: {
+            text: "Organisation"
+        },
+        classes: "govuk-!-width-two-thirds",
+        id: "organisation",
+        name: "organisation",
+        errorMessage: {
+            text: "errors and errors['contact-name'] and errors['contact-name'].msg",
+            attributes : {
+                "data-cy": "organisation-errors"
+            }
+        }
+    }) }}
+
+    {% endcall %}
+
+
+
 
     <fieldset>
 
@@ -26,12 +130,6 @@
                 </ul>
             </div>
         {% endif %}
-
-
-<br/>
-
-
-        <label for="contact-name">Contact Name:</label>
 
         <input data-cy="contact-name"
                type="text"
@@ -261,4 +359,5 @@
 
 
 </form>
+
 {% endblock %}

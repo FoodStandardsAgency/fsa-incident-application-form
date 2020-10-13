@@ -8,15 +8,15 @@ const template = "your-details";
 const languageCode = "cy";
 const translations = require(`${__dirname}/../translations/${template}.json`);
 
-const title = translations.title[languageCode];
-
 const i18n = {
   languageCode,
   ...translations,
 };
 
-router.get("/", function (req, res, next) {
-  res.render(template, { title, i18n });
+router.get("/", async function (req, res, next) {
+  const notifierTypes = await fetch("/lookup/notifierType");
+  console.log(`not`, notifierTypes);
+  res.render(template, { i18n });
 });
 
 router.post("/", function (req, res, next) {
@@ -34,7 +34,6 @@ router.post("/", function (req, res, next) {
 
   if (!validation.isValid) {
     res.render(template, {
-      title,
       validation,
       i18n,
     });
@@ -44,7 +43,7 @@ router.post("/", function (req, res, next) {
   // the valid form submission data
   console.log(`validation`, validation.validatedFields);
 
-  res.render(template, { title, i18n });
+  res.render(template, { i18n });
 });
 
 module.exports = router;
