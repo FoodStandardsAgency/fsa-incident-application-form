@@ -100,6 +100,7 @@ jobs:
 
   build:
     name: Build and push Form UI
+    needs: form-ui-appservice
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
