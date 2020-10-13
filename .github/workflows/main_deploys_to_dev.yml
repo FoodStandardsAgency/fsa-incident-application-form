@@ -1,0 +1,35 @@
+name: deploy to azure
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  dev-rg:
+    name: Dev resource group
+    runs-on: ubuntu-latest
+    steps:
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
+
+    - name: Defaults
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az configure --defaults location=uksouth
+          az configure --defaults group=fsa-incident-report-form
+
+    - name: App Service plan
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az appservice plan create --name dev --is-linux --sku p1v2
+
+    - name: Container registry
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          # Admin needs to be enabled for App Service continuous deployment
+          az acr create --name fsaincidentreportform --sku Standard --admin-enabled true
