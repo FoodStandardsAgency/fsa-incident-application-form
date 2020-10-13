@@ -1,18 +1,20 @@
 {% extends "layout.njk" %}
 
+
+
 {% block content %}
 <form method="POST" action="">
 
     <fieldset>
 
-        <legend data-cy="legend">{{ i18n.sections.yourDetails }}:</legend>
+        <legend data-cy="legend">{{ i18n.sections.yourDetails[i18n.languageCode] }}:</legend>
 
-        <label for="notifier-type">{{ i18n.notifierType.label }}:</label>
+        <label for="notifier-type">{{ i18n.notifierType.label[i18n.languageCode] }}:</label>
 
         <select data-cy="notifier-type" name="notifier-type" id="notifier-type">
-            <option value="">--{{ i18n.notifierType.defaultValue }}--</option>
-            <option value="industry">{{ i18n.notifierType.industry }}</option>
-            <option value="local-authority">{{ i18n.notifierType.localAuthority }}</option>
+            <option value="">--{{ i18n.notifierType.defaultValue[i18n.languageCode] }}--</option>
+            <option value="industry">{{ i18n.notifierType.industry[i18n.languageCode] }}</option>
+            <option value="local-authority">{{ i18n.notifierType.localAuthority[i18n.languageCode] }}</option>
         </select>
 
         {% if errors and errors['notifier-type'] %}
