@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "webpack",
     "start": "node ./bin/www",
     "test": "jest",
     "test:watch": "jest --watchAll --runInBand"
@@ -12,14 +13,19 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-validator": "^6.6.1",
+    "govuk-frontend": "^3.9.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "nunjucks": "^3.2.2"
   },
   "devDependencies": {
+    "file-loader": "^6.1.1",
     "jest": "^26.5.3",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "sass-loader": "^10.0.3",
+    "webpack": "^5.1.0",
+    "webpack-cli": "^4.0.0"
   },
   "jest": {
     "testEnvironment": "node"

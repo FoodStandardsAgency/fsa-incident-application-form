@@ -1,79 +1,88 @@
 {% extends "layout.njk" %}
 
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+
 {% block content %}
+
 <form method="POST" action="">
 
-    <fieldset>
+    {% call govukFieldset({
+        legend: {
+            text: i18n.sections.yourDetails,
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+        }
+    }) %}
 
-        <legend>{{ i18n.sections.yourDetails }}:</legend>
+    {{ govukSelect({
+        id: "notifier-type",
+        name: "notifier-type",
+        label: {
+            text: i18n.notifierType.label
+        },
+        items: [
+            {
+                value: "published",
+                text: "Recently published"
+            },
+            {
+                value: "updated",
+                text: "Recently updated",
+                selected: true
+            },
+            {
+                value: "views",
+                text: "Most views"
+            },
+            {
+                value: "comments",
+                text: "Most comments"
+            }
+        ],
+        errorMessage: {
+            text: errors and errors['notifier-type'] and errors['notifier-type'].msg
+        }
+    }) }}
 
-        <label for="notifier-type">{{ i18n.notifierType.label }}:</label>
+    {{ govukInput({
+        label: {
+            text: "Contact Name"
+        },
+        classes: "govuk-!-width-two-thirds",
+        id: "contact-name",
+        name: "contact-name",
+        errorMessage: {
+            text: errors and errors['contact-name'] and errors['contact-name'].msg
+        }
+    }) }}
 
-        <select name="notifier-type" id="notifier-type">
-            <option value="">--{{ i18n.notifierType.defaultValue }}--</option>
-            <option value="industry">{{ i18n.notifierType.industry }}</option>
-            <option value="local-authority">{{ i18n.notifierType.localAuthority }}</option>
-        </select>
+    {{ govukInput({
+        label: {
+            text: "Position"
+        },
+        classes: "govuk-!-width-two-thirds",
+        id: "position",
+        name: "position",
+        errorMessage: {
+            text: errors and errors['position'] and errors['position'].msg
+        }
+    }) }}
 
-        {% if errors and errors['notifier-type'] %}
-            <div id="notifier-type-errors">{{ errors['notifier-type'].msg }}</div>
-        {% endif %}
+    {{ govukInput({
+        label: {
+            text: "Organisation"
+        },
+        classes: "govuk-!-width-two-thirds",
+        id: "organisation",
+        name: "organisation",
+        errorMessage: {
+            text: errors and errors['contact-name'] and errors['contact-name'].msg
+        }
+    }) }}
 
-
-<br/>
-
-
-        <label for="contact-name">Contact Name:</label>
-
-        <input type="text" 
-               id="contact-name" 
-               name="contact-name" 
-               minlength="1"
-               maxlength="100" 
-        />
-
-        {% if errors and errors['contact-name'] %}
-            <div id="contact-name-errors">{{ errors['contact-name'].msg }}</div>
-        {% endif %}
-
-
-<br/>
-
-        <label for="position">Position:</label>
-
-        <input type="text" 
-               id="position" 
-               name="position" 
-               maxlength="100" 
-        />
-
-        {% if errors and errors['position'] %}
-            <div id="position-errors">{{ errors['position'].msg }}</div>
-        {% endif %}
-
-
-<br/>
-
-        <label for="organisation">Organisation:</label>
-
-        <input type="text" 
-               id="organisation" 
-               name="organisation" 
-               maxlength="100" 
-        />
-
-        {% if errors and errors['organisation'] %}
-            <div id="organisation-errors">{{ errors['organisation'].msg }}</div>
-        {% endif %}
-
-
-
-        <button type="submit">Submit</button>
-
-    </fieldset>
-
-
+    {% endcall %}
 </form>
+
 {% endblock %}
-
-
