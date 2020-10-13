@@ -114,3 +114,39 @@ jobs:
         tags: latest
         build_args: GITHUB_SHA=${{ github.sha }}
         add_git_labels: true
+
+  deploy:
+    name: Deploy container images to Dev
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
+
+    - name: Defaults
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az configure --defaults location=uksouth
+          az configure --defaults group=fsa-incident-report-form
+
+    - name: Create slot ${{ github.sha }}
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp deployment slot create --name fsa-dev-incident-report-form --slot ${{ github.sha }} --configuration-source fsa-dev-incident-report-form
+
+    - name: Swap slot ${{ github.sha }} into production
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp deployment slot swap   --name fsa-dev-incident-report-form --slot ${{ github.sha }} --action swap
+
+    - name: Delete slot ${{ github.sha }}
+      # Clean up the slot regardless of errors
+      if: ${{ always() }}
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp deployment slot delete --name fsa-dev-incident-report-form --slot ${{ github.sha }}
