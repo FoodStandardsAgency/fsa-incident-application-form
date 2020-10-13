@@ -8,5 +8,12 @@
     "defaultValue": "Dewiswch opsiwn",
     "industry": "Diwydiant",
     "localAuthority": "Awdurdod lleol"
+  },
+  "country": {
+    "label":"Gwlad",
+    "defaultValue": "Dewiswch opsiwn",
+    "uk": "Y Deyrnas Unedig",
+    "norway":  "Norwy",
+    "others":  "..."
   }
 }
