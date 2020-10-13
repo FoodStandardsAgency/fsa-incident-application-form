@@ -7,7 +7,7 @@ on:
 jobs:
 
   dev-rg:
-    name: Dev resource group
+    name: Creating Dev app-service plan and container registry
     runs-on: ubuntu-latest
     steps:
     - uses: azure/login@v1
@@ -33,3 +33,67 @@ jobs:
         inlineScript: |
           # Admin needs to be enabled for App Service continuous deployment
           az acr create --name fsaincidentreportform --sku Standard --admin-enabled true
+
+  form-ui:
+    name: Form UI
+    needs: [dev-rg]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
+
+    - name: Defaults
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az configure --defaults location=uksouth
+          az configure --defaults group=fsa-incident-report-form
+
+    - name: Create
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp create --name fsa-dev-incident-report-form \
+            --plan dev \
+            --deployment-container-image-name fsaincidentreportform/form-ui
+
+    - name: Continuous deployment
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp deployment container config --name fsa-dev-incident-report-form \
+            --enable-cd true
+
+    - name: Enable container logging
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp log config --name fsa-dev-incident-report-form \
+            --docker-container-logging filesystem
+
+    - name: Always-on
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp config set --name fsa-dev-incident-report-form \
+            --always-on true
+
+    - name: Environment variables
+      uses: Azure/cli@v1.0.0
+      with:
+        # NB we're setting PORT for the container and WEBSITES_PORT for Azure.
+        inlineScript: |
+          az webapp config appsettings set --name fsa-dev-incident-report-form \
+            --settings \
+              PORT=3000 \
+              WEBSITES_PORT=3000
+
+    - name: Secrets
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp config connection-string set --name fsa-dev-incident-report-form \
+            --connection-string-type custom \
+            --settings \
+              SESSION_SECRET="sshhhhh"
