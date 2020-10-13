@@ -1,0 +1,12 @@
+{
+  "title": "Hysbyswr",
+  "sections": {
+    "yourDetails": "Eich Manylion"
+  },
+  "notifierType": {
+    "label": "Math Hysbysydd",
+    "defaultValue": "Dewiswch opsiwn",
+    "industry": "Diwydiant",
+    "localAuthority": "Awdurdod lleol"
+  }
+}

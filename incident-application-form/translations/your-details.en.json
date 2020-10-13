@@ -1,0 +1,12 @@
+{
+  "title": "Notifier",
+  "sections": {
+    "yourDetails": "Your Details"
+  },
+  "notifierType": {
+    "label":"Notifier Type",
+    "defaultValue": "Please choose an option",
+    "industry": "Industry",
+    "localAuthority":  "Local Authority"
+  }
+}
