@@ -10,3 +10,5 @@ git clone https://github.com/foundry4/fsa-incident-application-form.git
 cd fsa-incident-application-form
 npm test
 ```
+
+force a build
