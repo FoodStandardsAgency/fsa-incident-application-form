@@ -25,6 +25,12 @@
       }
     }
   },
+  "country": {
+    "label": {
+      "cy": "Gwlad",
+      "en": "Country"
+    }
+  },
   "notifierType": {
     "label": {
       "cy": "Math Hysbysydd",
