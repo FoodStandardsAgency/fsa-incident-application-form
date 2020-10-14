@@ -1,5 +1,5 @@
 const express = require("express");
-const { body, validationResult } = require("express-validator");
+const { validate } = require("../lib/validation/your-details");
 
 const router = express.Router();
 
@@ -19,36 +19,32 @@ router.get("/", function (req, res, next) {
   res.render(template, { title, i18n });
 });
 
-router.post("/", [
-  body(
-    "notifier-type",
-    i18n.notifierType.validation.required[i18n.languageCode]
-  )
-    .trim()
-    .notEmpty()
-    .escape(),
-  body("contact-name", "Contact name is required")
-    .trim()
-    .isLength(1, 100)
-    .escape(),
+router.post("/", function (req, res, next) {
+  const {
+    "notifier-type": notifierType,
+    "contact-name": contactName,
+    position,
+    organisation,
+  } = req.body;
 
-  function (req, res, next) {
-    const errors = validationResult(req);
+  const validation = validate(
+    { notifierType, contactName, position, organisation },
+    i18n
+  );
 
-    if (!errors.isEmpty()) {
-      res.render(template, {
-        title,
-        errors: errors.mapped(),
-        i18n,
-      });
-      return;
-    }
+  if (!validation.isValid) {
+    res.render(template, {
+      title,
+      validation,
+      i18n,
+    });
+    return;
+  }
 
-    // the valid form submission data
-    console.log(`req`, req.body);
+  // the valid form submission data
+  console.log(`validation`, validation.validatedFields);
 
-    res.render(template, { title, i18n });
-  },
-]);
+  res.render(template, { title, i18n });
+});
 
 module.exports = router;

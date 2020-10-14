@@ -9,6 +9,28 @@
       "en": "Your Details"
     }
   },
+  "contactName": {
+    "label": {
+      "cy": "Enw Cyswllt",
+      "en": "Contact Name"
+    },
+    "validation": {
+      "required": {
+        "cy": "Mae angen enw cyswllt",
+        "en": "Contact name is required"
+      },
+      "invalidLength": {
+        "cy": "Rhaid i'r enw cyswllt fod rhwng 1 a 100 nod",
+        "en": "Contact name must be between 1 and 100 characters"
+      }
+    }
+  },
+  "country": {
+    "label": {
+      "cy": "Gwlad",
+      "en": "Country"
+    }
+  },
   "notifierType": {
     "label": {
       "cy": "Math Hysbysydd",
