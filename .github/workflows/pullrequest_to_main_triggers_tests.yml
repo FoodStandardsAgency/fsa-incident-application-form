@@ -1,0 +1,43 @@
+name: deploy to azure
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  test:
+    name: "Run end-to-end tests in Compose"
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      GOV_NOTIFY_API_KEY: ${{ secrets.DEV_GOV_NOTIFY_API_KEY }}
+    steps:
+    - uses: actions/checkout@v2
+    # Pull the latest images to run with so we don't need to build them
+    - uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io
+        username: ${{ secrets.CONTAINER_REGISTRY_USERNAME }}
+        password: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
+    - name: Pull docker image
+      run: |
+        docker pull ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/form-ui
+        docker tag ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/form-ui
+    - name: Start Docker Compose
+      run: |
+        docker-compose up -d
+    - name: Run e2e tests
+      env:
+        CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      run: |
+        pwd
+        cd $GITHUB_WORKSPACE/test
+        npm install
+        npx cypress run
+    - name: Save Cypress screenshots
+      if: ${{ failure() }}
+      uses: actions/upload-artifact@main
+      with:
+        name: screenshots
+        path: './cypress/screenshots'
