@@ -9,7 +9,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var yourDetailsRouter = require("./routes/your-details");
 
-// var companyTypeRouter = require("./lookupMocks/company-type");
+var companyTypeRouter = require("./lookupMocks/company-type");
 var countryRouter = require("./lookupMocks/country");
 var notifierTypeRouter = require("./lookupMocks/notifier-type");
 var productTypeRouter = require("./lookupMocks/product-type");
@@ -35,7 +35,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/your-details", yourDetailsRouter);
 
-// app.use("/lookup/companyType", companyTypeRouter);
+app.use("/lookup/companyType", companyTypeRouter);
 app.use("/lookup/country", countryRouter);
 app.use("/lookup/notifierType", notifierTypeRouter);
 app.use("/lookup/productType", productTypeRouter);
