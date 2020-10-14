@@ -1,41 +1,70 @@
 const express = require("express");
 const { validate } = require("../lib/validation/your-details");
+const { getCountries } = require("../lib/lookups/countries");
+const { getNotifierTypes } = require("../lib/lookups/notifier-types");
 
 const router = express.Router();
 
 const template = "your-details";
 
-const languageCode = "cy";
-const translations = require(`${__dirname}/../translations/${template}.json`);
+const languageCode = "en";
+const pageTranslations = require(`${__dirname}/../translations/${template}.json`);
+const formFieldTranslations = require(`${__dirname}/../translations/form-fields.json`);
 
 const i18n = {
   languageCode,
-  ...translations,
+  ...pageTranslations,
+  ...formFieldTranslations,
 };
 
 router.get("/", async function (req, res, next) {
-  const notifierTypes = await fetch("/lookup/notifierType");
-  console.log(`not`, notifierTypes);
-  res.render(template, { i18n });
+  res.render(template, {
+    countries: await getCountries(languageCode),
+    i18n,
+    notifierTypes: await getNotifierTypes(languageCode),
+  });
 });
 
-router.post("/", function (req, res, next) {
+router.post("/", async function (req, res, next) {
   const {
     "notifier-type": notifierType,
     "contact-name": contactName,
     position,
     organisation,
+    email,
+    telephone1,
+    "address.line1": addressLine1,
+    "address.line2": addressLine2,
+    "address.town": addressTown,
+    "address.county": addressCounty,
+    "address.postcode": addressPostcode,
+    "address.country": addressCountry,
   } = req.body;
 
   const validation = validate(
-    { notifierType, contactName, position, organisation },
+    {
+      notifierType,
+      contactName,
+      position,
+      organisation,
+      email,
+      telephone1,
+      addressLine1,
+      addressLine2,
+      addressTown,
+      addressCounty,
+      addressPostcode,
+      addressCountry,
+    },
     i18n
   );
 
   if (!validation.isValid) {
     res.render(template, {
-      validation,
+      countries: await getCountries(languageCode),
       i18n,
+      notifierTypes: await getNotifierTypes(languageCode),
+      validation,
     });
     return;
   }
@@ -43,7 +72,11 @@ router.post("/", function (req, res, next) {
   // the valid form submission data
   console.log(`validation`, validation.validatedFields);
 
-  res.render(template, { i18n });
+  res.render(template, {
+    countries: await getCountries(languageCode),
+    i18n,
+    notifierTypes: await getNotifierTypes(languageCode),
+  });
 });
 
 module.exports = router;

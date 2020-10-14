@@ -1,8 +1,8 @@
 const { validate } = require("../validation/your-details");
 
-const translations = require(`${__dirname}/../../translations/your-details.json`);
+const translations = require(`${__dirname}/../../translations/form-fields.json`);
 
-describe(`lib/validation/your-details`, () => {
+xdescribe(`lib/validation/your-details`, () => {
   const testCases = (languageCode) => [
     [
       "missing all fields",
@@ -54,9 +54,9 @@ describe(`lib/validation/your-details`, () => {
       },
     ],
     [
-      "contact name is too long",
+      "value is too long",
       {
-        contactName: "a".repeat(101),
+        contactName: "a".repeat(256),
         notifierType: "valid",
       },
       {
@@ -67,7 +67,7 @@ describe(`lib/validation/your-details`, () => {
             messages: [
               translations.contactName.validation.invalidLength[languageCode],
             ],
-            value: "a".repeat(101),
+            value: "a".repeat(256),
           },
           notifierType: {
             isValid: true,

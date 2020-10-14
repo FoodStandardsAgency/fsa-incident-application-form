@@ -3,6 +3,7 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block pageTitle %}
 {{ i18n.pageTitle[i18n.languageCode] }}
@@ -14,7 +15,7 @@
 
     {% call govukFieldset({
         legend: {
-            text: i18n.sections.yourDetails[i18n.languageCode],
+            text: i18n.sections.incidents[i18n.languageCode],
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
         }
@@ -29,27 +30,9 @@
         label: {
             text: i18n.notifierType.label[i18n.languageCode]
         },
-        items: [
-            {
-                value: "published",
-                text: "Recently published"
-            },
-            {
-                value: "updated",
-                text: "Recently updated",
-                selected: true
-            },
-            {
-                value: "views",
-                text: "Most views"
-            },
-            {
-                value: "comments",
-                text: "Most comments"
-            }
-        ],
-        errorMessage: {
-            text: "errors",
+        items: notifierTypes,
+        errorMessage: validation.validatedFields.notifierType.isValid == false and {
+            text: validation.validatedFields.notifierType.messages | join(". "),
             attributes : {
                 "data-cy": "notifier-type-errors"
             }
@@ -57,17 +40,17 @@
     }) }}
 
     {{ govukInput({
-        label: {
-            text: "Contact Name"
-        },
-        classes: "govuk-!-width-two-thirds",
+        classes: "govuk-!-width-full",
         id: "contact-name",
         name: "contact-name",
         attributes : {
             "data-cy": "contact-name"
         },
-        errorMessage: {
-            text: "errors and errors['contact-name'] and errors['contact-name'].msg",
+        label: {
+            text: i18n.contactName.label[i18n.languageCode]
+        },
+        errorMessage: validation.validatedFields.contactName.isValid == false and {
+            text: validation.validatedFields.contactName.messages | join(". "),
             "attributes" : {
                 "data-cy": "contact-name-errors"
             }
@@ -75,30 +58,36 @@
     }) }}
 
     {{ govukInput({
-        label: {
-            text: "Position"
-        },
-        classes: "govuk-!-width-two-thirds",
+        classes: "govuk-!-width-full",
         id: "position",
         name: "position",
-        errorMessage: {
-            text: "errors and errors['position'] and errors['position'].msg",
-            attributes : {
+        attributes : {
+            "data-cy": "position"
+        },
+        label: {
+            text: i18n.position.label[i18n.languageCode]
+        },
+        errorMessage: validation.validatedFields.position.isValid == false and {
+            text: validation.validatedFields.position.messages | join(". "),
+            "attributes" : {
                 "data-cy": "position-errors"
             }
         }
     }) }}
 
     {{ govukInput({
-        label: {
-            text: "Organisation"
-        },
-        classes: "govuk-!-width-two-thirds",
+        classes: "govuk-!-width-full",
         id: "organisation",
         name: "organisation",
-        errorMessage: {
-            text: "errors and errors['contact-name'] and errors['contact-name'].msg",
-            attributes : {
+        attributes : {
+            "data-cy": "organisation"
+        },
+        label: {
+            text: i18n.organisation.label[i18n.languageCode]
+        },
+        errorMessage: validation.validatedFields.organisation.isValid == false and {
+            text: validation.validatedFields.organisation.messages | join(". "),
+            "attributes" : {
                 "data-cy": "organisation-errors"
             }
         }
@@ -107,256 +96,188 @@
     {% endcall %}
 
 
-
-
-    <fieldset>
-
-        <legend data-cy="legend">{{ i18n.sections.yourDetails[i18n.languageCode] }}:</legend>
-
-        <label for="notifier-type">{{ i18n.notifierType.label[i18n.languageCode] }}:</label>
-
-        <select data-cy="notifier-type" name="notifier-type" id="notifier-type">
-            <option value="">--{{ i18n.notifierType.values.defaultValue[i18n.languageCode] }}--</option>
-            <option value="industry">{{ i18n.notifierType.values.industry[i18n.languageCode] }}</option>
-            <option value="local-authority">{{ i18n.notifierType.values.localAuthority[i18n.languageCode] }}</option>
-        </select>
-
-        {% if validation and validation.validatedFields.notifierType %}
-            <div data-cy="notifier-type-errors" id="notifier-type-errors">
-                <ul>
-                {% for message in validation.validatedFields.notifierType.messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
-
-        <input data-cy="contact-name"
-               type="text"
-               id="contact-name"
-               name="contact-name"
-               minlength="1"
-               maxlength="100"
-        />
-
-        {% if validation and validation.validatedFields.contactName %}
-            <div data-cy="contact-name-errors" id="contact-name-errors">
-                <ul>
-                {% for message in validation.validatedFields.contactName.messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
-
-
-<br/>
-
-        <label for="position">Position:</label>
-
-        <input data-cy="position"
-               type="text"
-               id="position"
-               name="position"
-               maxlength="100"
-        />
-
-        {% if validation and validation.validatedFields.position %}
-            <div data-cy="position-errors" id="position-errors">
-                <ul>
-                {% for message in validation.validatedFields.position.messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
-
-
-<br/>
-
-        <label for="organisation">Organisation:</label>
-
-        <input data-cy="organisation"
-               type="text"
-               id="organisation"
-               name="organisation"
-               maxlength="100"
-        />
-
-        {% if validation and validation.validatedFields.organisation %}
-            <div data-cy="organisation-errors" id="organisation-errors">
-                <ul>
-                {% for message in validation.validatedFields.organisation.messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
-
-
-<br/>
-
-        <label for="email">Email:</label>
-
-        <input data-cy="email"
-               type="text"
-               id="email"
-               name="email"
-        />
-
-        {% if errors and errors['email'] %}
-            <div data-cy="email-errors" id="email-errors">{{ errors['email'].msg }}</div>
-        {% endif %}
-
-
-
-<br/>
-
-        <label for="telephone1">Telephone 1:</label>
-
-        <input data-cy="telephone1"
-               type="text"
-               id="telephone1"
-               name="telephone1"
-        />
-
-        {% if errors and errors['telephone1'] %}
-            <div data-cy="telephone1-errors" id="telephone1-errors">{{ errors['telephone1'].msg }}</div>
-        {% endif %}
-
-
-
-<br/>
-
-        <label for="telephone2">Organisation:</label>
-
-        <input data-cy="telephone2"
-               type="text"
-               id="telephone2"
-               name="telephone2"
-        />
-
-        {% if errors and errors['telephone2'] %}
-            <div data-cy="telephone2-errors" id="telephone2-errors">{{ errors['telephone2'].msg }}</div>
-        {% endif %}
-
-
-
-<br/>
-
-        <label for="address.line1">Address Line 1:</label>
-
-        <input data-cy="address.line1"
-               type="text"
-               id="address.line1"
-               name="address.line1"
-        />
-
-        {% if errors and errors['address.line1'] %}
-            <div data-cy="address.line1-errors" id="address.line1-errors">{{ errors['address.line1'].msg }}</div>
-        {% endif %}
-
-
-
-<br/>
-
-        <label for="address.line2">Address Line 2:</label>
-
-        <input data-cy="address.line2"
-               type="text"
-               id="address.line2"
-               name="address.line2"
-        />
-
-        {% if errors and errors['address.line2'] %}
-            <div data-cy="address.line2-errors" id="address.line2-errors">{{ errors['address.line2'].msg }}</div>
-        {% endif %}
-
-
-
-<br/>
-
-        <label for="address.line3">Address Line 3:</label>
-
-        <input data-cy="address.line3"
-               type="text"
-               id="address.line3"
-               name="address.line3"
-        />
-
-        {% if errors and errors['address.line3'] %}
-            <div data-cy="address.line3-errors" id="address.line3-errors">{{ errors['address.line3'].msg }}</div>
-        {% endif %}
-
-
-
-<br/>
-
-        <label for="address.town">Town:</label>
-
-        <input data-cy="address.town"
-               type="text"
-               id="address.town"
-               name="address.town"
-        />
-
-        {% if errors and errors['address.town'] %}
-            <div data-cy="address.town-errors" id="address.town-errors">{{ errors['address.town'].msg }}</div>
-        {% endif %}
-
-
-
-<br/>
-
-        <label for="address.county">County:</label>
-
-        <input data-cy="address.county"
-               type="text"
-               id="address.county"
-               name="address.county"
-        />
-
-        {% if errors and errors['address.county'] %}
-            <div data-cy="address.county-errors" id="address.county-errors">{{ errors['address.county'].msg }}</div>
-        {% endif %}
-
-
-
-<br/>
-
-        <label for="address.postcode">Postcode:</label>
-
-        <input data-cy="address.postcode"
-               type="text"
-               id="address.postcode"
-               name="address.postcode"
-        />
-
-        {% if errors and errors['address.postcode'] %}
-            <div data-cy="address.postcode-errors" id="address.postcode-errors">{{ errors['address.postcode'].msg }}</div>
-        {% endif %}
-
-
-
-<br/>
-
-        <label for="address.country">{{ i18n.country.label[i18n.languageCode] }}:</label>
-
-        <select data-cy="address.country" name="address.country" id="address.country">
-            <option value="">--{{ i18n.country.defaultValue }}--</option>
-            <option value="uk">{{ i18n.country.uk }}</option>
-            <option value="norway">{{ i18n.country.norway }}</option>
-        </select>
-
-        {% if errors and errors['address.country'] %}
-            <div data-cy="address.country-errors" id="address.country-errors">{{ errors['address.country'].msg }}</div>
-        {% endif %}
-
-
-        <button data-cy="submit" type="submit">Submit</button>
-
-    </fieldset>
-
+    {% call govukFieldset({
+        legend: {
+            text: i18n.sections.incidentsStakeholders[i18n.languageCode],
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+        }
+    }) %}
+
+    {{ govukInput({
+        classes: "govuk-!-width-full",
+        id: "email",
+        name: "email",
+        attributes : {
+            "data-cy": "email"
+        },
+        label: {
+            text: i18n.email.label[i18n.languageCode]
+        },
+        type: "email",
+        autocomplete: "email",
+        spellcheck: false,
+        errorMessage: validation.validatedFields.organisation.isValid == false and {
+            text: validation.validatedFields.organisation.messages | join(". "),
+            "attributes" : {
+                "data-cy": "email-errors"
+            }
+        }
+    }) }}
+
+    {{ govukInput({
+        classes: "govuk-!-width-full",
+        id: "telephone1",
+        name: "telephone1",
+        attributes : {
+            "data-cy": "telephone1"
+        },
+        label: {
+            text: i18n.telephone1.label[i18n.languageCode]
+        },
+        type: "tel",
+        autocomplete: "tel",
+        classes: "govuk-input--width-20",
+        errorMessage: validation.validatedFields.telephone1.isValid == false and {
+            text: validation.validatedFields.telephone1.messages | join(". "),
+            "attributes" : {
+                "data-cy": "telephone1-errors"
+            }
+        }
+    }) }}
+
+    {% endcall %}
+
+
+
+    {% call govukFieldset({
+        legend: {
+            text: i18n.sections.addresses[i18n.languageCode],
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+        }
+    }) %}
+    
+    {{ govukInput({
+        classes: "govuk-!-width-full",
+        id: "address.line1",
+        name: "address.line1",
+        autocomplete: "address.line1",
+        attributes : {
+            "data-cy": "address.line1"
+        },
+        label: {
+            text: i18n.address.line1.label[i18n.languageCode]
+        },
+        errorMessage: validation.validatedFields.address.line1.isValid == false and {
+            text: validation.validatedFields.address.line1.messages | join(". "),
+            "attributes" : {
+                "data-cy": "address.line1-errors"
+            }
+        }
+    }) }}
+    
+    {{ govukInput({
+        classes: "govuk-!-width-full",
+        id: "address.line2",
+        name: "address.line2",
+        autocomplete: "address.line2",
+        attributes : {
+            "data-cy": "address.line2"
+        },
+        label: {
+            text: i18n.address.line2.label[i18n.languageCode]
+        },
+        errorMessage: validation.validatedFields.address.line2.isValid == false and {
+            text: validation.validatedFields.address.line2.messages | join(". "),
+            "attributes" : {
+                "data-cy": "address.line2-errors"
+            }
+        }
+    }) }}   
+
+    {{ govukInput({
+        classes: "govuk-!-width-two-thirds",
+        id: "address.town",
+        name: "address.town",
+        autocomplete: "address-level2",
+        attributes : {
+            "data-cy": "address.town"
+        },
+        label: {
+            text: i18n.address.town.label[i18n.languageCode]
+        },
+        errorMessage: validation.validatedFields.address.town.isValid == false and {
+            text: validation.validatedFields.address.town.messages | join(". "),
+            "attributes" : {
+                "data-cy": "address.town-errors"
+            }
+        }
+    }) }}
+
+    {{ govukInput({
+        classes: "govuk-!-width-two-thirds",
+        id: "address.county",
+        name: "address.county",
+        attributes : {
+            "data-cy": "address.county"
+        },
+        label: {
+            text: i18n.address.county.label[i18n.languageCode]
+        },
+        errorMessage: validation.validatedFields.address.county.isValid == false and {
+            text: validation.validatedFields.address.county.messages | join(". "),
+            "attributes" : {
+                "data-cy": "address.county-errors"
+            }
+        }
+    }) }}
+
+    {{ govukInput({
+        classes: "govuk-input--width-10",
+        id: "address.postcode",
+        name: "address.postcode",
+        attributes : {
+            "data-cy": "address.postcode"
+        },
+        label: {
+            text: i18n.address.postcode.label[i18n.languageCode]
+        },
+        errorMessage: validation.validatedFields.address.postcode.isValid == false and {
+            text: validation.validatedFields.address.postcode.messages | join(". "),
+            "attributes" : {
+                "data-cy": "address.postcode-errors"
+            }
+        }
+    }) }}
+
+    {{ govukSelect({
+        id: "address.country",
+        name: "address.country",
+        attributes : {
+            "data-cy": "address.country"
+        },
+        label: {
+            text: i18n.address.country.label[i18n.languageCode]
+        },
+        items: countries,
+        errorMessage: validation.validatedFields.address.country.isValid == false and {
+            text: validation.validatedFields.address.country.messages | join(". "),
+            attributes : {
+                "data-cy": "address.country-errors"
+            }
+        }
+    }) }}
+
+    {% endcall %}
+
+
+    {{ govukButton({
+      text: "Save and continue",
+      attributes : {
+          "data-cy": "submit"
+      }
+    }) }}
 
 </form>
 

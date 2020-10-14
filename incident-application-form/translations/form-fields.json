@@ -1,0 +1,181 @@
+{
+  "address": {
+    "line1": {
+      "label": {
+        "cy": "Llinell Cyfeiriad 1",
+        "en": "Address Line 1"
+      },
+      "validation": {
+        "invalidLength": {
+          "cy": "Rhaid i Linell Cyfeiriadau 1 fod rhwng 1 a 255 nod",
+          "en": "Address Line 1 must be between 1 and 255 characters"
+        }
+      }
+    },
+    "line2": {
+      "label": {
+        "cy": "Llinell Cyfeiriad 2",
+        "en": "Address Line 2"
+      },
+      "validation": {
+        "invalidLength": {
+          "cy": "Rhaid i Linell Cyfeiriadau 2 fod rhwng 1 a 255 nod",
+          "en": "Address Line 2 must be between 1 and 255 characters"
+        }
+      }
+    },
+    "town": {
+      "label": {
+        "cy": "Tref neu Ddinas",
+        "en": "Town or City"
+      },
+      "validation": {
+        "required": {
+          "cy": "Rhaid i chi ddarparu tref neu ddinas",
+          "en": "You must provide a town or city"
+        },
+        "invalidLength": {
+          "cy": "Rhaid i'r dref neu'r ddinas fod rhwng 1 a 255 nod",
+          "en": "Town or city must be between 1 and 255 characters"
+        }
+      }
+    },
+    "county": {
+      "label": {
+        "cy": "Sir",
+        "en": "County"
+      },
+      "validation": {
+        "invalidLength": {
+          "cy": "Rhaid i'r sir fod rhwng 1 a 255 nod",
+          "en": "County must be between 1 and 255 characters"
+        }
+      }
+    },
+    "postcode": {
+      "label": {
+        "cy": "Cod post",
+        "en": "Postcode"
+      },
+      "validation": {
+        "invalid": {
+          "cy": "Nid yw hwn yn god post dilys",
+          "en": "This is not a valid postcode"
+        }
+      }
+    },
+    "country": {
+      "label": {
+        "cy": "Gwlad",
+        "en": "Country"
+      },
+      "values": {
+        "defaultValue": {
+          "cy": "Dewiswch wlad os gwelwch yn dda",
+          "en": "Please choose a country"
+        }
+      },
+      "validation": {
+        "required": {
+          "cy": "Mae angen gwlad",
+          "en": "Country is required"
+        }
+      }
+    }
+  },
+  "contactName": {
+    "label": {
+      "cy": "Enw Cyswllt",
+      "en": "Contact Name"
+    },
+    "validation": {
+      "required": {
+        "cy": "Mae angen enw cyswllt",
+        "en": "Contact name is required"
+      },
+      "invalidLength": {
+        "cy": "Rhaid i'r enw cyswllt fod rhwng 1 a 255 nod",
+        "en": "Contact name must be between 1 and 255 characters"
+      }
+    }
+  },
+  "email": {
+    "label": {
+      "cy": "E-bost",
+      "en": "Email"
+    },
+    "validation": {
+      "invalidEmailAddress": {
+        "cy": "Nid yw hwn yn gyfeiriad e-bost dilys",
+        "en": "This is not a valid email address"
+      }
+    }
+  },
+  "notifierType": {
+    "label": {
+      "cy": "Math Hysbysydd",
+      "en": "Notifier Type"
+    },
+    "values": {
+      "defaultValue": {
+        "cy": "Dewiswch opsiwn",
+        "en": "Please choose an option"
+      },
+      "industry": {
+        "cy": "Diwydiant",
+        "en": "Industry"
+      },
+      "localAuthority": {
+        "cy": "Awdurdod lleol",
+        "en": "Local Authority"
+      }
+    },
+    "validation": {
+      "required": {
+        "cy": "Mae angen math o hysbysydd",
+        "en": "Notifier type is required"
+      }
+    }
+  },
+  "organisation": {
+    "label": {
+      "cy": "Sefydliad",
+      "en": "Organisation"
+    },
+    "validation": {
+      "invalidLength": {
+        "cy": "Rhaid i'r sefydliad fod rhwng 1 a 255 nod",
+        "en": "Position must be between 1 and 255 characters"
+      }
+    }
+  },
+  "position": {
+    "label": {
+      "cy": "Swydd",
+      "en": "Position"
+    },
+    "validation": {
+      "invalidLength": {
+        "cy": "Rhaid i'r swydd fod rhwng 1 a 255 nod",
+        "en": "Position must be between 1 and 255 characters"
+      }
+    }
+  },
+  "telephone1": {
+    "label": {
+      "cy": "Ffôn",
+      "en": "Telephone"
+    },
+    "validation": {
+      "required": {
+        "cy": "Mae angen ffôn",
+        "en": "Telephone is required"
+      },
+      "invalid": {
+        "cy": "Nid yw hwn yn rhif ffôn dilys",
+        "en": "This is not a valid telephone number"
+      }
+
+    }
+  }
+}
