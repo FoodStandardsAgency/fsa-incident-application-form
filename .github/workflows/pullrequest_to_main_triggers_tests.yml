@@ -1,0 +1,32 @@
+name: pull_requests trigger cypress tests
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  cypress:
+    name: "checkout; launch docker-compose; execute cypress tests."
+    runs-on: ubuntu-latest
+    env:
+      GOV_NOTIFY_API_KEY: ${{ secrets.DEV_GOV_NOTIFY_API_KEY }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Start Docker Compose
+      run: |
+        docker-compose up -d
+    - name: Run e2e tests
+      env:
+        CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      run: |
+        pwd
+        cd $GITHUB_WORKSPACE/test
+        npm install
+        npx cypress run
+    - name: Save Cypress screenshots
+      if: ${{ failure() }}
+      uses: actions/upload-artifact@main
+      with:
+        name: screenshots
+        path: './cypress/screenshots'
