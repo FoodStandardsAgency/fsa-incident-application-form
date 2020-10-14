@@ -1,14 +1,14 @@
-const { validatePosition } = require("../validation/position");
+const { validateAdditionalInformation } = require("./additional-information");
 
-const translations = require(`${__dirname}/../../translations/form-fields.json`);
+const translations = require(`${__dirname}/../../../translations/form-fields.json`);
 
-describe(`lib/validation/position`, () => {
-  const testCases = (languageCode) => [
+describe(`lib/validation/individual-fields/additional-information`, () => {
+  const testCases = () => [
     [
-      "missing field is allowed",
+      "missing field",
       undefined,
       {
-        position: {
+        additionalInformation: {
           isValid: true,
           messages: [],
           value: "",
@@ -16,10 +16,10 @@ describe(`lib/validation/position`, () => {
       },
     ],
     [
-      "wrong data type returns an empty string",
+      "wrong data type",
       false,
       {
-        position: {
+        additionalInformation: {
           isValid: true,
           messages: [],
           value: "",
@@ -30,7 +30,7 @@ describe(`lib/validation/position`, () => {
       "provided field is empty",
       "",
       {
-        position: {
+        additionalInformation: {
           isValid: true,
           messages: [],
           value: "",
@@ -38,34 +38,10 @@ describe(`lib/validation/position`, () => {
       },
     ],
     [
-      "given a number returns a string",
-      6665,
-      {
-        position: {
-          isValid: true,
-          messages: [],
-          value: "6665",
-        },
-      },
-    ],
-    [
-      "is too long",
-      "a".repeat(256),
-      {
-        position: {
-          isValid: false,
-          messages: [
-            translations.position.validation.invalidLength[languageCode],
-          ],
-          value: "a".repeat(256),
-        },
-      },
-    ],
-    [
       "ensure values are escaped",
       "<script>tag here</script>",
       {
-        position: {
+        additionalInformation: {
           isValid: true,
           messages: [],
           value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
@@ -76,7 +52,7 @@ describe(`lib/validation/position`, () => {
       "happy path",
       "valid",
       {
-        position: {
+        additionalInformation: {
           isValid: true,
           messages: [],
           value: "valid",
@@ -94,7 +70,7 @@ describe(`lib/validation/position`, () => {
           ...translations,
         };
 
-        expect(validatePosition(given, i18n)).toEqual(expected);
+        expect(validateAdditionalInformation(given, i18n)).toEqual(expected);
       }
     );
   });

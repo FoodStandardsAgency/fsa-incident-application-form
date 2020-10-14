@@ -1,14 +1,14 @@
-const { validateAddressPostcode } = require("../validation/address.postcode");
+const { validateDistributionDetails } = require("./distribution-details");
 
-const translations = require(`${__dirname}/../../translations/form-fields.json`);
+const translations = require(`${__dirname}/../../../translations/form-fields.json`);
 
-describe(`lib/validation/address.postcode`, () => {
-  const testCases = (languageCode) => [
+describe(`lib/validation/individual-fields/distribution-details`, () => {
+  const testCases = () => [
     [
       "missing field",
       undefined,
       {
-        postcode: {
+        distributionDetails: {
           isValid: true,
           messages: [],
           value: "",
@@ -19,7 +19,7 @@ describe(`lib/validation/address.postcode`, () => {
       "wrong data type",
       false,
       {
-        postcode: {
+        distributionDetails: {
           isValid: true,
           messages: [],
           value: "",
@@ -30,7 +30,7 @@ describe(`lib/validation/address.postcode`, () => {
       "provided field is empty",
       "",
       {
-        postcode: {
+        distributionDetails: {
           isValid: true,
           messages: [],
           value: "",
@@ -38,26 +38,24 @@ describe(`lib/validation/address.postcode`, () => {
       },
     ],
     [
-      "value is too long",
-      "a".repeat(256),
+      "ensure values are escaped",
+      "<script>tag here</script>",
       {
-        postcode: {
-          isValid: false,
-          messages: [
-            translations.address.postcode.validation.invalid[languageCode],
-          ],
-          value: "a".repeat(256),
+        distributionDetails: {
+          isValid: true,
+          messages: [],
+          value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
         },
       },
     ],
     [
       "happy path",
-      "TY1 1TY",
+      "valid",
       {
-        postcode: {
+        distributionDetails: {
           isValid: true,
           messages: [],
-          value: "TY1 1TY",
+          value: "valid",
         },
       },
     ],
@@ -72,7 +70,7 @@ describe(`lib/validation/address.postcode`, () => {
           ...translations,
         };
 
-        expect(validateAddressPostcode(given, i18n)).toEqual(expected);
+        expect(validateDistributionDetails(given, i18n)).toEqual(expected);
       }
     );
   });

@@ -1,16 +1,20 @@
 const { allValid } = require("./all-valid");
-const { validateContactName } = require("./contact-name");
-const { validateNotifierType } = require("./notifier-type");
-const { validatePosition } = require("./position");
-const { validateOrganisation } = require("./organisation");
-const { validateEmail } = require("./email");
-const { validateTelephone1 } = require("./telephone1");
-const { validateAddressLine1 } = require("./address.line1");
-const { validateAddressLine2 } = require("./address.line2");
-const { validateAddressTown } = require("./address.town");
-const { validateAddressCounty } = require("./address.county");
-const { validateAddressPostcode } = require("./address.postcode");
-const { validateAddressCountry } = require("./address.country");
+const { validateContactName } = require("./individual-fields/contact-name");
+const { validateNotifierType } = require("./individual-fields/notifier-type");
+const { validatePosition } = require("./individual-fields/position");
+const { validateOrganisation } = require("./individual-fields/organisation");
+const { validateEmail } = require("./individual-fields/email");
+const { validateTelephone1 } = require("./individual-fields/telephone1");
+const { validateAddressLine1 } = require("./individual-fields/address.line1");
+const { validateAddressLine2 } = require("./individual-fields/address.line2");
+const { validateAddressTown } = require("./individual-fields/address.town");
+const { validateAddressCounty } = require("./individual-fields/address.county");
+const {
+  validateAddressPostcode,
+} = require("./individual-fields/address.postcode");
+const {
+  validateAddressCountry,
+} = require("./individual-fields/address.country");
 
 module.exports = {
   validate: (
@@ -35,13 +39,19 @@ module.exports = {
     const validatedPosition = validatePosition(position, i18n);
     const validatedOrganisation = validateOrganisation(organisation, i18n);
     const validatedEmail = validateEmail(email, i18n);
-    const validatedTelephone1 = validateTelephone1(email, i18n);
-    const validatedAddressLine1 = validateAddressLine1(email, i18n);
-    const validatedAddressLine2 = validateAddressLine2(email, i18n);
-    const validatedAddressTown = validateAddressTown(email, i18n);
-    const validatedAddressCounty = validateAddressCounty(email, i18n);
-    const validatedAddressPostcode = validateAddressPostcode(email, i18n);
-    const validatedAddressCountry = validateAddressCountry(email, i18n);
+    const validatedTelephone1 = validateTelephone1(telephone1, i18n);
+    const validatedAddressLine1 = validateAddressLine1(addressLine1, i18n);
+    const validatedAddressLine2 = validateAddressLine2(addressLine2, i18n);
+    const validatedAddressTown = validateAddressTown(addressTown, i18n);
+    const validatedAddressCounty = validateAddressCounty(addressCounty, i18n);
+    const validatedAddressPostcode = validateAddressPostcode(
+      addressPostcode,
+      i18n
+    );
+    const validatedAddressCountry = validateAddressCountry(
+      addressCountry,
+      i18n
+    );
 
     const isValid = allValid([
       validatedContactName,

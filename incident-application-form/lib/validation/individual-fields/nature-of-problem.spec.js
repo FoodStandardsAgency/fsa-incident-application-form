@@ -1,17 +1,17 @@
-const { validateContactName } = require("../validation/contact-name");
+const { validateNatureOfProblem } = require("./nature-of-problem");
 
-const translations = require(`${__dirname}/../../translations/form-fields.json`);
+const translations = require(`${__dirname}/../../../translations/form-fields.json`);
 
-describe(`lib/validation/contact-name`, () => {
+describe(`lib/validation/individual-fields/nature-of-problem`, () => {
   const testCases = (languageCode) => [
     [
       "missing field",
       undefined,
       {
-        contactName: {
+        natureOfProblem: {
           isValid: false,
           messages: [
-            translations.contactName.validation.required[languageCode],
+            translations.natureOfProblem.validation.required[languageCode],
           ],
           value: "",
         },
@@ -21,10 +21,10 @@ describe(`lib/validation/contact-name`, () => {
       "wrong data type",
       false,
       {
-        contactName: {
+        natureOfProblem: {
           isValid: false,
           messages: [
-            translations.contactName.validation.required[languageCode],
+            translations.natureOfProblem.validation.required[languageCode],
           ],
           value: "",
         },
@@ -34,25 +34,12 @@ describe(`lib/validation/contact-name`, () => {
       "provided field is empty",
       "",
       {
-        contactName: {
+        natureOfProblem: {
           isValid: false,
           messages: [
-            translations.contactName.validation.required[languageCode],
+            translations.natureOfProblem.validation.required[languageCode],
           ],
           value: "",
-        },
-      },
-    ],
-    [
-      "value is too long",
-      "a".repeat(256),
-      {
-        contactName: {
-          isValid: false,
-          messages: [
-            translations.contactName.validation.invalidLength[languageCode],
-          ],
-          value: "a".repeat(256),
         },
       },
     ],
@@ -60,7 +47,7 @@ describe(`lib/validation/contact-name`, () => {
       "ensure values are escaped",
       "<script>tag here</script>",
       {
-        contactName: {
+        natureOfProblem: {
           isValid: true,
           messages: [],
           value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
@@ -71,7 +58,7 @@ describe(`lib/validation/contact-name`, () => {
       "happy path",
       "valid",
       {
-        contactName: {
+        natureOfProblem: {
           isValid: true,
           messages: [],
           value: "valid",
@@ -89,7 +76,7 @@ describe(`lib/validation/contact-name`, () => {
           ...translations,
         };
 
-        expect(validateContactName(given, i18n)).toEqual(expected);
+        expect(validateNatureOfProblem(given, i18n)).toEqual(expected);
       }
     );
   });

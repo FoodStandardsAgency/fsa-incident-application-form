@@ -8,8 +8,8 @@ var logger = require("morgan");
 var nunjucks = require("nunjucks");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
 var yourDetailsRouter = require("./routes/your-details");
+var detailsOfIncidentRouter = require("./routes/details-of-incident");
 
 var companyTypeRouter = require("./lookupMocks/company-type");
 var countryRouter = require("./lookupMocks/country");
@@ -36,8 +36,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 app.use("/your-details", yourDetailsRouter);
+app.use("/details-of-incident", detailsOfIncidentRouter);
 
 app.use("/lookup/companyType", companyTypeRouter);
 app.use("/lookup/country", countryRouter);
@@ -51,9 +51,6 @@ app.use(
     path.join(__dirname, "/node_modules/govuk-frontend/govuk/assets")
   )
 );
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/your-details", yourDetailsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

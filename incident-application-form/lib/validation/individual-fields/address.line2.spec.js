@@ -1,14 +1,14 @@
-const { validateAddressLine1 } = require("../validation/address.line1");
+const { validateAddressLine2 } = require("./address.line2");
 
-const translations = require(`${__dirname}/../../translations/form-fields.json`);
+const translations = require(`${__dirname}/../../../translations/form-fields.json`);
 
-describe(`lib/validation/address.line1`, () => {
+describe(`lib/validation/individual-fields/address.line2`, () => {
   const testCases = (languageCode) => [
     [
       "missing field",
       undefined,
       {
-        line1: {
+        line2: {
           isValid: true,
           messages: [],
           value: "",
@@ -19,7 +19,7 @@ describe(`lib/validation/address.line1`, () => {
       "wrong data type",
       false,
       {
-        line1: {
+        line2: {
           isValid: true,
           messages: [],
           value: "",
@@ -30,7 +30,7 @@ describe(`lib/validation/address.line1`, () => {
       "provided field is empty",
       "",
       {
-        line1: {
+        line2: {
           isValid: true,
           messages: [],
           value: "",
@@ -41,10 +41,10 @@ describe(`lib/validation/address.line1`, () => {
       "value is too long",
       "a".repeat(256),
       {
-        line1: {
+        line2: {
           isValid: false,
           messages: [
-            translations.address.line1.validation.invalidLength[languageCode],
+            translations.address.line2.validation.invalidLength[languageCode],
           ],
           value: "a".repeat(256),
         },
@@ -54,7 +54,7 @@ describe(`lib/validation/address.line1`, () => {
       "ensure values are escaped",
       "<script>tag here</script>",
       {
-        line1: {
+        line2: {
           isValid: true,
           messages: [],
           value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
@@ -65,7 +65,7 @@ describe(`lib/validation/address.line1`, () => {
       "happy path",
       "valid",
       {
-        line1: {
+        line2: {
           isValid: true,
           messages: [],
           value: "valid",
@@ -83,7 +83,7 @@ describe(`lib/validation/address.line1`, () => {
           ...translations,
         };
 
-        expect(validateAddressLine1(given, i18n)).toEqual(expected);
+        expect(validateAddressLine2(given, i18n)).toEqual(expected);
       }
     );
   });

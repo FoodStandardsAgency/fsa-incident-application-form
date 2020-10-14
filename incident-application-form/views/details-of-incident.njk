@@ -1,0 +1,131 @@
+{% extends "layout.njk" %}
+
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+{{ i18n.pageTitle[i18n.languageCode] }}
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="">
+
+    {% call govukFieldset({
+        legend: {
+            text: i18n.sections.details[i18n.languageCode],
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+        }
+    }) %}
+
+    {{ govukTextarea({
+        name: "nature-of-problem",
+        id: "nature-of-problem",
+        attributes : {
+            "data-cy": "nature-of-problem"
+        },
+        label: {
+            text: i18n.natureOfProblem.label[i18n.languageCode],
+            classes: "govuk-label--l"
+        },
+        hint: {
+            text: i18n.natureOfProblem.hint[i18n.languageCode]
+        },
+        errorMessage: validation.validatedFields.natureOfProblem.isValid == false and {
+            text: validation.validatedFields.natureOfProblem.messages | join(". "),
+            "attributes" : {
+                "data-cy": "nature-of-problem-errors"
+            }
+        }
+    }) }}
+
+    {{ govukTextarea({
+        name: "action-taken",
+        id: "action-taken",
+        attributes : {
+            "data-cy": "action-taken"
+        },
+        label: {
+            text: i18n.actionTaken.label[i18n.languageCode],
+            classes: "govuk-label--l"
+        },
+        hint: {
+            text: i18n.actionTaken.hint[i18n.languageCode]
+        }
+    }) }}
+
+    {{ govukTextarea({
+        name: "distribution-details",
+        id: "distribution-details",
+        attributes : {
+            "data-cy": "distribution-details"
+        },
+        label: {
+            text: i18n.distributionDetails.label[i18n.languageCode],
+            classes: "govuk-label--l"
+        },
+        hint: {
+            text: i18n.distributionDetails.hint[i18n.languageCode]
+        }
+    }) }}
+
+    {{ govukTextarea({
+        name: "illness-details",
+        id: "illness-details",
+        attributes : {
+            "data-cy": "illness-details"
+        },
+        label: {
+            text: i18n.illnessDetails.label[i18n.languageCode],
+            classes: "govuk-label--l"
+        },
+        hint: {
+            text: i18n.illnessDetails.hint[i18n.languageCode]
+        }
+    }) }}
+
+    {{ govukTextarea({
+        name: "local-authority-notified",
+        id: "local-authority-notified",
+        attributes : {
+            "data-cy": "local-authority-notified"
+        },
+        label: {
+            text: i18n.localAuthorityNotified.label[i18n.languageCode],
+            classes: "govuk-label--l"
+        },
+        hint: {
+            text: i18n.localAuthorityNotified.hint[i18n.languageCode]
+        }
+    }) }}
+
+    {{ govukTextarea({
+        name: "additional-information",
+        id: "additional-information",
+        attributes : {
+            "data-cy": "additional-information"
+        },
+        label: {
+            text: i18n.additionalInformation.label[i18n.languageCode],
+            classes: "govuk-label--l"
+        },
+        hint: {
+            text: i18n.additionalInformation.hint[i18n.languageCode]
+        }
+    }) }}
+
+    {% endcall %}
+
+
+    {{ govukButton({
+      text: "Save and continue",
+      attributes : {
+          "data-cy": "submit"
+      }
+    }) }}
+
+</form>
+
+{% endblock %}

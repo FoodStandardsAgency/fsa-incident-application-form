@@ -1,27 +1,31 @@
-const { validateOrganisation } = require("../validation/organisation");
+const { validateContactName } = require("./contact-name");
 
-const translations = require(`${__dirname}/../../translations/form-fields.json`);
+const translations = require(`${__dirname}/../../../translations/form-fields.json`);
 
-describe(`lib/validation/organisation`, () => {
+describe(`lib/validation/individual-fields/contact-name`, () => {
   const testCases = (languageCode) => [
     [
-      "missing field is allowed",
+      "missing field",
       undefined,
       {
-        organisation: {
-          isValid: true,
-          messages: [],
+        contactName: {
+          isValid: false,
+          messages: [
+            translations.contactName.validation.required[languageCode],
+          ],
           value: "",
         },
       },
     ],
     [
-      "wrong data type returns an empty string",
+      "wrong data type",
       false,
       {
-        organisation: {
-          isValid: true,
-          messages: [],
+        contactName: {
+          isValid: false,
+          messages: [
+            translations.contactName.validation.required[languageCode],
+          ],
           value: "",
         },
       },
@@ -30,32 +34,23 @@ describe(`lib/validation/organisation`, () => {
       "provided field is empty",
       "",
       {
-        organisation: {
-          isValid: true,
-          messages: [],
+        contactName: {
+          isValid: false,
+          messages: [
+            translations.contactName.validation.required[languageCode],
+          ],
           value: "",
         },
       },
     ],
     [
-      "given a number returns a string",
-      6665,
-      {
-        organisation: {
-          isValid: true,
-          messages: [],
-          value: "6665",
-        },
-      },
-    ],
-    [
-      "is too long",
+      "value is too long",
       "a".repeat(256),
       {
-        organisation: {
+        contactName: {
           isValid: false,
           messages: [
-            translations.organisation.validation.invalidLength[languageCode],
+            translations.contactName.validation.invalidLength[languageCode],
           ],
           value: "a".repeat(256),
         },
@@ -65,7 +60,7 @@ describe(`lib/validation/organisation`, () => {
       "ensure values are escaped",
       "<script>tag here</script>",
       {
-        organisation: {
+        contactName: {
           isValid: true,
           messages: [],
           value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
@@ -76,7 +71,7 @@ describe(`lib/validation/organisation`, () => {
       "happy path",
       "valid",
       {
-        organisation: {
+        contactName: {
           isValid: true,
           messages: [],
           value: "valid",
@@ -94,7 +89,7 @@ describe(`lib/validation/organisation`, () => {
           ...translations,
         };
 
-        expect(validateOrganisation(given, i18n)).toEqual(expected);
+        expect(validateContactName(given, i18n)).toEqual(expected);
       }
     );
   });

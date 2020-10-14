@@ -1,16 +1,18 @@
-const { validateAddressCounty } = require("../validation/address.county");
+const { validateNotifierType } = require("./notifier-type");
 
-const translations = require(`${__dirname}/../../translations/form-fields.json`);
+const translations = require(`${__dirname}/../../../translations/form-fields.json`);
 
-describe(`lib/validation/address.county`, () => {
+describe(`lib/validation/individual-fields/notifier-type`, () => {
   const testCases = (languageCode) => [
     [
       "missing field",
       undefined,
       {
-        county: {
-          isValid: true,
-          messages: [],
+        notifierType: {
+          isValid: false,
+          messages: [
+            translations.notifierType.validation.required[languageCode],
+          ],
           value: "",
         },
       },
@@ -19,9 +21,11 @@ describe(`lib/validation/address.county`, () => {
       "wrong data type",
       false,
       {
-        county: {
-          isValid: true,
-          messages: [],
+        notifierType: {
+          isValid: false,
+          messages: [
+            translations.notifierType.validation.required[languageCode],
+          ],
           value: "",
         },
       },
@@ -30,23 +34,25 @@ describe(`lib/validation/address.county`, () => {
       "provided field is empty",
       "",
       {
-        county: {
-          isValid: true,
-          messages: [],
+        notifierType: {
+          isValid: false,
+          messages: [
+            translations.notifierType.validation.required[languageCode],
+          ],
           value: "",
         },
       },
     ],
     [
-      "value is too long",
-      "a".repeat(256),
+      "using the default value",
+      "0",
       {
-        county: {
+        notifierType: {
           isValid: false,
           messages: [
-            translations.address.county.validation.invalidLength[languageCode],
+            translations.notifierType.validation.required[languageCode],
           ],
-          value: "a".repeat(256),
+          value: "0",
         },
       },
     ],
@@ -54,7 +60,7 @@ describe(`lib/validation/address.county`, () => {
       "ensure values are escaped",
       "<script>tag here</script>",
       {
-        county: {
+        notifierType: {
           isValid: true,
           messages: [],
           value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
@@ -65,7 +71,7 @@ describe(`lib/validation/address.county`, () => {
       "happy path",
       "valid",
       {
-        county: {
+        notifierType: {
           isValid: true,
           messages: [],
           value: "valid",
@@ -83,7 +89,7 @@ describe(`lib/validation/address.county`, () => {
           ...translations,
         };
 
-        expect(validateAddressCounty(given, i18n)).toEqual(expected);
+        expect(validateNotifierType(given, i18n)).toEqual(expected);
       }
     );
   });

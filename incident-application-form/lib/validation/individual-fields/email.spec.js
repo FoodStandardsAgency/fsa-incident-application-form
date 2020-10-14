@@ -1,8 +1,8 @@
-const { validateEmail } = require("../validation/email");
+const { validateEmail } = require("./email");
 
-const translations = require(`${__dirname}/../../translations/form-fields.json`);
+const translations = require(`${__dirname}/../../../translations/form-fields.json`);
 
-describe(`lib/validation/email`, () => {
+describe(`lib/validation/individual-fields/email`, () => {
   const testCases = (languageCode) => [
     [
       "missing field",

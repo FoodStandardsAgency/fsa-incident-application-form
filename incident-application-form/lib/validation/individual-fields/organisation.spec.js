@@ -1,31 +1,27 @@
-const { validateAddressTown } = require("../validation/address.town");
+const { validateOrganisation } = require("./organisation");
 
-const translations = require(`${__dirname}/../../translations/form-fields.json`);
+const translations = require(`${__dirname}/../../../translations/form-fields.json`);
 
-describe(`lib/validation/address.town`, () => {
+describe(`lib/validation/individual-fields/organisation`, () => {
   const testCases = (languageCode) => [
     [
-      "missing field",
+      "missing field is allowed",
       undefined,
       {
-        town: {
-          isValid: false,
-          messages: [
-            translations.address.town.validation.required[languageCode],
-          ],
+        organisation: {
+          isValid: true,
+          messages: [],
           value: "",
         },
       },
     ],
     [
-      "wrong data type",
+      "wrong data type returns an empty string",
       false,
       {
-        town: {
-          isValid: false,
-          messages: [
-            translations.address.town.validation.required[languageCode],
-          ],
+        organisation: {
+          isValid: true,
+          messages: [],
           value: "",
         },
       },
@@ -34,23 +30,32 @@ describe(`lib/validation/address.town`, () => {
       "provided field is empty",
       "",
       {
-        town: {
-          isValid: false,
-          messages: [
-            translations.address.town.validation.required[languageCode],
-          ],
+        organisation: {
+          isValid: true,
+          messages: [],
           value: "",
         },
       },
     ],
     [
-      "value is too long",
+      "given a number returns a string",
+      6665,
+      {
+        organisation: {
+          isValid: true,
+          messages: [],
+          value: "6665",
+        },
+      },
+    ],
+    [
+      "is too long",
       "a".repeat(256),
       {
-        town: {
+        organisation: {
           isValid: false,
           messages: [
-            translations.address.town.validation.invalidLength[languageCode],
+            translations.organisation.validation.invalidLength[languageCode],
           ],
           value: "a".repeat(256),
         },
@@ -60,7 +65,7 @@ describe(`lib/validation/address.town`, () => {
       "ensure values are escaped",
       "<script>tag here</script>",
       {
-        town: {
+        organisation: {
           isValid: true,
           messages: [],
           value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
@@ -71,7 +76,7 @@ describe(`lib/validation/address.town`, () => {
       "happy path",
       "valid",
       {
-        town: {
+        organisation: {
           isValid: true,
           messages: [],
           value: "valid",
@@ -89,7 +94,7 @@ describe(`lib/validation/address.town`, () => {
           ...translations,
         };
 
-        expect(validateAddressTown(given, i18n)).toEqual(expected);
+        expect(validateOrganisation(given, i18n)).toEqual(expected);
       }
     );
   });

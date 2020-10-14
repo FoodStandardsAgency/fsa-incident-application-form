@@ -1,8 +1,8 @@
 const { validateTelephone1 } = require("./telephone1");
 
-const translations = require(`${__dirname}/../../translations/form-fields.json`);
+const translations = require(`${__dirname}/../../../translations/form-fields.json`);
 
-describe(`lib/validation/telephone1`, () => {
+describe(`lib/validation/individual-fields/telephone1`, () => {
   const testCases = (languageCode) => [
     [
       "missing field",

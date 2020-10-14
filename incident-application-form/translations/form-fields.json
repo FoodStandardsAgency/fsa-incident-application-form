@@ -1,4 +1,24 @@
 {
+  "additionalInformation": {
+    "label": {
+      "cy": "Unrhyw wybodaeth ychwanegol",
+      "en": "Any additional information"
+    },
+    "hint": {
+      "cy": "Bydd e-bost cadarnhau yn amlinellu sut i ddarparu dogfennau",
+      "en": "A confirmation email will outline how to provide documents"
+    }
+  },
+  "actionTaken": {
+    "label": {
+      "cy": "Pa gamau sydd wedi digwydd neu sydd ar y gweill",
+      "en": "What action has taken place or is planned"
+    },
+    "hint": {
+      "cy": "Er enghraifft, ‘cychwyn galw cynnyrch yn ôl’",
+      "en": "For example, ‘product recall initiated’"
+    }
+  },
   "address": {
     "line1": {
       "label": {
@@ -99,6 +119,16 @@
       }
     }
   },
+  "distributionDetails": {
+    "label": {
+      "cy": "Ble mae'r cynnyrch wedi'i ddosbarthu?",
+      "en": "Where has the product been distributed? "
+    },
+    "hint": {
+      "cy": "Cynhwyswch yr UE a thrydydd gwledydd",
+      "en": "Include EU and third countries"
+    }
+  },
   "email": {
     "label": {
       "cy": "E-bost",
@@ -108,6 +138,42 @@
       "invalidEmailAddress": {
         "cy": "Nid yw hwn yn gyfeiriad e-bost dilys",
         "en": "This is not a valid email address"
+      }
+    }
+  },
+  "illnessDetails": {
+    "label": {
+      "cy": "Pa salwch mae'r digwyddiad wedi'i achosi?",
+      "en": "What illness has the incident caused?"
+    },
+    "hint": {
+      "cy": "Cynhwyswch symptomau a nifer y defnyddwyr yr effeithir arnynt, lle bo hynny'n hysbys",
+      "en": "Include symptoms and the number of consumers affected, where known"
+    }
+  },
+  "localAuthorityNotified": {
+    "label": {
+      "cy": "Pa awdurdod lleol sydd wedi'i hysbysu?",
+      "en": "Which local authority has been notified?"
+    },
+    "hint": {
+      "cy": "Enwch yr awdurdod lleol neu ysgrifennwch ‘dim’",
+      "en": "Name the local authority or write ‘none’"
+    }
+  },
+  "natureOfProblem": {
+    "label": {
+      "cy": "Beth ddigwyddodd?",
+      "en": "What happened?"
+    },
+    "hint": {
+      "cy": "Disgrifiwch y digwyddiad sydd wedi digwydd. Er enghraifft, 'Canfu Salmonela'",
+      "en": "Describe the incident that has taken place. For example, 'Salmonella found'"
+    },
+    "validation": {
+      "required": {
+        "cy": "Mae angen y cae",
+        "en": "The field is required"
       }
     }
   },

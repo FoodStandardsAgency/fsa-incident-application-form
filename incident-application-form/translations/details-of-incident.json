@@ -1,0 +1,18 @@
+{
+  "pageTitle": {
+    "cy": "Manylion y Digwyddiad",
+    "en": "Details of Incident"
+  },
+  "sections": {
+    "details": {
+      "cy": "Manylion y Digwyddiad",
+      "en": "Details of Incident"
+    }
+  },
+  "buttons": {
+    "save": {
+      "cy": "Arbed a Parhau",
+      "en": "Save and Continue"
+    }
+  }
+}
