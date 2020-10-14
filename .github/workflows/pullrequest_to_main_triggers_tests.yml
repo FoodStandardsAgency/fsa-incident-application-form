@@ -8,7 +8,6 @@ jobs:
 
   test:
     name: "Run end-to-end tests in Compose"
-    needs: build
     runs-on: ubuntu-latest
     env:
       GOV_NOTIFY_API_KEY: ${{ secrets.DEV_GOV_NOTIFY_API_KEY }}
