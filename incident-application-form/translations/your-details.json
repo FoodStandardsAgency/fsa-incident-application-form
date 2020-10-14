@@ -1,0 +1,38 @@
+{
+  "title": {
+    "cy": "Hysbyswr",
+    "en": "Notifier"
+  },
+  "sections": {
+    "yourDetails": {
+      "cy": "Eich Manylion",
+      "en": "Your Details"
+    }
+  },
+  "notifierType": {
+    "label": {
+      "cy": "Math Hysbysydd",
+      "en": "Notifier Type"
+    },
+    "values": {
+      "defaultValue": {
+        "cy": "Dewiswch opsiwn",
+        "en": "Please choose an option"
+      },
+      "industry": {
+        "cy": "Diwydiant",
+        "en": "Industry"
+      },
+      "localAuthority": {
+        "cy": "Awdurdod lleol",
+        "en": "Local Authority"
+      }
+    },
+    "validation": {
+      "required": {
+        "cy": "Mae angen math o hysbysydd",
+        "en": "Notifier type is required"
+      }
+    }
+  }
+}

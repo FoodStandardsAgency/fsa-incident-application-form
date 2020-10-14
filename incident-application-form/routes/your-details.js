@@ -5,18 +5,28 @@ const router = express.Router();
 
 const template = "your-details";
 
-const languageCode = "en";
+const languageCode = "cy";
+const translations = require(`${__dirname}/../translations/${template}.json`);
 
-const i18n = require(`${__dirname}/../translations/${template}.${languageCode}.json`);
+const title = translations.title[languageCode];
 
-const title = i18n.title;
+const i18n = {
+  languageCode,
+  ...translations,
+};
 
 router.get("/", function (req, res, next) {
   res.render(template, { title, i18n });
 });
 
 router.post("/", [
-  body("notifier-type", "Notifier type is required").trim().notEmpty().escape(),
+  body(
+    "notifier-type",
+    i18n.notifierType.validation.required[i18n.languageCode]
+  )
+    .trim()
+    .notEmpty()
+    .escape(),
   body("contact-name", "Contact name is required")
     .trim()
     .isLength(1, 100)
