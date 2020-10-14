@@ -1,4 +1,4 @@
-name: deploy to azure
+name: pull_requests trigger cypress tests
 
 on:
   pull_request:
@@ -6,8 +6,8 @@ on:
 
 jobs:
 
-  test:
-    name: "Run end-to-end tests in Compose"
+  cypress:
+    name: "checkout; launch docker-compose; execute cypress tests."
     runs-on: ubuntu-latest
     env:
       GOV_NOTIFY_API_KEY: ${{ secrets.DEV_GOV_NOTIFY_API_KEY }}
