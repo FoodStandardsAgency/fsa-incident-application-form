@@ -16,7 +16,7 @@ const i18n = {
 };
 
 router.get("/", async function (req, res, next) {
-  console.log(`i18n`, i18n);
+  console.log(`req.session`, req.session);
   res.render(template, {
     i18n,
   });
@@ -57,6 +57,8 @@ router.post("/", async function (req, res, next) {
 
   // the valid form submission data
   console.log(`validation`, validation.validatedFields);
+
+  req.session.detailsOfIncident = validation.validatedFields;
 
   res.render(template, {
     i18n,

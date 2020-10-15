@@ -6,6 +6,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var nunjucks = require("nunjucks");
+var session = require("express-session");
 
 var indexRouter = require("./routes/index");
 var yourDetailsRouter = require("./routes/your-details");
@@ -34,6 +35,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+var sessionConfig = {
+  secret: "secure key goes here",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {},
+};
+
+if (app.get("env") === "production") {
+  sessionConfig.cookie.secure = true; // serve secure cookies
+}
+
+app.use(session(sessionConfig));
 
 app.use("/", indexRouter);
 app.use("/your-details", yourDetailsRouter);
