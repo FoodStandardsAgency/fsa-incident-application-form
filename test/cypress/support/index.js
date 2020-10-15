@@ -18,3 +18,8 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+Cypress.Commands.add("sendPayloadToTestHook", require('./sendPayloadToTestHook'));
+Cypress.Commands.add("listPayloadsReceived", require('./listPayloadsReceived'));
+Cypress.Commands.add("receivedPayloadById", require('./receivedPayloadById'));
+Cypress.Commands.add("flushPayloads", require('./flushPayloads'));
