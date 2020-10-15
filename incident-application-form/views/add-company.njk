@@ -1,0 +1,62 @@
+{% extends "layout.njk" %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+{{ i18n.pageTitle[i18n.languageCode] }}
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="">
+
+    {% call govukFieldset({
+        legend: {
+            text: i18n.sections.addCompany[i18n.languageCode],
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+        }
+    }) %}
+
+    {{ govukInput({
+        classes: "govuk-!-width-full",
+        id: "company-name",
+        name: "company-name",
+        attributes : {
+            "data-cy": "company-name"
+        },
+        label: {
+            text: i18n.companyName.label[i18n.languageCode]
+        },
+        errorMessage: validation.validatedFields.companyName.isValid == false and {
+            text: validation.validatedFields.companyName.messages | join(". "),
+            "attributes" : {
+                "data-cy": "company-name-errors"
+            }
+        }
+    }) }}
+
+    {% endcall %}
+
+    {{ govukButton({
+      text: i18n.buttons.save[i18n.languageCode],
+      attributes : {
+          "data-cy": "submit"
+      }
+    }) }}
+
+    {{ govukButton({
+      text: i18n.buttons.back[i18n.languageCode],
+      classes: "govuk-button--secondary",
+      href: "/details-of-product",
+      attributes : {
+          "data-cy": "back"
+      }
+    }) }}
+
+</form>
+
+{% endblock %}

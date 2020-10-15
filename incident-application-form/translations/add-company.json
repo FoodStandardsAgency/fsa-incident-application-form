@@ -1,0 +1,22 @@
+{
+  "pageTitle": {
+    "cy": "Ychwanegu Cwmni",
+    "en": "Add Company"
+  },
+  "sections": {
+    "addCompany": {
+      "cy": "Ychwanegu Cwmni",
+      "en": "Add Company"
+    }
+  },
+  "buttons": {
+    "back": {
+      "cy": "yn ôl",
+      "en": "Back"
+    },
+    "save": {
+      "cy": "Arbed a Parhau",
+      "en": "Save and Continue"
+    }
+  }
+}
