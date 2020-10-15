@@ -103,6 +103,30 @@
       }
     }
   },
+  "brand": {
+    "label": {
+      "cy": "Brand",
+      "en": "Brand"
+    },
+    "validation": {
+      "invalidLength": {
+        "cy": "Rhaid i'r brand fod rhwng 1 a 255 nod",
+        "en": "Brand must be between 1 and 255 characters"
+      }
+    }
+  },
+  "companyName": {
+    "label": {
+      "cy": "Enw'r Cwmni",
+      "en": "Company Name"
+    },
+    "validation": {
+      "invalidLength": {
+        "cy": "Rhaid i enw'r cwmni fod rhwng 1 a 255 nod",
+        "en": "Company name must be between 1 and 255 characters"
+      }
+    }
+  },
   "contactName": {
     "label": {
       "cy": "Enw Cyswllt",
@@ -224,6 +248,22 @@
       "invalidLength": {
         "cy": "Rhaid i'r swydd fod rhwng 1 a 255 nod",
         "en": "Position must be between 1 and 255 characters"
+      }
+    }
+  },
+  "productName": {
+    "label": {
+      "cy": "Enw Cynnyrch",
+      "en": "Product Name"
+    },
+    "validation": {
+      "required": {
+        "cy": "Mae angen enw'r cynnyrch",
+        "en": "Product name is required"
+      },
+      "invalidLength": {
+        "cy": "Rhaid i enw'r cynnyrch fod rhwng 1 a 255 nod",
+        "en": "Product name must be between 1 and 255 characters"
       }
     }
   },
