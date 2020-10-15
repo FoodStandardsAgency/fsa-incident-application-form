@@ -54,7 +54,7 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp create --name fsa-dev-incident-report-form \
+          az webapp create --name fsa-incident-report-form-dev \
             --plan dev \
             --deployment-container-image-name ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/form-ui
 
@@ -62,21 +62,21 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment container config --name fsa-dev-incident-report-form \
+          az webapp deployment container config --name fsa-incident-report-form-dev \
             --enable-cd true
 
     - name: Enable container logging
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp log config --name fsa-dev-incident-report-form \
+          az webapp log config --name fsa-incident-report-form-dev \
             --docker-container-logging filesystem
 
     - name: Always-on
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp config set --name fsa-dev-incident-report-form \
+          az webapp config set --name fsa-incident-report-form-dev \
             --always-on true
 
     - name: Environment variables
@@ -84,19 +84,10 @@ jobs:
       with:
         # NB we're setting PORT for the container and WEBSITES_PORT for Azure.
         inlineScript: |
-          az webapp config appsettings set --name fsa-dev-incident-report-form \
+          az webapp config appsettings set --name fsa-incident-report-form-dev \
             --settings \
               PORT=3000 \
               WEBSITES_PORT=3000
-
-    - name: Secrets
-      uses: Azure/cli@v1.0.0
-      with:
-        inlineScript: |
-          az webapp config connection-string set --name fsa-dev-incident-report-form \
-            --connection-string-type custom \
-            --settings \
-              SESSION_SECRET="sshhhhh"
 
   build:
     name: Build and push Form UI
@@ -136,13 +127,13 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot create --name fsa-dev-incident-report-form --slot ${{ github.sha }} --configuration-source fsa-dev-incident-report-form
+          az webapp deployment slot create --name fsa-incident-report-form-dev --slot ${{ github.sha }} --configuration-source fsa-incident-report-form-dev
 
     - name: Swap slot ${{ github.sha }} into production
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot swap   --name fsa-dev-incident-report-form --slot ${{ github.sha }} --action swap
+          az webapp deployment slot swap   --name fsa-incident-report-form-dev --slot ${{ github.sha }} --action swap
 
     - name: Delete slot ${{ github.sha }}
       # Clean up the slot regardless of errors
@@ -150,4 +141,4 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot delete --name fsa-dev-incident-report-form --slot ${{ github.sha }}
+          az webapp deployment slot delete --name fsa-incident-report-form-dev --slot ${{ github.sha }}
