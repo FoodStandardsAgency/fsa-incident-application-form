@@ -51,7 +51,7 @@ module.exports = {
         // min 1
         // max 255
         // escaped
-        TwonyCity: "Any text here",
+        TownCity: "Any text here",
         // free form text
         // min 0
         // max 255

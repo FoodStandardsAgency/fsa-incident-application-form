@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -6,8 +8,8 @@ var logger = require("morgan");
 var nunjucks = require("nunjucks");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
 var yourDetailsRouter = require("./routes/your-details");
+var detailsOfIncidentRouter = require("./routes/details-of-incident");
 
 var companyTypeRouter = require("./lookupMocks/company-type");
 var countryRouter = require("./lookupMocks/country");
@@ -18,9 +20,11 @@ var unitsRouter = require("./lookupMocks/units");
 var app = express();
 
 // view engine setup
-nunjucks.configure("views", {
-  express: app,
+nunjucks.configure(["node_modules/govuk-frontend/", "views"], {
   autoescape: true,
+  express: app,
+  noCache: true,
+  watch: true,
 });
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "njk");
@@ -32,14 +36,21 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 app.use("/your-details", yourDetailsRouter);
+app.use("/details-of-incident", detailsOfIncidentRouter);
 
 app.use("/lookup/companyType", companyTypeRouter);
 app.use("/lookup/country", countryRouter);
 app.use("/lookup/notifierType", notifierTypeRouter);
 app.use("/lookup/productType", productTypeRouter);
 app.use("/lookup/units", unitsRouter);
+
+app.use(
+  "/assets",
+  express.static(
+    path.join(__dirname, "/node_modules/govuk-frontend/govuk/assets")
+  )
+);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

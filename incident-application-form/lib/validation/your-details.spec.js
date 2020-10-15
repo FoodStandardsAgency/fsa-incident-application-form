@@ -1,125 +1,44 @@
 const { validate } = require("../validation/your-details");
 
-const translations = require(`${__dirname}/../../translations/your-details.json`);
+const translations = require(`${__dirname}/../../translations/form-fields.json`);
 
 describe(`lib/validation/your-details`, () => {
   const testCases = (languageCode) => [
     [
-      "missing all fields",
-      {},
+      "invalid path",
       {
-        isValid: false,
-        validatedFields: {
-          contactName: {
-            isValid: false,
-            messages: [
-              translations.contactName.validation.required[languageCode],
-            ],
-            value: "",
-          },
-          notifierType: {
-            isValid: false,
-            messages: [
-              translations.notifierType.validation.required[languageCode],
-            ],
-            value: "",
-          },
-        },
-      },
-    ],
-    [
-      "provided fields are empty",
-      {
-        contactName: "",
-        notifierType: "",
-      },
-      {
-        isValid: false,
-        validatedFields: {
-          contactName: {
-            isValid: false,
-            messages: [
-              translations.contactName.validation.required[languageCode],
-            ],
-            value: "",
-          },
-          notifierType: {
-            isValid: false,
-            messages: [
-              translations.notifierType.validation.required[languageCode],
-            ],
-            value: "",
-          },
-        },
-      },
-    ],
-    [
-      "contact name is too long",
-      {
-        contactName: "a".repeat(101),
+        contactName: "valid",
         notifierType: "valid",
+        position: "valid",
+        organisation: "valid",
+        email: "not a valid email address dot wot",
+        telephone1: "phone numbers are not text",
+        addressLine1: "valid",
+        addressLine2: "valid",
+        addressTown: "valid",
+        addressCounty: "valid",
+        addressPostcode: "TE1 5ST",
+        addressCountry: "valid",
       },
-      {
-        isValid: false,
-        validatedFields: {
-          contactName: {
-            isValid: false,
-            messages: [
-              translations.contactName.validation.invalidLength[languageCode],
-            ],
-            value: "a".repeat(101),
-          },
-          notifierType: {
-            isValid: true,
-            messages: [],
-            value: "valid",
-          },
-        },
-      },
-    ],
-    [
-      "values are escaped",
-      {
-        contactName: "<script>tag here</script>",
-        notifierType: "flowers+%3Cscript%3Eevil_script()%3C/script%3E",
-      },
-      {
-        isValid: true,
-        validatedFields: {
-          contactName: {
-            isValid: true,
-            messages: [],
-            value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
-          },
-          notifierType: {
-            isValid: true,
-            messages: [],
-            value: "flowers+%3Cscript%3Eevil_script()%3C&#x2F;script%3E",
-          },
-        },
-      },
+      false,
     ],
     [
       "happy path",
       {
         contactName: "valid",
         notifierType: "valid",
+        position: "valid",
+        organisation: "valid",
+        email: "a@b.com",
+        telephone1: "+44 1234 567890",
+        addressLine1: "valid",
+        addressLine2: "valid",
+        addressTown: "valid",
+        addressCounty: "valid",
+        addressPostcode: "TE1 5ST",
+        addressCountry: "valid",
       },
-      {
-        isValid: true,
-        validatedFields: {
-          contactName: {
-            isValid: true,
-            messages: [],
-            value: "valid",
-          },
-          notifierType: {
-            isValid: true,
-            messages: [],
-            value: "valid",
-          },
-        },
-      },
+      true,
     ],
   ];
 
@@ -132,7 +51,7 @@ describe(`lib/validation/your-details`, () => {
           ...translations,
         };
 
-        expect(validate(given, i18n)).toEqual(expected);
+        expect(validate(given, i18n).isValid).toEqual(expected);
       }
     );
   });

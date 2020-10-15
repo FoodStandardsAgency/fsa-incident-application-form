@@ -1,60 +1,26 @@
 {
-  "title": {
+  "pageTitle": {
     "cy": "Hysbyswr",
     "en": "Notifier"
   },
   "sections": {
-    "yourDetails": {
+    "addresses": {
+      "cy": "Eich Cyfeiriad",
+      "en": "Your Address"
+    },
+    "incidents": {
       "cy": "Eich Manylion",
       "en": "Your Details"
+    },
+    "incidentsStakeholders": {
+      "cy": "Eich Manylion Cyswllt",
+      "en": "Your Contact Details"
     }
   },
-  "contactName": {
-    "label": {
-      "cy": "Enw Cyswllt",
-      "en": "Contact Name"
-    },
-    "validation": {
-      "required": {
-        "cy": "Mae angen enw cyswllt",
-        "en": "Contact name is required"
-      },
-      "invalidLength": {
-        "cy": "Rhaid i'r enw cyswllt fod rhwng 1 a 100 nod",
-        "en": "Contact name must be between 1 and 100 characters"
-      }
-    }
-  },
-  "country": {
-    "label": {
-      "cy": "Gwlad",
-      "en": "Country"
-    }
-  },
-  "notifierType": {
-    "label": {
-      "cy": "Math Hysbysydd",
-      "en": "Notifier Type"
-    },
-    "values": {
-      "defaultValue": {
-        "cy": "Dewiswch opsiwn",
-        "en": "Please choose an option"
-      },
-      "industry": {
-        "cy": "Diwydiant",
-        "en": "Industry"
-      },
-      "localAuthority": {
-        "cy": "Awdurdod lleol",
-        "en": "Local Authority"
-      }
-    },
-    "validation": {
-      "required": {
-        "cy": "Mae angen math o hysbysydd",
-        "en": "Notifier type is required"
-      }
+  "buttons": {
+    "save": {
+      "cy": "Arbed a Parhau",
+      "en": "Save and Continue"
     }
   }
 }
