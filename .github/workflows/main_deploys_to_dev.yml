@@ -87,7 +87,8 @@ jobs:
           az webapp config appsettings set --name fsa-incident-report-form-dev \
             --settings \
               PORT=3000 \
-              WEBSITES_PORT=3000
+              WEBSITES_PORT=3000 \
+              LOOKUP_API_BASE_URL=http://localhost:3000
 
   build:
     name: Build and push Form UI
