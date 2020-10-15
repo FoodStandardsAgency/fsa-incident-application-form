@@ -8,12 +8,14 @@ var logger = require("morgan");
 var nunjucks = require("nunjucks");
 var session = require("express-session");
 
+var routes = require(`${__dirname}/routes/routes.json`);
+
 var indexRouter = require("./routes/index");
 var yourDetailsRouter = require("./routes/your-details");
 var detailsOfIncidentRouter = require("./routes/details-of-incident");
 var detailsOfProductRouter = require("./routes/details-of-product");
-var addProductRouter = require("./routes/add-product");
-var addCompanyRouter = require("./routes/add-company");
+var productRouter = require("./routes/product");
+var companyRouter = require("./routes/company");
 
 var companyTypeRouter = require("./lookupMocks/company-type");
 var countryRouter = require("./lookupMocks/country");
@@ -55,11 +57,11 @@ if (isProduction) {
 app.use(session(sessionConfig));
 
 app.use("/", indexRouter);
-app.use("/your-details", yourDetailsRouter);
-app.use("/details-of-incident", detailsOfIncidentRouter);
-app.use("/details-of-product", detailsOfProductRouter);
-app.use("/add-product", addProductRouter);
-app.use("/add-company", addCompanyRouter);
+app.use(routes.YOUR_DETAILS, yourDetailsRouter);
+app.use(routes.DETAILS_OF_INCIDENT, detailsOfIncidentRouter);
+app.use(routes.DETAILS_OF_PRODUCT, detailsOfProductRouter);
+app.use(routes.PRODUCT, productRouter);
+app.use(routes.COMPANY, companyRouter);
 
 app.use("/lookup/companyType", companyTypeRouter);
 app.use("/lookup/country", countryRouter);

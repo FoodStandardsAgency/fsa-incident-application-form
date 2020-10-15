@@ -35,7 +35,7 @@
         <div class="govuk-grid-column-one-third">
             {{ govukButton({
               text: i18n.buttons.addProduct[i18n.languageCode],
-              href: "/add-product",
+              href: routes.PRODUCT,
               attributes : {
                   "data-cy": "add-product"
               }
@@ -54,7 +54,7 @@
     {{ govukButton({
       text: i18n.buttons.back[i18n.languageCode],
       classes: "govuk-button--secondary",
-      href: "/details-of-incident",
+      href: routes.DETAILS_OF_INCIDENT,
       attributes : {
           "data-cy": "back"
       }

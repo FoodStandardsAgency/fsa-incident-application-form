@@ -1,0 +1,45 @@
+{% extends "layout.njk" %}
+
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+{{ i18n.pageTitles.editProduct[i18n.languageCode] }}
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="{{ routes.PRODUCT }}">
+
+    {% call govukFieldset({
+        legend: {
+            text: i18n.sections.editProduct[i18n.languageCode],
+            classes: "govuk-fieldset__legend--l",
+            isPageHeading: true
+        }
+    }) %}
+
+    {% include "partials/products-form-fields.njk" %}
+    
+    {% endcall %}
+
+
+    {{ govukButton({
+      text: i18n.buttons.save[i18n.languageCode],
+      attributes : {
+          "data-cy": "submit"
+      }
+    }) }}
+
+    {{ govukButton({
+      text: i18n.buttons.back[i18n.languageCode],
+      classes: "govuk-button--secondary",
+      href: routes.DETAILS_OF_PRODUCT,
+      attributes : {
+          "data-cy": "back"
+      }
+    }) }}
+
+</form>
+
+{% endblock %}
