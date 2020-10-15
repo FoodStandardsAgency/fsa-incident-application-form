@@ -55,7 +55,6 @@ router.post("/", async function (req, res, next) {
   const companiesToValidate = {
     ...products[productId].companies,
   };
-  prod;
 
   if (!validation.isValid) {
     console.log(`not validation`, validation);
@@ -69,7 +68,7 @@ router.post("/", async function (req, res, next) {
     return;
   }
 
-  uctsToValidate[productId] = validation.validatedFields;
+  // uctsToValidate[productId] = validation.validatedFields;
 
   // the valid form submission data
   console.log(`validation`, validation.validatedFields);
