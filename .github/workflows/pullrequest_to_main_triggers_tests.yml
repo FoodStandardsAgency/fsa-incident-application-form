@@ -1,4 +1,4 @@
-name: pull_requests trigger cypress tests
+name: pull_requests trigger tests
 
 on:
   pull_request:
