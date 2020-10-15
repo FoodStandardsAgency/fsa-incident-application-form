@@ -19,6 +19,10 @@ router.get("/", function (req, res, next) {
         url: routes.DETAILS_OF_PRODUCT,
         text: "Details of Product",
       },
+      {
+        url: routes.PREVIEW,
+        text: "Preview",
+      },
     ],
     routes,
   });

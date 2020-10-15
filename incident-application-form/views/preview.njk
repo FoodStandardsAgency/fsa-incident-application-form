@@ -1,0 +1,165 @@
+{% extends "layout.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+{% block pageTitle %}
+{{ i18n.pageTitle[i18n.languageCode] }}
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="" novalidate>
+
+    <h2>{{ i18n.sections.yourDetails[i18n.languageCode] }}</h2>
+    <dl class="govuk-summary-list govuk-summary-list--no-border">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.notifierType.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="notifier-type" class="govuk-summary-list__value govuk-body-s">
+          {{ yourDetails.notifierType.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.contactName.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="contact-name" class="govuk-summary-list__value govuk-body-s">
+          {{ yourDetails.contactName.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.position.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="position" class="govuk-summary-list__value govuk-body-s">
+          {{ yourDetails.position.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.organisation.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="organisation" class="govuk-summary-list__value govuk-body-s">
+          {{ yourDetails.organisation.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.email.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="email" class="govuk-summary-list__value govuk-body-s">
+          {{ yourDetails.email.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.telephone1.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="telephone1" class="govuk-summary-list__value govuk-body-s">
+          {{ yourDetails.telephone1.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.address.line1.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="address.line1" class="govuk-summary-list__value govuk-body-s">
+          {{ yourDetails.address.line1.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.address.line2.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="address.line2" class="govuk-summary-list__value govuk-body-s">
+          {{ yourDetails.address.line2.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.address.town.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="address.town" class="govuk-summary-list__value govuk-body-s">
+          {{ yourDetails.address.town.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.address.county.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="address.county" class="govuk-summary-list__value govuk-body-s">
+          {{ yourDetails.address.county.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.address.postcode.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="address.postcode" class="govuk-summary-list__value govuk-body-s">
+          {{ yourDetails.address.postcode.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.address.country.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="address.country" class="govuk-summary-list__value govuk-body-s">
+          {{ yourDetails.address.country.value }}
+        </dd>
+      </div>
+
+    </dl>
+
+    <h2>{{ i18n.sections.detailsOfIncident[i18n.languageCode] }}</h2>
+    <dl class="govuk-summary-list govuk-summary-list--no-border">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.natureOfProblem.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="natureOfProblem" class="govuk-summary-list__value govuk-body-s">
+          {{ detailsOfIncident.natureOfProblem.value }}
+        </dd>
+      </div>
+
+    </dl>
+
+    <h2>{{ i18n.sections.detailsOfProducts[i18n.languageCode] }}</h2>
+    <dl class="govuk-summary-list govuk-summary-list--no-border">
+
+      {# <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.natureOfProblem.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="natureOfProblem" class="govuk-summary-list__value govuk-body-s">
+          {{ detailsOfIncident.natureOfProblem.value }}
+        </dd>
+      </div> #}
+
+    </dl>
+
+
+    {{ govukButton({
+      text: "Submit",
+      attributes : {
+          "data-cy": "submit"
+      }
+    }) }}
+
+</form>
+
+{% endblock %}

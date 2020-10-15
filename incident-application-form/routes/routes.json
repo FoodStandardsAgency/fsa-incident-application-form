@@ -4,5 +4,6 @@
   "DETAILS_OF_INCIDENT": "/details-of-incident",
   "DETAILS_OF_PRODUCT": "/details-of-product",
   "PRODUCT": "/product",
-  "COMPANY": "/company"
+  "COMPANY": "/company",
+  "PREVIEW": "/preview"
 }
