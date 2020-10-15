@@ -10,6 +10,7 @@ var nunjucks = require("nunjucks");
 var indexRouter = require("./routes/index");
 var yourDetailsRouter = require("./routes/your-details");
 var detailsOfIncidentRouter = require("./routes/details-of-incident");
+var detailsOfProductRouter = require("./routes/details-of-product");
 
 var companyTypeRouter = require("./lookupMocks/company-type");
 var countryRouter = require("./lookupMocks/country");
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/your-details", yourDetailsRouter);
 app.use("/details-of-incident", detailsOfIncidentRouter);
+app.use("/details-of-product", detailsOfProductRouter);
 
 app.use("/lookup/companyType", companyTypeRouter);
 app.use("/lookup/country", countryRouter);

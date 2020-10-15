@@ -1,0 +1,40 @@
+{
+  "pageTitle": {
+    "cy": "Manylion y Digwyddiad",
+    "en": "Details of Product"
+  },
+  "sections": {
+    "details": {
+      "cy": "Manylion y Digwyddiad",
+      "en": "Details of Product"
+    }
+  },
+  "buttons": {
+    "addProduct": {
+      "cy": "Ychwanegu cynnyrch",
+      "en": "Add Product"
+    },
+    "back": {
+      "cy": "yn ôl",
+      "en": "Back"
+    },
+    "remove": {
+      "cy": "Tynnwch y cynnyrch",
+      "en": "Remove Product"
+    },
+    "save": {
+      "cy": "Arbed a Parhau",
+      "en": "Save and Continue"
+    }
+  },
+  "headings": {
+    "product": {
+      "cy": "Cynnyrch",
+      "en": "Product"
+    },
+    "action": {
+      "cy": "Gweithredu",
+      "en": "Action"
+    }
+  }
+}
