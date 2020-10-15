@@ -14,20 +14,20 @@ jobs:
       with:
         creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
 
-    - name: Defaults
+    - name: Default location + resource group
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
           az configure --defaults location=uksouth
           az configure --defaults group=RG-APP-FSA-DEV-IncidentReportForm-1
 
-    - name: App Service plan
+    - name: Create App Service plan
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
           az appservice plan create --name dev --is-linux --sku p1v2
 
-    - name: Container registry
+    - name: Create Container registry
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
@@ -35,7 +35,7 @@ jobs:
           az acr create --name ${{ secrets.CONTAINER_REGISTRY_NAME }} --sku Standard --admin-enabled true
 
   form-ui-appservice:
-    name: Form UI
+    name: Creating and configuring Web Application
     needs: [dev-rg]
     runs-on: ubuntu-latest
     steps:
@@ -43,14 +43,14 @@ jobs:
       with:
         creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
 
-    - name: Defaults
+    - name: Default location + resource group
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
           az configure --defaults location=uksouth
           az configure --defaults group=RG-APP-FSA-DEV-IncidentReportForm-1
 
-    - name: Create
+    - name: Create web application
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
@@ -58,7 +58,7 @@ jobs:
             --plan dev \
             --deployment-container-image-name ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/form-ui
 
-    - name: Continuous deployment
+    - name: Switch on Continuous deployment
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
@@ -79,7 +79,7 @@ jobs:
           az webapp config set --name fsa-incident-report-form-dev \
             --always-on true
 
-    - name: Environment variables
+    - name: Applying Environment variables
       uses: Azure/cli@v1.0.0
       with:
         # NB we're setting PORT for the container and WEBSITES_PORT for Azure.
@@ -92,7 +92,7 @@ jobs:
               SESSION_KEY=03978Xjb19nh6mR9kQ6B
 
   build:
-    name: Build and push Form UI
+    name: Build application and push into Container registry
     needs: form-ui-appservice
     runs-on: ubuntu-latest
     steps:
@@ -118,7 +118,7 @@ jobs:
       with:
         creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
 
-    - name: Defaults
+    - name: Default location + resource group
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
