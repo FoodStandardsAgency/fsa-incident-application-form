@@ -1,26 +1,26 @@
 {
   "pageTitle": {
-    "cy": "Manylion y Digwyddiad",
-    "en": "Details of Product"
+    "cy": "Ychwanegu cynnyrch",
+    "en": "Add Product"
   },
   "sections": {
-    "details": {
-      "cy": "Manylion y Digwyddiad",
-      "en": "Details of Product"
-    }
-  },
-  "buttons": {
     "addProduct": {
       "cy": "Ychwanegu cynnyrch",
       "en": "Add Product"
+    }
+  },
+  "buttons": {
+    "addCompany": {
+      "cy": "Ychwanegu Cwmni",
+      "en": "Add Company"
     },
     "back": {
       "cy": "yn ôl",
       "en": "Back"
     },
-    "removeProduct": {
-      "cy": "Tynnwch y cynnyrch",
-      "en": "Remove Product"
+    "removeCompany": {
+      "cy": "Dileu Cwmni",
+      "en": "Remove Company"
     },
     "save": {
       "cy": "Arbed a Parhau",
@@ -28,9 +28,9 @@
     }
   },
   "headings": {
-    "product": {
-      "cy": "Cynnyrch",
-      "en": "Product"
+    "company": {
+      "cy": "Cwmni",
+      "en": "Company"
     },
     "action": {
       "cy": "Gweithredu",
