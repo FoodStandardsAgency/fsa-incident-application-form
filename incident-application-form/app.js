@@ -61,7 +61,7 @@ app.use(routes.YOUR_DETAILS, yourDetailsRouter);
 app.use(routes.DETAILS_OF_INCIDENT, detailsOfIncidentRouter);
 app.use(routes.DETAILS_OF_PRODUCT, detailsOfProductRouter);
 app.use(routes.PRODUCT, productRouter);
-app.use(routes.COMPANY, companyRouter);
+app.use(`${routes.PRODUCT}/:productId/company`, companyRouter);
 
 app.use("/lookup/companyType", companyTypeRouter);
 app.use("/lookup/country", countryRouter);

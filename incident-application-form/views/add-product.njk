@@ -9,7 +9,7 @@
 
 {% block content %}
 
-<form method="POST" action="{{ routes.PRODUCT }}">
+<form method="POST" action="{{ routes.PRODUCT }}" novalidate>
 
     {% call govukFieldset({
         legend: {
@@ -19,7 +19,7 @@
         }
     }) %}
 
-    {% include "partials/products-form-fields.njk" %}
+    {% include "partials/product-form-fields.njk" %}
     
     {% endcall %}
 
@@ -48,8 +48,8 @@
         <div class="govuk-grid-column-one-third">
             {{ govukButton({
               text: i18n.buttons.addCompany[i18n.languageCode],
-              disabled: true,
-              href: "/add-company",
+              name: "submission-type",
+              value: SUBMISSION_TYPES.ADD_COMPANY,
               attributes : {
                   "data-cy": "add-company"
               }
@@ -60,6 +60,8 @@
 
     {{ govukButton({
       text: i18n.buttons.save[i18n.languageCode],
+      name: "submission-type",
+      value: SUBMISSION_TYPES.ADD_PRODUCT,
       attributes : {
           "data-cy": "submit"
       }

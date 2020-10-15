@@ -1,6 +1,6 @@
 const express = require("express");
 const { v4: uuidv4 } = require("uuid");
-const { validate } = require("../lib/validation/add-product");
+const { validate } = require("../lib/validation/product");
 
 const router = express.Router();
 
@@ -16,6 +16,11 @@ const i18n = {
   ...formFieldTranslations,
 };
 
+const SUBMISSION_TYPES = {
+  ADD_PRODUCT: "add-product",
+  ADD_COMPANY: "add-company",
+};
+
 router.get("/", async function (req, res, next) {
   const template = "add-product";
 
@@ -23,8 +28,9 @@ router.get("/", async function (req, res, next) {
   console.log(`session`, req.session);
   res.render(template, {
     i18n,
-    id: uuidv4(),
+    productId: uuidv4(),
     routes,
+    SUBMISSION_TYPES,
     template,
   });
 });
@@ -32,15 +38,15 @@ router.get("/", async function (req, res, next) {
 router.post("/", async function (req, res, next) {
   console.log(`req.body`, req.body);
 
-  const { id, template, "product-name": productName, brand } = req.body;
+  const {
+    productId,
+    template,
+    "submission-type": submissionType,
+    "product-name": productName,
+    brand,
+  } = req.body;
 
   const validation = validate({ productName, brand }, i18n);
-
-  const { products = {} } = req.session;
-  const productsToValidate = {
-    ...products,
-  };
-  productsToValidate[id] = validation.validatedFields;
 
   console.log(`session`, JSON.stringify(req.session, null, 2));
 
@@ -48,18 +54,31 @@ router.post("/", async function (req, res, next) {
     console.log(`not validation`, validation);
 
     res.render(template, {
+      productId,
       i18n,
       validation,
       routes,
+      SUBMISSION_TYPES,
       template,
     });
     return;
   }
 
-  req.session.products = productsToValidate;
+  const { products = {} } = req.session;
+  const validatedProducts = {
+    ...products,
+  };
+  validatedProducts[productId] = validation.validatedFields;
+
+  req.session.products = validatedProducts;
 
   // the valid form submission data
   console.log(`validation`, validation.validatedFields);
+
+  if (submissionType === SUBMISSION_TYPES.ADD_COMPANY) {
+    res.redirect(`${routes.PRODUCT}/${productId}/company`);
+    return;
+  }
 
   res.redirect(routes.DETAILS_OF_PRODUCT);
 });
@@ -79,9 +98,10 @@ router.get("/edit/:productId", async function (req, res, next) {
 
   res.render(template, {
     i18n,
-    id: productId,
+    productId,
     routes,
     template,
+    SUBMISSION_TYPES,
     validation,
   });
 });

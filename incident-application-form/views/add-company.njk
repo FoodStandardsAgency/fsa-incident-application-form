@@ -6,12 +6,12 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block pageTitle %}
-{{ i18n.pageTitle[i18n.languageCode] }}
+{{ i18n.pageTitles.addCompany[i18n.languageCode] }}
 {% endblock %}
 
 {% block content %}
 
-<form method="POST" action="">
+<form method="POST" action="" novalidate>
 
     {% call govukFieldset({
         legend: {
@@ -21,23 +21,7 @@
         }
     }) %}
 
-    {{ govukInput({
-        classes: "govuk-!-width-full",
-        id: "company-name",
-        name: "company-name",
-        attributes : {
-            "data-cy": "company-name"
-        },
-        label: {
-            text: i18n.companyName.label[i18n.languageCode]
-        },
-        errorMessage: validation.validatedFields.companyName.isValid == false and {
-            text: validation.validatedFields.companyName.messages | join(". "),
-            "attributes" : {
-                "data-cy": "company-name-errors"
-            }
-        }
-    }) }}
+    {% include "partials/company-form-fields.njk" %}
 
     {% endcall %}
 

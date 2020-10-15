@@ -1,0 +1,23 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+<input type="hidden" name="companyId" value="{{ companyId }}" />
+<input type="hidden" name="productId" value="{{ productId }}" />
+<input type="hidden" name="template" value="{{ template }}" />
+
+{{ govukInput({
+    classes: "govuk-!-width-full",
+    id: "company-name",
+    name: "company-name",
+    attributes : {
+        "data-cy": "company-name"
+    },
+    label: {
+        text: i18n.companyName.label[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.companyName.isValid == false and {
+        text: validation.validatedFields.companyName.messages | join(". "),
+        "attributes" : {
+            "data-cy": "company-name-errors"
+        }
+    }
+}) }}
