@@ -18,10 +18,12 @@ const i18n = {
 };
 
 router.get("/", async function (req, res, next) {
+  console.log(`req.session`, req.session);
   res.render(template, {
     countries: await getCountries(languageCode),
     i18n,
     notifierTypes: await getNotifierTypes(languageCode),
+    yourDetails: req.session.yourDetails || {},
   });
 });
 
@@ -59,12 +61,15 @@ router.post("/", async function (req, res, next) {
     i18n
   );
 
+  req.session.yourDetails = validation.validatedFields;
+
   if (!validation.isValid) {
     res.render(template, {
       countries: await getCountries(languageCode),
       i18n,
       notifierTypes: await getNotifierTypes(languageCode),
       validation,
+      yourDetails: req.session.yourDetails || {},
     });
     return;
   }
@@ -76,6 +81,7 @@ router.post("/", async function (req, res, next) {
     countries: await getCountries(languageCode),
     i18n,
     notifierTypes: await getNotifierTypes(languageCode),
+    yourDetails: req.session.yourDetails || {},
   });
 });
 

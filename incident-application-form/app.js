@@ -6,6 +6,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var nunjucks = require("nunjucks");
+var session = require("express-session");
 
 var indexRouter = require("./routes/index");
 var yourDetailsRouter = require("./routes/your-details");
@@ -19,6 +20,8 @@ var productTypeRouter = require("./lookupMocks/product-type");
 var unitsRouter = require("./lookupMocks/units");
 
 var app = express();
+
+var isProduction = app.get("env") === "production";
 
 // view engine setup
 nunjucks.configure(["node_modules/govuk-frontend/", "views"], {
@@ -35,6 +38,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+var sessionConfig = {
+  secret: process.env.SESSION_KEY,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {},
+};
+
+if (isProduction) {
+  sessionConfig.cookie.secure = true; // serve secure cookies
+}
+
+app.use(session(sessionConfig));
 
 app.use("/", indexRouter);
 app.use("/your-details", yourDetailsRouter);
