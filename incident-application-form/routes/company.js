@@ -31,7 +31,6 @@ router.get("/", async function (req, res, next) {
 });
 
 router.post("/", async function (req, res, next) {
-  console.log(`req.body`, req.body);
   const {
     template,
     companyId,
@@ -52,13 +51,7 @@ router.post("/", async function (req, res, next) {
     throw new Error("Cannot add a company if no product.");
   }
 
-  const companiesToValidate = {
-    ...products[productId].companies,
-  };
-
   if (!validation.isValid) {
-    console.log(`not validation`, validation);
-
     res.render(template, {
       i18n,
       productId,
@@ -68,10 +61,50 @@ router.post("/", async function (req, res, next) {
     return;
   }
 
-  // uctsToValidate[productId] = validation.validatedFields;
+  const validatedCompanies = {
+    ...(products[productId].companies || []),
+  };
+  validatedCompanies[companyId] = validation.validatedFields;
+
+  req.session.products[productId].companies = validatedCompanies;
 
   // the valid form submission data
   console.log(`validation`, validation.validatedFields);
+
+  res.redirect(`${routes.PRODUCT}/edit/${productId}`);
+});
+
+router.get("/edit/:companyId", async function (req, res, next) {
+  const template = "edit-company";
+
+  const { productId, companyId } = req.params;
+  const validation = {
+    validatedFields: req.session.products[productId].companies[companyId],
+  };
+  console.log(`validation`, validation);
+
+  res.render(template, {
+    i18n,
+    companyId,
+    productId,
+    routes,
+    template,
+    validation,
+  });
+});
+
+router.get("/remove/:companyId", async function (req, res, next) {
+  const { productId, companyId } = req.params;
+
+  const { products = {} } = req.session;
+  if (
+    products[productId] &&
+    products[productId].companies &&
+    products[productId].companies[companyId]
+  ) {
+    delete products[productId].companies[companyId];
+  }
+  req.session.products = products;
 
   res.redirect(`${routes.PRODUCT}/edit/${productId}`);
 });

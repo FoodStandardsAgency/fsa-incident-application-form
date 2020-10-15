@@ -28,6 +28,10 @@
       "cy": "yn ôl",
       "en": "Back"
     },
+    "editCompany": {
+      "cy": "Golygu Cwmni",
+      "en": "Edit Company"
+    },
     "removeCompany": {
       "cy": "Dileu Cwmni",
       "en": "Remove Company"

@@ -1,6 +1,9 @@
 const express = require("express");
 const { v4: uuidv4 } = require("uuid");
 const { validate } = require("../lib/validation/product");
+const {
+  formatCompanies,
+} = require("../lib/formatting/details-of-companies-table-display");
 
 const router = express.Router();
 
@@ -96,10 +99,18 @@ router.get("/edit/:productId", async function (req, res, next) {
 
   console.log(`validation`, validation);
 
+  const tabularDetailsOfCompanies = formatCompanies(
+    req.session.products[productId].companies || {},
+    productId,
+    i18n,
+    routes
+  );
+
   res.render(template, {
     i18n,
     productId,
     routes,
+    tabularDetailsOfCompanies,
     template,
     SUBMISSION_TYPES,
     validation,
