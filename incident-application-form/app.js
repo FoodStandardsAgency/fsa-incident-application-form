@@ -20,6 +20,8 @@ var unitsRouter = require("./lookupMocks/units");
 
 var app = express();
 
+var isProduction = app.get("env") === "production";
+
 // view engine setup
 nunjucks.configure(["node_modules/govuk-frontend/", "views"], {
   autoescape: true,
@@ -37,13 +39,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 var sessionConfig = {
-  secret: "secure key goes here",
+  secret: process.env.SESSION_KEY,
   resave: false,
   saveUninitialized: true,
   cookie: {},
 };
 
-if (app.get("env") === "production") {
+if (isProduction) {
   sessionConfig.cookie.secure = true; // serve secure cookies
 }
 
