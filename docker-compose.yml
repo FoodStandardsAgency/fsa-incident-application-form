@@ -11,3 +11,11 @@ services:
     ports:
       - "3000:3000"
     command: npm start
+
+  test-hooks:
+    build: ./test-hooks
+    image: fsa/test-hooks
+    restart: always
+    ports:
+      - "3069:3069"
+    command: npm start
