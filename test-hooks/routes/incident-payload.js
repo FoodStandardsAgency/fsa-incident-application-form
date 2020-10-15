@@ -11,7 +11,8 @@ const payloadsReceived = [];
 router.get('/flush', (req, res, next) => {
   payloadsReceived.splice(0,payloadsReceived.length);
   res.status(200).send();
-})
+});
+
 router.post('/', (req, res, next) => {
   payloadsReceived.push(req.body);
   res.status(200).send();
