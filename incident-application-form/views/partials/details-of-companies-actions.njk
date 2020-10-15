@@ -1,0 +1,13 @@
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+    text: i18n.buttons.editCompany[i18n.languageCode],
+    classes: "govuk-button govuk-button--secondary",
+    href: "%1/%2/company/edit/%3" | replace("%1", routes.PRODUCT) | replace("%2",  productId) | replace("%3",  companyId)
+}) }}
+
+{{ govukButton({
+    text: i18n.buttons.removeCompany[i18n.languageCode],
+    classes: "govuk-button govuk-button--warning",
+    href: "%1/%2/company/remove/%3" | replace("%1", routes.PRODUCT) | replace("%2",  productId) | replace("%3",  companyId)
+}) }}

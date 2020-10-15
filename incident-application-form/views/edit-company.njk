@@ -1,36 +1,32 @@
 {% extends "layout.njk" %}
 
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block pageTitle %}
-{{ i18n.pageTitles.addProduct[i18n.languageCode] }}
+{{ i18n.pageTitles.editCompany[i18n.languageCode] }}
 {% endblock %}
 
 {% block content %}
 
-<form method="POST" action="{{ routes.PRODUCT }}" novalidate>
+<form method="POST" action="" novalidate>
 
     {% call govukFieldset({
         legend: {
-            text: i18n.sections.addProduct[i18n.languageCode],
+            text: i18n.sections.editCompany[i18n.languageCode],
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
         }
     }) %}
 
-    {% include "partials/product-form-fields.njk" %}
-    
+    {% include "partials/company-form-fields.njk" %}
+
     {% endcall %}
-
-
-    {% include "partials/add-company.njk" %}
-
 
     {{ govukButton({
       text: i18n.buttons.save[i18n.languageCode],
-      name: "submission-type",
-      value: SUBMISSION_TYPES.ADD_PRODUCT,
       attributes : {
           "data-cy": "submit"
       }
