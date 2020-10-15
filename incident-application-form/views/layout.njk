@@ -1,8 +1,11 @@
 {% extends "govuk/template.njk" %}
 
+{% block headIcons %}
+{% endblock %}
+
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 {% endblock %}
 
 {% block header %}
@@ -10,7 +13,7 @@
 
 {% block bodyEnd %}
   {{ super() }}
-  <script src="js/app.js"></script>
+  <script src="/js/app.js"></script>
 {% endblock %}
 
 {% block footer %}

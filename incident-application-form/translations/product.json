@@ -1,12 +1,22 @@
 {
-  "pageTitle": {
-    "cy": "Ychwanegu cynnyrch",
-    "en": "Add Product"
+  "pageTitles": {
+    "addProduct": {
+      "cy": "Ychwanegu Cynnyrch",
+      "en": "Add Product"
+    },
+    "editProduct": {
+      "cy": "Golygu Cynnyrch",
+      "en": "Edit Product"
+    }
   },
   "sections": {
     "addProduct": {
-      "cy": "Ychwanegu cynnyrch",
+      "cy": "Ychwanegu Cynnyrch",
       "en": "Add Product"
+    },
+    "editProduct": {
+      "cy": "Golygu Cynnyrch",
+      "en": "Edit Product"
     }
   },
   "buttons": {

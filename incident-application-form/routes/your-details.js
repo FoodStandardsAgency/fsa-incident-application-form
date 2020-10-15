@@ -11,6 +11,8 @@ const languageCode = "en";
 const pageTranslations = require(`${__dirname}/../translations/${template}.json`);
 const formFieldTranslations = require(`${__dirname}/../translations/form-fields.json`);
 
+const routes = require(`${__dirname}/../routes/routes.json`);
+
 const i18n = {
   languageCode,
   ...pageTranslations,
@@ -77,12 +79,7 @@ router.post("/", async function (req, res, next) {
   // the valid form submission data
   console.log(`validation`, validation.validatedFields);
 
-  res.render(template, {
-    countries: await getCountries(languageCode),
-    i18n,
-    notifierTypes: await getNotifierTypes(languageCode),
-    yourDetails: req.session.yourDetails || {},
-  });
+  res.redirect(routes.DETAILS_OF_INCIDENT);
 });
 
 module.exports = router;

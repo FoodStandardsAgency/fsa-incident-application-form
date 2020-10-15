@@ -1,0 +1,43 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+<input type="hidden" name="companyId" value="{{ companyId }}" />
+<input type="hidden" name="productId" value="{{ productId }}" />
+<input type="hidden" name="template" value="{{ template }}" />
+
+{{ govukInput({
+    classes: "govuk-!-width-full",
+    id: "product-name",
+    name: "product-name",
+    value: validation.validatedFields.productName.value,
+    attributes : {
+        "data-cy": "product-name"
+    },
+    label: {
+        text: i18n.productName.label[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.productName.isValid == false and {
+        text: validation.validatedFields.productName.messages | join(". "),
+        "attributes" : {
+            "data-cy": "product-name-errors"
+        }
+    }
+}) }}
+
+{{ govukInput({
+    classes: "govuk-!-width-full",
+    id: "brand",
+    name: "brand",
+    value: validation.validatedFields.brand.value,
+    attributes : {
+        "data-cy": "brand"
+    },
+    label: {
+        text: i18n.brand.label[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.brand.isValid == false and {
+        text: validation.validatedFields.brand.messages | join(". "),
+        "attributes" : {
+            "data-cy": "brand-errors"
+        }
+    }
+}) }}

@@ -1,29 +1,28 @@
 {% extends "layout.njk" %}
 
-{% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block pageTitle %}
-{{ i18n.pageTitles.addCompany[i18n.languageCode] }}
+{{ i18n.pageTitles.editProduct[i18n.languageCode] }}
 {% endblock %}
 
 {% block content %}
 
-<form method="POST" action="" novalidate>
+<form method="POST" action="{{ routes.PRODUCT }}" novalidate>
 
     {% call govukFieldset({
         legend: {
-            text: i18n.sections.addCompany[i18n.languageCode],
+            text: i18n.sections.editProduct[i18n.languageCode],
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
         }
     }) %}
 
-    {% include "partials/company-form-fields.njk" %}
-
+    {% include "partials/product-form-fields.njk" %}
+    
     {% endcall %}
+
 
     {{ govukButton({
       text: i18n.buttons.save[i18n.languageCode],

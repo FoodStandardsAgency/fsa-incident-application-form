@@ -1,8 +1,8 @@
-const { validate } = require("../validation/add-product");
+const { validate } = require("./product");
 
 const translations = require(`${__dirname}/../../translations/form-fields.json`);
 
-describe(`lib/validation/add-product`, () => {
+describe(`lib/validation/product`, () => {
   const testCases = () => [
     [
       "invalid",

@@ -10,7 +10,7 @@
 
 {% block content %}
 
-<form method="POST" action="">
+<form method="POST" action="" novalidate>
 
     {% call govukFieldset({
         legend: {
@@ -128,7 +128,7 @@
     {{ govukButton({
       text: i18n.buttons.back[i18n.languageCode],
       classes: "govuk-button--secondary",
-      href: "/your-details",
+      href: routes.YOUR_DETAILS,
       attributes : {
           "data-cy": "back"
       }

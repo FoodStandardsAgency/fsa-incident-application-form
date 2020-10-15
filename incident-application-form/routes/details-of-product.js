@@ -1,4 +1,7 @@
 const express = require("express");
+const {
+  formatProducts,
+} = require("../lib/formatting/details-of-products-table-display");
 
 const router = express.Router();
 
@@ -8,6 +11,8 @@ const languageCode = "en";
 const pageTranslations = require(`${__dirname}/../translations/${template}.json`);
 const formFieldTranslations = require(`${__dirname}/../translations/form-fields.json`);
 
+const routes = require(`${__dirname}/../routes/routes.json`);
+
 const i18n = {
   languageCode,
   ...pageTranslations,
@@ -15,38 +20,18 @@ const i18n = {
 };
 
 router.get("/", async function (req, res, next) {
-  const tabularDetailsOfProducts = [
-    [
-      { text: "product name 1" },
-      {
-        html: `
-          <button
-            class="govuk-button govuk-button--secondary"
-            data-module="govuk-button"
-          >
-            Remove
-          </button>
-        `,
-      },
-    ],
-    [
-      { text: "product name 2" },
-      {
-        html: `
-          <button
-            class="govuk-button govuk-button--secondary"
-            data-module="govuk-button"
-          >
-            Remove
-          </button>
-        `,
-      },
-    ],
-  ];
+  console.log(`session`, JSON.stringify(req.session, null, 2));
+
+  const tabularDetailsOfProducts = formatProducts(
+    req.session.products || {},
+    i18n,
+    routes
+  );
 
   res.render(template, {
     i18n,
-    tabularDetailsOfProducts: [],
+    routes,
+    tabularDetailsOfProducts,
   });
 });
 

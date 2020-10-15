@@ -13,6 +13,7 @@ module.exports = {
       isValid,
       validatedFields: {
         ...validatedProductName,
+        ...validatedBrand,
       },
     };
   },
