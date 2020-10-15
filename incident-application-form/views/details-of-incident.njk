@@ -118,11 +118,19 @@
 
     {% endcall %}
 
-
     {{ govukButton({
-      text: "Save and continue",
+      text: i18n.buttons.save[i18n.languageCode],
       attributes : {
           "data-cy": "submit"
+      }
+    }) }}
+
+    {{ govukButton({
+      text: i18n.buttons.back[i18n.languageCode],
+      classes: "govuk-button--secondary",
+      href: "/your-details",
+      attributes : {
+          "data-cy": "back"
       }
     }) }}
 

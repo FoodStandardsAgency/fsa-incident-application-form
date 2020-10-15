@@ -1,0 +1,65 @@
+{% extends "layout.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% block pageTitle %}
+{{ i18n.pageTitle[i18n.languageCode] }}
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="">
+
+    {% if tabularDetailsOfProducts | length > 0 %}
+        {{ govukTable({
+          caption: i18n.sections.details[i18n.languageCode],
+          firstCellIsHeader: true,
+          head: [
+            {
+              text: i18n.headings.product[i18n.languageCode]
+            },
+            {
+              text: i18n.headings.action[i18n.languageCode]
+            }
+          ],
+          rows: tabularDetailsOfProducts
+        }) }}
+    {% else %}
+        <div>
+        </div>
+    {% endif %}
+
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-third">
+            {{ govukButton({
+              text: i18n.buttons.addProduct[i18n.languageCode],
+              href: "/add-product",
+              attributes : {
+                  "data-cy": "add-product"
+              }
+            }) }}
+        </div>
+    </div>
+
+    {{ govukButton({
+      text: i18n.buttons.save[i18n.languageCode],
+      disabled: tabularDetailsOfProducts | length == 0,
+      attributes : {
+          "data-cy": "submit"
+      }
+    }) }}
+
+    {{ govukButton({
+      text: i18n.buttons.back[i18n.languageCode],
+      classes: "govuk-button--secondary",
+      href: "/details-of-incident",
+      attributes : {
+          "data-cy": "back"
+      }
+    }) }}
+
+</form>
+
+{% endblock %}
