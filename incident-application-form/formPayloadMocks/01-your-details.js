@@ -3,10 +3,10 @@ module.exports = {
     return {
       Incidents: {
         // required
-        // one of:
+        // value of:
         //   - industry
         //   - local-authority
-        NotifierID: "local-authority",
+        NotifierID: 2,
       },
       IncidentStakeholders: {
         // required
