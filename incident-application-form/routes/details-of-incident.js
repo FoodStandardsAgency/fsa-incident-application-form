@@ -18,7 +18,6 @@ const i18n = {
 };
 
 router.get("/", async function (req, res, next) {
-  console.log(`req.session`, req.session);
   res.render(template, {
     back: routes.YOUR_DETAILS,
     i18n,
@@ -27,7 +26,6 @@ router.get("/", async function (req, res, next) {
 });
 
 router.post("/", async function (req, res, next) {
-  console.log(`req.body`, req.body);
   const {
     "nature-of-problem": natureOfProblem,
     "action-taken": actionTaken,
@@ -50,8 +48,6 @@ router.post("/", async function (req, res, next) {
   );
 
   if (!validation.isValid) {
-    console.log(`not validation`, validation);
-
     res.render(template, {
       back: routes.YOUR_DETAILS,
       i18n,
@@ -62,7 +58,7 @@ router.post("/", async function (req, res, next) {
   }
 
   // the valid form submission data
-  console.log(`validation`, validation.validatedFields);
+  // console.log(`validation`, validation.validatedFields);
 
   req.session.detailsOfIncident = validation.validatedFields;
 
