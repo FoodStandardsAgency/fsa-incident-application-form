@@ -20,7 +20,6 @@ const i18n = {
 };
 
 router.get("/", async function (req, res, next) {
-  console.log(`req.session`, req.session);
   res.render(template, {
     countries: await getCountries(languageCode),
     i18n,
@@ -77,7 +76,7 @@ router.post("/", async function (req, res, next) {
   }
 
   // the valid form submission data
-  console.log(`validation`, validation.validatedFields);
+  // console.log(`validation`, validation.validatedFields);
 
   res.redirect(routes.DETAILS_OF_INCIDENT);
 });

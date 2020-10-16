@@ -27,8 +27,6 @@ const SUBMISSION_TYPES = {
 router.get("/", async function (req, res, next) {
   const template = "add-product";
 
-  // console.log(`i18n`, i18n);
-  console.log(`session`, req.session);
   res.render(template, {
     i18n,
     productId: uuidv4(),
@@ -39,8 +37,6 @@ router.get("/", async function (req, res, next) {
 });
 
 router.post("/", async function (req, res, next) {
-  console.log(`req.body`, req.body);
-
   const {
     productId,
     template,
@@ -51,11 +47,7 @@ router.post("/", async function (req, res, next) {
 
   const validation = validate({ productName, brand }, i18n);
 
-  console.log(`session`, JSON.stringify(req.session, null, 2));
-
   if (!validation.isValid) {
-    console.log(`not validation`, validation);
-
     res.render(template, {
       productId,
       i18n,
@@ -71,12 +63,15 @@ router.post("/", async function (req, res, next) {
   const validatedProducts = {
     ...products,
   };
-  validatedProducts[productId] = validation.validatedFields;
+  validatedProducts[productId] = {
+    ...validatedProducts[productId],
+    ...validation.validatedFields,
+  };
 
   req.session.products = validatedProducts;
 
   // the valid form submission data
-  console.log(`validation`, validation.validatedFields);
+  // console.log(`validation`, validation.validatedFields);
 
   if (submissionType === SUBMISSION_TYPES.ADD_COMPANY) {
     res.redirect(`${routes.PRODUCT}/${productId}/company`);
@@ -87,17 +82,12 @@ router.post("/", async function (req, res, next) {
 });
 
 router.get("/edit/:productId", async function (req, res, next) {
-  // console.log(`i18n`, i18n);
   const template = "edit-product";
 
   const { productId } = req.params;
   const validation = {
     validatedFields: req.session.products[productId],
   };
-
-  console.log(`session`, JSON.stringify(req.session, null, 2));
-
-  console.log(`validation`, validation);
 
   const tabularDetailsOfCompanies = formatCompanies(
     req.session.products[productId].companies || {},
@@ -118,7 +108,6 @@ router.get("/edit/:productId", async function (req, res, next) {
 });
 
 router.get("/remove/:productId", async function (req, res, next) {
-  // console.log(`i18n`, i18n);
   const { productId } = req.params;
 
   const { products = {} } = req.session;
@@ -127,11 +116,6 @@ router.get("/remove/:productId", async function (req, res, next) {
   }
   req.session.products = products;
 
-  console.log(
-    `REMOVAL session`,
-    productId,
-    JSON.stringify(req.session, null, 2)
-  );
   res.redirect(routes.DETAILS_OF_PRODUCT);
 });
 

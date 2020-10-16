@@ -17,7 +17,6 @@ const i18n = {
 };
 
 router.get("/", async function (req, res, next) {
-  // console.log(`i18n`, i18n);
   const template = "add-company";
   const { productId } = req.params;
 
@@ -61,12 +60,16 @@ router.post("/", async function (req, res, next) {
     return;
   }
 
-  const validatedCompanies = {
-    ...(products[productId].companies || []),
-  };
+  const validatedCompanies = products[productId].companies || {};
   validatedCompanies[companyId] = validation.validatedFields;
 
-  req.session.products[productId].companies = validatedCompanies;
+  req.session.products = {
+    ...req.session.products,
+    [productId]: {
+      ...req.session.products[productId],
+      companies: validatedCompanies,
+    },
+  };
 
   // the valid form submission data
   console.log(`validation`, validation.validatedFields);
@@ -81,7 +84,6 @@ router.get("/edit/:companyId", async function (req, res, next) {
   const validation = {
     validatedFields: req.session.products[productId].companies[companyId],
   };
-  console.log(`validation`, validation);
 
   res.render(template, {
     i18n,

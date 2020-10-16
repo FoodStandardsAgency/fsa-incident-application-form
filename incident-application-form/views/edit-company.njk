@@ -9,9 +9,11 @@
 {{ i18n.pageTitles.editCompany[i18n.languageCode] }}
 {% endblock %}
 
+{% set action = "%1/%2/company" | replace("%1", routes.PRODUCT) | replace("%2",  productId) %}}
+
 {% block content %}
 
-<form method="POST" action="" novalidate>
+<form method="POST" action="{{ action }}" novalidate>
 
     {% call govukFieldset({
         legend: {
