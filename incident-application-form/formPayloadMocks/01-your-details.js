@@ -153,7 +153,7 @@ module.exports = {
         //   - Wales
         //   - West Africa
         //   - Zimbabwe
-        CountryID: "17",
+        CountryID: 17,
       },
     };
   },
