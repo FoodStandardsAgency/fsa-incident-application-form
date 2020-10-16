@@ -25,6 +25,11 @@ describe(`lib/validation/product`, () => {
       {
         productName: "valid",
         brand: "valid",
+        companies: {
+          "123-abc": {
+            name: "valid",
+          },
+        },
       },
       true,
     ],
