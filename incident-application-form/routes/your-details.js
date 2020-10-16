@@ -69,7 +69,7 @@ router.post("/", async function (req, res, next) {
       addressPostcode,
       addressCountry,
     },
-    i18n
+    i18n(lc)
   );
 
   req.session.yourDetails = validation.validatedFields;
