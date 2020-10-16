@@ -35,7 +35,7 @@ module.exports = {
           //   - Sugar and Chocolate Confectionery
           //   - Sugar, Preserves and Snacks
           //   - Take away food
-          ProductTypeId: "25",
+          ProductTypeId: 25,
           // free form list of strings
           BatchCodes: [
             // free form text
@@ -136,7 +136,7 @@ module.exports = {
           //   - Wales
           //   - West Africa
           //   - Zimbabwe
-          CountryOfOriginId: "11",
+          CountryOfOriginId: 11,
           // free form text
           // min 0
           // max 255
@@ -149,7 +149,7 @@ module.exports = {
           //   - Litres
           //   - Tonnes
           //   - Units
-          AmountUnitTypeId: "3",
+          AmountUnitTypeId: 3,
           IncidentProductDates: {
             // validated as ISO string
             BestBeforeDate: "",
@@ -223,7 +223,7 @@ module.exports = {
                 // min 1
                 // max 255
                 // escaped
-                TwonyCity: "Any text here",
+                TownCity: "Any text here",
                 // free form text
                 // min 0
                 // max 255
@@ -325,7 +325,7 @@ module.exports = {
                 //   - Wales
                 //   - West Africa
                 //   - Zimbabwe
-                CountryID: "17",
+                CountryID: 17,
               },
             },
           ],
