@@ -16,7 +16,7 @@ var detailsOfIncidentRouter = require("./routes/details-of-incident");
 var detailsOfProductRouter = require("./routes/details-of-product");
 var productRouter = require("./routes/product");
 var companyRouter = require("./routes/company");
-
+var previewRouter = require("./routes/preview");
 var companyTypeRouter = require("./lookupMocks/company-type");
 var countryRouter = require("./lookupMocks/country");
 var notifierTypeRouter = require("./lookupMocks/notifier-type");
@@ -62,6 +62,7 @@ app.use(routes.DETAILS_OF_INCIDENT, detailsOfIncidentRouter);
 app.use(routes.DETAILS_OF_PRODUCT, detailsOfProductRouter);
 app.use(routes.PRODUCT, productRouter);
 app.use(`${routes.PRODUCT}/:productId/company`, companyRouter);
+app.use(routes.PREVIEW, previewRouter);
 
 app.use("/lookup/companyType", companyTypeRouter);
 app.use("/lookup/country", countryRouter);

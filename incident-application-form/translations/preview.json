@@ -1,0 +1,28 @@
+{
+  "pageTitles": {
+    "preview": {
+      "cy": "Rhagolwg",
+      "en": "Preview"
+    }
+  },
+  "sections": {
+    "yourDetails": {
+      "cy": "Eich Manylion",
+      "en": "Your Details"
+    },
+    "detailsOfIncident": {
+      "cy": "Manylion y Digwyddiad",
+      "en": "Details of the Incident"
+    },
+    "detailsOfProducts": {
+      "cy": "Manylion y Cynnyrch / Cynnyrch yr effeithir arnynt",
+      "en": "Details of affected Product(s)"
+    }
+  },
+  "buttons": {
+    "submit": {
+      "cy": "Cyflwyno",
+      "en": "Submit"
+    }
+  }
+}
