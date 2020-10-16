@@ -13,22 +13,32 @@ const formFieldTranslations = require(`${__dirname}/../translations/form-fields.
 
 const routes = require(`${__dirname}/../routes/routes.json`);
 
-const i18n = {
+const i18n = (languageCode) => ({
   languageCode,
   ...pageTranslations,
   ...formFieldTranslations,
-};
+});
 
 router.get("/", async function (req, res, next) {
+  let lc = req.query.l ? req.query.l : languageCode;
+  if (lc !== "cy") {
+    lc = "en";
+  }
+
   res.render(template, {
     countries: await getCountries(languageCode),
-    i18n,
+    i18n: i18n(lc),
     notifierTypes: await getNotifierTypes(languageCode),
     yourDetails: req.session.yourDetails || {},
   });
 });
 
 router.post("/", async function (req, res, next) {
+  let lc = req.query.l ? req.query.l : languageCode;
+  if (lc !== "cy") {
+    lc = "en";
+  }
+
   const {
     "notifier-type": notifierType,
     "contact-name": contactName,
@@ -67,7 +77,7 @@ router.post("/", async function (req, res, next) {
   if (!validation.isValid) {
     res.render(template, {
       countries: await getCountries(languageCode),
-      i18n,
+      i18n: i18n(lc),
       notifierTypes: await getNotifierTypes(languageCode),
       validation,
       yourDetails: req.session.yourDetails || {},
