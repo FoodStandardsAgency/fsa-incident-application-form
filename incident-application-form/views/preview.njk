@@ -123,7 +123,7 @@
       </div>
 
     </dl>
-
+<hr/>
     <h2>{{ i18n.sections.detailsOfIncident[i18n.languageCode] }}</h2>
     <dl class="govuk-summary-list govuk-summary-list--no-border">
 
@@ -131,12 +131,59 @@
         <dt class="govuk-summary-list__key govuk-body-s">
           {{ i18n.natureOfProblem.label[i18n.languageCode] }}
         </dt>
-        <dd data-cy="natureOfProblem" class="govuk-summary-list__value govuk-body-s">
+        <dd data-cy="nature-of-problem" class="govuk-summary-list__value govuk-body-s">
           {{ detailsOfIncident.natureOfProblem.value }}
         </dd>
       </div>
 
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.actionTaken.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="action-taken" class="govuk-summary-list__value govuk-body-s">
+          {{ detailsOfIncident.actionTaken.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.distributionDetails.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="distribution-details" class="govuk-summary-list__value govuk-body-s">
+          {{ detailsOfIncident.distributionDetails.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.illnessDetails.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="illness-details" class="govuk-summary-list__value govuk-body-s">
+          {{ detailsOfIncident.illnessDetails.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.localAuthorityNotified.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="local-authority-notified" class="govuk-summary-list__value govuk-body-s">
+          {{ detailsOfIncident.localAuthorityNotified.value }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.additionalInformation.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="additional-information" class="govuk-summary-list__value govuk-body-s">
+          {{ detailsOfIncident.additionalInformation.value }}
+        </dd>
+      </div>
+
     </dl>
+
+    <hr/>
 
     <h2>{{ i18n.sections.detailsOfProducts[i18n.languageCode] }}</h2>
     <dl class="govuk-summary-list govuk-summary-list--no-border">
