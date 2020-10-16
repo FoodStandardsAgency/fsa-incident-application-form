@@ -20,6 +20,7 @@ const i18n = {
 router.get("/", async function (req, res, next) {
   res.render(template, {
     back: routes.YOUR_DETAILS,
+    detailsOfIncident: req.session.detailsOfIncident || {},
     i18n,
     routes,
   });
@@ -27,6 +28,7 @@ router.get("/", async function (req, res, next) {
 
 router.post("/", async function (req, res, next) {
   const {
+    "incident-title": incidentTitle,
     "nature-of-problem": natureOfProblem,
     "action-taken": actionTaken,
     "distribution-details": distributionDetails,
@@ -37,6 +39,7 @@ router.post("/", async function (req, res, next) {
 
   const validation = validate(
     {
+      incidentTitle,
       natureOfProblem,
       actionTaken,
       distributionDetails,
@@ -50,6 +53,7 @@ router.post("/", async function (req, res, next) {
   if (!validation.isValid) {
     res.render(template, {
       back: routes.YOUR_DETAILS,
+      detailsOfIncident: req.session.detailsOfIncident || {},
       i18n,
       validation,
       routes,
@@ -62,9 +66,7 @@ router.post("/", async function (req, res, next) {
 
   req.session.detailsOfIncident = validation.validatedFields;
 
-  res.render(template, {
-    i18n,
-  });
+  res.redirect(routes.DETAILS_OF_PRODUCT);
 });
 
 module.exports = router;

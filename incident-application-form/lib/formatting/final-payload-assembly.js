@@ -10,10 +10,17 @@ const assembleAddress = ({ address }) => {
 };
 
 module.exports = {
-  assemblePayload({ yourDetails }) {
+  assemblePayload({ yourDetails, detailsOfIncident }) {
     return {
       Incidents: {
         NotifierID: parseInt(yourDetails.notifierType.value, 10),
+        IncidentTitle: detailsOfIncident.incidentTitle.value,
+        NatureOfProblem: detailsOfIncident.natureOfProblem.value,
+        ActionTaken: detailsOfIncident.actionTaken.value,
+        DistributionDetails: detailsOfIncident.distributionDetails.value,
+        IllnessDetails: detailsOfIncident.illnessDetails.value,
+        LocalAuthorityNotified: detailsOfIncident.localAuthorityNotified.value,
+        AdditionalInformation: detailsOfIncident.additionalInformation.value,
       },
       IncidentStakeholders: {
         Name: yourDetails.contactName.value,

@@ -15,6 +15,7 @@ describe(`lib/validation/details-of-incident`, () => {
     [
       "not every field is required",
       {
+        incidentTitle: "valid",
         natureOfProblem: "valid",
         actionTaken: "",
         distributionDetails: "",
@@ -25,6 +26,7 @@ describe(`lib/validation/details-of-incident`, () => {
     [
       "happiest path",
       {
+        incidentTitle: "valid",
         natureOfProblem: "valid",
         actionTaken: "",
         distributionDetails: "",
