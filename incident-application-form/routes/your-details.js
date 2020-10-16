@@ -20,10 +20,60 @@ const i18n = {
 };
 
 router.get("/", async function (req, res, next) {
+  console.log(`req.session`, JSON.stringify(req.session, null, 2));
+
+  const notifierTypes = await getNotifierTypes(languageCode);
+  const selectedNotifierType =
+    (req.session.yourDetails &&
+      req.session.yourDetails.notifierType &&
+      req.session.yourDetails.notifierType.value) ||
+    false;
+
+  const notifierTypesWithSelection = notifierTypes.map((nt) => {
+    if (!selectedNotifierType) {
+      return nt;
+    }
+
+    if (parseInt(selectedNotifierType, 10) === parseInt(nt.value, 10)) {
+      return {
+        ...nt,
+        selected: true,
+      };
+    }
+
+    return nt;
+  });
+
+  const countries = await getCountries(languageCode);
+  const selectedCountry =
+    (req.session.yourDetails &&
+      req.session.yourDetails.address &&
+      req.session.yourDetails.address.country &&
+      req.session.yourDetails.address.country.value) ||
+    false;
+
+  const countriesWithSelection = countries.map((c) => {
+    if (!selectedCountry) {
+      return c;
+    }
+
+    if (parseInt(selectedCountry, 10) === parseInt(c.value, 10)) {
+      return {
+        ...c,
+        selected: true,
+      };
+    }
+
+    return c;
+  });
+
+  console.log(`notifierTypesWithSelection`, notifierTypesWithSelection);
+  console.log(`countriesWithSelection`, countriesWithSelection);
+
   res.render(template, {
-    countries: await getCountries(languageCode),
+    countries: countriesWithSelection,
     i18n,
-    notifierTypes: await getNotifierTypes(languageCode),
+    notifierTypes: notifierTypesWithSelection,
     yourDetails: req.session.yourDetails || {},
   });
 });
