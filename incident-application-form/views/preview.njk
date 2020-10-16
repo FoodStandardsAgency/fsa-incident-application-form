@@ -154,9 +154,18 @@
 
 
     {{ govukButton({
-      text: "Submit",
+      text: i18n.buttons.submit[i18n.languageCode],
       attributes : {
           "data-cy": "submit"
+      }
+    }) }}
+
+    {{ govukButton({
+      text: i18n.buttons.back[i18n.languageCode],
+      classes: "govuk-button--secondary",
+      href: routes.DETAILS_OF_PRODUCT,
+      attributes : {
+          "data-cy": "back"
       }
     }) }}
 
