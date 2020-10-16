@@ -175,6 +175,22 @@
       "en": "Include symptoms and the number of consumers affected, where known"
     }
   },
+  "incidentTitle": {
+    "label": {
+      "cy": "Teitl y Digwyddiad",
+      "en": "Incident Title"
+    },
+    "validation": {
+      "required": {
+        "cy": "Mae angen Teitl Digwyddiad",
+        "en": "Incident title is required"
+      },
+      "invalidLength": {
+        "cy": "Rhaid i Deitl Digwyddiad fod rhwng 1 a 255 nod",
+        "en": "Incident Title must be between 1 and 255 characters"
+      }
+    }
+  },
   "localAuthorityNotified": {
     "label": {
       "cy": "Pa awdurdod lleol sydd wedi'i hysbysu?",

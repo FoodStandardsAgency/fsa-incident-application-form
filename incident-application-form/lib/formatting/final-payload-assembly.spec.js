@@ -5,6 +5,9 @@ const translations = require(`${__dirname}/../../translations/form-fields.json`)
 const {
   validate: validateYourDetails,
 } = require("../../lib/validation/your-details");
+const {
+  validate: validateDetailsOfIncident,
+} = require("../../lib/validation/details-of-incident");
 
 const i18n = {
   languageCode: "en",
@@ -26,7 +29,21 @@ const yourDetails = {
   addressCountry: "17",
 };
 
+const detailsOfIncident = {
+  incidentTitle: "My incident title",
+  natureOfProblem: "The nature of my problem is ...",
+  actionTaken: "I took the following actions ...",
+  distributionDetails: "This was distributed too ...",
+  illnessDetails: "People were ill with ...",
+  localAuthorityNotified: "I notified the following ...",
+  additionalInformation: "Here is some additional info ...",
+};
+
 const validatedYourDetails = validateYourDetails(yourDetails, i18n);
+const validatedDetailsOfIncident = validateDetailsOfIncident(
+  detailsOfIncident,
+  i18n
+);
 
 describe(`lib/formatting/final-payload-assembly`, () => {
   beforeEach(() => {
@@ -36,10 +53,20 @@ describe(`lib/formatting/final-payload-assembly`, () => {
   const testCases = [
     [
       "happy path",
-      { yourDetails: validatedYourDetails.validatedFields },
+      {
+        yourDetails: validatedYourDetails.validatedFields,
+        detailsOfIncident: validatedDetailsOfIncident.validatedFields,
+      },
       {
         Incidents: {
           NotifierID: parseInt(yourDetails.notifierType, 10),
+          IncidentTitle: detailsOfIncident.incidentTitle,
+          NatureOfProblem: detailsOfIncident.natureOfProblem,
+          ActionTaken: detailsOfIncident.actionTaken,
+          DistributionDetails: detailsOfIncident.distributionDetails,
+          IllnessDetails: detailsOfIncident.illnessDetails,
+          LocalAuthorityNotified: detailsOfIncident.localAuthorityNotified,
+          AdditionalInformation: detailsOfIncident.additionalInformation,
         },
         IncidentStakeholders: {
           Name: yourDetails.contactName,

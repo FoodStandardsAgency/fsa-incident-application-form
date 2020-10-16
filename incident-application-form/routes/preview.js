@@ -32,6 +32,8 @@ router.get("/", async function (req, res, next) {
 router.post("/", async function (req, res, next) {
   const payload = assemblePayload(req.session);
 
+  // TODO clear the session here.
+
   res.render(template, {
     i18n,
     yourDetails: req.session.yourDetails || {},

@@ -1,5 +1,6 @@
 {% extends "layout.njk" %}
 
+{% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
@@ -20,9 +21,29 @@
         }
     }) %}
 
+    {{ govukInput({
+        classes: "govuk-!-width-full",
+        id: "incident-title",
+        name: "incident-title",
+        value: detailsOfIncident.incidentTitle.value,
+        attributes : {
+            "data-cy": "incident-title"
+        },
+        label: {
+            text: i18n.incidentTitle.label[i18n.languageCode]
+        },
+        errorMessage: validation.validatedFields.incidentTitle.isValid == false and {
+            text: validation.validatedFields.incidentTitle.messages | join(". "),
+            "attributes" : {
+                "data-cy": "incident-title-errors"
+            }
+        }
+    }) }}
+
     {{ govukTextarea({
         name: "nature-of-problem",
         id: "nature-of-problem",
+        value: detailsOfIncident.natureOfProblem.value,
         attributes : {
             "data-cy": "nature-of-problem"
         },
@@ -44,6 +65,7 @@
     {{ govukTextarea({
         name: "action-taken",
         id: "action-taken",
+        value: detailsOfIncident.actionTaken.value,
         attributes : {
             "data-cy": "action-taken"
         },
@@ -59,6 +81,7 @@
     {{ govukTextarea({
         name: "distribution-details",
         id: "distribution-details",
+        value: detailsOfIncident.distributionDetails.value,
         attributes : {
             "data-cy": "distribution-details"
         },
@@ -74,6 +97,7 @@
     {{ govukTextarea({
         name: "illness-details",
         id: "illness-details",
+        value: detailsOfIncident.illnessDetails.value,
         attributes : {
             "data-cy": "illness-details"
         },
@@ -89,6 +113,7 @@
     {{ govukTextarea({
         name: "local-authority-notified",
         id: "local-authority-notified",
+        value: detailsOfIncident.localAuthorityNotified.value,
         attributes : {
             "data-cy": "local-authority-notified"
         },
@@ -104,6 +129,7 @@
     {{ govukTextarea({
         name: "additional-information",
         id: "additional-information",
+        value: detailsOfIncident.additionalInformation.value,
         attributes : {
             "data-cy": "additional-information"
         },
