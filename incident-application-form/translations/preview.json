@@ -23,6 +23,10 @@
     "submit": {
       "cy": "Cyflwyno",
       "en": "Submit"
+    },
+    "back": {
+      "cy": "yn ôl",
+      "en": "Back"
     }
   }
 }

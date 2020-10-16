@@ -25,6 +25,7 @@ router.get("/", async function (req, res, next) {
     i18n,
     yourDetails: req.session.yourDetails || {},
     detailsOfIncident: req.session.detailsOfIncident || {},
+    routes,
   });
 });
 //

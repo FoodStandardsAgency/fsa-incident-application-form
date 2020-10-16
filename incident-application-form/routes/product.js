@@ -83,7 +83,7 @@ router.post("/", async function (req, res, next) {
     return;
   }
 
-  res.redirect(routes.DETAILS_OF_PRODUCT);
+  res.redirect(routes.PREVIEW);
 });
 
 router.get("/edit/:productId", async function (req, res, next) {
