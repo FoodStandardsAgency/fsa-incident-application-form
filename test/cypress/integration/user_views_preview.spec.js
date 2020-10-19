@@ -20,7 +20,7 @@ context(
 
       cy.get('[data-cy="contact-name"]').type("my name here");
 
-      cy.get('[data-cy="position"]').type('or should this be role?');
+      cy.get('[data-cy="position"]').type("or should this be role?");
 
       cy.get('[data-cy="organisation"]').type("organisation");
 
@@ -42,7 +42,9 @@ context(
 
       cy.get('[data-cy="submit"]').click();
 
-
+      cy.get('[data-cy="incident-title"]').type(
+        "The title of my incident is bad food."
+      );
 
       cy.get('[data-cy="nature-of-problem"]').type(
         "The nature of my problem is salmonella"
@@ -58,8 +60,7 @@ context(
 
       cy.get('[data-cy="illness-details"]').type("People are being sick");
 
-      cy.get('[data-cy="local-authority-notified"]')
-        .type("Yes. I told Dave.");
+      cy.get('[data-cy="local-authority-notified"]').type("Yes. I told Dave.");
 
       cy.get('[data-cy="additional-information"]').type(
         "I also have told the police."
@@ -71,75 +72,81 @@ context(
       //  so for individual pages we can prove their content in isolation
       cy.visit(PREVIEW);
 
-//TODO sort dropdowns +retrofit this test step..
+      //TODO sort dropdowns +retrofit this test step..
       // cy.get('[data-cy="notifier-type"]')
       //   .should( (text) => { expect(text).to.contain("Industry")});
 
-      cy.get('[data-cy="contact-name"]')
-        .should( (text) => { expect(text).to.contain("my name here")});
+      cy.get('[data-cy="contact-name"]').should((text) => {
+        expect(text).to.contain("my name here");
+      });
 
-      cy.get('[data-cy="position"]')
-        .should( (text) => { expect(text).to.contain('or should this be role?')});
+      cy.get('[data-cy="position"]').should((text) => {
+        expect(text).to.contain("or should this be role?");
+      });
 
-      cy.get('[data-cy="organisation"]')
-        .should( (text) => { expect(text).to.contain("organisation")});
+      cy.get('[data-cy="organisation"]').should((text) => {
+        expect(text).to.contain("organisation");
+      });
 
-      cy.get('[data-cy="email"]')
-        .should( (text) => { expect(text).to.contain("my.email@somewhere.com")});
+      cy.get('[data-cy="email"]').should((text) => {
+        expect(text).to.contain("my.email@somewhere.com");
+      });
 
-      cy.get('[data-cy="telephone1"]')
-        .should( (text) => { expect(text).to.contain("01234 445 667")});
+      cy.get('[data-cy="telephone1"]').should((text) => {
+        expect(text).to.contain("01234 445 667");
+      });
 
-      cy.get('[data-cy="address.line1"]')
-        .should( (text) => { expect(text).to.contain("line1")});
+      cy.get('[data-cy="address.line1"]').should((text) => {
+        expect(text).to.contain("line1");
+      });
 
-      cy.get('[data-cy="address.line2"]')
-        .should( (text) => { expect(text).to.contain("line2")});
+      cy.get('[data-cy="address.line2"]').should((text) => {
+        expect(text).to.contain("line2");
+      });
 
-      cy.get('[data-cy="address.town"]')
-        .should( (text) => { expect(text).to.contain("town")});
+      cy.get('[data-cy="address.town"]').should((text) => {
+        expect(text).to.contain("town");
+      });
 
-      cy.get('[data-cy="address.county"]')
-        .should( (text) => { expect(text).to.contain("county")});
+      cy.get('[data-cy="address.county"]').should((text) => {
+        expect(text).to.contain("county");
+      });
 
-      cy.get('[data-cy="address.postcode"]')
-        .should( (text) => { expect(text).to.contain("AB1 2CD")});
+      cy.get('[data-cy="address.postcode"]').should((text) => {
+        expect(text).to.contain("AB1 2CD");
+      });
 
-//TODO sort dropdowns +retrofit this test step..
+      //TODO sort dropdowns +retrofit this test step..
       // cy.get('[data-cy="address.country"]')
       //   .should( (text) => { expect(text).to.contain("Norway")});
 
+      cy.get('[data-cy="incident-title"]').should((text) => {
+        expect(text).to.contain("The title of my incident is bad food.");
+      });
 
-      cy.get('[data-cy="nature-of-problem"]')
-        .should( (text) => { expect(text).to.contain(
-          "The nature of my problem is salmonella"
-        )});
+      cy.get('[data-cy="nature-of-problem"]').should((text) => {
+        expect(text).to.contain("The nature of my problem is salmonella");
+      });
 
-      cy.get('[data-cy="action-taken"]')
-        .should( (text) => { expect(text).to.contain(
-          "I have notified the authorities"
-        )});
+      cy.get('[data-cy="action-taken"]').should((text) => {
+        expect(text).to.contain("I have notified the authorities");
+      });
 
-      cy.get('[data-cy="distribution-details"]')
-        .should( (text) => { expect(text).to.contain(
-          "This was distributed to the South East"
-        )});
+      cy.get('[data-cy="distribution-details"]').should((text) => {
+        expect(text).to.contain("This was distributed to the South East");
+      });
 
-      cy.get('[data-cy="illness-details"]')
-        .should( (text) => { expect(text).to.contain(
-          "People are being sick"
-        )});
+      cy.get('[data-cy="illness-details"]').should((text) => {
+        expect(text).to.contain("People are being sick");
+      });
 
-      cy.get('[data-cy="local-authority-notified"]')
-        .should( (text) => { expect(text).to.contain(
-          "Yes. I told Dave."
-        )});
+      cy.get('[data-cy="local-authority-notified"]').should((text) => {
+        expect(text).to.contain("Yes. I told Dave.");
+      });
 
-      cy.get('[data-cy="additional-information"]')
-        .should( (text) => { expect(text).to.contain(
-          "I also have told the police."
-        )});
-
+      cy.get('[data-cy="additional-information"]').should((text) => {
+        expect(text).to.contain("I also have told the police.");
+      });
     });
   }
 );
