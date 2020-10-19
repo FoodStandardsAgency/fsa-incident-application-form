@@ -9,9 +9,36 @@ const assembleAddress = ({ address }) => {
   };
 };
 
+const assembleCompany = (company) => {
+  return {
+    Name: company.companyName.value,
+  };
+};
+
+const assembleProduct = (product) => {
+  const Companies = [];
+
+  for (const companyId of Object.keys(product.companies)) {
+    Companies.push(assembleCompany(product.companies[companyId]));
+  }
+
+  return {
+    Brand: product.brand.value,
+    Companies,
+    Name: product.productName.value,
+  };
+};
+
 module.exports = {
-  assemblePayload({ yourDetails, detailsOfIncident }) {
+  assemblePayload({ yourDetails, detailsOfIncident, products }) {
+    const formattedProducts = [];
+
+    for (const productId of Object.keys(products)) {
+      formattedProducts.push(assembleProduct(products[productId]));
+    }
+
     return {
+      Addresses: assembleAddress(yourDetails),
       Incidents: {
         NotifierID: parseInt(yourDetails.notifierType.value, 10),
         IncidentTitle: detailsOfIncident.incidentTitle.value,
@@ -22,6 +49,7 @@ module.exports = {
         LocalAuthorityNotified: detailsOfIncident.localAuthorityNotified.value,
         AdditionalInformation: detailsOfIncident.additionalInformation.value,
       },
+      IncidentProducts: [...formattedProducts],
       IncidentStakeholders: {
         Name: yourDetails.contactName.value,
         Role: yourDetails.position.value,
@@ -29,7 +57,6 @@ module.exports = {
         Email: yourDetails.email.value,
         Phone: yourDetails.telephone1.value,
       },
-      Addresses: assembleAddress(yourDetails),
     };
   },
 };
