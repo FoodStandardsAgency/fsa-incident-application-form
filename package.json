@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "incident application form",
   "scripts": {
-    "start": "docker-compose up --build",
+    "start": "./start.sh",
     "test": "./pipeline.sh"
   },
   "repository": {
