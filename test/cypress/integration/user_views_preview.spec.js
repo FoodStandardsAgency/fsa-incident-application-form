@@ -24,7 +24,7 @@ context(
 
       cy.get('[data-cy="organisation"]').type("organisation");
 
-      cy.get('[data-cy="email"]').type("dan.watkinson@foundry4.com");
+      cy.get('[data-cy="email"]').type("my.email@somewhere.com");
 
       cy.get('[data-cy="telephone1"]').type("01234 445 667");
 
@@ -42,31 +42,31 @@ context(
 
       cy.get('[data-cy="submit"]').click();
 
-      // cy.get('[data-cy="incident-title"]').type(
-      //   "The title of my incident is bad food."
-      // );
-      //
-      // cy.get('[data-cy="nature-of-problem"]').type(
-      //   "The nature of my problem is salmonella"
-      // );
-      //
-      // cy.get('[data-cy="action-taken"]').type(
-      //   "I have notified the authorities"
-      // );
-      //
-      // cy.get('[data-cy="distribution-details"]').type(
-      //   "This was distributed to the South East"
-      // );
-      //
-      // cy.get('[data-cy="illness-details"]').type("People are being sick");
-      //
-      // cy.get('[data-cy="local-authority-notified"]').type("Yes. I told Dave.");
-      //
-      // cy.get('[data-cy="additional-information"]').type(
-      //   "I also have told the police."
-      // );
-      //
-      // cy.get('[data-cy="submit"]').click();
+      cy.get('[data-cy="incident-title"]').type(
+        "The title of my incident is bad food."
+      );
+
+      cy.get('[data-cy="nature-of-problem"]').type(
+        "The nature of my problem is salmonella"
+      );
+
+      cy.get('[data-cy="action-taken"]').type(
+        "I have notified the authorities"
+      );
+
+      cy.get('[data-cy="distribution-details"]').type(
+        "This was distributed to the South East"
+      );
+
+      cy.get('[data-cy="illness-details"]').type("People are being sick");
+
+      cy.get('[data-cy="local-authority-notified"]').type("Yes. I told Dave.");
+
+      cy.get('[data-cy="additional-information"]').type(
+        "I also have told the police."
+      );
+
+      cy.get('[data-cy="submit"]').click();
 
       // shortcut; this is all meant to be on the session
       //  so for individual pages we can prove their content in isolation
@@ -89,7 +89,7 @@ context(
       });
 
       cy.get('[data-cy="email"]').should((text) => {
-        expect(text).to.contain("dan.watkinson@foundry4.com");
+        expect(text).to.contain("my.email@somewhere.com");
       });
 
       cy.get('[data-cy="telephone1"]').should((text) => {
@@ -120,33 +120,33 @@ context(
       // cy.get('[data-cy="address.country"]')
       //   .should( (text) => { expect(text).to.contain("Norway")});
 
-      // cy.get('[data-cy="incident-title"]').should((text) => {
-      //   expect(text).to.contain("The title of my incident is bad food.");
-      // });
-      //
-      // cy.get('[data-cy="nature-of-problem"]').should((text) => {
-      //   expect(text).to.contain("The nature of my problem is salmonella");
-      // });
-      //
-      // cy.get('[data-cy="action-taken"]').should((text) => {
-      //   expect(text).to.contain("I have notified the authorities");
-      // });
-      //
-      // cy.get('[data-cy="distribution-details"]').should((text) => {
-      //   expect(text).to.contain("This was distributed to the South East");
-      // });
-      //
-      // cy.get('[data-cy="illness-details"]').should((text) => {
-      //   expect(text).to.contain("People are being sick");
-      // });
-      //
-      // cy.get('[data-cy="local-authority-notified"]').should((text) => {
-      //   expect(text).to.contain("Yes. I told Dave.");
-      // });
-      //
-      // cy.get('[data-cy="additional-information"]').should((text) => {
-      //   expect(text).to.contain("I also have told the police.");
-      // });
+      cy.get('[data-cy="incident-title"]').should((text) => {
+        expect(text).to.contain("The title of my incident is bad food.");
+      });
+
+      cy.get('[data-cy="nature-of-problem"]').should((text) => {
+        expect(text).to.contain("The nature of my problem is salmonella");
+      });
+
+      cy.get('[data-cy="action-taken"]').should((text) => {
+        expect(text).to.contain("I have notified the authorities");
+      });
+
+      cy.get('[data-cy="distribution-details"]').should((text) => {
+        expect(text).to.contain("This was distributed to the South East");
+      });
+
+      cy.get('[data-cy="illness-details"]').should((text) => {
+        expect(text).to.contain("People are being sick");
+      });
+
+      cy.get('[data-cy="local-authority-notified"]').should((text) => {
+        expect(text).to.contain("Yes. I told Dave.");
+      });
+
+      cy.get('[data-cy="additional-information"]').should((text) => {
+        expect(text).to.contain("I also have told the police.");
+      });
     });
   }
 );
