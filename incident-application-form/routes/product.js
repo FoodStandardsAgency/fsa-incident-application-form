@@ -45,7 +45,18 @@ router.post("/", async function (req, res, next) {
     brand,
   } = req.body;
 
-  const validation = validate({ productName, brand }, i18n);
+  const validation = validate(
+    {
+      productName,
+      brand,
+      companies:
+        (req.session.products &&
+          req.session.products[productId] &&
+          req.session.products[productId].companies) ||
+        {},
+    },
+    i18n
+  );
 
   if (!validation.isValid) {
     res.render(template, {

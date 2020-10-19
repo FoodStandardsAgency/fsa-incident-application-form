@@ -123,9 +123,20 @@
       </div>
 
     </dl>
+
 <hr/>
+
     <h2>{{ i18n.sections.detailsOfIncident[i18n.languageCode] }}</h2>
     <dl class="govuk-summary-list govuk-summary-list--no-border">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-body-s">
+          {{ i18n.incidentTitle.label[i18n.languageCode] }}
+        </dt>
+        <dd data-cy="incident-title" class="govuk-summary-list__value govuk-body-s">
+          {{ detailsOfIncident.incidentTitle.value }}
+        </dd>
+      </div>
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key govuk-body-s">

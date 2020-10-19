@@ -8,6 +8,8 @@ const {
 const {
   validate: validateDetailsOfIncident,
 } = require("../../lib/validation/details-of-incident");
+const { validate: validateCompany } = require("../../lib/validation/company");
+const { validate: validateProduct } = require("../../lib/validation/product");
 
 const i18n = {
   languageCode: "en",
@@ -45,6 +47,42 @@ const validatedDetailsOfIncident = validateDetailsOfIncident(
   i18n
 );
 
+const mockCompany1 = {
+  companyName: "Testco",
+};
+
+const mockCompany2 = {
+  companyName: "Another testing company Ltd.",
+};
+
+const mockCompany3 = {
+  companyName: "Large Testers PLC",
+};
+
+const validatedCompany1 = validateCompany(mockCompany1);
+const validatedCompany2 = validateCompany(mockCompany2);
+const validatedCompany3 = validateCompany(mockCompany3);
+
+const mockProduct1 = {
+  productName: "A test product name",
+  brand: "Test brand",
+  companies: {
+    "aaa-bbb-ccc-ddd": validatedCompany1.validatedFields,
+    "zzz-xxx-ccc-vvv-bbb": validatedCompany2.validatedFields,
+  },
+};
+
+const mockProduct2 = {
+  productName: "Another test product",
+  brand: "Another brand",
+  companies: {
+    "999-111-888-222": validatedCompany3.validatedFields,
+  },
+};
+
+const validatedProduct1 = validateProduct(mockProduct1);
+const validatedProduct2 = validateProduct(mockProduct2);
+
 describe(`lib/formatting/final-payload-assembly`, () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -56,8 +94,20 @@ describe(`lib/formatting/final-payload-assembly`, () => {
       {
         yourDetails: validatedYourDetails.validatedFields,
         detailsOfIncident: validatedDetailsOfIncident.validatedFields,
+        products: {
+          "abc-123-def-456": validatedProduct1.validatedFields,
+          "xyz-987-uvw-654": validatedProduct2.validatedFields,
+        },
       },
       {
+        Addresses: {
+          AddressLine1: yourDetails.addressLine1,
+          AddressLine2: yourDetails.addressLine2,
+          TownCity: yourDetails.addressTown,
+          County: yourDetails.addressCounty,
+          Postcode: yourDetails.addressPostcode,
+          CountryID: parseInt(yourDetails.addressCountry, 10),
+        },
         Incidents: {
           NotifierID: parseInt(yourDetails.notifierType, 10),
           IncidentTitle: detailsOfIncident.incidentTitle,
@@ -68,20 +118,27 @@ describe(`lib/formatting/final-payload-assembly`, () => {
           LocalAuthorityNotified: detailsOfIncident.localAuthorityNotified,
           AdditionalInformation: detailsOfIncident.additionalInformation,
         },
+        IncidentProducts: [
+          {
+            Name: mockProduct1.productName,
+            Brand: mockProduct1.brand,
+            Companies: [
+              { Name: mockCompany1.companyName },
+              { Name: mockCompany2.companyName },
+            ],
+          },
+          {
+            Name: mockProduct2.productName,
+            Brand: mockProduct2.brand,
+            Companies: [{ Name: mockCompany3.companyName }],
+          },
+        ],
         IncidentStakeholders: {
           Name: yourDetails.contactName,
           Role: yourDetails.position,
           GovDept: yourDetails.organisation,
           Email: yourDetails.email,
           Phone: yourDetails.telephone1,
-        },
-        Addresses: {
-          AddressLine1: yourDetails.addressLine1,
-          AddressLine2: yourDetails.addressLine2,
-          TownCity: yourDetails.addressTown,
-          County: yourDetails.addressCounty,
-          Postcode: yourDetails.addressPostcode,
-          CountryID: parseInt(yourDetails.addressCountry, 10),
         },
       },
     ],
