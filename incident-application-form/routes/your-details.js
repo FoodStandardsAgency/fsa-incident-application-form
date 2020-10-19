@@ -1,7 +1,13 @@
 const express = require("express");
 const { validate } = require("../lib/validation/your-details");
-const { getCountries } = require("../lib/lookups/countries");
-const { getNotifierTypes } = require("../lib/lookups/notifier-types");
+const {
+  getCountries,
+  getSelectedCountryFromSession,
+} = require("../lib/lookups/countries");
+const {
+  getNotifierTypes,
+  getSelectedNotifierTypeFromSession,
+} = require("../lib/lookups/notifier-types");
 
 const router = express.Router();
 
@@ -22,58 +28,19 @@ const i18n = {
 router.get("/", async function (req, res, next) {
   console.log(`req.session`, JSON.stringify(req.session, null, 2));
 
-  const notifierTypes = await getNotifierTypes(languageCode);
-  const selectedNotifierType =
-    (req.session.yourDetails &&
-      req.session.yourDetails.notifierType &&
-      req.session.yourDetails.notifierType.value) ||
-    false;
+  const selectedNotifierType = getSelectedNotifierTypeFromSession(req.session);
+  const notifierTypes = await getNotifierTypes(
+    languageCode,
+    selectedNotifierType
+  );
 
-  const notifierTypesWithSelection = notifierTypes.map((nt) => {
-    if (!selectedNotifierType) {
-      return nt;
-    }
-
-    if (parseInt(selectedNotifierType, 10) === parseInt(nt.value, 10)) {
-      return {
-        ...nt,
-        selected: true,
-      };
-    }
-
-    return nt;
-  });
-
-  const countries = await getCountries(languageCode);
-  const selectedCountry =
-    (req.session.yourDetails &&
-      req.session.yourDetails.address &&
-      req.session.yourDetails.address.country &&
-      req.session.yourDetails.address.country.value) ||
-    false;
-
-  const countriesWithSelection = countries.map((c) => {
-    if (!selectedCountry) {
-      return c;
-    }
-
-    if (parseInt(selectedCountry, 10) === parseInt(c.value, 10)) {
-      return {
-        ...c,
-        selected: true,
-      };
-    }
-
-    return c;
-  });
-
-  console.log(`notifierTypesWithSelection`, notifierTypesWithSelection);
-  console.log(`countriesWithSelection`, countriesWithSelection);
+  const selectedCountry = getSelectedCountryFromSession(req.session);
+  const countries = await getCountries(languageCode, selectedCountry);
 
   res.render(template, {
-    countries: countriesWithSelection,
+    countries,
     i18n,
-    notifierTypes: notifierTypesWithSelection,
+    notifierTypes,
     yourDetails: req.session.yourDetails || {},
   });
 });
