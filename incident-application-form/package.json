@@ -26,6 +26,7 @@
   "devDependencies": {
     "file-loader": "^6.1.1",
     "jest": "^26.5.3",
+    "jest-fetch-mock": "^3.0.3",
     "prettier": "^2.1.2",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
@@ -33,6 +34,7 @@
     "webpack-cli": "^4.0.0"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "setupFiles": ["./setupTests.js"]
   }
 }

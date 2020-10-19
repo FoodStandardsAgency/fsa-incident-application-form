@@ -1,7 +1,13 @@
 const express = require("express");
 const { validate } = require("../lib/validation/your-details");
-const { getCountries } = require("../lib/lookups/countries");
-const { getNotifierTypes } = require("../lib/lookups/notifier-types");
+const {
+  getCountries,
+  getSelectedCountryFromSession,
+} = require("../lib/lookups/countries");
+const {
+  getNotifierTypes,
+  getSelectedNotifierTypeFromSession,
+} = require("../lib/lookups/notifier-types");
 
 const router = express.Router();
 
@@ -20,10 +26,21 @@ const i18n = {
 };
 
 router.get("/", async function (req, res, next) {
+  console.log(`req.session`, JSON.stringify(req.session, null, 2));
+
+  const selectedNotifierType = getSelectedNotifierTypeFromSession(req.session);
+  const notifierTypes = await getNotifierTypes(
+    languageCode,
+    selectedNotifierType
+  );
+
+  const selectedCountry = getSelectedCountryFromSession(req.session);
+  const countries = await getCountries(languageCode, selectedCountry);
+
   res.render(template, {
-    countries: await getCountries(languageCode),
+    countries,
     i18n,
-    notifierTypes: await getNotifierTypes(languageCode),
+    notifierTypes,
     yourDetails: req.session.yourDetails || {},
   });
 });
