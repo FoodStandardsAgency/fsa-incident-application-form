@@ -3,6 +3,7 @@ const { assemblePayload } = require("../lib/formatting/final-payload-assembly");
 const { validate } = require("../lib/validation/your-details");
 const { getCountries } = require("../lib/lookups/countries");
 const { getNotifierTypes } = require("../lib/lookups/notifier-types");
+const send = require("../lib/email/send");
 
 const router = express.Router();
 
@@ -30,9 +31,18 @@ router.get("/", async function (req, res, next) {
 });
 
 router.post("/", async function (req, res, next) {
+
+  const email = req.session.yourDetails.email.value;
+  const personalisation = {
+    contactName: req.session.yourDetails.contactName.value,
+    referenceNumber: '//TODO auto generate a reference number',
+  };
+  await send('en-confirmation-email', email, personalisation);
+
   const payload = assemblePayload(req.session);
 
   // TODO clear the session here.
+
 
   res.render(template, {
     i18n,

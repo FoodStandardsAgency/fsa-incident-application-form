@@ -4,7 +4,7 @@
   "description": "incident application form",
   "scripts": {
     "start": "docker-compose up --build",
-    "test": "docker-compose up -d --build && cd test && npm install && npx cypress run && docker-compose down"
+    "test": "./pipeline.sh"
   },
   "repository": {
     "type": "git",
