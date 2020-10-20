@@ -1,6 +1,8 @@
 const express = require("express");
 const { v4: uuidv4 } = require("uuid");
 const { validate } = require("../lib/validation/company");
+const { getCompanyTypes } = require("../lib/lookups/company-types");
+const { getCountries } = require("../lib/lookups/countries");
 
 const router = express.Router({ mergeParams: true });
 
@@ -20,8 +22,15 @@ router.get("/", async function (req, res, next) {
   const template = "add-company";
   const { productId } = req.params;
 
+  const [companyTypes, countries] = await Promise.all([
+    await getCompanyTypes(languageCode),
+    await getCountries(languageCode),
+  ]);
+
   res.render(template, {
     companyId: uuidv4(),
+    companyTypes,
+    countries,
     i18n,
     productId,
     routes,
@@ -35,11 +44,31 @@ router.post("/", async function (req, res, next) {
     companyId,
     productId,
     "company-name": companyName,
+    "company-type": companyType,
+    "contact-name": contactName,
+    email,
+    telephone1,
+    "address.line1": addressLine1,
+    "address.line2": addressLine2,
+    "address.town": addressTown,
+    "address.county": addressCounty,
+    "address.postcode": addressPostcode,
+    "address.country": addressCountry,
   } = req.body;
 
   const validation = validate(
     {
       companyName,
+      companyType,
+      contactName,
+      email,
+      telephone1,
+      addressLine1,
+      addressLine2,
+      addressTown,
+      addressCounty,
+      addressPostcode,
+      addressCountry,
     },
     i18n
   );
@@ -81,13 +110,24 @@ router.get("/edit/:companyId", async function (req, res, next) {
   const template = "edit-company";
 
   const { productId, companyId } = req.params;
+
   const validation = {
     validatedFields: req.session.products[productId].companies[companyId],
   };
 
+  const selectedCompanyType = validation.validatedFields.companyType.value;
+  const selectedCountry = validation.validatedFields.address.country.value;
+
+  const [companyTypes, countries] = await Promise.all([
+    await getCompanyTypes(languageCode, selectedCompanyType),
+    await getCountries(languageCode, selectedCountry),
+  ]);
+
   res.render(template, {
     i18n,
     companyId,
+    companyTypes,
+    countries,
     productId,
     routes,
     template,

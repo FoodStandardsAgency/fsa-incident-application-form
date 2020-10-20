@@ -1,8 +1,27 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
 
 <input type="hidden" name="companyId" value="{{ companyId }}" />
 <input type="hidden" name="productId" value="{{ productId }}" />
 <input type="hidden" name="template" value="{{ template }}" />
+
+{{ govukSelect({
+    id: "company-type",
+    name: "company-type",
+    attributes : {
+        "data-cy": "company-type"
+    },
+    label: {
+        text: i18n.companyType.label[i18n.languageCode]
+    },
+    items: companyTypes,
+    errorMessage: validation.validatedFields.companyType.isValid == false and {
+        text: validation.validatedFields.companyType.messages | join(". "),
+        attributes : {
+            "data-cy": "company-type-errors"
+        }
+    }
+}) }}
 
 {{ govukInput({
     classes: "govuk-!-width-full",
@@ -19,6 +38,185 @@
         text: validation.validatedFields.companyName.messages | join(". "),
         "attributes" : {
             "data-cy": "company-name-errors"
+        }
+    }
+}) }}
+
+{{ govukInput({
+    classes: "govuk-!-width-full",
+    id: "contact-name",
+    name: "contact-name",
+    value: validation.validatedFields.contactName.value,
+    attributes : {
+        "data-cy": "contact-name"
+    },
+    label: {
+        text: i18n.contactName.label[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.contactName.isValid == false and {
+        text: validation.validatedFields.contactName.messages | join(". "),
+        "attributes" : {
+            "data-cy": "contact-name-errors"
+        }
+    }
+}) }}
+
+{{ govukInput({
+    classes: "govuk-!-width-full",
+    id: "email",
+    name: "email",
+    value: validation.validatedFields.email.value,
+    attributes : {
+        "data-cy": "email"
+    },
+    label: {
+        text: i18n.email.label[i18n.languageCode]
+    },
+    type: "email",
+    autocomplete: "email",
+    spellcheck: false,
+    errorMessage: validation.validatedFields.email.isValid == false and {
+        text: validation.validatedFields.email.messages | join(". "),
+        "attributes" : {
+            "data-cy": "email-errors"
+        }
+    }
+}) }}
+
+{{ govukInput({
+    classes: "govuk-!-width-full",
+    id: "telephone1",
+    name: "telephone1",
+    value: validation.validatedFields.telephone1.value,
+    attributes : {
+        "data-cy": "telephone1"
+    },
+    label: {
+        text: i18n.telephone1.label[i18n.languageCode]
+    },
+    type: "tel",
+    autocomplete: "tel",
+    classes: "govuk-input--width-20",
+    errorMessage: validation.validatedFields.telephone1.isValid == false and {
+        text: validation.validatedFields.telephone1.messages | join(". "),
+        "attributes" : {
+            "data-cy": "telephone1-errors"
+        }
+    }
+}) }}
+
+{{ govukInput({
+    classes: "govuk-!-width-full",
+    id: "address.line1",
+    name: "address.line1",
+    value: validation.validatedFields.address.line1.value,
+    autocomplete: "address.line1",
+    attributes : {
+        "data-cy": "address.line1"
+    },
+    label: {
+        text: i18n.address.line1.label[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.address.line1.isValid == false and {
+        text: validation.validatedFields.address.line1.messages | join(". "),
+        "attributes" : {
+            "data-cy": "address.line1-errors"
+        }
+    }
+}) }}
+
+{{ govukInput({
+    classes: "govuk-!-width-full",
+    id: "address.line2",
+    name: "address.line2",
+    value: validation.validatedFields.address.line2.value,
+    autocomplete: "address.line2",
+    attributes : {
+        "data-cy": "address.line2"
+    },
+    label: {
+        text: i18n.address.line2.label[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.address.line2.isValid == false and {
+        text: validation.validatedFields.address.line2.messages | join(". "),
+        "attributes" : {
+            "data-cy": "address.line2-errors"
+        }
+    }
+}) }}
+
+{{ govukInput({
+    classes: "govuk-!-width-two-thirds",
+    id: "address.town",
+    name: "address.town",
+    value: validation.validatedFields.address.town.value,
+    autocomplete: "address-level2",
+    attributes : {
+        "data-cy": "address.town"
+    },
+    label: {
+        text: i18n.address.town.label[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.address.town.isValid == false and {
+        text: validation.validatedFields.address.town.messages | join(". "),
+        "attributes" : {
+            "data-cy": "address.town-errors"
+        }
+    }
+}) }}
+
+{{ govukInput({
+    classes: "govuk-!-width-two-thirds",
+    id: "address.county",
+    name: "address.county",
+    value: validation.validatedFields.address.county.value,
+    attributes : {
+        "data-cy": "address.county"
+    },
+    label: {
+        text: i18n.address.county.label[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.address.county.isValid == false and {
+        text: validation.validatedFields.address.county.messages | join(". "),
+        "attributes" : {
+            "data-cy": "address.county-errors"
+        }
+    }
+}) }}
+
+{{ govukInput({
+    classes: "govuk-input--width-10",
+    id: "address.postcode",
+    name: "address.postcode",
+    value: validation.validatedFields.address.postcode.value,
+    attributes : {
+        "data-cy": "address.postcode"
+    },
+    label: {
+        text: i18n.address.postcode.label[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.address.postcode.isValid == false and {
+        text: validation.validatedFields.address.postcode.messages | join(". "),
+        "attributes" : {
+            "data-cy": "address.postcode-errors"
+        }
+    }
+}) }}
+
+{{ govukSelect({
+    id: "address.country",
+    name: "address.country",
+    attributes : {
+        "data-cy": "address.country"
+    },
+    label: {
+        text: i18n.address.country.label[i18n.languageCode]
+    },
+    items: countries,
+    errorMessage: validation.validatedFields.address.country.isValid == false and {
+        text: validation.validatedFields.address.country.messages | join(". "),
+        attributes : {
+            "data-cy": "address.country-errors"
         }
     }
 }) }}

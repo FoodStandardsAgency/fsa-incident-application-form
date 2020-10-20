@@ -6,7 +6,10 @@ describe(`lib/validation/individual-fields/contact-name`, () => {
   const testCases = (languageCode) => [
     [
       "missing field",
-      undefined,
+      {
+        input: undefined,
+        options: {},
+      },
       {
         contactName: {
           isValid: false,
@@ -19,7 +22,10 @@ describe(`lib/validation/individual-fields/contact-name`, () => {
     ],
     [
       "wrong data type",
-      false,
+      {
+        input: false,
+        options: {},
+      },
       {
         contactName: {
           isValid: false,
@@ -32,7 +38,10 @@ describe(`lib/validation/individual-fields/contact-name`, () => {
     ],
     [
       "provided field is empty",
-      "",
+      {
+        input: "",
+        options: undefined,
+      },
       {
         contactName: {
           isValid: false,
@@ -44,8 +53,27 @@ describe(`lib/validation/individual-fields/contact-name`, () => {
       },
     ],
     [
+      "provided field is empty, but not required",
+      {
+        input: "",
+        options: {
+          required: false,
+        },
+      },
+      {
+        contactName: {
+          isValid: true,
+          messages: [],
+          value: "",
+        },
+      },
+    ],
+    [
       "value is too long",
-      "a".repeat(256),
+      {
+        input: "a".repeat(256),
+        options: {},
+      },
       {
         contactName: {
           isValid: false,
@@ -58,7 +86,12 @@ describe(`lib/validation/individual-fields/contact-name`, () => {
     ],
     [
       "ensure values are escaped",
-      "<script>tag here</script>",
+      {
+        input: "<script>tag here</script>",
+        options: {
+          required: false,
+        },
+      },
       {
         contactName: {
           isValid: true,
@@ -69,7 +102,10 @@ describe(`lib/validation/individual-fields/contact-name`, () => {
     ],
     [
       "happy path",
-      "valid",
+      {
+        input: "valid",
+        options: {},
+      },
       {
         contactName: {
           isValid: true,
@@ -83,13 +119,13 @@ describe(`lib/validation/individual-fields/contact-name`, () => {
   ["en", "cy"].forEach((languageCode) => {
     test.each(testCases(languageCode))(
       `%s - ${languageCode}`,
-      (description, given, expected) => {
+      (description, { input, options }, expected) => {
         const i18n = {
           languageCode,
           ...translations,
         };
 
-        expect(validateContactName(given, i18n)).toEqual(expected);
+        expect(validateContactName(input, i18n, options)).toEqual(expected);
       }
     );
   });

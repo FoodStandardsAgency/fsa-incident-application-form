@@ -17,6 +17,7 @@ describe(`lib/validation/product`, () => {
       {
         productName: "valid",
         // brand: "valid",
+        originCountry: "17",
       },
       true,
     ],
@@ -30,6 +31,7 @@ describe(`lib/validation/product`, () => {
             name: "valid",
           },
         },
+        originCountry: "17",
       },
       true,
     ],

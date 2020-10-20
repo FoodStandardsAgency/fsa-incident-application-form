@@ -28,7 +28,7 @@
   "address": {
     "line1": {
       "label": {
-        "cy": "Llinell Cyfeiriad 1",
+        "cy": "Llinell cyfeiriad 1",
         "en": "Address Line 1"
       },
       "validation": {
@@ -40,7 +40,7 @@
     },
     "line2": {
       "label": {
-        "cy": "Llinell Cyfeiriad 2",
+        "cy": "Llinell cyfeiriad 2",
         "en": "Address Line 2"
       },
       "validation": {
@@ -52,8 +52,8 @@
     },
     "town": {
       "label": {
-        "cy": "Tref neu Ddinas",
-        "en": "Town or City"
+        "cy": "Tref neu ddinas",
+        "en": "Town or city"
       },
       "validation": {
         "required": {
@@ -167,8 +167,8 @@
   },
   "companyName": {
     "label": {
-      "cy": "Enw'r Cwmni",
-      "en": "Company Name"
+      "cy": "Enw'r sefydliad",
+      "en": "Organisation name"
     },
     "validation": {
       "invalidLength": {
@@ -177,9 +177,27 @@
       }
     }
   },
+  "companyType": {
+    "label": {
+      "cy": "Math o sefydliad",
+      "en": "Organisation type"
+    },
+    "values": {
+      "defaultValue": {
+        "cy": "Dewiswch opsiwn",
+        "en": "Please choose an option"
+      }
+    },
+    "validation": {
+      "required": {
+        "cy": "Mae angen math o gwmni",
+        "en": "Company type is required"
+      }
+    }
+  },
   "contactName": {
     "label": {
-      "cy": "Enw Cyswllt",
+      "cy": "Enw cyswllt",
       "en": "Contact Name"
     },
     "validation": {
@@ -399,7 +417,7 @@
   },
   "telephone1": {
     "label": {
-      "cy": "Ffôn",
+      "cy": "Rhif ffôn",
       "en": "Telephone"
     },
     "validation": {

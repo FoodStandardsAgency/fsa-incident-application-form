@@ -14,6 +14,9 @@ const {
 const { getProductTypes } = require("../lib/lookups/product-types");
 const { getUnits } = require("../lib/lookups/units");
 const { getSelectedUnitTypeFromSession } = require("../lib/session/unit-type");
+const {
+  getSelectedOriginCountryFromSession,
+} = require("../lib/session/origin-country");
 
 const router = express.Router();
 
@@ -164,6 +167,7 @@ router.post("/", async function (req, res, next) {
 
 router.get("/edit/:productId", async function (req, res, next) {
   const template = "edit-product";
+  console.log(`req.session`, JSON.stringify(req.session, null, 2));
 
   const { productId } = req.params;
 
@@ -171,10 +175,11 @@ router.get("/edit/:productId", async function (req, res, next) {
     req.session,
     productId
   );
-  const selectedOriginCountry = getSelectedProductTypeFromSession(
+  const selectedOriginCountry = getSelectedOriginCountryFromSession(
     req.session,
     productId
   );
+  console.log(`selectedOriginCountry`, selectedOriginCountry);
   const selectedUnitType = getSelectedUnitTypeFromSession(
     req.session,
     productId

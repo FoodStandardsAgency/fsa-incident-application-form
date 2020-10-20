@@ -1,12 +1,34 @@
 const validator = require("validator");
 
+const defaultOptions = {
+  required: true,
+};
+
 module.exports = {
-  validateAddressCountry: (country, i18n) => {
+  validateAddressCountry: (country, i18n, options) => {
     let validated = {
       isValid: false,
       messages: [],
       value: "",
     };
+
+    let resolvedOptions = {
+      ...defaultOptions,
+      ...options,
+    };
+
+    if (
+      (!country || validator.isEmpty(country.toString())) &&
+      !resolvedOptions.required
+    ) {
+      return {
+        country: {
+          ...validated,
+          isValid: true,
+          value: "",
+        },
+      };
+    }
 
     const requiredMessage =
       i18n.address.country.validation.required[i18n.languageCode];

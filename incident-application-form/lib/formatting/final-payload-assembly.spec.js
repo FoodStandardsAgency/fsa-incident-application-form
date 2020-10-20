@@ -49,19 +49,22 @@ const validatedDetailsOfIncident = validateDetailsOfIncident(
 
 const mockCompany1 = {
   companyName: "Testco",
+  companyType: "3",
 };
 
 const mockCompany2 = {
   companyName: "Another testing company Ltd.",
+  companyType: "2",
 };
 
 const mockCompany3 = {
   companyName: "Large Testers PLC",
+  companyType: "1",
 };
 
-const validatedCompany1 = validateCompany(mockCompany1);
-const validatedCompany2 = validateCompany(mockCompany2);
-const validatedCompany3 = validateCompany(mockCompany3);
+const validatedCompany1 = validateCompany(mockCompany1, i18n);
+const validatedCompany2 = validateCompany(mockCompany2, i18n);
+const validatedCompany3 = validateCompany(mockCompany3, i18n);
 
 const mockProduct1 = {
   productName: "A test product name",
@@ -80,8 +83,8 @@ const mockProduct2 = {
   },
 };
 
-const validatedProduct1 = validateProduct(mockProduct1);
-const validatedProduct2 = validateProduct(mockProduct2);
+const validatedProduct1 = validateProduct(mockProduct1, i18n);
+const validatedProduct2 = validateProduct(mockProduct2, i18n);
 
 describe(`lib/formatting/final-payload-assembly`, () => {
   beforeEach(() => {

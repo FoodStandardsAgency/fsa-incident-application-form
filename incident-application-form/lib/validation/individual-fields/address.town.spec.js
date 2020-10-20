@@ -6,7 +6,10 @@ describe(`lib/validation/individual-fields/address.town`, () => {
   const testCases = (languageCode) => [
     [
       "missing field",
-      undefined,
+      {
+        input: undefined,
+        options: {},
+      },
       {
         town: {
           isValid: false,
@@ -19,7 +22,10 @@ describe(`lib/validation/individual-fields/address.town`, () => {
     ],
     [
       "wrong data type",
-      false,
+      {
+        input: false,
+        options: {},
+      },
       {
         town: {
           isValid: false,
@@ -32,7 +38,10 @@ describe(`lib/validation/individual-fields/address.town`, () => {
     ],
     [
       "provided field is empty",
-      "",
+      {
+        input: "",
+        options: undefined,
+      },
       {
         town: {
           isValid: false,
@@ -44,8 +53,27 @@ describe(`lib/validation/individual-fields/address.town`, () => {
       },
     ],
     [
+      "provided field is empty, but not required",
+      {
+        input: "",
+        options: {
+          required: false,
+        },
+      },
+      {
+        town: {
+          isValid: true,
+          messages: [],
+          value: "",
+        },
+      },
+    ],
+    [
       "value is too long",
-      "a".repeat(256),
+      {
+        input: "a".repeat(256),
+        options: {},
+      },
       {
         town: {
           isValid: false,
@@ -58,7 +86,10 @@ describe(`lib/validation/individual-fields/address.town`, () => {
     ],
     [
       "ensure values are escaped",
-      "<script>tag here</script>",
+      {
+        input: "<script>tag here</script>",
+        options: undefined,
+      },
       {
         town: {
           isValid: true,
@@ -69,7 +100,10 @@ describe(`lib/validation/individual-fields/address.town`, () => {
     ],
     [
       "happy path",
-      "valid",
+      {
+        input: "valid",
+        options: undefined,
+      },
       {
         town: {
           isValid: true,
@@ -83,13 +117,13 @@ describe(`lib/validation/individual-fields/address.town`, () => {
   ["en", "cy"].forEach((languageCode) => {
     test.each(testCases(languageCode))(
       `%s - ${languageCode}`,
-      (description, given, expected) => {
+      (description, { input, options }, expected) => {
         const i18n = {
           languageCode,
           ...translations,
         };
 
-        expect(validateAddressTown(given, i18n)).toEqual(expected);
+        expect(validateAddressTown(input, i18n, options)).toEqual(expected);
       }
     );
   });

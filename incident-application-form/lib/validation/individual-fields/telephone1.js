@@ -1,12 +1,34 @@
 const validator = require("validator");
 
+const defaultOptions = {
+  required: true,
+};
+
 module.exports = {
-  validateTelephone1: (telephone, i18n) => {
+  validateTelephone1: (telephone, i18n, options) => {
     let validated = {
       isValid: false,
       messages: [],
       value: "",
     };
+
+    let resolvedOptions = {
+      ...defaultOptions,
+      ...options,
+    };
+
+    if (
+      (!telephone || validator.isEmpty(telephone)) &&
+      !resolvedOptions.required
+    ) {
+      return {
+        telephone1: {
+          ...validated,
+          isValid: true,
+          value: "",
+        },
+      };
+    }
 
     if (!telephone || validator.isEmpty(telephone)) {
       validated.messages.push(
