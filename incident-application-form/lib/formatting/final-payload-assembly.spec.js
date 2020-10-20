@@ -143,7 +143,7 @@ describe(`lib/formatting/final-payload-assembly`, () => {
     ],
   ];
 
-  xtest.each(testCases)(`%s`, (description, given, expected) => {
+  test.each(testCases)(`%s`, (description, given, expected) => {
     expect(assemblePayload(given)).toEqual(expected);
   });
 });
