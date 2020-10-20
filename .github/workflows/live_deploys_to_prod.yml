@@ -1,4 +1,4 @@
-name: push to live triggers deploy to prod
+name: push to live triggers deploy to prd
 
 on:
   push:
@@ -14,11 +14,11 @@ env:
   registry_to: ${{ secrets.PROD_CONTAINER_REGISTRY_NAME }}
   registry_to_username: ${{ secrets.PROD_CONTAINER_REGISTRY_USERNAME }}
   registry_to_password: ${{ secrets.PROD_CONTAINER_REGISTRY_PASSWORD }}
-  tag_to: prod
+  tag_to: prd
 
 jobs:
 
-  prod-rg:
+  prd-rg:
     name: Creating Prod app-service plan and container registry
     runs-on: ubuntu-latest
     steps:
@@ -48,7 +48,7 @@ jobs:
 
   form-ui-appservice:
     name: Creating and configuring Web Application
-    needs: [prod-rg]
+    needs: [prd-rg]
     runs-on: ubuntu-latest
     steps:
     - uses: azure/login@v1
@@ -66,29 +66,29 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp create --name fsa-incident-report-form-prod \
-            --plan prod \
+          az webapp create --name fsa-incident-report-form-prd \
+            --plan prd \
             --deployment-container-image-name ${{ secrets.PROD_CONTAINER_REGISTRY_NAME }}.azurecr.io/form-ui
 
     - name: Switch on Continuous deployment
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment container config --name fsa-incident-report-form-prod \
+          az webapp deployment container config --name fsa-incident-report-form-prd \
             --enable-cd true
 
     - name: Enable container logging
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp log config --name fsa-incident-report-form-prod \
+          az webapp log config --name fsa-incident-report-form-prd \
             --docker-container-logging filesystem
 
     - name: Always-on
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp config set --name fsa-incident-report-form-prod \
+          az webapp config set --name fsa-incident-report-form-prd \
             --always-on true
 
     - name: Applying Environment variables
@@ -96,7 +96,7 @@ jobs:
       with:
         # NB we're setting PORT for the container and WEBSITES_PORT for Azure.
         inlineScript: |
-          az webapp config appsettings set --name fsa-incident-report-form-prod \
+          az webapp config appsettings set --name fsa-incident-report-form-prd \
             --settings \
               PORT=3000 \
               WEBSITES_PORT=3000 \
@@ -146,7 +146,7 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot create --name fsa-incident-report-form-prod --slot ${{ github.sha }} --configuration-source fsa-incident-report-form-prod
+          az webapp deployment slot create --name fsa-incident-report-form-prd --slot ${{ github.sha }} --configuration-source fsa-incident-report-form-prd
 
     - name: Swap slot ${{ github.sha }} into production
       uses: Azure/cli@v1.0.0
@@ -160,4 +160,4 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot delete --name fsa-incident-report-form-prod --slot ${{ github.sha }}
+          az webapp deployment slot delete --name fsa-incident-report-form-prd --slot ${{ github.sha }}
