@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GOV_NOTIFY_API_KEY: ${{ secrets.DEV_GOV_NOTIFY_API_KEY }}
+      NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
     steps:
     - uses: actions/checkout@v2
     - name: Start Docker Compose
