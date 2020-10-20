@@ -21,25 +21,6 @@
         }
     }) %}
 
-    {{ govukInput({
-        classes: "govuk-!-width-full",
-        id: "incident-title",
-        name: "incident-title",
-        value: detailsOfIncident.incidentTitle.value,
-        attributes : {
-            "data-cy": "incident-title"
-        },
-        label: {
-            text: i18n.incidentTitle.label[i18n.languageCode]
-        },
-        errorMessage: validation.validatedFields.incidentTitle.isValid == false and {
-            text: validation.validatedFields.incidentTitle.messages | join(". "),
-            "attributes" : {
-                "data-cy": "incident-title-errors"
-            }
-        }
-    }) }}
-
     {{ govukTextarea({
         name: "nature-of-problem",
         id: "nature-of-problem",
@@ -49,7 +30,7 @@
         },
         label: {
             text: i18n.natureOfProblem.label[i18n.languageCode],
-            classes: "govuk-label--l"
+            classes: "govuk-label"
         },
         hint: {
             text: i18n.natureOfProblem.hint[i18n.languageCode]
@@ -71,7 +52,7 @@
         },
         label: {
             text: i18n.actionTaken.label[i18n.languageCode],
-            classes: "govuk-label--l"
+            classes: "govuk-label"
         },
         hint: {
             text: i18n.actionTaken.hint[i18n.languageCode]
@@ -87,7 +68,7 @@
         },
         label: {
             text: i18n.distributionDetails.label[i18n.languageCode],
-            classes: "govuk-label--l"
+            classes: "govuk-label"
         },
         hint: {
             text: i18n.distributionDetails.hint[i18n.languageCode]
@@ -103,7 +84,7 @@
         },
         label: {
             text: i18n.illnessDetails.label[i18n.languageCode],
-            classes: "govuk-label--l"
+            classes: "govuk-label"
         },
         hint: {
             text: i18n.illnessDetails.hint[i18n.languageCode]
@@ -119,7 +100,7 @@
         },
         label: {
             text: i18n.localAuthorityNotified.label[i18n.languageCode],
-            classes: "govuk-label--l"
+            classes: "govuk-label"
         },
         hint: {
             text: i18n.localAuthorityNotified.hint[i18n.languageCode]
@@ -135,7 +116,7 @@
         },
         label: {
             text: i18n.additionalInformation.label[i18n.languageCode],
-            classes: "govuk-label--l"
+            classes: "govuk-label"
         },
         hint: {
             text: i18n.additionalInformation.hint[i18n.languageCode]

@@ -110,7 +110,6 @@ describe(`lib/formatting/final-payload-assembly`, () => {
         },
         Incidents: {
           NotifierID: parseInt(yourDetails.notifierType, 10),
-          IncidentTitle: detailsOfIncident.incidentTitle,
           NatureOfProblem: detailsOfIncident.natureOfProblem,
           ActionTaken: detailsOfIncident.actionTaken,
           DistributionDetails: detailsOfIncident.distributionDetails,

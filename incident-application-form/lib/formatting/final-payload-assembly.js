@@ -41,7 +41,6 @@ module.exports = {
       Addresses: assembleAddress(yourDetails),
       Incidents: {
         NotifierID: parseInt(yourDetails.notifierType.value, 10),
-        IncidentTitle: detailsOfIncident.incidentTitle.value,
         NatureOfProblem: detailsOfIncident.natureOfProblem.value,
         ActionTaken: detailsOfIncident.actionTaken.value,
         DistributionDetails: detailsOfIncident.distributionDetails.value,

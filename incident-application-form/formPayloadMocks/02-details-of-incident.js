@@ -5,12 +5,6 @@ module.exports = {
         // required
         // free form text
         // min 1
-        // max 250
-        // escaped
-        IncidentTitle: "",
-        // required
-        // free form text
-        // min 1
         // max 1024
         // escaped
         NatureOfProblem:

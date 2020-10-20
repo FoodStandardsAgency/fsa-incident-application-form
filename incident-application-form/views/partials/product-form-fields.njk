@@ -1,4 +1,7 @@
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
 <input type="hidden" name="companyId" value="{{ companyId }}" />
 <input type="hidden" name="productId" value="{{ productId }}" />
@@ -14,6 +17,9 @@
     },
     label: {
         text: i18n.productName.label[i18n.languageCode]
+    },
+    hint: {
+        text: i18n.productName.hint[i18n.languageCode]
     },
     errorMessage: validation.validatedFields.productName.isValid == false and {
         text: validation.validatedFields.productName.messages | join(". "),
@@ -34,10 +40,297 @@
     label: {
         text: i18n.brand.label[i18n.languageCode]
     },
+    hint: {
+        text: i18n.brand.hint[i18n.languageCode]
+    },
     errorMessage: validation.validatedFields.brand.isValid == false and {
         text: validation.validatedFields.brand.messages | join(". "),
         "attributes" : {
             "data-cy": "brand-errors"
+        }
+    }
+}) }}
+
+{{ govukSelect({
+    id: "product-type",
+    name: "product-type",
+    attributes : {
+        "data-cy": "product-type"
+    },
+    label: {
+        text: i18n.productType.label[i18n.languageCode]
+    },
+    items: productTypes,
+    errorMessage: validation.validatedFields.productType.isValid == false and {
+        text: validation.validatedFields.productType.messages | join(". "),
+        attributes : {
+            "data-cy": "product-type-errors"
+        }
+    }
+}) }}
+
+{{ govukTextarea({
+    name: "batch-codes",
+    id: "batch-codes",
+    value: validation.validatedFields.batchCodes.value,
+    attributes : {
+        "data-cy": "batch-codes"
+    },
+    label: {
+        text: i18n.batchCodes.label[i18n.languageCode],
+        classes: "govuk-label"
+    },
+    hint: {
+        text: i18n.batchCodes.hint[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.batchCodes.isValid == false and {
+        text: validation.validatedFields.batchCodes.messages | join(". "),
+        "attributes" : {
+            "data-cy": "batch-codes-errors"
+        }
+    }
+}) }}
+
+{{ govukSelect({
+    id: "origin-country",
+    name: "origin-country",
+    attributes : {
+        "data-cy": "origin-country"
+    },
+    label: {
+        text: i18n.originCountry.label[i18n.languageCode]
+    },
+    items: originCountries,
+    errorMessage: validation.validatedFields.originCountry.isValid == false and {
+        text: validation.validatedFields.originCountry.messages | join(". "),
+        attributes : {
+            "data-cy": "origin-country-errors"
+        }
+    }
+}) }}
+
+{{ govukInput({
+    classes: "govuk-!-width-full",
+    id: "amount-imported-distributed",
+    name: "amount-imported-distributed",
+    type: "number",
+    value: validation.validatedFields.amountImportedDistributed.value,
+    attributes : {
+        "data-cy": "amount-imported-distributed"
+    },
+    label: {
+        text: i18n.amountImportedDistributed.label[i18n.languageCode]
+    },
+    hint: {
+        text: i18n.amountImportedDistributed.hint[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.amountImportedDistributed.isValid == false and {
+        text: validation.validatedFields.amountImportedDistributed.messages | join(". "),
+        "attributes" : {
+            "data-cy": "amount-imported-distributed-errors"
+        }
+    }
+}) }}
+
+{{ govukSelect({
+    id: "unit-type",
+    name: "unit-type",
+    attributes : {
+        "data-cy": "unit-type"
+    },
+    label: {
+        text: i18n.unitType.label[i18n.languageCode]
+    },
+    items: units,
+    errorMessage: validation.validatedFields.unitType.isValid == false and {
+        text: validation.validatedFields.unitType.messages | join(". "),
+        attributes : {
+            "data-cy": "unit-type-errors"
+        }
+    }
+}) }}
+
+{{ govukDateInput({
+    id: "best-before",
+    namePrefix: "best-before",
+    attributes : {
+        "data-cy": "best-before"
+    },
+    items: [
+        {
+            name: "day",
+            value: validation.validatedFields.bestBefore.day,
+            classes: "govuk-input--width-2"
+        },
+        {
+            name: "month",
+            value: validation.validatedFields.bestBefore.month,
+            classes: "govuk-input--width-2"
+        },
+        {
+            name: "year",
+            value: validation.validatedFields.bestBefore.year,
+            classes: "govuk-input--width-4"
+        }
+    ],
+    fieldset: {
+        legend: {
+            text: i18n.bestBefore.label[i18n.languageCode],
+            classes: "govuk-fieldset__legend"
+        }
+    },
+    hint: {
+        text: i18n.bestBefore.hint[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.bestBefore.isValid == false and {
+        text: validation.validatedFields.bestBefore.messages | join(". "),
+        "attributes" : {
+            "data-cy": "best-before-errors"
+        }
+    }
+}) }}
+
+{{ govukDateInput({
+    id: "use-by",
+    namePrefix: "use-by",
+    attributes : {
+        "data-cy": "use-by"
+    },
+    value: validation.validatedFields.useBy.value,
+    fieldset: {
+        legend: {
+            text: i18n.useBy.label[i18n.languageCode]
+        }
+    },
+    items: [
+        {
+            name: "day",
+            value: validation.validatedFields.useBy.day,
+            classes: "govuk-input--width-2"
+        },
+        {
+            name: "month",
+            value: validation.validatedFields.useBy.month,
+            classes: "govuk-input--width-2"
+        },
+        {
+            name: "year",
+            value: validation.validatedFields.useBy.year,
+            classes: "govuk-input--width-4"
+        }
+    ],
+    hint: {
+        text: i18n.useBy.hint[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.useBy.isValid == false and {
+        text: validation.validatedFields.useBy.messages | join(". "),
+        "attributes" : {
+            "data-cy": "use-by-errors"
+        }
+    }
+}) }}
+
+{{ govukDateInput({
+    id: "display-until",
+    namePrefix: "display-until",
+    attributes : {
+        "data-cy": "display-until"
+    },
+    fieldset: {
+        legend: {
+            text: i18n.displayUntil.label[i18n.languageCode]
+        }
+    },
+    items: [
+        {
+            name: "day",
+            value: validation.validatedFields.displayUntil.day,
+            classes: "govuk-input--width-2"
+        },
+        {
+            name: "month",
+            value: validation.validatedFields.displayUntil.month,
+            classes: "govuk-input--width-2"
+        },
+        {
+            name: "year",
+            value: validation.validatedFields.displayUntil.year,
+            classes: "govuk-input--width-4"
+        }
+    ],
+    hint: {
+        text: i18n.displayUntil.hint[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.displayUntil.isValid == false and {
+        text: validation.validatedFields.displayUntil.messages | join(". "),
+        "attributes" : {
+            "data-cy": "display-until-errors"
+        }
+    }
+}) }}
+
+{{ govukInput({
+    classes: "govuk-!-width-full",
+    id: "pack-size",
+    name: "pack-size",
+    value: validation.validatedFields.packSize.value,
+    attributes : {
+        "data-cy": "pack-size"
+    },
+    label: {
+        text: i18n.packSize.label[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.packSize.isValid == false and {
+        text: validation.validatedFields.packSize.messages | join(". "),
+        "attributes" : {
+            "data-cy": "pack-size-errors"
+        }
+    },
+    hint: {
+        text: i18n.packSize.hint[i18n.languageCode]
+    }
+}) }}
+
+{{ govukTextarea({
+    name: "package-description",
+    id: "package-description",
+    value: validation.validatedFields.packageDescription.value,
+    attributes : {
+        "data-cy": "package-description"
+    },
+    label: {
+        text: i18n.packageDescription.label[i18n.languageCode],
+        classes: "govuk-label"
+    },
+    hint: {
+        text: i18n.packageDescription.hint[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.packageDescription.isValid == false and {
+        text: validation.validatedFields.packageDescription.messages | join(". "),
+        "attributes" : {
+            "data-cy": "package-description-errors"
+        }
+    }
+}) }}
+
+{{ govukTextarea({
+    name: "additional-information",
+    id: "additional-information",
+    value: validation.validatedFields.additionalInformation.value,
+    attributes : {
+        "data-cy": "additional-information"
+    },
+    label: {
+        text: i18n.additionalInformationProduct.label[i18n.languageCode],
+        classes: "govuk-label"
+    },
+    hint: {
+        text: i18n.additionalInformationProduct.hint[i18n.languageCode]
+    },
+    errorMessage: validation.validatedFields.additionalInformation.isValid == false and {
+        text: validation.validatedFields.additionalInformation.messages | join(". "),
+        "attributes" : {
+            "data-cy": "additional-information-errors"
         }
     }
 }) }}
