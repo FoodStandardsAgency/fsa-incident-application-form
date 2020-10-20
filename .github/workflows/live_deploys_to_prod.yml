@@ -9,7 +9,7 @@ env:
   registry_from: ${{ secrets.DEV_CONTAINER_REGISTRY_NAME }}
   registry_from_username: ${{ secrets.DEV_CONTAINER_REGISTRY_USERNAME }}
   registry_from_password: ${{ secrets.DEV_CONTAINER_REGISTRY_PASSWORD }}
-  tag_from: dev
+  tag_from: latest
   # To
   registry_to: ${{ secrets.PROD_CONTAINER_REGISTRY_NAME }}
   registry_to_username: ${{ secrets.PROD_CONTAINER_REGISTRY_USERNAME }}
