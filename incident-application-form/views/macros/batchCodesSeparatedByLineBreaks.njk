@@ -1,0 +1,7 @@
+{% macro batchCodesSeparatedByLineBreaks(batchCodes) %}
+    {% set list = batchCodes.split('\r\n') %}
+
+    {% for item in list %}
+        {{ item }}<br/>
+    {% endfor %}
+{% endmacro %}

@@ -167,7 +167,6 @@ router.post("/", async function (req, res, next) {
 
 router.get("/edit/:productId", async function (req, res, next) {
   const template = "edit-product";
-  console.log(`req.session`, JSON.stringify(req.session, null, 2));
 
   const { productId } = req.params;
 
@@ -179,7 +178,6 @@ router.get("/edit/:productId", async function (req, res, next) {
     req.session,
     productId
   );
-  console.log(`selectedOriginCountry`, selectedOriginCountry);
   const selectedUnitType = getSelectedUnitTypeFromSession(
     req.session,
     productId

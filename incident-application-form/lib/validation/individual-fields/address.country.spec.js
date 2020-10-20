@@ -85,6 +85,22 @@ describe(`lib/validation/individual-fields/address.country`, () => {
       },
     ],
     [
+      "using the default value is valid when not required",
+      {
+        input: "0",
+        options: {
+          required: false,
+        },
+      },
+      {
+        country: {
+          isValid: true,
+          messages: [],
+          value: "0",
+        },
+      },
+    ],
+    [
       "ensure values are escaped",
       {
         input: "<script>tag here</script>",

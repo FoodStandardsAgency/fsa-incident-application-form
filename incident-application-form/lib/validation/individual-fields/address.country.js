@@ -30,6 +30,16 @@ module.exports = {
       };
     }
 
+    if (country && country.toString() === "0" && !resolvedOptions.required) {
+      return {
+        country: {
+          ...validated,
+          isValid: true,
+          value: "0",
+        },
+      };
+    }
+
     const requiredMessage =
       i18n.address.country.validation.required[i18n.languageCode];
 

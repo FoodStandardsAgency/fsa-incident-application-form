@@ -79,12 +79,21 @@ router.post("/", async function (req, res, next) {
     throw new Error("Cannot add a company if no product.");
   }
 
+  const [companyTypes, countries] = await Promise.all([
+    await getCompanyTypes(languageCode, companyType),
+    await getCountries(languageCode, addressCountry),
+  ]);
+
   if (!validation.isValid) {
     res.render(template, {
       i18n,
+      companyId,
+      companyTypes,
+      countries,
       productId,
       routes,
       template,
+      validation,
     });
     return;
   }
@@ -101,7 +110,7 @@ router.post("/", async function (req, res, next) {
   };
 
   // the valid form submission data
-  console.log(`validation`, validation.validatedFields);
+  // console.log(`validation`, validation.validatedFields);
 
   res.redirect(`${routes.PRODUCT}/edit/${productId}`);
 });

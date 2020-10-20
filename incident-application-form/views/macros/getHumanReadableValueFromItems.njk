@@ -1,0 +1,7 @@
+{% macro getHumanReadableValueFromItems(items, value) %}
+  {% for item in items -%}
+    {% if item.value == value -%}
+      {{- item.text -}}
+    {%- endif %}
+  {%- endfor %}
+{% endmacro %}
