@@ -31,3 +31,18 @@ jobs:
       with:
         name: screenshots
         path: './cypress/screenshots'
+
+  jest:
+    name: "checkout; run jest."
+    runs-on: ubuntu-latest
+    env:
+      GOV_NOTIFY_API_KEY: ${{ secrets.DEV_GOV_NOTIFY_API_KEY }}
+      NOTIFICATION_EMAIL: ${{ secrets.DEV_NOTIFICATION_EMAIL }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run jest
+      run: |
+        pwd
+        cd $GITHUB_WORKSPACE/incident-application-form
+        npm install
+        npm test
