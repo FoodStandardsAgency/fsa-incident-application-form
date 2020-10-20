@@ -56,7 +56,6 @@ router.post("/", async function (req, res, next) {
 //  payload wasn't building properly; i just stuck these in here so i could prove the integration
 //  you can see inside those methods that it's not like it particularly matters where the
 //  data comes from..
-});
   await sendConfirmationEmail(req.session);
   await sendNotificationEmail(req.session);
 
