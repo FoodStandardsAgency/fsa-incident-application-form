@@ -36,7 +36,7 @@ const sendNotificationEmail = async (data) => {
     contactName: data.yourDetails.contactName.value,
     referenceNumber: '//TODO auto generate a reference number',
   };
-  await send('en-notification-email', email, personalisation);
+  await send('en-notification-of-incident-email', email, personalisation);
 };
 
 
@@ -51,6 +51,12 @@ router.get("/", async function (req, res, next) {
 
 router.post("/", async function (req, res, next) {
 
+//TODO? note- there's a strong argument that we should be using the payload to populate these
+//  .. at the point i was testing i only had tests covering some of the pages so the
+//  payload wasn't building properly; i just stuck these in here so i could prove the integration
+//  you can see inside those methods that it's not like it particularly matters where the
+//  data comes from..
+});
   await sendConfirmationEmail(req.session);
   await sendNotificationEmail(req.session);
 
