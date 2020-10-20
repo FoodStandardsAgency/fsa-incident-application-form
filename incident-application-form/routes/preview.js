@@ -57,8 +57,6 @@ router.get("/", async function (req, res, next) {
     getUnits(languageCode),
   ]);
 
-  console.log(`sess`, JSON.stringify(req.session, null, 2));
-
   res.render(template, {
     i18n,
     companyTypes,
