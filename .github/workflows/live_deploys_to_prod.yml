@@ -37,7 +37,7 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az appservice plan create --name prod --is-linux --sku p1v2
+          az appservice plan create --name prd --is-linux --sku p1v2
 
     - name: Create Container registry
       uses: Azure/cli@v1.0.0
@@ -107,6 +107,7 @@ jobs:
 
   deploy:
     name: Promote incident report form to production
+    needs: [form-ui-appservice]
     runs-on: ubuntu-latest
     steps:
 
