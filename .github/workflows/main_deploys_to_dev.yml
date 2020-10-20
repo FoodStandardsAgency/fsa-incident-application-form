@@ -91,7 +91,7 @@ jobs:
               LOOKUP_API_BASE_URL=http://localhost:3000 \
               SESSION_KEY=${{ secrets.DEV_SESSION_KEY }} \
               GOV_NOTIFY_API_KEY=${{ secrets.DEV_GOV_NOTIFY_API_KEY }} \
-              NOTIFICATION_EMAIL: ${{ secrets.DEV_NOTIFICATION_EMAIL }}
+              NOTIFICATION_EMAIL=${{ secrets.DEV_NOTIFICATION_EMAIL }}
 
   build:
     name: Build application and push into Container registry
