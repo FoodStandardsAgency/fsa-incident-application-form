@@ -1,13 +1,13 @@
 const express = require("express");
 const { validate } = require("../lib/validation/your-details");
+const { getCountries } = require("../lib/lookups/countries");
+const { getNotifierTypes } = require("../lib/lookups/notifier-types");
 const {
-  getCountries,
-  getSelectedCountryFromSession,
-} = require("../lib/lookups/countries");
-const {
-  getNotifierTypes,
   getSelectedNotifierTypeFromSession,
-} = require("../lib/lookups/notifier-types");
+} = require("../lib/session/notifier-type");
+const {
+  getSelectedAddressCountryFromSession,
+} = require("../lib/session/address.country");
 
 const router = express.Router();
 
@@ -26,16 +26,13 @@ const i18n = {
 };
 
 router.get("/", async function (req, res, next) {
-  console.log(`req.session`, JSON.stringify(req.session, null, 2));
+  const addressCountry = getSelectedAddressCountryFromSession(req.session);
+  const notifierType = getSelectedNotifierTypeFromSession(req.session);
 
-  const selectedNotifierType = getSelectedNotifierTypeFromSession(req.session);
-  const notifierTypes = await getNotifierTypes(
-    languageCode,
-    selectedNotifierType
-  );
-
-  const selectedCountry = getSelectedCountryFromSession(req.session);
-  const countries = await getCountries(languageCode, selectedCountry);
+  const [countries, notifierTypes] = await Promise.all([
+    await getCountries(languageCode, addressCountry),
+    await getNotifierTypes(languageCode, notifierType),
+  ]);
 
   res.render(template, {
     countries,
@@ -82,10 +79,15 @@ router.post("/", async function (req, res, next) {
   req.session.yourDetails = validation.validatedFields;
 
   if (!validation.isValid) {
+    const [countries, notifierTypes] = await Promise.all([
+      await getCountries(languageCode, addressCountry),
+      await getNotifierTypes(languageCode, notifierType),
+    ]);
+
     res.render(template, {
-      countries: await getCountries(languageCode),
+      countries,
       i18n,
-      notifierTypes: await getNotifierTypes(languageCode),
+      notifierTypes,
       validation,
       yourDetails: req.session.yourDetails || {},
     });

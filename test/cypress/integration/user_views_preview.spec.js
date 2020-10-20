@@ -42,10 +42,6 @@ context(
 
       cy.get('[data-cy="submit"]').click();
 
-      cy.get('[data-cy="incident-title"]').type(
-        "The title of my incident is bad food."
-      );
-
       cy.get('[data-cy="nature-of-problem"]').type(
         "The nature of my problem is salmonella"
       );
@@ -119,10 +115,6 @@ context(
       //TODO sort dropdowns +retrofit this test step..
       // cy.get('[data-cy="address.country"]')
       //   .should( (text) => { expect(text).to.contain("Norway")});
-
-      cy.get('[data-cy="incident-title"]').should((text) => {
-        expect(text).to.contain("The title of my incident is bad food.");
-      });
 
       cy.get('[data-cy="nature-of-problem"]').should((text) => {
         expect(text).to.contain("The nature of my problem is salmonella");

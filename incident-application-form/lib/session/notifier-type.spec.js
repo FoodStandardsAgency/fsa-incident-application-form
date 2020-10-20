@@ -1,6 +1,6 @@
-const { getSelectedNotifierTypeFromSession } = require("./notifier-types");
+const { getSelectedNotifierTypeFromSession } = require("./notifier-type");
 
-describe(`lib/lookups/notifier-types`, () => {
+describe(`lib/session/notifier-type`, () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

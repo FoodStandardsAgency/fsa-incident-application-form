@@ -5,17 +5,23 @@
       "en": "Any additional information"
     },
     "hint": {
-      "cy": "Bydd e-bost cadarnhau yn amlinellu sut i ddarparu dogfennau",
+      "cy": "Bydd e-bost cadarnhau yn rhoi gwybod sut i ddarparu dogfennau",
       "en": "A confirmation email will outline how to provide documents"
+    }
+  },
+  "additionalInformationProduct": {
+    "label": {
+      "cy": "Unrhyw wybodaeth ychwanegol",
+      "en": "Any additional information"
     }
   },
   "actionTaken": {
     "label": {
-      "cy": "Pa gamau sydd wedi digwydd neu sydd ar y gweill",
-      "en": "What action has taken place or is planned"
+      "cy": "Pa gamau sydd wedi’u cymryd neu sydd ar y gweill?",
+      "en": "What action has taken place or is planned?"
     },
     "hint": {
-      "cy": "Er enghraifft, ‘cychwyn galw cynnyrch yn ôl’",
+      "cy": "Er enghraifft, 'Wedi dechrau galw’r cynnyrch yn ôl'",
       "en": "For example, ‘product recall initiated’"
     }
   },
@@ -103,10 +109,54 @@
       }
     }
   },
+  "amountImportedDistributed": {
+    "label": {
+      "cy": "Faint o gynnyrch mae’r digwyddiad wedi effeithio arno?",
+      "en": "How much product was affected?"
+    },
+    "hint": {
+      "cy": "Nodwch y rhif yma a'r unedau isod",
+      "en": "Enter the number here and units below"
+    },
+    "validation": {
+      "invalidLength": {
+        "cy": "Rhaid i `Faint o gynnyrch mae’r digwyddiad wedi effeithio arno` fod rhwng 1 a 255 nod",
+        "en": "`How much product was affected` must be between 1 and 255 characters"
+      },
+      "invalidNumber": {
+        "cy": "Nid yw hwn yn rhif dilys",
+        "en": "This is not a valid number"
+      }
+    }
+  },
+  "batchCodes": {
+    "label": {
+      "cy": "Codau swp",
+      "en": "Batch codes"
+    },
+    "hint": {
+      "cy": "Nodwch yr holl godau swp yr ydych chi’n gwybod mae’r digwyddiad hwn wedi effeithio arnynt, un y llinell",
+      "en": "Enter all batch codes known to be affected, one per line"
+    }
+  },
+  "bestBefore": {
+    "label": {
+      "cy": "Dyddiad ar ei orau cyn",
+      "en": "Best-before date"
+    },
+    "hint": {
+      "cy": "Os oes mwy nag un, nodwch hyn yn y maes",
+      "en": "If there is more than one, please enter this in the additional information field"
+    }
+  },
   "brand": {
     "label": {
       "cy": "Brand",
       "en": "Brand"
+    },
+    "hint": {
+      "cy": "Er enghraifft, Tesco",
+      "en": "For example, Tesco"
     },
     "validation": {
       "invalidLength": {
@@ -143,13 +193,31 @@
       }
     }
   },
-  "distributionDetails": {
+  "date": {
+    "validation": {
+      "invalidDate": {
+        "cy": "Nid yw hwn yn ddyddiad dilys",
+        "en": "This is not a valid date"
+      }
+    }
+  },
+  "displayUntil": {
     "label": {
-      "cy": "Ble mae'r cynnyrch wedi'i ddosbarthu?",
-      "en": "Where has the product been distributed? "
+      "cy": "Dyddiad arddangos tan",
+      "en": "Display-until date"
     },
     "hint": {
-      "cy": "Cynhwyswch yr UE a thrydydd gwledydd",
+      "cy": "Os oes mwy nag un, nodwch hyn yn y maes",
+      "en": "If there is more than one, please enter this in the additional information field"
+    }
+  },
+  "distributionDetails": {
+    "label": {
+      "cy": "I ble mae'r cynnyrch wedi'i ddosbarthu?",
+      "en": "Where has the product been distributed?"
+    },
+    "hint": {
+      "cy": "Cofiwch gynnwys gwledydd yr Undeb Ewropeaidd (UE) a thrydydd gwledydd",
       "en": "Include EU and third countries"
     }
   },
@@ -171,7 +239,7 @@
       "en": "What illness has the incident caused?"
     },
     "hint": {
-      "cy": "Cynhwyswch symptomau a nifer y defnyddwyr yr effeithir arnynt, lle bo hynny'n hysbys",
+      "cy": "Cofiwch gynnwys symptomau a nifer y defnyddwyr mae’r digwyddiad wedi effeithio arnynt, lle bo hynny'n hysbys",
       "en": "Include symptoms and the number of consumers affected, where known"
     }
   },
@@ -197,7 +265,7 @@
       "en": "Which local authority has been notified?"
     },
     "hint": {
-      "cy": "Enwch yr awdurdod lleol neu ysgrifennwch ‘dim’",
+      "cy": "Nodwch enw’r awdurdod lleol neu nodwch 'dim un'",
       "en": "Name the local authority or write ‘none’"
     }
   },
@@ -207,8 +275,8 @@
       "en": "What happened?"
     },
     "hint": {
-      "cy": "Disgrifiwch y digwyddiad sydd wedi digwydd. Er enghraifft, 'Canfu Salmonela'",
-      "en": "Describe the incident that has taken place. For example, 'Salmonella found'"
+      "cy": "Ewch ati i ddisgrifio’r digwyddiad. Er enghraifft, ‘Wedi canfod Salmonela’",
+      "en": "Describe the incident that has taken place. For example, ‘Salmonella found’"
     },
     "validation": {
       "required": {
@@ -226,14 +294,6 @@
       "defaultValue": {
         "cy": "Dewiswch opsiwn",
         "en": "Please choose an option"
-      },
-      "industry": {
-        "cy": "Diwydiant",
-        "en": "Industry"
-      },
-      "localAuthority": {
-        "cy": "Awdurdod lleol",
-        "en": "Local Authority"
       }
     },
     "validation": {
@@ -255,6 +315,44 @@
       }
     }
   },
+  "originCountry": {
+    "label": {
+      "cy": "Ble cafodd y cynnyrch ei weithgynhyrchu?",
+      "en": "Where was the product manufactured?"
+    },
+    "values": {
+      "defaultValue": {
+        "cy": "Dewiswch wlad os gwelwch yn dda",
+        "en": "Please choose a country"
+      }
+    }
+  },
+  "packageDescription": {
+    "label": {
+      "cy": "Disgrifiad o'r pecyn",
+      "en": "Package description"
+    },
+    "hint": {
+      "cy": "Disgrifiwch sut roedd y cynnyrch yn edrych wrth ei werthu",
+      "en": "Describe how the product looked when sold"
+    }
+  },
+  "packSize": {
+    "label": {
+      "cy": "Maint y pecyn",
+      "en": "Pack size"
+    },
+    "hint": {
+      "cy": "Pwysau, maint neu gyfaint pob cynnyrch. Er enghraifft, pecyn 200g",
+      "en": "The weight, size or volume of each product. For example, a 200g pack"
+    },
+    "validation": {
+      "invalidLength": {
+        "cy": "Rhaid i'r maint pecyn fod rhwng 1 a 255 nod",
+        "en": "Pack size must be between 1 and 255 characters"
+      }
+    }
+  },
   "position": {
     "label": {
       "cy": "Swydd",
@@ -269,8 +367,12 @@
   },
   "productName": {
     "label": {
-      "cy": "Enw Cynnyrch",
-      "en": "Product Name"
+      "cy": "Enw'r cynnyrch",
+      "en": "Product name"
+    },
+    "hint": {
+      "cy": "Er enghraifft, sos coch",
+      "en": "For example, tomato ketchup"
     },
     "validation": {
       "required": {
@@ -280,6 +382,18 @@
       "invalidLength": {
         "cy": "Rhaid i enw'r cynnyrch fod rhwng 1 a 255 nod",
         "en": "Product name must be between 1 and 255 characters"
+      }
+    }
+  },
+  "productType": {
+    "label": {
+      "cy": "Math o gynnyrch",
+      "en": "Product Type"
+    },
+    "values": {
+      "defaultValue": {
+        "cy": "Dewiswch opsiwn",
+        "en": "Please choose an option"
       }
     }
   },
@@ -297,7 +411,28 @@
         "cy": "Nid yw hwn yn rhif ffôn dilys",
         "en": "This is not a valid telephone number"
       }
-
+    }
+  },
+  "unitType": {
+    "label": {
+      "cy": "Unedau",
+      "en": "Units"
+    },
+    "values": {
+      "defaultValue": {
+        "cy": "Dewiswch opsiwn",
+        "en": "Please choose an option"
+      }
+    }
+  },
+  "useBy": {
+    "label": {
+      "cy": "Dyddiad defnyddio erbyn",
+      "en": "Use-by date"
+    },
+    "hint": {
+      "cy": "Os oes mwy nag un, nodwch hyn yn y maes",
+      "en": "If there is more than one, please enter this in the additional information field"
     }
   }
 }
