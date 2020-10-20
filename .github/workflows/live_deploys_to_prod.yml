@@ -138,9 +138,9 @@ jobs:
 
     - name: Promote container image
       run: |
-        docker pull ${{ env.registry_from }}/form-ui:${{ env.tag_from }}
-        docker tag ${{ env.registry_from }}/form-ui:${{ env.tag_from }} ${{ env.registry_to }}/form-ui:${{ env.tag_to }}
-        docker push ${{ env.registry_to }}/form-ui:${{ env.tag_to }}
+        docker pull ${{ env.registry_from }}.azurecr.io/form-ui:${{ env.tag_from }}
+        docker tag ${{ env.registry_from }}.azurecr.io/form-ui:${{ env.tag_from }} ${{ env.registry_to }}/form-ui:${{ env.tag_to }}
+        docker push ${{ env.registry_to }}.azurecr.io/form-ui:${{ env.tag_to }}
 
     - name: Create slot ${{ github.sha }}
       uses: Azure/cli@v1.0.0
