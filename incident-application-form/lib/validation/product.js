@@ -8,6 +8,9 @@ const {
 const { validateBatchCodes } = require("./individual-fields/batch-codes");
 const { validateBrand } = require("./individual-fields/brand");
 const { validateDate } = require("./individual-fields/date");
+const {
+  validateAddressCountry,
+} = require("./individual-fields/address.country");
 const { validatePackSize } = require("./individual-fields/pack-size");
 const {
   validatePackageDescription,
@@ -25,6 +28,7 @@ module.exports = {
       bestBefore,
       brand,
       displayUntil,
+      originCountry,
       packSize,
       packageDescription,
       productName,
@@ -48,6 +52,7 @@ module.exports = {
     const validatedBestBefore = validateDate(bestBefore, i18n);
     const validatedBrand = validateBrand(brand, i18n);
     const validatedDisplayUntil = validateDate(displayUntil, i18n);
+    const validatedOriginCountry = validateAddressCountry(originCountry, i18n);
     const validatedPackSize = validatePackSize(packSize, i18n);
     const validatedPackageDescription = validatePackageDescription(
       packageDescription,
@@ -65,6 +70,7 @@ module.exports = {
       validatedBestBefore,
       validatedBrand,
       validatedDisplayUntil,
+      validatedOriginCountry,
       validatedPackSize,
       validatedPackageDescription,
       validatedProductName,
@@ -82,6 +88,7 @@ module.exports = {
         bestBefore: validatedBestBefore.date,
         ...validatedBrand,
         displayUntil: validatedDisplayUntil.date,
+        originCountry: validatedOriginCountry.country,
         ...validatedPackSize,
         ...validatedPackageDescription,
         ...validatedProductName,

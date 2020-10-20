@@ -23,6 +23,7 @@ describe(`lib/validation/company`, () => {
       "happiest path",
       {
         companyName: "valid",
+        companyType: "3",
       },
       true,
     ],

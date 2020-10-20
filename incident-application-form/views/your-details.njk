@@ -121,8 +121,8 @@
         type: "email",
         autocomplete: "email",
         spellcheck: false,
-        errorMessage: validation.validatedFields.organisation.isValid == false and {
-            text: validation.validatedFields.organisation.messages | join(". "),
+        errorMessage: validation.validatedFields.email.isValid == false and {
+            text: validation.validatedFields.email.messages | join(". "),
             "attributes" : {
                 "data-cy": "email-errors"
             }
