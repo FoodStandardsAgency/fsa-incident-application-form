@@ -60,7 +60,7 @@ jobs:
       with:
         inlineScript: |
           az configure --defaults location=uksouth
-          az configure --defaults group=RG-APP-FSA-PROD-IncidentReportForm-1
+          az configure --defaults group=RG-APP-FSA-PRD-IncidentReportForm-1
 
     - name: Create web application
       uses: Azure/cli@v1.0.0
