@@ -152,7 +152,7 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot swap   --name fsa-incident-report-form-prod --slot ${{ github.sha }} --action swap
+          az webapp deployment slot swap   --name fsa-incident-report-form-prd --slot ${{ github.sha }} --action swap
 
     - name: Delete slot ${{ github.sha }}
       # Clean up the slot regardless of errors
