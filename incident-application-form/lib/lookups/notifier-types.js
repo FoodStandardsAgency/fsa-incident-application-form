@@ -2,15 +2,6 @@ const fetch = require("node-fetch");
 const formFieldTranslations = require(`${__dirname}/../../translations/form-fields.json`);
 
 module.exports = {
-  getSelectedNotifierTypeFromSession: (session) => {
-    return (
-      (session &&
-        session.yourDetails &&
-        session.yourDetails.notifierType &&
-        session.yourDetails.notifierType.value) ||
-      0
-    );
-  },
   getNotifierTypes: async (languageCode, selectedValue = 0) => {
     try {
       const notifierTypesResponse = await fetch(

@@ -1,5 +1,4 @@
 const { allValid } = require("./all-valid");
-const { validateIncidentTitle } = require("./individual-fields/incident-title");
 const {
   validateNatureOfProblem,
 } = require("./individual-fields/nature-of-problem");
@@ -20,7 +19,6 @@ const {
 module.exports = {
   validate: (
     {
-      incidentTitle,
       natureOfProblem,
       actionTaken,
       distributionDetails,
@@ -30,7 +28,6 @@ module.exports = {
     },
     i18n
   ) => {
-    const validatedIncidentTitle = validateIncidentTitle(incidentTitle, i18n);
     const validatedNatureOfProblem = validateNatureOfProblem(
       natureOfProblem,
       i18n
@@ -54,7 +51,6 @@ module.exports = {
     );
 
     const isValid = allValid([
-      validatedIncidentTitle,
       validatedNatureOfProblem,
       validatedActionTaken,
       validatedAdditionalInformation,
@@ -66,7 +62,6 @@ module.exports = {
     return {
       isValid,
       validatedFields: {
-        ...validatedIncidentTitle,
         ...validatedNatureOfProblem,
         ...validatedActionTaken,
         ...validatedAdditionalInformation,

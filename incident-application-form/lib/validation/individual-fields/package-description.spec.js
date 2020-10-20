@@ -1,31 +1,27 @@
-const { validateIncidentTitle } = require("./incident-title");
+const { validatePackageDescription } = require("./package-description");
 
 const translations = require(`${__dirname}/../../../translations/form-fields.json`);
 
-describe(`lib/validation/individual-fields/incident-title`, () => {
+describe(`lib/validation/individual-fields/package-description`, () => {
   const testCases = (languageCode) => [
     [
-      "missing field",
+      "missing field is allowed",
       undefined,
       {
-        incidentTitle: {
-          isValid: false,
-          messages: [
-            translations.incidentTitle.validation.required[languageCode],
-          ],
+        packageDescription: {
+          isValid: true,
+          messages: [],
           value: "",
         },
       },
     ],
     [
-      "wrong data type",
+      "wrong data type returns an empty string",
       false,
       {
-        incidentTitle: {
-          isValid: false,
-          messages: [
-            translations.incidentTitle.validation.required[languageCode],
-          ],
+        packageDescription: {
+          isValid: true,
+          messages: [],
           value: "",
         },
       },
@@ -34,25 +30,21 @@ describe(`lib/validation/individual-fields/incident-title`, () => {
       "provided field is empty",
       "",
       {
-        incidentTitle: {
-          isValid: false,
-          messages: [
-            translations.incidentTitle.validation.required[languageCode],
-          ],
+        packageDescription: {
+          isValid: true,
+          messages: [],
           value: "",
         },
       },
     ],
     [
-      "value is too long",
-      "a".repeat(256),
+      "given a number returns a string",
+      6665,
       {
-        incidentTitle: {
-          isValid: false,
-          messages: [
-            translations.incidentTitle.validation.invalidLength[languageCode],
-          ],
-          value: "a".repeat(256),
+        packageDescription: {
+          isValid: true,
+          messages: [],
+          value: "6665",
         },
       },
     ],
@@ -60,7 +52,7 @@ describe(`lib/validation/individual-fields/incident-title`, () => {
       "ensure values are escaped",
       "<script>tag here</script>",
       {
-        incidentTitle: {
+        packageDescription: {
           isValid: true,
           messages: [],
           value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
@@ -71,7 +63,7 @@ describe(`lib/validation/individual-fields/incident-title`, () => {
       "happy path",
       "valid",
       {
-        incidentTitle: {
+        packageDescription: {
           isValid: true,
           messages: [],
           value: "valid",
@@ -89,7 +81,7 @@ describe(`lib/validation/individual-fields/incident-title`, () => {
           ...translations,
         };
 
-        expect(validateIncidentTitle(given, i18n)).toEqual(expected);
+        expect(validatePackageDescription(given, i18n)).toEqual(expected);
       }
     );
   });

@@ -2,16 +2,6 @@ const fetch = require("node-fetch");
 const formFieldTranslations = require(`${__dirname}/../../translations/form-fields.json`);
 
 module.exports = {
-  getSelectedCountryFromSession: (session) => {
-    return (
-      (session &&
-        session.yourDetails &&
-        session.yourDetails.address &&
-        session.yourDetails.address.country &&
-        session.yourDetails.address.country.value) ||
-      0
-    );
-  },
   getCountries: async (languageCode, selectedValue = 0) => {
     try {
       const countriesResponse = await fetch(

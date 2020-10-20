@@ -20,8 +20,6 @@ const i18n = {
 };
 
 router.get("/", async function (req, res, next) {
-  console.log(`session`, JSON.stringify(req.session, null, 2));
-
   const tabularDetailsOfProducts = formatProducts(
     req.session.products || {},
     i18n,
