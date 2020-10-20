@@ -9,6 +9,7 @@ services:
       - LOOKUP_API_BASE_URL=http://localhost:3000
       - SESSION_KEY=03978Xjb19nh6mR9kQ6B
       - GOV_NOTIFY_API_KEY
+      - NOTIFICATION_EMAIL
     ports:
       - "3000:3000"
     command: npm start

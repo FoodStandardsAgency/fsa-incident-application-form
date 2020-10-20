@@ -21,6 +21,25 @@ const i18n = {
   ...formFieldTranslations,
 };
 
+const sendConfirmationEmail = async (data) => {
+  const email = data.yourDetails.email.value;
+  const personalisation = {
+    contactName: data.yourDetails.contactName.value,
+    referenceNumber: '//TODO auto generate a reference number',
+  };
+  await send('en-confirmation-email', email, personalisation);
+};
+
+const sendNotificationEmail = async (data) => {
+  const email = process.env.NOTIFICATION_EMAIL;
+  const personalisation = {
+    contactName: data.yourDetails.contactName.value,
+    referenceNumber: '//TODO auto generate a reference number',
+  };
+  await send('en-notification-email', email, personalisation);
+};
+
+
 router.get("/", async function (req, res, next) {
   res.render(template, {
     i18n,
@@ -32,12 +51,8 @@ router.get("/", async function (req, res, next) {
 
 router.post("/", async function (req, res, next) {
 
-  const email = req.session.yourDetails.email.value;
-  const personalisation = {
-    contactName: req.session.yourDetails.contactName.value,
-    referenceNumber: '//TODO auto generate a reference number',
-  };
-  await send('en-confirmation-email', email, personalisation);
+  await sendConfirmationEmail(req.session);
+  await sendNotificationEmail(req.session);
 
   const payload = assemblePayload(req.session);
 

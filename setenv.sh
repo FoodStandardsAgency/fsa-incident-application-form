@@ -7,5 +7,9 @@ for s in $(ls secrets/set_*); do
 done
 
 if [ -z "$GOV_NOTIFY_API_KEY" ]; then
-    echo "WARNING: GOV NOTIFY API KEY NOT SET"
+    echo "warning, unset environment variable: GOV_NOTIFY_API_KEY"
+fi
+
+if [ -z "$NOTIFICATION_EMAIL" ]; then
+    echo "warning, unset environment variable: NOTIFICATION_EMAIL"
 fi
