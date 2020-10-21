@@ -16,6 +16,8 @@ const i18n = {
   ...translations,
 };
 
+const fakeReferenceNumber = "123456789";
+
 const yourDetails = {
   notifierType: "3",
   contactName: "Timmy Testfield",
@@ -224,6 +226,7 @@ describe(`lib/formatting/final-payload-assembly`, () => {
           // "abc-123-def-456": validatedProduct1.validatedFields,
           "xyz-987-uvw-654": validatedProduct3.validatedFields,
         },
+        referenceNumber: fakeReferenceNumber,
       },
       {
         Addresses: {
@@ -235,6 +238,7 @@ describe(`lib/formatting/final-payload-assembly`, () => {
           CountryID: parseInt(yourDetails.addressCountry, 10),
         },
         Incidents: {
+          IncidentTitle: fakeReferenceNumber,
           NotifierID: parseInt(yourDetails.notifierType, 10),
           NatureOfProblem: detailsOfIncident.natureOfProblem,
           ActionTaken: detailsOfIncident.actionTaken,
@@ -302,6 +306,7 @@ describe(`lib/formatting/final-payload-assembly`, () => {
           "abc-123-def-456": validatedProduct1.validatedFields,
           "xyz-987-uvw-654": validatedProduct2.validatedFields,
         },
+        referenceNumber: fakeReferenceNumber,
       },
       {
         Addresses: {
@@ -313,6 +318,7 @@ describe(`lib/formatting/final-payload-assembly`, () => {
           CountryID: parseInt(yourDetails.addressCountry, 10),
         },
         Incidents: {
+          IncidentTitle: fakeReferenceNumber,
           NotifierID: parseInt(yourDetails.notifierType, 10),
           NatureOfProblem: detailsOfIncident.natureOfProblem,
           ActionTaken: detailsOfIncident.actionTaken,

@@ -59,7 +59,12 @@ const assembleProduct = (product) => {
 };
 
 module.exports = {
-  assemblePayload({ yourDetails, detailsOfIncident, products }) {
+  assemblePayload({
+    yourDetails,
+    detailsOfIncident,
+    products,
+    referenceNumber,
+  }) {
     const formattedProducts = [];
 
     for (const productId of Object.keys(products)) {
@@ -69,6 +74,7 @@ module.exports = {
     return {
       Addresses: assembleAddress(yourDetails),
       Incidents: {
+        IncidentTitle: referenceNumber,
         NotifierID: parseInt(yourDetails.notifierType.value, 10) || 0,
         NatureOfProblem: detailsOfIncident.natureOfProblem.value,
         ActionTaken: detailsOfIncident.actionTaken.value,
