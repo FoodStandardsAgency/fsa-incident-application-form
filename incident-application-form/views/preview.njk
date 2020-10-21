@@ -2,16 +2,20 @@
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "macros/getHumanReadableValueFromItems.njk" import getHumanReadableValueFromItems %}
+{% from "macros/batchCodesSeparatedByLineBreaks.njk" import batchCodesSeparatedByLineBreaks %}
 
 {% block pageTitle %}
 {{ i18n.pageTitle[i18n.languageCode] }}
 {% endblock %}
 
+{% set not_provided = i18n.text.notProvided[i18n.languageCode] %}
+
 {% block content %}
 
 <form method="POST" action="" novalidate>
 
-    <h2>{{ i18n.sections.yourDetails[i18n.languageCode] }}</h2>
+    <h2 class="govuk-heading-xl">{{ i18n.sections.yourDetails[i18n.languageCode] }}</h2>
     <dl class="govuk-summary-list govuk-summary-list--no-border">
 
       <div class="govuk-summary-list__row">
@@ -19,7 +23,11 @@
           {{ i18n.notifierType.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="notifier-type" class="govuk-summary-list__value govuk-body-s">
-          {{ yourDetails.notifierType.value }}
+          {% if yourDetails.notifierType.value == "0" %}
+            {{ not_provided }}
+          {% else %}
+            {{ getHumanReadableValueFromItems(notifierTypes, yourDetails.notifierType.value) }}
+          {% endif %}
         </dd>
       </div>
 
@@ -28,7 +36,7 @@
           {{ i18n.contactName.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="contact-name" class="govuk-summary-list__value govuk-body-s">
-          {{ yourDetails.contactName.value }}
+          {{ yourDetails.contactName.value or not_provided }}
         </dd>
       </div>
 
@@ -37,7 +45,7 @@
           {{ i18n.position.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="position" class="govuk-summary-list__value govuk-body-s">
-          {{ yourDetails.position.value }}
+          {{ yourDetails.position.value or not_provided }}
         </dd>
       </div>
 
@@ -46,7 +54,7 @@
           {{ i18n.organisation.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="organisation" class="govuk-summary-list__value govuk-body-s">
-          {{ yourDetails.organisation.value }}
+          {{ yourDetails.organisation.value or not_provided }}
         </dd>
       </div>
 
@@ -55,7 +63,7 @@
           {{ i18n.email.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="email" class="govuk-summary-list__value govuk-body-s">
-          {{ yourDetails.email.value }}
+          {{ yourDetails.email.value or not_provided }}
         </dd>
       </div>
 
@@ -64,7 +72,7 @@
           {{ i18n.telephone1.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="telephone1" class="govuk-summary-list__value govuk-body-s">
-          {{ yourDetails.telephone1.value }}
+          {{ yourDetails.telephone1.value or not_provided }}
         </dd>
       </div>
 
@@ -73,7 +81,7 @@
           {{ i18n.address.line1.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="address.line1" class="govuk-summary-list__value govuk-body-s">
-          {{ yourDetails.address.line1.value }}
+          {{ yourDetails.address.line1.value or not_provided }}
         </dd>
       </div>
 
@@ -82,7 +90,7 @@
           {{ i18n.address.line2.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="address.line2" class="govuk-summary-list__value govuk-body-s">
-          {{ yourDetails.address.line2.value }}
+          {{ yourDetails.address.line2.value or not_provided }}
         </dd>
       </div>
 
@@ -91,7 +99,7 @@
           {{ i18n.address.town.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="address.town" class="govuk-summary-list__value govuk-body-s">
-          {{ yourDetails.address.town.value }}
+          {{ yourDetails.address.town.value or not_provided }}
         </dd>
       </div>
 
@@ -100,7 +108,7 @@
           {{ i18n.address.county.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="address.county" class="govuk-summary-list__value govuk-body-s">
-          {{ yourDetails.address.county.value }}
+          {{ yourDetails.address.county.value or not_provided }}
         </dd>
       </div>
 
@@ -109,7 +117,7 @@
           {{ i18n.address.postcode.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="address.postcode" class="govuk-summary-list__value govuk-body-s">
-          {{ yourDetails.address.postcode.value }}
+          {{ yourDetails.address.postcode.value or not_provided }}
         </dd>
       </div>
 
@@ -118,15 +126,23 @@
           {{ i18n.address.country.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="address.country" class="govuk-summary-list__value govuk-body-s">
-          {{ yourDetails.address.country.value }}
+          {% if yourDetails.address.country.value == "0" %}
+            {{ not_provided }}
+          {% else %}
+            {{ getHumanReadableValueFromItems(countries, yourDetails.address.country.value) }}
+          {% endif %}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="{{ routes.YOUR_DETAILS }}">
+            {{ i18n.text.change[i18n.languageCode] }}<span class="govuk-visually-hidden"> {{ i18n.sections.yourDetails[i18n.languageCode] }}</span>
+          </a>
         </dd>
       </div>
 
     </dl>
 
-<hr/>
 
-    <h2>{{ i18n.sections.detailsOfIncident[i18n.languageCode] }}</h2>
+    <h2 class="govuk-heading-xl">{{ i18n.sections.detailsOfIncident[i18n.languageCode] }}</h2>
     <dl class="govuk-summary-list govuk-summary-list--no-border">
 
       <div class="govuk-summary-list__row">
@@ -134,7 +150,7 @@
           {{ i18n.natureOfProblem.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="nature-of-problem" class="govuk-summary-list__value govuk-body-s">
-          {{ detailsOfIncident.natureOfProblem.value }}
+          {{ detailsOfIncident.natureOfProblem.value or not_provided }}
         </dd>
       </div>
 
@@ -143,7 +159,7 @@
           {{ i18n.actionTaken.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="action-taken" class="govuk-summary-list__value govuk-body-s">
-          {{ detailsOfIncident.actionTaken.value }}
+          {{ detailsOfIncident.actionTaken.value or not_provided }}
         </dd>
       </div>
 
@@ -152,7 +168,7 @@
           {{ i18n.distributionDetails.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="distribution-details" class="govuk-summary-list__value govuk-body-s">
-          {{ detailsOfIncident.distributionDetails.value }}
+          {{ detailsOfIncident.distributionDetails.value or not_provided }}
         </dd>
       </div>
 
@@ -161,7 +177,7 @@
           {{ i18n.illnessDetails.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="illness-details" class="govuk-summary-list__value govuk-body-s">
-          {{ detailsOfIncident.illnessDetails.value }}
+          {{ detailsOfIncident.illnessDetails.value or not_provided }}
         </dd>
       </div>
 
@@ -170,7 +186,7 @@
           {{ i18n.localAuthorityNotified.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="local-authority-notified" class="govuk-summary-list__value govuk-body-s">
-          {{ detailsOfIncident.localAuthorityNotified.value }}
+          {{ detailsOfIncident.localAuthorityNotified.value or not_provided }}
         </dd>
       </div>
 
@@ -179,27 +195,274 @@
           {{ i18n.additionalInformation.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="additional-information" class="govuk-summary-list__value govuk-body-s">
-          {{ detailsOfIncident.additionalInformation.value }}
+          {{ detailsOfIncident.additionalInformation.value or not_provided }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="{{ routes.DETAILS_OF_INCIDENT }}">
+            {{ i18n.text.change[i18n.languageCode] }}<span class="govuk-visually-hidden"> {{ i18n.sections.detailsOfIncident[i18n.languageCode] }}</span>
+          </a>
         </dd>
       </div>
 
     </dl>
 
-    <hr/>
+    <h2 class="govuk-heading-xl">{{ i18n.sections.detailsOfProducts[i18n.languageCode] }}</h2>
 
-    <h2>{{ i18n.sections.detailsOfProducts[i18n.languageCode] }}</h2>
-    <dl class="govuk-summary-list govuk-summary-list--no-border">
+    {% for productId, product in products %}
+      <h3 class="govuk-heading-l">Product #{{ loop.index }}</h3>
+      <dl class="govuk-summary-list govuk-summary-list--no-border">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.productName.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-name-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {{ product.productName.value or not_provided }}
+          </dd>
+        </div>
 
-      {# <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key govuk-body-s">
-          {{ i18n.natureOfProblem.label[i18n.languageCode] }}
-        </dt>
-        <dd data-cy="natureOfProblem" class="govuk-summary-list__value govuk-body-s">
-          {{ detailsOfIncident.natureOfProblem.value }}
-        </dd>
-      </div> #}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.brand.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-brand-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {{ product.brand.value or not_provided }}
+          </dd>
+        </div>
 
-    </dl>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.productType.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-type-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {% if product.productType.value == "0" %}
+              {{ not_provided }}
+            {% else %}
+              {{ getHumanReadableValueFromItems(productTypes, product.productType.value) }}
+            {% endif %}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.batchCodes.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-language-code-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {{ batchCodesSeparatedByLineBreaks(product.batchCodes.value) }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.originCountry.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-origin-country-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {% if product.originCountry.value == "0" %}
+              {{ not_provided }}
+            {% else %}
+              {{ getHumanReadableValueFromItems(countries, product.originCountry.value) }}
+            {% endif %}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.amountImportedDistributed.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-amount-imported-distributed-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {{ product.amountImportedDistributed.value or not_provided }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.unitType.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-units-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {% if product.unitType.value == "0" %}
+              {{ not_provided }}
+            {% else %}
+              {{ getHumanReadableValueFromItems(units, product.unitType.value) }}
+            {% endif %}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.bestBefore.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-best-before-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {{ product.bestBefore.human or not_provided }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.useBy.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-use-by-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {{ product.useBy.human or not_provided }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.displayUntil.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-display-until-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {{ product.displayUntil.human or not_provided }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.packSize.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-pack-size-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {{ product.packSize.value or not_provided }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.packageDescription.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-package-description-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {{ product.packageDescription.value or not_provided }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.additionalInformation.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-additional-information-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {{ product.additionalInformation.value or not_provided }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="{{ "%1/edit/%2" | replace("%1", routes.PRODUCT) | replace("%2", productId) }}">
+              {{ i18n.text.change[i18n.languageCode] }}<span class="govuk-visually-hidden"> {{ i18n.sections.detailsOfProducts[i18n.languageCode] }}</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      {% for companyId, company in product.companies %}
+        <h3 class="govuk-heading-m">Company #{{ loop.index }}</h3>
+        <dl class="govuk-summary-list govuk-summary-list--no-border">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-body-s">
+              {{ i18n.companyType.label[i18n.languageCode] }}
+            </dt>
+            <dd data-cy="product-company-{{ loop.index }}-company-type" class="govuk-summary-list__value govuk-body-s">
+              {% if company.companyType.value == "0" %}
+                {{ not_provided }}
+              {% else %}
+                {{ getHumanReadableValueFromItems(companyTypes, company.companyType.value) }}
+              {% endif %}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-body-s">
+              {{ i18n.companyName.label[i18n.languageCode] }}
+            </dt>
+            <dd data-cy="product-company-{{ loop.index }}-company-name" class="govuk-summary-list__value govuk-body-s">
+              {{ company.companyName.value or not_provided }}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-body-s">
+              {{ i18n.contactName.label[i18n.languageCode] }}
+            </dt>
+            <dd data-cy="product-company-{{ loop.index }}-contact-name" class="govuk-summary-list__value govuk-body-s">
+              {{ company.contactName.value or not_provided }}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-body-s">
+              {{ i18n.email.label[i18n.languageCode] }}
+            </dt>
+            <dd data-cy="product-company-{{ loop.index }}-email" class="govuk-summary-list__value govuk-body-s">
+              {{ company.email.value or not_provided }}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-body-s">
+              {{ i18n.telephone1.label[i18n.languageCode] }}
+            </dt>
+            <dd data-cy="product-company-{{ loop.index }}-telephone1" class="govuk-summary-list__value govuk-body-s">
+              {{ company.telephone1.value or not_provided }}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-body-s">
+              {{ i18n.address.line1.label[i18n.languageCode] }}
+            </dt>
+            <dd data-cy="product-company-{{ loop.index }}-address-line1" class="govuk-summary-list__value govuk-body-s">
+              {{ company.address.line1.value or not_provided }}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-body-s">
+              {{ i18n.address.line2.label[i18n.languageCode] }}
+            </dt>
+            <dd data-cy="product-company-{{ loop.index }}-address-line2" class="govuk-summary-list__value govuk-body-s">
+              {{ company.address.line2.value or not_provided }}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-body-s">
+              {{ i18n.address.town.label[i18n.languageCode] }}
+            </dt>
+            <dd data-cy="product-company-{{ loop.index }}-address-town" class="govuk-summary-list__value govuk-body-s">
+              {{ company.address.town.value or not_provided }}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-body-s">
+              {{ i18n.address.county.label[i18n.languageCode] }}
+            </dt>
+            <dd data-cy="product-company-{{ loop.index }}-address-county" class="govuk-summary-list__value govuk-body-s">
+              {{ company.address.county.value or not_provided }}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-body-s">
+              {{ i18n.address.postcode.label[i18n.languageCode] }}
+            </dt>
+            <dd data-cy="product-company-{{ loop.index }}-address-postcode" class="govuk-summary-list__value govuk-body-s">
+              {{ company.address.postcode.value or not_provided }}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-body-s">
+              {{ i18n.address.country.label[i18n.languageCode] }}
+            </dt>
+            <dd data-cy="product-company-{{ loop.index }}-address-country" class="govuk-summary-list__value govuk-body-s">
+              {% if company.address.country.value == "0" %}
+                {{ not_provided }}
+              {% else %}
+                {{ getHumanReadableValueFromItems(countries, company.address.country.value) }}
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="{{ "%1/%2/company/edit/%3" | replace("%1", routes.PRODUCT) | replace("%2",  productId) | replace("%3",  companyId) }}">
+              {{ i18n.text.change[i18n.languageCode] }}<span class="govuk-visually-hidden"> {{ i18n.sections.company[i18n.languageCode] }}</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+      {% endfor %}
+    {% endfor %}
 
 
     {{ govukButton({

@@ -10,6 +10,7 @@ module.exports = {
 
     const requiredMessage =
       i18n.notifierType.validation.required[i18n.languageCode];
+
     if (!notifierType || validator.isEmpty(notifierType)) {
       validated.messages.push(requiredMessage);
     }

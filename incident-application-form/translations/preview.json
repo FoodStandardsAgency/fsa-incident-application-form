@@ -16,7 +16,11 @@
     },
     "detailsOfProducts": {
       "cy": "Manylion y Cynnyrch / Cynnyrch yr effeithir arnynt",
-      "en": "Details of affected Product(s)"
+      "en": "Details of Affected Product(s)"
+    },
+    "company": {
+      "cy": "Cwmni",
+      "en": "Company"
     }
   },
   "buttons": {
@@ -27,6 +31,16 @@
     "back": {
       "cy": "yn ôl",
       "en": "Back"
+    }
+  },
+  "text": {
+    "change": {
+      "cy": "Newid",
+      "en": "Change"
+    },
+    "notProvided": {
+      "cy": "Heb ei ddarparu",
+      "en": "Not provided"
     }
   }
 }

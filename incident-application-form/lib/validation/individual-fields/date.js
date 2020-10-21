@@ -13,6 +13,7 @@ module.exports = {
       day: "",
       month: "",
       year: "",
+      human: "",
     };
 
     if (!date) {
@@ -50,7 +51,6 @@ module.exports = {
         date: {
           ...validated,
           isValid: false,
-          value: "",
           day: day.toString(),
           month: month.toString(),
           year: year.toString(),
@@ -67,6 +67,7 @@ module.exports = {
         day: format(dateObject, "d"),
         month: format(dateObject, "M"),
         year: format(dateObject, "yyyy"),
+        human: format(dateObject, "PPPP"),
       },
     };
   },
