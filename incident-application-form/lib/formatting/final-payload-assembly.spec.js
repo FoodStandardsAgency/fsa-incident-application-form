@@ -366,9 +366,9 @@ describe(`lib/formatting/final-payload-assembly`, () => {
             ],
             CountryOfOriginId: 15,
             IncidentProductDates: {
-              BestBeforeDate: "2015-12-31T00:00:00Z",
-              UseByDate: "2021-11-19T00:00:00Z",
-              DisplayUntil: "2023-02-01T00:00:00Z",
+              BestBeforeDate: "2015-12-31T00:00:00.000Z",
+              UseByDate: "2021-11-19T00:00:00.000Z",
+              DisplayUntil: "2023-02-01T00:00:00.000Z",
             },
             IncidentProductPackSizes: {
               Size: "44 units",
@@ -405,7 +405,7 @@ describe(`lib/formatting/final-payload-assembly`, () => {
             CountryOfOriginId: 6,
             IncidentProductDates: {
               BestBeforeDate: "",
-              UseByDate: "2020-06-07T00:00:00+01:00",
+              UseByDate: "2020-06-06T23:00:00.000Z",
               DisplayUntil: "",
             },
             IncidentProductPackSizes: {

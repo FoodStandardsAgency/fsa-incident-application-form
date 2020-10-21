@@ -71,7 +71,7 @@ module.exports = {
         month: format(dateObject, "M"),
         year: format(dateObject, "yyyy"),
         human: format(dateObject, "PPPP"),
-        iso: formatISO(startOfDay(dateObject)),
+        iso: startOfDay(dateObject).toISOString(),
       },
     };
   },
