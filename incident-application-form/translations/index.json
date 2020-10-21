@@ -1,0 +1,48 @@
+{
+  "pageTitle": {
+    "cy": "Rhoi gwybod am ddigwyddiad diogelwch bwyd",
+    "en": "Report a food safety incident"
+  },
+  "sections": {
+    "whatHappensNext": {
+      "cy": "Beth sy'n digwydd nesaf",
+      "en": "What happens next"
+    }
+  },
+  "text": {
+    "intro1": {
+      "cy": "Defnyddiwch y gwasanaeth hwn i roi gwybod am ddigwyddiad diogelwch bwyd i Gangen Digwyddiadau'r Asiantaeth Safonau Bwyd. Mae'r ffurflen hon ar gyfer cynrychiolwyr awdurdodau lleol a gweithredwyr busnesau bwyd.",
+      "en": "Use this service to report a food safety incident to the Incidents Branch of the Food Standards Agency. This form is for local authority representatives and food business operators."
+    },
+    "intro2": {
+      "cy": "Gofynnir i chi ddarparu eich manylion cyswllt a gwybodaeth am y digwyddiad. Bydd hyn yn cynnwys:",
+      "en": "You will be asked to provide your contact details and information about the incident. This will include:"
+    },
+    "bullet1": {
+      "cy": "Natur y digwyddiad a'i effaith",
+      "en": "The nature of the incident and its impact"
+    },
+    "bullet2": {
+      "cy": "Y camau sydd wedi'u cymryd a’r rhai sydd ar y gweill mewn ymateb i'r digwyddiad",
+      "en": "Completed and planned actions in response to the incident"
+    },
+    "bullet3": {
+      "cy": "Manylion y cynnyrch neu gynhyrchion mae’r digwyddiad hwn wedi effeithio arnynt",
+      "en": "Details of the product(s) affected"
+    },
+    "bullet4": {
+      "cy": "Y busnesau sy'n ymwneud â chyflenwi a dosbarthu'r cynnyrch neu gynhyrchion",
+      "en": "The businesses involved with the supply and distribution of the product(s)"
+    },
+    "intro3": {
+      "cy": "Os ydych chi'n ddefnyddiwr ac yn rhoi gwybod am broblem gyda bwyd, defnyddiwch y",
+      "en": "If you are a consumer with a food problem to report, please use the"
+    }
+  },
+  "links": {
+    "reportAFoodProblemService": {
+      "cy": "Gwasanaeth rhoi gwybod am broblem bwyd",
+      "en": "Report a food problem service"
+    }
+  }
+}
