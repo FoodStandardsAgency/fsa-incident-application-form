@@ -168,7 +168,7 @@ describe(`lib/validation/individual-fields/date`, () => {
           month: "11",
           year: "1111",
           human: "Saturday, November 11th, 1111",
-          iso: "1111-11-11T00:01:15.000Z",
+          iso: "1111-11-11T00:00:00.000Z",
         },
       },
     ],

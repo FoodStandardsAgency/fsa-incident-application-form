@@ -405,7 +405,7 @@ describe(`lib/formatting/final-payload-assembly`, () => {
             CountryOfOriginId: 6,
             IncidentProductDates: {
               BestBeforeDate: "",
-              UseByDate: "2020-06-06T23:00:00.000Z",
+              UseByDate: "2020-06-07T00:00:00.000Z",
               DisplayUntil: "",
             },
             IncidentProductPackSizes: {
