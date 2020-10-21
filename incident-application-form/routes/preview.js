@@ -25,20 +25,20 @@ const i18n = {
   ...formFieldTranslations,
 };
 
-const sendConfirmationEmail = async (data, referenceNumber) => {
+const sendConfirmationEmail = async (data) => {
   const email = data.yourDetails.email.value;
   const personalisation = {
     contactName: data.yourDetails.contactName.value,
-    referenceNumber,
+    referenceNumber: data.referenceNumber,
   };
   await send("en-confirmation-email", email, personalisation);
 };
 
-const sendNotificationEmail = async (data, referenceNumber) => {
+const sendNotificationEmail = async (data) => {
   const email = process.env.NOTIFICATION_EMAIL;
   const personalisation = {
     contactName: data.yourDetails.contactName.value,
-    referenceNumber,
+    referenceNumber: data.referenceNumber,
   };
   await send("en-notification-of-incident-email", email, personalisation);
 };
