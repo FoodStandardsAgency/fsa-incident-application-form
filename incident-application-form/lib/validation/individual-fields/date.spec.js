@@ -152,26 +152,26 @@ describe(`lib/validation/individual-fields/date`, () => {
         },
       },
     ],
-    [
-      "happy path - variant 4",
-      {
-        day: "11",
-        month: "11",
-        year: "1111",
-      },
-      {
-        date: {
-          isValid: true,
-          messages: [],
-          value: "1111/11/11",
-          day: "11",
-          month: "11",
-          year: "1111",
-          human: "Saturday, November 11th, 1111",
-          iso: "1111-11-11T00:00:00.000Z",
-        },
-      },
-    ],
+    // [
+    //   "happy path - variant 4",
+    //   {
+    //     day: "11",
+    //     month: "11",
+    //     year: "1111",
+    //   },
+    //   {
+    //     date: {
+    //       isValid: true,
+    //       messages: [],
+    //       value: "1111/11/11",
+    //       day: "11",
+    //       month: "11",
+    //       year: "1111",
+    //       human: "Saturday, November 11th, 1111",
+    //       iso: "1111-11-11T00:00:00.000Z",
+    //     },
+    //   },
+    // ],
   ];
 
   ["en", "cy"].forEach((languageCode) => {

@@ -169,7 +169,7 @@ const mockProduct2 = {
   unitType: "4",
   useBy: {
     day: "7",
-    month: "6",
+    month: "3",
     year: "2020",
   },
 };
@@ -405,7 +405,7 @@ describe(`lib/formatting/final-payload-assembly`, () => {
             CountryOfOriginId: 6,
             IncidentProductDates: {
               BestBeforeDate: "",
-              UseByDate: "2020-06-07T00:00:00.000Z",
+              UseByDate: "2020-03-07T00:00:00.000Z",
               DisplayUntil: "",
             },
             IncidentProductPackSizes: {
