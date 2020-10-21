@@ -165,6 +165,18 @@
       }
     }
   },
+  "companies": {
+    "label": {
+      "cy": "Cwmnïau",
+      "en": "Companies"
+    },
+    "validation": {
+      "invalidLength": {
+        "cy": "Mae angen o leiaf un cwmni",
+        "en": "At least one company is required"
+      }
+    }
+  },
   "companyName": {
     "label": {
       "cy": "Enw'r sefydliad",
@@ -250,6 +262,10 @@
         "en": "This is not a valid email address"
       }
     }
+  },
+  "error": {
+    "cy": "Gwall",
+    "en": "Error"
   },
   "illnessDetails": {
     "label": {
@@ -382,6 +398,10 @@
         "en": "Position must be between 1 and 255 characters"
       }
     }
+  },
+  "problem": {
+    "cy": "Mae yna broblem",
+    "en": "There is a problem"
   },
   "productName": {
     "label": {

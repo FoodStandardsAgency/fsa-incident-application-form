@@ -44,6 +44,8 @@ const sendNotificationEmail = async (data) => {
 };
 
 router.get("/", async function (req, res, next) {
+  console.log(`sess`, JSON.stringify(req.session, null, 2));
+
   const [
     companyTypes,
     countries,

@@ -9,6 +9,11 @@ describe(`lib/validation/product`, () => {
       {
         companyName: "",
         brand: "",
+        companies: {
+          "123-abc": {
+            name: "valid",
+          },
+        },
       },
       false,
     ],
@@ -18,6 +23,11 @@ describe(`lib/validation/product`, () => {
         productName: "valid",
         // brand: "valid",
         originCountry: "17",
+        companies: {
+          "123-abc": {
+            name: "valid",
+          },
+        },
       },
       true,
     ],

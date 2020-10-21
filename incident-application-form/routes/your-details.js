@@ -8,6 +8,9 @@ const {
 const {
   getSelectedAddressCountryFromSession,
 } = require("../lib/session/address.country");
+const {
+  getErrorSummaryFromValidation,
+} = require("../lib/validation/error-summary");
 
 const router = express.Router();
 
@@ -87,6 +90,7 @@ router.post("/", async function (req, res, next) {
     res.render(template, {
       countries,
       i18n,
+      errorSummary: getErrorSummaryFromValidation(validation),
       notifierTypes,
       validation,
       yourDetails: req.session.yourDetails || {},

@@ -3,6 +3,9 @@ const { v4: uuidv4 } = require("uuid");
 const { validate } = require("../lib/validation/company");
 const { getCompanyTypes } = require("../lib/lookups/company-types");
 const { getCountries } = require("../lib/lookups/countries");
+const {
+  getErrorSummaryFromValidation,
+} = require("../lib/validation/error-summary");
 
 const router = express.Router({ mergeParams: true });
 
@@ -90,6 +93,7 @@ router.post("/", async function (req, res, next) {
       companyId,
       companyTypes,
       countries,
+      errorSummary: getErrorSummaryFromValidation(validation),
       productId,
       routes,
       template,
@@ -108,9 +112,6 @@ router.post("/", async function (req, res, next) {
       companies: validatedCompanies,
     },
   };
-
-  // the valid form submission data
-  // console.log(`validation`, validation.validatedFields);
 
   res.redirect(`${routes.PRODUCT}/edit/${productId}`);
 });
