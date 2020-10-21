@@ -74,7 +74,7 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment container config --name fsa-incident-report-form-prd \
+          az webapp deployment container config --name ${{ secrets.PROD_CONTAINER_REGISTRY_NAME }} \
             --enable-cd true
 
     - name: Enable container logging
