@@ -14,11 +14,9 @@ jobs:
       NOTIFICATION_EMAIL: ${{ secrets.DEV_NOTIFICATION_EMAIL }}
     steps:
     - uses: actions/checkout@v2
-
     - name: Start Docker Compose
       run: |
         docker-compose up -d
-
     - name: Run e2e tests
       env:
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -27,7 +25,6 @@ jobs:
         cd $GITHUB_WORKSPACE/test
         npm install
         npx cypress run
-
     - name: Save Cypress screenshots
       if: ${{ failure() }}
       uses: actions/upload-artifact@main
