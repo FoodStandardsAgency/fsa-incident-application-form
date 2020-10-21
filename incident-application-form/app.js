@@ -76,13 +76,6 @@ app.use("/lookup/units", unitsRouter);
 app.use(
   "/assets",
   express.static(
-    path.join(__dirname, "/node_modules/fsastyles/dist")
-  )
-);
-
-app.use(
-  "/assets",
-  express.static(
     path.join(__dirname, "/node_modules/govuk-frontend/govuk/assets")
   )
 );

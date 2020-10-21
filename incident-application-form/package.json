@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "cd ./node_modules/fsastyles && npm install && npm run build",
+    "updateFSAStyles": "cd ./node_modules/fsastyles && npm install && npm run build && cp -R ./dist/* ../../public",
     "build": "webpack",
     "start": "node ./bin/www",
     "test": "jest",
