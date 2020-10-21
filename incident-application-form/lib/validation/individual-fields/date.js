@@ -1,6 +1,8 @@
 const format = require("date-fns/format");
+const formatISO = require("date-fns/formatISO");
 const isValid = require("date-fns/isValid");
 const parse = require("date-fns/parse");
+const startOfDay = require("date-fns/startOfDay");
 
 const DATE_FORMAT = "yyyy/M/d";
 
@@ -14,6 +16,7 @@ module.exports = {
       month: "",
       year: "",
       human: "",
+      iso: "",
     };
 
     if (!date) {
@@ -68,6 +71,7 @@ module.exports = {
         month: format(dateObject, "M"),
         year: format(dateObject, "yyyy"),
         human: format(dateObject, "PPPP"),
+        iso: dateObject.toISOString(),
       },
     };
   },
