@@ -14,6 +14,11 @@ jobs:
       NOTIFICATION_EMAIL: ${{ secrets.DEV_NOTIFICATION_EMAIL }}
     steps:
     - uses: actions/checkout@v2
+    - name: npm install on incident-report-form
+      run: |
+        pwd
+        cd $GITHIB_WORKSPACE/incident-report-form
+        npm install
     - name: Start Docker Compose
       run: |
         docker-compose up -d
