@@ -74,7 +74,7 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment container config --name fsa-incident-report-form-prod \
+          az webapp deployment container config --name fsa-incident-report-form-prd \
             --enable-cd true
 
     - name: Enable container logging
@@ -110,6 +110,7 @@ jobs:
     needs: [form-ui-appservice]
     runs-on: ubuntu-latest
     steps:
+
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
@@ -145,13 +146,13 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot create --name fsa-incident-report-form-prd --slot ${{ github.sha }} --configuration-source fsa-incident-report-form-prod
+          az webapp deployment slot create --name fsa-incident-report-form-prd --slot ${{ github.sha }} --configuration-source fsa-incident-report-form-prd
 
     - name: Swap slot ${{ github.sha }} into production
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot swap --name fsa-incident-report-form-prod --slot ${{ github.sha }} --action swap
+          az webapp deployment slot swap --name fsa-incident-report-form-prd --slot ${{ github.sha }} --action swap
 
     - name: Delete slot ${{ github.sha }}
       # Clean up the slot regardless of errors
@@ -159,4 +160,4 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot delete --name fsa-incident-report-form-prod --slot ${{ github.sha }}
+          az webapp deployment slot delete --name fsa-incident-report-form-prd --slot ${{ github.sha }}
