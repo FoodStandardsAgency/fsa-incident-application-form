@@ -15,10 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: npm install on incident-report-form
+    - name: npm install on incident-application-form
       run: |
         pwd
-        cd $GITHUB_WORKSPACE/incident-report-form
+        cd $GITHUB_WORKSPACE/incident-application-form
         npm install
 
     - name: Start Docker Compose
