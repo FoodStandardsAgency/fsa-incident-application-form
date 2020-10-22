@@ -1,12 +1,12 @@
 {
   "pageTitle": {
-    "cy": "Adroddiad wedi'i gwblhau",
+    "cy": "Adroddiad wedi’i gwblhau",
     "en": "Report complete"
   },
   "sections": {
     "whatHappensNext": {
-      "cy": "Beth sy'n digwydd nesaf",
-      "en": "What happens next"
+      "cy": "Beth sy’n digwydd nesaf?",
+      "en": "What happens next?"
     }
   },
   "text": {
@@ -15,7 +15,7 @@
       "en": "Report complete"
     },
     "whatHappensNext": {
-      "cy": "Anfonwyd eich adroddiad at Gangen Digwyddiadau'r Asiantaeth Safonau Bwyd. Byddant yn cysylltu â chi os oes angen mwy o wybodaeth.",
+      "cy": "Mae eich adroddiad wedi’i anfon at Gangen Digwyddiadau’r Asiantaeth Safonau Bwyd. Byddant yn cysylltu â chi os oes angen rhagor o wybodaeth.",
       "en": "Your report has been sent to the Incidents Branch of the Food Standards Agency. They will contact you if more information is required."
     },
     "yourReferenceNumber": {

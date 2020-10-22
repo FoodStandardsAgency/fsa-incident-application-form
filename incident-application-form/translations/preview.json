@@ -1,9 +1,7 @@
 {
-  "pageTitles": {
-    "preview": {
-      "cy": "Rhagolwg",
-      "en": "Preview"
-    }
+  "pageTitle": {
+    "cy": "Crynodeb",
+    "en": "Summary"
   },
   "sections": {
     "yourDetails": {
@@ -27,6 +25,10 @@
     "change": {
       "cy": "Newid",
       "en": "Change"
+    },
+    "makeSureAccurateBeforeSubmit": {
+      "cy": "Cofiwch wneud yn siŵr bod yr wybodaeth rydych chi wedi'i darparu yn gywir cyn cyflwyno'r adroddiad.",
+      "en": "Please make sure that the information you have provided is accurate before submitting the report."
     },
     "notProvided": {
       "cy": "Heb ei ddarparu",

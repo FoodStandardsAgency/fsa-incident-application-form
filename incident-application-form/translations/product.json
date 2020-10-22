@@ -1,7 +1,7 @@
 {
   "pageTitles": {
     "addProduct": {
-      "cy": "Ychwanegu Cynnyrch",
+      "cy": "Ychwanegu cynnyrch",
       "en": "Add Product"
     },
     "editProduct": {
@@ -11,7 +11,7 @@
   },
   "sections": {
     "addProduct": {
-      "cy": "Ychwanegu Cynnyrch",
+      "cy": "Ychwanegu cynnyrch",
       "en": "Add Product"
     },
     "editProduct": {

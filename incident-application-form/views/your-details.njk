@@ -29,6 +29,8 @@
         }
     }) %}
 
+    <p class="govuk-body-l">{{ i18n.text.areYouLocal[i18n.languageCode] }}</p>
+
     {{ govukSelect({
         id: "notifier-type",
         name: "notifier-type",
@@ -96,6 +98,9 @@
         },
         label: {
             text: i18n.organisation.label[i18n.languageCode]
+        },
+        hint: {
+            text: i18n.organisation.hint[i18n.languageCode]
         },
         errorMessage: validation.validatedFields.organisation.isValid == false and {
             text: validation.validatedFields.organisation.messages | join(". "),
@@ -280,6 +285,9 @@
         },
         label: {
             text: i18n.address.country.label[i18n.languageCode]
+        },
+        hint: {
+            text: i18n.address.country.hint[i18n.languageCode]
         },
         items: countries,
         errorMessage: validation.validatedFields.address.country.isValid == false and {

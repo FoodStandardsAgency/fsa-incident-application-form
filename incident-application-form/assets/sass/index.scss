@@ -1,1 +1,21 @@
 @import "~govuk-frontend/govuk/all";
+
+.govuk-table__header, .govuk-table__cell {
+  padding: 10px;
+}
+
+.govuk-panel {
+  background: #2a0247;
+}
+
+.govuk-panel__title {
+  color: #fff;
+}
+
+#block-languageswitcher {
+  width: 100%;
+}
+
+.header__region ul.links {
+  justify-content: flex-end;
+}
