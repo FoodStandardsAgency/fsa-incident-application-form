@@ -1,6 +1,6 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
-{% set product_edit_path = "/"%1/edit/%2" | replace("%1", routes.PRODUCT) | replace("%2", id) %}
+{% set product_edit_path = "/%1/edit/%2" | replace("%1", routes.PRODUCT) | replace("%2", id) %}
 {% set product_remove_path = "%1/remove/%2" | replace("%1", routes.PRODUCT) | replace("%2", id) %}
 
 

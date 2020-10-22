@@ -178,6 +178,10 @@
       "cy": "Dechrau",
       "en": "Start"
     },
+    "submit": {
+      "cy": "Cyflwyno",
+      "en": "Submit"
+    },
 
     "addProduct": {
       "cy": "Ychwanegu cynnyrch",
