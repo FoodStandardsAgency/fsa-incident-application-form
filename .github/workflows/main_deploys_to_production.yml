@@ -1,4 +1,4 @@
-name: push to main triggers deploy to dev
+name: push to main triggers deploy to production
 
 on:
   push:
@@ -6,77 +6,77 @@ on:
 
 jobs:
 
-  dev-rg:
-    name: Creating Dev app-service plan and container registry
+  prd-rg:
+    name: Creating Prod app-service plan and container registry
     runs-on: ubuntu-latest
     steps:
     - uses: azure/login@v1
       with:
-        creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
+        creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
 
     - name: Default location + resource group
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
           az configure --defaults location=uksouth
-          az configure --defaults group=RG-APP-FSA-DEV-IncidentReportForm-1
+          az configure --defaults group=RG-APP-FSA-PRD-IncidentReportForm-1
 
     - name: Create App Service plan
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az appservice plan create --name dev --is-linux --sku p1v2
+          az appservice plan create --name prd --is-linux --sku p1v2
 
     - name: Create Container registry
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
           # Admin needs to be enabled for App Service continuous deployment
-          az acr create --name ${{ secrets.DEV_CONTAINER_REGISTRY_NAME }} --sku Standard --admin-enabled true
+          az acr create --name ${{ secrets.PROD_CONTAINER_REGISTRY_NAME }} --sku Standard --admin-enabled true
 
   form-ui-appservice:
     name: Creating and configuring Web Application
-    needs: [dev-rg]
+    needs: [prd-rg]
     runs-on: ubuntu-latest
     steps:
     - uses: azure/login@v1
       with:
-        creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
+        creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
 
     - name: Default location + resource group
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
           az configure --defaults location=uksouth
-          az configure --defaults group=RG-APP-FSA-DEV-IncidentReportForm-1
+          az configure --defaults group=RG-APP-FSA-PRD-IncidentReportForm-1
 
     - name: Create web application
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp create --name fsa-incident-report-form-dev \
-            --plan dev \
-            --deployment-container-image-name ${{ secrets.DEV_CONTAINER_REGISTRY_NAME }}.azurecr.io/form-ui
+          az webapp create --name fsa-incident-report-form-prd \
+            --plan prd \
+            --deployment-container-image-name ${{ secrets.PROD_CONTAINER_REGISTRY_NAME }}.azurecr.io/form-ui
 
     - name: Switch on Continuous deployment
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment container config --name fsa-incident-report-form-dev \
+          az webapp deployment container config --name fsa-incident-report-form-prd \
             --enable-cd true
 
     - name: Enable container logging
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp log config --name fsa-incident-report-form-dev \
+          az webapp log config --name fsa-incident-report-form-prd \
             --docker-container-logging filesystem
 
     - name: Always-on
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp config set --name fsa-incident-report-form-dev \
+          az webapp config set --name fsa-incident-report-form-prd \
             --always-on true
 
     - name: Applying Environment variables
@@ -84,14 +84,14 @@ jobs:
       with:
         # NB we're setting PORT for the container and WEBSITES_PORT for Azure.
         inlineScript: |
-          az webapp config appsettings set --name fsa-incident-report-form-dev \
+          az webapp config appsettings set --name fsa-incident-report-form-prd \
             --settings \
               PORT=3000 \
               WEBSITES_PORT=3000 \
               LOOKUP_API_BASE_URL=http://localhost:3000 \
-              SESSION_KEY=${{ secrets.DEV_SESSION_KEY }} \
-              GOV_NOTIFY_API_KEY=${{ secrets.DEV_GOV_NOTIFY_API_KEY }} \
-              NOTIFICATION_EMAIL=${{ secrets.DEV_NOTIFICATION_EMAIL }}
+              SESSION_KEY=${{ secrets.PROD_SESSION_KEY }} \
+              GOV_NOTIFY_API_KEY=${{ secrets.PROD_GOV_NOTIFY_API_KEY }} \
+              NOTIFICATION_EMAIL=${{ secrets.PROD_NOTIFICATION_EMAIL }}
 
   build:
     name: Build application and push into Container registry
@@ -102,9 +102,9 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v1
       with:
-        registry: ${{ secrets.DEV_CONTAINER_REGISTRY_NAME }}.azurecr.io
-        username: ${{ secrets.DEV_CONTAINER_REGISTRY_USERNAME }}
-        password: ${{ secrets.DEV_CONTAINER_REGISTRY_PASSWORD }}
+        registry: ${{ secrets.PROD_CONTAINER_REGISTRY_NAME }}.azurecr.io
+        username: ${{ secrets.PROD_CONTAINER_REGISTRY_USERNAME }}
+        password: ${{ secrets.PROD_CONTAINER_REGISTRY_PASSWORD }}
         repository: form-ui
         path: incident-application-form
         tags: latest
@@ -112,32 +112,32 @@ jobs:
         add_git_labels: true
 
   deploy:
-    name: Deploy container images to Dev
+    name: Deploy container images to Production
     needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: azure/login@v1
       with:
-        creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
+        creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
 
     - name: Default location + resource group
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
           az configure --defaults location=uksouth
-          az configure --defaults group=RG-APP-FSA-DEV-IncidentReportForm-1
+          az configure --defaults group=RG-APP-FSA-PRD-IncidentReportForm-1
 
     - name: Create slot ${{ github.sha }}
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot create --name fsa-incident-report-form-dev --slot ${{ github.sha }} --configuration-source fsa-incident-report-form-dev
+          az webapp deployment slot create --name fsa-incident-report-form-prd --slot ${{ github.sha }} --configuration-source fsa-incident-report-form-prd
 
     - name: Swap slot ${{ github.sha }} into production
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot swap   --name fsa-incident-report-form-dev --slot ${{ github.sha }} --action swap
+          az webapp deployment slot swap   --name fsa-incident-report-form-prd --slot ${{ github.sha }} --action swap
 
     - name: Delete slot ${{ github.sha }}
       # Clean up the slot regardless of errors
@@ -145,4 +145,4 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot delete --name fsa-incident-report-form-dev --slot ${{ github.sha }}
+          az webapp deployment slot delete --name fsa-incident-report-form-prd --slot ${{ github.sha }}
