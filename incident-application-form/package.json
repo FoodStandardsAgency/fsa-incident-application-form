@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "updateFSAStyles": "npm install fsastyles && cd ./node_modules/fsastyles && npm install && npm run build && cp -R ./dist/* ../../public",
+    "updateFSAStyles": "mkdir -p ./public/fsastyles && npm install fsastyles && cd ./node_modules/fsastyles && npm install && npm run build && cp -R ./dist/* ../../public/fsastyles",
     "build": "webpack",
     "start": "node ./bin/www",
     "test": "jest",
@@ -16,6 +16,7 @@
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "express-session": "^1.17.1",
+    "fsastyles": "0.0.4",
     "govuk-frontend": "^3.9.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
