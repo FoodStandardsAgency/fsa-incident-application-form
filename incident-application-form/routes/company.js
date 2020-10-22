@@ -102,14 +102,17 @@ router.post("/", async function (req, res, next) {
     return;
   }
 
-  const validatedCompanies = products[productId].companies || {};
+  const validatedCompanies = products[productId].companies.value || {};
   validatedCompanies[companyId] = validation.validatedFields;
 
   req.session.products = {
     ...req.session.products,
     [productId]: {
       ...req.session.products[productId],
-      companies: validatedCompanies,
+      companies: {
+        ...req.session.products[productId].companies,
+        value: validatedCompanies,
+      },
     },
   };
 
@@ -120,13 +123,27 @@ router.get("/edit/:companyId", async function (req, res, next) {
   const template = "edit-company";
 
   const { productId, companyId } = req.params;
+  console.log(`edit validation`, req.session.products[productId].companies);
 
   const validation = {
-    validatedFields: req.session.products[productId].companies[companyId],
+    validatedFields: req.session.products[productId].companies.value,
   };
+  console.log(`companyId`, companyId);
+  console.log(`validation`, validation);
+  console.log(`validation.validatedFields`, validation.validatedFields);
+  console.log(
+    `validation.validatedFields[companyId]`,
+    validation.validatedFields[companyId]
+  );
+  console.log(
+    `validation.validatedFields[companyId].companyType`,
+    validation.validatedFields[companyId].companyType
+  );
 
-  const selectedCompanyType = validation.validatedFields.companyType.value;
-  const selectedCountry = validation.validatedFields.address.country.value;
+  const selectedCompanyType =
+    validation.validatedFields[companyId].companyType.value;
+  const selectedCountry =
+    validation.validatedFields[companyId].address.country.value;
 
   const [companyTypes, countries] = await Promise.all([
     await getCompanyTypes(languageCode, selectedCompanyType),
@@ -152,9 +169,10 @@ router.get("/remove/:companyId", async function (req, res, next) {
   if (
     products[productId] &&
     products[productId].companies &&
-    products[productId].companies[companyId]
+    products[productId].companies.value &&
+    products[productId].companies.value[companyId]
   ) {
-    delete products[productId].companies[companyId];
+    delete products[productId].companies.value[companyId];
   }
   req.session.products = products;
 

@@ -11,6 +11,8 @@
 {% if errorSummary.length > 0 %}{{ i18n.error[i18n.languageCode]}}: {% endif %}{{ i18n.pageTitles.addCompany[i18n.languageCode] }}
 {% endblock %}
 
+{% set product_url = "%1/edit/%2" | replace("%1", routes.PRODUCT) | replace("%2",  productId) %}}
+
 {% block content %}
 
 <form method="POST" action="" novalidate>
@@ -48,7 +50,7 @@
     {{ govukButton({
       text: i18n.buttons.back[i18n.languageCode],
       classes: "govuk-button--secondary",
-      href: routes.DETAILS_OF_PRODUCT,
+      href: product_url,
       attributes : {
           "data-cy": "back"
       }

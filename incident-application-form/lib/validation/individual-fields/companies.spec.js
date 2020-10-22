@@ -6,13 +6,30 @@ describe(`lib/validation/individual-fields/companies`, () => {
   const testCases = (languageCode) => [
     [
       "object cannot be empty",
-      {},
+      {
+        input: undefined,
+        options: {},
+      },
       {
         companies: {
           isValid: false,
-          messages: [
-            translations.companies.validation.invalidLength[languageCode],
-          ],
+          messages: [translations.companies.validation.required[languageCode]],
+          value: {},
+        },
+      },
+    ],
+    [
+      "valid if empty and not required",
+      {
+        input: {},
+        options: {
+          required: false,
+        },
+      },
+      {
+        companies: {
+          isValid: true,
+          messages: [],
           value: {},
         },
       },
@@ -20,7 +37,10 @@ describe(`lib/validation/individual-fields/companies`, () => {
     [
       "happy path - one company",
       {
-        "abc-def": {},
+        input: {
+          "abc-def": {},
+        },
+        options: {},
       },
       {
         companies: {
@@ -35,8 +55,12 @@ describe(`lib/validation/individual-fields/companies`, () => {
     [
       "happy path - multiple companies",
       {
-        "abc-def": {},
-        "123-xyz": {},
+        input: {
+          "abc-def": {},
+          "123-xyz": {},
+        },
+
+        options: {},
       },
       {
         companies: {
@@ -54,13 +78,13 @@ describe(`lib/validation/individual-fields/companies`, () => {
   ["en", "cy"].forEach((languageCode) => {
     test.each(testCases(languageCode))(
       `%s - ${languageCode}`,
-      (description, given, expected) => {
+      (description, { input, options }, expected) => {
         const i18n = {
           languageCode,
           ...translations,
         };
 
-        expect(validateCompanies(given, i18n)).toEqual(expected);
+        expect(validateCompanies(input, i18n, options)).toEqual(expected);
       }
     );
   });

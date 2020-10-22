@@ -28,6 +28,7 @@ module.exports = {
       batchCodes,
       bestBefore,
       brand,
+      companies,
       displayUntil,
       originCountry,
       packSize,
@@ -36,13 +37,10 @@ module.exports = {
       productType,
       unitType,
       useBy,
-      // pass through
-      companies,
     },
     i18n,
     isCreate
   ) => {
-    console.log(`companies`, companies);
     const validatedAdditionalInformation = validateAdditionalInformation(
       additionalInformation,
       i18n
@@ -54,7 +52,9 @@ module.exports = {
     const validatedBatchCodes = validateBatchCodes(batchCodes, i18n);
     const validatedBestBefore = validateDate(bestBefore, i18n);
     const validatedBrand = validateBrand(brand, i18n);
-    // const validatedCompanies = validateCompanies(companies, i18n);
+    const validatedCompanies = validateCompanies(companies, i18n, {
+      required: !isCreate,
+    });
     const validatedDisplayUntil = validateDate(displayUntil, i18n);
     const validatedOriginCountry = validateAddressCountry(originCountry, i18n);
     const validatedPackSize = validatePackSize(packSize, i18n);
@@ -73,6 +73,7 @@ module.exports = {
       validatedBatchCodes,
       validatedBestBefore,
       validatedBrand,
+      validatedCompanies,
       validatedDisplayUntil,
       validatedOriginCountry,
       validatedPackSize,
@@ -91,8 +92,8 @@ module.exports = {
         ...validatedBatchCodes,
         bestBefore: validatedBestBefore.date,
         ...validatedBrand,
-        // ...validatedCompanies,
-        companies,
+        // companies,
+        ...validatedCompanies,
         displayUntil: validatedDisplayUntil.date,
         originCountry: validatedOriginCountry.country,
         ...validatedPackSize,

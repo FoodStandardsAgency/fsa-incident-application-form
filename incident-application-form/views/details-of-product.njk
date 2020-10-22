@@ -12,9 +12,10 @@
 
 <form method="POST" action="" novalidate>
 
+    <h2 class="govuk-heading-xl">{{ i18n.sections.details[i18n.languageCode] }}</h2>
+
     {% if tabularDetailsOfProducts | length > 0 %}
         {{ govukTable({
-          caption: i18n.sections.details[i18n.languageCode],
           firstCellIsHeader: true,
           head: [
             {

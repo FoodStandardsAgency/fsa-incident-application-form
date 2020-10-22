@@ -171,7 +171,7 @@
       "en": "Companies"
     },
     "validation": {
-      "invalidLength": {
+      "required": {
         "cy": "Mae angen o leiaf un cwmni",
         "en": "At least one company is required"
       }
