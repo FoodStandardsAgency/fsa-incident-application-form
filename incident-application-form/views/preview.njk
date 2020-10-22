@@ -346,7 +346,7 @@
         </div>
       </dl>
 
-      {% for companyId, company in product.companies %}
+      {% for companyId, company in product.companies.value %}
         <h3 class="govuk-heading-m">Company #{{ loop.index }}</h3>
         <dl class="govuk-summary-list govuk-summary-list--no-border">
           <div class="govuk-summary-list__row">

@@ -5,15 +5,24 @@
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% block pageTitle %}
-{{ i18n.pageTitles.addCompany[i18n.languageCode] }}
+{% if errorSummary.length > 0 %}{{ i18n.error[i18n.languageCode]}}: {% endif %}{{ i18n.pageTitles.addCompany[i18n.languageCode] }}
 {% endblock %}
+
+{% set product_url = "%1/edit/%2" | replace("%1", routes.PRODUCT) | replace("%2",  productId) %}}
 
 {% block content %}
 
 <form method="POST" action="" novalidate>
+
+    {% if validation.isValid == false %}
+        {{ govukErrorSummary({
+           titleText: i18n.problem[i18n.languageCode],
+           errorList: errorSummary
+        }) }}
+    {% endif %}
 
     {% call govukFieldset({
         legend: {
@@ -41,7 +50,7 @@
     {{ govukButton({
       text: i18n.buttons.back[i18n.languageCode],
       classes: "govuk-button--secondary",
-      href: routes.DETAILS_OF_PRODUCT,
+      href: product_url,
       attributes : {
           "data-cy": "back"
       }

@@ -3,6 +3,9 @@ const { v4: uuidv4 } = require("uuid");
 const { validate } = require("../lib/validation/company");
 const { getCompanyTypes } = require("../lib/lookups/company-types");
 const { getCountries } = require("../lib/lookups/countries");
+const {
+  getErrorSummaryFromValidation,
+} = require("../lib/validation/error-summary");
 
 const router = express.Router({ mergeParams: true });
 
@@ -90,6 +93,7 @@ router.post("/", async function (req, res, next) {
       companyId,
       companyTypes,
       countries,
+      errorSummary: getErrorSummaryFromValidation(validation),
       productId,
       routes,
       template,
@@ -98,19 +102,19 @@ router.post("/", async function (req, res, next) {
     return;
   }
 
-  const validatedCompanies = products[productId].companies || {};
+  const validatedCompanies = products[productId].companies.value || {};
   validatedCompanies[companyId] = validation.validatedFields;
 
   req.session.products = {
     ...req.session.products,
     [productId]: {
       ...req.session.products[productId],
-      companies: validatedCompanies,
+      companies: {
+        ...req.session.products[productId].companies,
+        value: validatedCompanies,
+      },
     },
   };
-
-  // the valid form submission data
-  // console.log(`validation`, validation.validatedFields);
 
   res.redirect(`${routes.PRODUCT}/edit/${productId}`);
 });
@@ -121,11 +125,13 @@ router.get("/edit/:companyId", async function (req, res, next) {
   const { productId, companyId } = req.params;
 
   const validation = {
-    validatedFields: req.session.products[productId].companies[companyId],
+    validatedFields: req.session.products[productId].companies.value,
   };
 
-  const selectedCompanyType = validation.validatedFields.companyType.value;
-  const selectedCountry = validation.validatedFields.address.country.value;
+  const selectedCompanyType =
+    validation.validatedFields[companyId].companyType.value;
+  const selectedCountry =
+    validation.validatedFields[companyId].address.country.value;
 
   const [companyTypes, countries] = await Promise.all([
     await getCompanyTypes(languageCode, selectedCompanyType),
@@ -151,9 +157,10 @@ router.get("/remove/:companyId", async function (req, res, next) {
   if (
     products[productId] &&
     products[productId].companies &&
-    products[productId].companies[companyId]
+    products[productId].companies.value &&
+    products[productId].companies.value[companyId]
   ) {
-    delete products[productId].companies[companyId];
+    delete products[productId].companies.value[companyId];
   }
   req.session.products = products;
 
