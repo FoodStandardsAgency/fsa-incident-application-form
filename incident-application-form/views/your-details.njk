@@ -4,14 +4,22 @@
 {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/select/macro.njk" import govukSelect %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% block pageTitle %}
-{{ i18n.pageTitle[i18n.languageCode] }}
+{% if errorSummary.length > 0 %}{{ i18n.error[i18n.languageCode]}}: {% endif %}{{ i18n.pageTitle[i18n.languageCode] }}
 {% endblock %}
 
 {% block content %}
 
 <form method="POST" action="" novalidate>
+
+    {% if validation.isValid == false %}
+        {{ govukErrorSummary({
+           titleText: i18n.problem[i18n.languageCode],
+           errorList: errorSummary
+        }) }}
+    {% endif %}
 
     {% call govukFieldset({
         legend: {
@@ -121,8 +129,8 @@
         type: "email",
         autocomplete: "email",
         spellcheck: false,
-        errorMessage: validation.validatedFields.organisation.isValid == false and {
-            text: validation.validatedFields.organisation.messages | join(". "),
+        errorMessage: validation.validatedFields.email.isValid == false and {
+            text: validation.validatedFields.email.messages | join(". "),
             "attributes" : {
                 "data-cy": "email-errors"
             }

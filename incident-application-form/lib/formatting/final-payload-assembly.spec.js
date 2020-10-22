@@ -1,87 +1,6 @@
 const { assemblePayload } = require("./final-payload-assembly");
 
-const translations = require(`${__dirname}/../../translations/form-fields.json`);
-
-const {
-  validate: validateYourDetails,
-} = require("../../lib/validation/your-details");
-const {
-  validate: validateDetailsOfIncident,
-} = require("../../lib/validation/details-of-incident");
-const { validate: validateCompany } = require("../../lib/validation/company");
-const { validate: validateProduct } = require("../../lib/validation/product");
-
-const i18n = {
-  languageCode: "en",
-  ...translations,
-};
-
-const yourDetails = {
-  notifierType: "3",
-  contactName: "Timmy Testfield",
-  position: "Chief Tester",
-  organisation: "Testco Ltd.",
-  email: "timmy@testfield.com",
-  telephone1: "+44 1234 567 890",
-  addressLine1: "1 Test Street",
-  addressLine2: "Test Lane",
-  addressTown: "Test Town",
-  addressCounty: "County Test",
-  addressPostcode: "TE1 5ST",
-  addressCountry: "17",
-};
-
-const detailsOfIncident = {
-  incidentTitle: "My incident title",
-  natureOfProblem: "The nature of my problem is ...",
-  actionTaken: "I took the following actions ...",
-  distributionDetails: "This was distributed too ...",
-  illnessDetails: "People were ill with ...",
-  localAuthorityNotified: "I notified the following ...",
-  additionalInformation: "Here is some additional info ...",
-};
-
-const validatedYourDetails = validateYourDetails(yourDetails, i18n);
-const validatedDetailsOfIncident = validateDetailsOfIncident(
-  detailsOfIncident,
-  i18n
-);
-
-const mockCompany1 = {
-  companyName: "Testco",
-};
-
-const mockCompany2 = {
-  companyName: "Another testing company Ltd.",
-};
-
-const mockCompany3 = {
-  companyName: "Large Testers PLC",
-};
-
-const validatedCompany1 = validateCompany(mockCompany1);
-const validatedCompany2 = validateCompany(mockCompany2);
-const validatedCompany3 = validateCompany(mockCompany3);
-
-const mockProduct1 = {
-  productName: "A test product name",
-  brand: "Test brand",
-  companies: {
-    "aaa-bbb-ccc-ddd": validatedCompany1.validatedFields,
-    "zzz-xxx-ccc-vvv-bbb": validatedCompany2.validatedFields,
-  },
-};
-
-const mockProduct2 = {
-  productName: "Another test product",
-  brand: "Another brand",
-  companies: {
-    "999-111-888-222": validatedCompany3.validatedFields,
-  },
-};
-
-const validatedProduct1 = validateProduct(mockProduct1);
-const validatedProduct2 = validateProduct(mockProduct2);
+const mockSessionMultipleProductsMultipleCompanies = require("./__mocks__/session-mock-multiple-products-multiple-companies.json");
 
 describe(`lib/formatting/final-payload-assembly`, () => {
   beforeEach(() => {
@@ -90,54 +9,124 @@ describe(`lib/formatting/final-payload-assembly`, () => {
 
   const testCases = [
     [
-      "happy path",
-      {
-        yourDetails: validatedYourDetails.validatedFields,
-        detailsOfIncident: validatedDetailsOfIncident.validatedFields,
-        products: {
-          "abc-123-def-456": validatedProduct1.validatedFields,
-          "xyz-987-uvw-654": validatedProduct2.validatedFields,
-        },
-      },
+      "full",
+      mockSessionMultipleProductsMultipleCompanies,
       {
         Addresses: {
-          AddressLine1: yourDetails.addressLine1,
-          AddressLine2: yourDetails.addressLine2,
-          TownCity: yourDetails.addressTown,
-          County: yourDetails.addressCounty,
-          Postcode: yourDetails.addressPostcode,
-          CountryID: parseInt(yourDetails.addressCountry, 10),
+          AddressLine1: "My line 1",
+          AddressLine2: "My line 2",
+          TownCity: "Test town",
+          County: "Testingshire",
+          Postcode: "TE1 5ST",
+          CountryID: 17,
         },
         Incidents: {
-          NotifierID: parseInt(yourDetails.notifierType, 10),
-          NatureOfProblem: detailsOfIncident.natureOfProblem,
-          ActionTaken: detailsOfIncident.actionTaken,
-          DistributionDetails: detailsOfIncident.distributionDetails,
-          IllnessDetails: detailsOfIncident.illnessDetails,
-          LocalAuthorityNotified: detailsOfIncident.localAuthorityNotified,
-          AdditionalInformation: detailsOfIncident.additionalInformation,
+          IncidentTitle: "1603353226",
+          NotifierID: 18,
+          NatureOfProblem: "Something happened...",
+          ActionTaken: "Some action was taken...",
+          DistributionDetails: "My things went to...",
+          IllnessDetails: "People were ill with...",
+          LocalAuthorityNotified: "I notified...",
+          AdditionalInformation: "Here is some helpful text...",
         },
         IncidentProducts: [
           {
-            Name: mockProduct1.productName,
-            Brand: mockProduct1.brand,
+            AdditionalInfo: "Some helpful info here",
+            Amount: 321,
+            AmountUnitTypeId: 2,
+            BatchCodes: "aaa-bbb,ccc-ddd,eee-fff",
+            Brand: "Big brand co.",
             Companies: [
-              { Name: mockCompany1.companyName },
-              { Name: mockCompany2.companyName },
+              {
+                Addresses: {
+                  AddressLine1: "5 Test street",
+                  AddressLine2: "Testway",
+                  TownCity: "Leeds",
+                  County: "Yorkshire",
+                  Postcode: "TE3 4GT",
+                  CountryID: 17,
+                },
+                Contact: {
+                  Name: "Peter tester",
+                  EmailAddress: "peter@example.com",
+                  TelephoneNumber: "01889 987123",
+                },
+                FBOSTypes: 1,
+                Name: "First distributor co",
+              },
+              {
+                Addresses: {
+                  AddressLine1: "11 North Street",
+                  AddressLine2: "Southfield",
+                  TownCity: "Eastham",
+                  County: "Westcashire",
+                  Postcode: "WE1 2NM",
+                  CountryID: 17,
+                },
+                Contact: {
+                  Name: "Sarah tester",
+                  EmailAddress: "sarah@example.com",
+                  TelephoneNumber: "06634 717171",
+                },
+                FBOSTypes: 2,
+                Name: "Second org name",
+              },
             ],
+            CountryOfOriginId: 65,
+            IncidentProductDates: {
+              BestBeforeDate: "2020-01-12T00:00:00.000Z",
+              UseByDate: "2021-12-01T00:00:00.000Z",
+              DisplayUntil: "2022-08-30T23:00:00.000Z",
+            },
+            IncidentProductPackSizes: { Size: "200g pack" },
+            Name: "Impacted product here",
+            PackDescription: "The product looked fine",
+            ProductTypeId: 15,
           },
           {
-            Name: mockProduct2.productName,
-            Brand: mockProduct2.brand,
-            Companies: [{ Name: mockCompany3.companyName }],
+            AdditionalInfo: "Some more info",
+            Amount: 3456,
+            AmountUnitTypeId: 3,
+            BatchCodes: "www-www-111,ppp-ooo-uuu",
+            Brand: "Another brand name",
+            Companies: [
+              {
+                Addresses: {
+                  AddressLine1: "1 The Street",
+                  AddressLine2: "",
+                  TownCity: "A Town",
+                  County: "Countydown",
+                  Postcode: "SD1 2RT",
+                  CountryID: 4,
+                },
+                Contact: {
+                  Name: "Larry tester",
+                  EmailAddress: "larry@example.com",
+                  TelephoneNumber: "01662 534533",
+                },
+                FBOSTypes: 3,
+                Name: "Retailer co",
+              },
+            ],
+            CountryOfOriginId: 32,
+            IncidentProductDates: {
+              BestBeforeDate: "2022-02-22T00:00:00.000Z",
+              UseByDate: "2033-03-03T00:00:00.000Z",
+              DisplayUntil: "1999-11-11T00:00:00.000Z",
+            },
+            IncidentProductPackSizes: { Size: "400 to a pack" },
+            Name: "Second product",
+            PackDescription: "A big pack of things",
+            ProductTypeId: 24,
           },
         ],
         IncidentStakeholders: {
-          Name: yourDetails.contactName,
-          Role: yourDetails.position,
-          GovDept: yourDetails.organisation,
-          Email: yourDetails.email,
-          Phone: yourDetails.telephone1,
+          Name: "John Tester",
+          Role: "Chief Tester",
+          GovDept: "Testco Ltd.",
+          Email: "john@example.com",
+          Phone: "+44 1882 123 456",
         },
       },
     ],

@@ -1,12 +1,31 @@
 const validator = require("validator");
 
+const defaultOptions = {
+  required: true,
+};
+
 module.exports = {
-  validateAddressTown: (town, i18n) => {
+  validateAddressTown: (town, i18n, options) => {
     let validated = {
       isValid: false,
       messages: [],
       value: "",
     };
+
+    let resolvedOptions = {
+      ...defaultOptions,
+      ...options,
+    };
+
+    if ((!town || validator.isEmpty(town)) && !resolvedOptions.required) {
+      return {
+        town: {
+          ...validated,
+          isValid: true,
+          value: "",
+        },
+      };
+    }
 
     if (!town || validator.isEmpty(town)) {
       validated.messages.push(

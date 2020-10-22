@@ -2,43 +2,40 @@
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
+{% block pageTitle %}
+{{ i18n.pageTitle[i18n.languageCode] }}
+{% endblock %}
+
+{% if i18n.languageCode == 'cy' %}
+{% set reportAFoodProblemServiceUrl = "https://www.food.gov.uk/cy/contact/consumers/report-problem" %}
+{% else %}
+{% set reportAFoodProblemServiceUrl = "https://www.food.gov.uk/contact/consumers/report-problem" %}
+{% endif %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Service name goes here</h1>
+      <h1 class="govuk-heading-l">{{ i18n.pageTitle[i18n.languageCode] }}</h1>
 
-      <p class="govuk-body">intro text goes here</p>
+      <p class="govuk-body">{{ i18n.text.intro1[i18n.languageCode] }}</p>
+
+      <p class="govuk-body">{{ i18n.text.intro2[i18n.languageCode] }}</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>{{ i18n.text.bullet1[i18n.languageCode] }}</li>
+        <li>{{ i18n.text.bullet2[i18n.languageCode] }}</li>
+        <li>{{ i18n.text.bullet3[i18n.languageCode] }}</li>
+        <li>{{ i18n.text.bullet4[i18n.languageCode] }}</li>
+      </ul>
+
+      <p class="govuk-body">{{ i18n.text.intro3[i18n.languageCode] }} <a href="{{ reportAFoodProblemServiceUrl }}">{{ i18n.links.reportAFoodProblemService[i18n.languageCode] }}</a>.</p>
 
       {{ govukButton({
         text: "Start now",
         href: routes.YOUR_DETAILS,
-        classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
-        isStartButton: true
+        classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8"
       }) }}
     </div>
 
-    <div class="govuk-grid-column-one-third">
-
-      <!-- The Related items component is not part of GOV.UK Frontend but will be styled if used in the Prototype Kit -->
-
-      <aside class="app-related-items" role="complementary">
-        <h2 class="govuk-heading-m" id="subsection-title">
-          Subsection
-        </h2>
-        <nav role="navigation" aria-labelledby="subsection-title">
-          <ul class="govuk-list govuk-!-font-size-16">
-            {% for link in links %}
-            <li>
-              <a class="govuk-link" href="{{ link.url }}">
-                {{ link.text }}
-              </a>
-            </li>
-            {% endfor %}
-          </ul>
-        </nav>
-      </aside>
-
-    </div>
   </div>
 {% endblock %}

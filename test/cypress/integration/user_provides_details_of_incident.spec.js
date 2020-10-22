@@ -16,27 +16,27 @@ context(
       cy.visit(DETAILS_OF_INCIDENT);
 
       cy.get('[data-cy="nature-of-problem"]').type(
-        "The nature of my problem is salmonella"
+        "The nature of my problem is salmonella", {force: true}
       );
 
       cy.get('[data-cy="action-taken"]').type(
-        "I have notified the authorities"
+        "I have notified the authorities", {force: true}
       );
 
       cy.get('[data-cy="distribution-details"]').type(
-        "This was distributed to the South East"
+        "This was distributed to the South East", {force: true}
       );
 
-      cy.get('[data-cy="illness-details"]').type("People are being sick");
+      cy.get('[data-cy="illness-details"]').type("People are being sick", {force: true});
 
       // intentionally blank, still valid
       // cy.get('[data-cy="local-authority-notified"]').type("");
 
       cy.get('[data-cy="additional-information"]').type(
-        "I also have told the police."
+        "I also have told the police.", {force: true}
       );
 
-      cy.get('[data-cy="submit"]').click();
+      cy.get('[data-cy="submit"]').click({force: true});
     });
   }
 );

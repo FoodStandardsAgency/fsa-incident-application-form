@@ -6,7 +6,10 @@ describe(`lib/validation/individual-fields/address.country`, () => {
   const testCases = (languageCode) => [
     [
       "missing field",
-      undefined,
+      {
+        input: undefined,
+        options: {},
+      },
       {
         country: {
           isValid: false,
@@ -19,7 +22,10 @@ describe(`lib/validation/individual-fields/address.country`, () => {
     ],
     [
       "wrong data type",
-      false,
+      {
+        input: false,
+        options: {},
+      },
       {
         country: {
           isValid: false,
@@ -32,7 +38,10 @@ describe(`lib/validation/individual-fields/address.country`, () => {
     ],
     [
       "provided field is empty",
-      "",
+      {
+        input: "",
+        options: undefined,
+      },
       {
         country: {
           isValid: false,
@@ -44,8 +53,27 @@ describe(`lib/validation/individual-fields/address.country`, () => {
       },
     ],
     [
+      "provided field is empty, but not required",
+      {
+        input: "",
+        options: {
+          required: false,
+        },
+      },
+      {
+        country: {
+          isValid: true,
+          messages: [],
+          value: "",
+        },
+      },
+    ],
+    [
       "using the default value",
-      "0",
+      {
+        input: "0",
+        options: undefined,
+      },
       {
         country: {
           isValid: false,
@@ -57,8 +85,27 @@ describe(`lib/validation/individual-fields/address.country`, () => {
       },
     ],
     [
+      "using the default value is valid when not required",
+      {
+        input: "0",
+        options: {
+          required: false,
+        },
+      },
+      {
+        country: {
+          isValid: true,
+          messages: [],
+          value: "0",
+        },
+      },
+    ],
+    [
       "ensure values are escaped",
-      "<script>tag here</script>",
+      {
+        input: "<script>tag here</script>",
+        options: undefined,
+      },
       {
         country: {
           isValid: true,
@@ -69,7 +116,10 @@ describe(`lib/validation/individual-fields/address.country`, () => {
     ],
     [
       "happy path",
-      "valid",
+      {
+        input: "valid",
+        options: undefined,
+      },
       {
         country: {
           isValid: true,
@@ -83,13 +133,13 @@ describe(`lib/validation/individual-fields/address.country`, () => {
   ["en", "cy"].forEach((languageCode) => {
     test.each(testCases(languageCode))(
       `%s - ${languageCode}`,
-      (description, given, expected) => {
+      (description, { input, options }, expected) => {
         const i18n = {
           languageCode,
           ...translations,
         };
 
-        expect(validateAddressCountry(given, i18n)).toEqual(expected);
+        expect(validateAddressCountry(input, i18n, options)).toEqual(expected);
       }
     );
   });

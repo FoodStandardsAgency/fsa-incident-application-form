@@ -6,7 +6,10 @@ describe(`lib/validation/individual-fields/telephone1`, () => {
   const testCases = (languageCode) => [
     [
       "missing field",
-      undefined,
+      {
+        input: undefined,
+        options: {},
+      },
       {
         telephone1: {
           isValid: false,
@@ -17,7 +20,10 @@ describe(`lib/validation/individual-fields/telephone1`, () => {
     ],
     [
       "wrong data type",
-      false,
+      {
+        input: false,
+        options: {},
+      },
       {
         telephone1: {
           isValid: false,
@@ -28,7 +34,10 @@ describe(`lib/validation/individual-fields/telephone1`, () => {
     ],
     [
       "provided field is empty",
-      "",
+      {
+        input: "",
+        options: undefined,
+      },
       {
         telephone1: {
           isValid: false,
@@ -38,8 +47,27 @@ describe(`lib/validation/individual-fields/telephone1`, () => {
       },
     ],
     [
+      "provided field is empty, but not required",
+      {
+        input: "",
+        options: {
+          required: false,
+        },
+      },
+      {
+        telephone1: {
+          isValid: true,
+          messages: [],
+          value: "",
+        },
+      },
+    ],
+    [
       "value is too long",
-      "1".repeat(61),
+      {
+        input: "1".repeat(61),
+        options: {},
+      },
       {
         telephone1: {
           isValid: false,
@@ -50,7 +78,10 @@ describe(`lib/validation/individual-fields/telephone1`, () => {
     ],
     [
       "only valid characters",
-      "text is not 01998 123 456 <script>cheeky</script>allowed",
+      {
+        input: "text is not 01998 123 456 <script>cheeky</script>allowed",
+        options: {},
+      },
       {
         telephone1: {
           isValid: false,
@@ -62,7 +93,12 @@ describe(`lib/validation/individual-fields/telephone1`, () => {
     ],
     [
       "international format",
-      "+44 1234 567 890",
+      {
+        input: "+44 1234 567 890",
+        options: {
+          required: true,
+        },
+      },
       {
         telephone1: {
           isValid: true,
@@ -73,7 +109,10 @@ describe(`lib/validation/individual-fields/telephone1`, () => {
     ],
     [
       "happy path",
-      "01234 567 098",
+      {
+        input: "01234 567 098",
+        options: {},
+      },
       {
         telephone1: {
           isValid: true,
@@ -87,13 +126,13 @@ describe(`lib/validation/individual-fields/telephone1`, () => {
   ["en", "cy"].forEach((languageCode) => {
     test.each(testCases(languageCode))(
       `%s - ${languageCode}`,
-      (description, given, expected) => {
+      (description, { input, options }, expected) => {
         const i18n = {
           languageCode,
           ...translations,
         };
 
-        expect(validateTelephone1(given, i18n)).toEqual(expected);
+        expect(validateTelephone1(input, i18n, options)).toEqual(expected);
       }
     );
   });

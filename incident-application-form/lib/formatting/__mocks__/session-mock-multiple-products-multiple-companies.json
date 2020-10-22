@@ -1,0 +1,460 @@
+{
+  "cookie": {
+    "originalMaxAge": null,
+    "expires": null,
+    "httpOnly": true,
+    "path": "/"
+  },
+  "referenceNumber": "1603353226",
+  "yourDetails": {
+    "contactName": {
+      "isValid": true,
+      "messages": [],
+      "value": "John Tester"
+    },
+    "notifierType": {
+      "isValid": true,
+      "messages": [],
+      "value": "18"
+    },
+    "position": {
+      "isValid": true,
+      "messages": [],
+      "value": "Chief Tester"
+    },
+    "organisation": {
+      "isValid": true,
+      "messages": [],
+      "value": "Testco Ltd."
+    },
+    "email": {
+      "isValid": true,
+      "messages": [],
+      "value": "john@example.com"
+    },
+    "telephone1": {
+      "isValid": true,
+      "messages": [],
+      "value": "+44 1882 123 456"
+    },
+    "address": {
+      "line1": {
+        "isValid": true,
+        "messages": [],
+        "value": "My line 1"
+      },
+      "line2": {
+        "isValid": true,
+        "messages": [],
+        "value": "My line 2"
+      },
+      "town": {
+        "isValid": true,
+        "messages": [],
+        "value": "Test town"
+      },
+      "county": {
+        "isValid": true,
+        "messages": [],
+        "value": "Testingshire"
+      },
+      "postcode": {
+        "isValid": true,
+        "messages": [],
+        "value": "TE1 5ST"
+      },
+      "country": {
+        "isValid": true,
+        "messages": [],
+        "value": "17"
+      }
+    }
+  },
+  "detailsOfIncident": {
+    "natureOfProblem": {
+      "isValid": true,
+      "messages": [],
+      "value": "Something happened..."
+    },
+    "actionTaken": {
+      "isValid": true,
+      "messages": [],
+      "value": "Some action was taken..."
+    },
+    "additionalInformation": {
+      "isValid": true,
+      "messages": [],
+      "value": "Here is some helpful text..."
+    },
+    "distributionDetails": {
+      "isValid": true,
+      "messages": [],
+      "value": "My things went to..."
+    },
+    "illnessDetails": {
+      "isValid": true,
+      "messages": [],
+      "value": "People were ill with..."
+    },
+    "localAuthorityNotified": {
+      "isValid": true,
+      "messages": [],
+      "value": "I notified..."
+    }
+  },
+  "products": {
+    "f6dfc698-a06b-4076-88e4-d8d227c5decf": {
+      "additionalInformation": {
+        "isValid": true,
+        "messages": [],
+        "value": "Some helpful info here"
+      },
+      "amountImportedDistributed": {
+        "isValid": true,
+        "messages": [],
+        "value": "321"
+      },
+      "batchCodes": {
+        "isValid": true,
+        "messages": [],
+        "value": "aaa-bbb\r\n  ccc-ddd\r\n  eee-fff"
+      },
+      "bestBefore": {
+        "isValid": true,
+        "messages": [],
+        "value": "2020/1/12",
+        "day": "12",
+        "month": "1",
+        "year": "2020",
+        "human": "Sunday, January 12th, 2020",
+        "iso": "2020-01-12T00:00:00.000Z"
+      },
+      "brand": {
+        "isValid": true,
+        "messages": [],
+        "value": "Big brand co."
+      },
+      "companies": {
+        "isValid": true,
+        "messages": [],
+        "value": {
+          "4d788d4e-0498-4e17-885b-56dfd7dbbe77": {
+            "companyName": {
+              "isValid": true,
+              "messages": [],
+              "value": "First distributor co"
+            },
+            "companyType": {
+              "isValid": true,
+              "messages": [],
+              "value": "1"
+            },
+            "contactName": {
+              "isValid": true,
+              "messages": [],
+              "value": "Peter tester"
+            },
+            "email": {
+              "isValid": true,
+              "messages": [],
+              "value": "peter@example.com"
+            },
+            "telephone1": {
+              "isValid": true,
+              "messages": [],
+              "value": "01889 987123"
+            },
+            "address": {
+              "line1": {
+                "isValid": true,
+                "messages": [],
+                "value": "5 Test street"
+              },
+              "line2": {
+                "isValid": true,
+                "messages": [],
+                "value": "Testway"
+              },
+              "town": {
+                "isValid": true,
+                "messages": [],
+                "value": "Leeds"
+              },
+              "county": {
+                "isValid": true,
+                "messages": [],
+                "value": "Yorkshire"
+              },
+              "postcode": {
+                "isValid": true,
+                "messages": [],
+                "value": "TE3 4GT"
+              },
+              "country": {
+                "isValid": true,
+                "messages": [],
+                "value": "17"
+              }
+            }
+          },
+          "f53b60c0-5df3-48a7-aed3-3b680da2fd9e": {
+            "companyName": {
+              "isValid": true,
+              "messages": [],
+              "value": "Second org name"
+            },
+            "companyType": {
+              "isValid": true,
+              "messages": [],
+              "value": "2"
+            },
+            "contactName": {
+              "isValid": true,
+              "messages": [],
+              "value": "Sarah tester"
+            },
+            "email": {
+              "isValid": true,
+              "messages": [],
+              "value": "sarah@example.com"
+            },
+            "telephone1": {
+              "isValid": true,
+              "messages": [],
+              "value": "06634 717171"
+            },
+            "address": {
+              "line1": {
+                "isValid": true,
+                "messages": [],
+                "value": "11 North Street"
+              },
+              "line2": {
+                "isValid": true,
+                "messages": [],
+                "value": "Southfield"
+              },
+              "town": {
+                "isValid": true,
+                "messages": [],
+                "value": "Eastham"
+              },
+              "county": {
+                "isValid": true,
+                "messages": [],
+                "value": "Westcashire"
+              },
+              "postcode": {
+                "isValid": true,
+                "messages": [],
+                "value": "WE1 2NM"
+              },
+              "country": {
+                "isValid": true,
+                "messages": [],
+                "value": "17"
+              }
+            }
+          }
+        }
+      },
+      "displayUntil": {
+        "isValid": true,
+        "messages": [],
+        "value": "2022/8/31",
+        "day": "31",
+        "month": "8",
+        "year": "2022",
+        "human": "Wednesday, August 31st, 2022",
+        "iso": "2022-08-30T23:00:00.000Z"
+      },
+      "originCountry": {
+        "isValid": true,
+        "messages": [],
+        "value": "65"
+      },
+      "packSize": {
+        "isValid": true,
+        "messages": [],
+        "value": "200g pack"
+      },
+      "packageDescription": {
+        "isValid": true,
+        "messages": [],
+        "value": "The product looked fine"
+      },
+      "productName": {
+        "isValid": true,
+        "messages": [],
+        "value": "Impacted product here"
+      },
+      "productType": {
+        "isValid": true,
+        "messages": [],
+        "value": "15"
+      },
+      "unitType": {
+        "isValid": true,
+        "messages": [],
+        "value": "2"
+      },
+      "useBy": {
+        "isValid": true,
+        "messages": [],
+        "value": "2021/12/1",
+        "day": "1",
+        "month": "12",
+        "year": "2021",
+        "human": "Wednesday, December 1st, 2021",
+        "iso": "2021-12-01T00:00:00.000Z"
+      }
+    },
+    "be914bba-6dc4-4df6-bbb4-534c85f9ee3c": {
+      "additionalInformation": {
+        "isValid": true,
+        "messages": [],
+        "value": "Some more info"
+      },
+      "amountImportedDistributed": {
+        "isValid": true,
+        "messages": [],
+        "value": "3456"
+      },
+      "batchCodes": {
+        "isValid": true,
+        "messages": [],
+        "value": "www-www-111\r\n  ppp-ooo-uuu"
+      },
+      "bestBefore": {
+        "isValid": true,
+        "messages": [],
+        "value": "2022/2/22",
+        "day": "22",
+        "month": "2",
+        "year": "2022",
+        "human": "Tuesday, February 22nd, 2022",
+        "iso": "2022-02-22T00:00:00.000Z"
+      },
+      "brand": {
+        "isValid": true,
+        "messages": [],
+        "value": "Another brand name"
+      },
+      "companies": {
+        "isValid": true,
+        "messages": [],
+        "value": {
+          "89900353-0759-45d8-b07d-38c47a222139": {
+            "companyName": {
+              "isValid": true,
+              "messages": [],
+              "value": "Retailer co"
+            },
+            "companyType": {
+              "isValid": true,
+              "messages": [],
+              "value": "3"
+            },
+            "contactName": {
+              "isValid": true,
+              "messages": [],
+              "value": "Larry tester"
+            },
+            "email": {
+              "isValid": true,
+              "messages": [],
+              "value": "larry@example.com"
+            },
+            "telephone1": {
+              "isValid": true,
+              "messages": [],
+              "value": "01662 534533"
+            },
+            "address": {
+              "line1": {
+                "isValid": true,
+                "messages": [],
+                "value": "1 The Street"
+              },
+              "line2": {
+                "isValid": true,
+                "messages": [],
+                "value": ""
+              },
+              "town": {
+                "isValid": true,
+                "messages": [],
+                "value": "A Town"
+              },
+              "county": {
+                "isValid": true,
+                "messages": [],
+                "value": "Countydown"
+              },
+              "postcode": {
+                "isValid": true,
+                "messages": [],
+                "value": "SD1 2RT"
+              },
+              "country": {
+                "isValid": true,
+                "messages": [],
+                "value": "4"
+              }
+            }
+          }
+        }
+      },
+      "displayUntil": {
+        "isValid": true,
+        "messages": [],
+        "value": "1999/11/11",
+        "day": "11",
+        "month": "11",
+        "year": "1999",
+        "human": "Thursday, November 11th, 1999",
+        "iso": "1999-11-11T00:00:00.000Z"
+      },
+      "originCountry": {
+        "isValid": true,
+        "messages": [],
+        "value": "32"
+      },
+      "packSize": {
+        "isValid": true,
+        "messages": [],
+        "value": "400 to a pack"
+      },
+      "packageDescription": {
+        "isValid": true,
+        "messages": [],
+        "value": "A big pack of things"
+      },
+      "productName": {
+        "isValid": true,
+        "messages": [],
+        "value": "Second product"
+      },
+      "productType": {
+        "isValid": true,
+        "messages": [],
+        "value": "24"
+      },
+      "unitType": {
+        "isValid": true,
+        "messages": [],
+        "value": "3"
+      },
+      "useBy": {
+        "isValid": true,
+        "messages": [],
+        "value": "2033/3/3",
+        "day": "3",
+        "month": "3",
+        "year": "2033",
+        "human": "Thursday, March 3rd, 2033",
+        "iso": "2033-03-03T00:00:00.000Z"
+      }
+    }
+  }
+}

@@ -1,27 +1,41 @@
 {% extends "layout.njk" %}
 
-{% from "govuk/components/input/macro.njk" import govukInput %}
-{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
-{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
 
 {% block pageTitle %}
-{{ i18n.pageTitles.editCompany[i18n.languageCode] }}
+{% if errorSummary.length > 0 %}{{ i18n.error[i18n.languageCode]}}: {% endif %}{{ i18n.pageTitles.editCompany[i18n.languageCode] }}
 {% endblock %}
 
 {% set action = "%1/%2/company" | replace("%1", routes.PRODUCT) | replace("%2",  productId) %}}
+{% set product_url = "%1/edit/%2" | replace("%1", routes.PRODUCT) | replace("%2",  productId) %}}
 
 {% block content %}
 
 <form method="POST" action="{{ action }}" novalidate>
 
+    {% if validation.isValid == false %}
+        {{ govukErrorSummary({
+           titleText: i18n.problem[i18n.languageCode],
+           errorList: errorSummary
+        }) }}
+    {% endif %}
+
     {% call govukFieldset({
         legend: {
-            text: i18n.sections.editCompany[i18n.languageCode],
+            text: i18n.sections.company[i18n.languageCode],
             classes: "govuk-fieldset__legend--l",
             isPageHeading: true
         }
     }) %}
+
+    {{ govukInsetText({
+      text: i18n.hints.company[i18n.languageCode]
+    }) }}
 
     {% include "partials/company-form-fields.njk" %}
 
@@ -37,7 +51,7 @@
     {{ govukButton({
       text: i18n.buttons.back[i18n.languageCode],
       classes: "govuk-button--secondary",
-      href: routes.DETAILS_OF_PRODUCT,
+      href: product_url,
       attributes : {
           "data-cy": "back"
       }

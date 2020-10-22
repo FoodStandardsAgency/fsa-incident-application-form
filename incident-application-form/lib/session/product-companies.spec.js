@@ -21,10 +21,20 @@ describe(`lib/session/product-companies`, () => {
         {},
       ],
       [
-        "missing products[productId].originCountry",
+        "missing products[productId].companies",
         {
           session: {
-            products: { [productId]: { originCountry: {} } },
+            products: { [productId]: { anyOtherValidKey: {} } },
+          },
+          productId,
+        },
+        {},
+      ],
+      [
+        "missing products[productId].companies.value",
+        {
+          session: {
+            products: { [productId]: { companies: {} } },
           },
           productId,
         },
@@ -34,7 +44,9 @@ describe(`lib/session/product-companies`, () => {
         "happy path",
         {
           session: {
-            products: { [productId]: { companies: mockCompanies } },
+            products: {
+              [productId]: { companies: { value: mockCompanies } },
+            },
           },
           productId,
         },

@@ -3,11 +3,11 @@
 {{ govukButton({
     text: i18n.buttons.editProduct[i18n.languageCode],
     classes: "govuk-button govuk-button--secondary",
-    href: "%1/edit/%2" | replace("%1", routes.PRODUCT) | replace("%2",  id)
+    href: "%1/edit/%2" | replace("%1", routes.PRODUCT) | replace("%2", id)
 }) }}
 
 {{ govukButton({
     text: i18n.buttons.removeProduct[i18n.languageCode],
     classes: "govuk-button govuk-button--warning",
-    href: "%1/remove/%2" | replace("%1", routes.PRODUCT) | replace("%2",  id)
+    href: "%1/remove/%2" | replace("%1", routes.PRODUCT) | replace("%2", id)
 }) }}

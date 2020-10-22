@@ -14,6 +14,12 @@ const {
 const { getProductTypes } = require("../lib/lookups/product-types");
 const { getUnits } = require("../lib/lookups/units");
 const { getSelectedUnitTypeFromSession } = require("../lib/session/unit-type");
+const {
+  getSelectedOriginCountryFromSession,
+} = require("../lib/session/origin-country");
+const {
+  getErrorSummaryFromValidation,
+} = require("../lib/validation/error-summary");
 
 const router = express.Router();
 
@@ -81,6 +87,8 @@ router.post("/", async function (req, res, next) {
     "use-by-year": useByYear,
   } = req.body;
 
+  const isCreate = submissionType === SUBMISSION_TYPES.ADD_COMPANY;
+
   const validation = validate(
     {
       additionalInformation,
@@ -110,7 +118,8 @@ router.post("/", async function (req, res, next) {
         year: useByYear,
       },
     },
-    i18n
+    i18n,
+    isCreate
   );
 
   if (!validation.isValid) {
@@ -127,6 +136,7 @@ router.post("/", async function (req, res, next) {
         i18n,
         routes
       ),
+      errorSummary: getErrorSummaryFromValidation(validation),
       i18n,
       productId,
       productTypes,
@@ -151,9 +161,6 @@ router.post("/", async function (req, res, next) {
 
   req.session.products = validatedProducts;
 
-  // the valid form submission data
-  // console.log(`validation`, validation.validatedFields);
-
   if (submissionType === SUBMISSION_TYPES.ADD_COMPANY) {
     res.redirect(`${routes.PRODUCT}/${productId}/company`);
     return;
@@ -171,7 +178,7 @@ router.get("/edit/:productId", async function (req, res, next) {
     req.session,
     productId
   );
-  const selectedOriginCountry = getSelectedProductTypeFromSession(
+  const selectedOriginCountry = getSelectedOriginCountryFromSession(
     req.session,
     productId
   );
@@ -197,6 +204,7 @@ router.get("/edit/:productId", async function (req, res, next) {
       i18n,
       routes
     ),
+    errorSummary: getErrorSummaryFromValidation(validation),
     i18n,
     originCountries,
     productId,

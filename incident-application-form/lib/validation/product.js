@@ -7,7 +7,11 @@ const {
 } = require("./individual-fields/amount-imported-distributed");
 const { validateBatchCodes } = require("./individual-fields/batch-codes");
 const { validateBrand } = require("./individual-fields/brand");
+const { validateCompanies } = require("./individual-fields/companies");
 const { validateDate } = require("./individual-fields/date");
+const {
+  validateAddressCountry,
+} = require("./individual-fields/address.country");
 const { validatePackSize } = require("./individual-fields/pack-size");
 const {
   validatePackageDescription,
@@ -24,17 +28,18 @@ module.exports = {
       batchCodes,
       bestBefore,
       brand,
+      companies,
       displayUntil,
+      originCountry,
       packSize,
       packageDescription,
       productName,
       productType,
       unitType,
       useBy,
-      // this value is passed through, see below
-      companies,
     },
-    i18n
+    i18n,
+    isCreate
   ) => {
     const validatedAdditionalInformation = validateAdditionalInformation(
       additionalInformation,
@@ -47,7 +52,11 @@ module.exports = {
     const validatedBatchCodes = validateBatchCodes(batchCodes, i18n);
     const validatedBestBefore = validateDate(bestBefore, i18n);
     const validatedBrand = validateBrand(brand, i18n);
+    const validatedCompanies = validateCompanies(companies, i18n, {
+      required: !isCreate,
+    });
     const validatedDisplayUntil = validateDate(displayUntil, i18n);
+    const validatedOriginCountry = validateAddressCountry(originCountry, i18n);
     const validatedPackSize = validatePackSize(packSize, i18n);
     const validatedPackageDescription = validatePackageDescription(
       packageDescription,
@@ -64,7 +73,9 @@ module.exports = {
       validatedBatchCodes,
       validatedBestBefore,
       validatedBrand,
+      validatedCompanies,
       validatedDisplayUntil,
+      validatedOriginCountry,
       validatedPackSize,
       validatedPackageDescription,
       validatedProductName,
@@ -81,15 +92,15 @@ module.exports = {
         ...validatedBatchCodes,
         bestBefore: validatedBestBefore.date,
         ...validatedBrand,
+        ...validatedCompanies,
         displayUntil: validatedDisplayUntil.date,
+        originCountry: validatedOriginCountry.country,
         ...validatedPackSize,
         ...validatedPackageDescription,
         ...validatedProductName,
         ...validatedProductType,
         ...validatedUnitType,
         useBy: validatedUseBy.date,
-        // TODO - must validate at least one entry here
-        companies,
       },
     };
   },
