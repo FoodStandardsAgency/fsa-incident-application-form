@@ -44,8 +44,6 @@ const sendNotificationEmail = async (data) => {
 };
 
 router.get("/", async function (req, res, next) {
-  console.log(`sess`, JSON.stringify(req.session, null, 2));
-
   const [
     companyTypes,
     countries,
@@ -60,8 +58,6 @@ router.get("/", async function (req, res, next) {
     getUnits(languageCode),
   ]);
 
-  // const payload = assemblePayload(req.session);
-
   res.render(template, {
     i18n,
     companyTypes,
@@ -73,8 +69,6 @@ router.get("/", async function (req, res, next) {
     routes,
     units,
     yourDetails: req.session.yourDetails || {},
-
-    // payload,
   });
 });
 

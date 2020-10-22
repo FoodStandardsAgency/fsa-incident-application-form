@@ -25,8 +25,8 @@ const assembleCompany = (company) => {
 const assembleProduct = (product) => {
   const Companies = [];
 
-  for (const companyId of Object.keys(product.companies)) {
-    Companies.push(assembleCompany(product.companies[companyId]));
+  for (const companyId of Object.keys(product.companies.value)) {
+    Companies.push(assembleCompany(product.companies.value[companyId]));
   }
 
   const formatBatchCodes = (batchCodes) =>

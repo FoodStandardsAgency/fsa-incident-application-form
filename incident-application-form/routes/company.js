@@ -123,22 +123,10 @@ router.get("/edit/:companyId", async function (req, res, next) {
   const template = "edit-company";
 
   const { productId, companyId } = req.params;
-  console.log(`edit validation`, req.session.products[productId].companies);
 
   const validation = {
     validatedFields: req.session.products[productId].companies.value,
   };
-  console.log(`companyId`, companyId);
-  console.log(`validation`, validation);
-  console.log(`validation.validatedFields`, validation.validatedFields);
-  console.log(
-    `validation.validatedFields[companyId]`,
-    validation.validatedFields[companyId]
-  );
-  console.log(
-    `validation.validatedFields[companyId].companyType`,
-    validation.validatedFields[companyId].companyType
-  );
 
   const selectedCompanyType =
     validation.validatedFields[companyId].companyType.value;

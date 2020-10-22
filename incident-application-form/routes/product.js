@@ -170,7 +170,6 @@ router.post("/", async function (req, res, next) {
 });
 
 router.get("/edit/:productId", async function (req, res, next) {
-  console.log(`req.session`, JSON.stringify(req.session, null, 2));
   const template = "edit-product";
 
   const { productId } = req.params;
