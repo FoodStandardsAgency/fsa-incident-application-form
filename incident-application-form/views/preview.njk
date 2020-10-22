@@ -15,7 +15,11 @@
 
 <form method="POST" action="" novalidate>
 
-    <h2 class="govuk-heading-xl">{{ i18n.sections.yourDetails[i18n.languageCode] }}</h2>
+    <h1 class="govuk-heading-xl">{{ i18n.pageTitle[i18n.languageCode] }}</h1>
+  
+    <p class="govuk-body-l">{{ i18n.text.makeSureAccurateBeforeSubmit[i18n.languageCode] }}</p>
+
+    <h2 class="govuk-heading-l">{{ i18n.sections.yourDetails[i18n.languageCode] }}</h2>
 
     <dl class="govuk-summary-list govuk-summary-list--no-border">
 
@@ -166,7 +170,7 @@
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-    <h2 class="govuk-heading-xl">{{ i18n.sections.detailsOfIncident[i18n.languageCode] }}</h2>
+    <h2 class="govuk-heading-l">{{ i18n.sections.detailsOfIncident[i18n.languageCode] }}</h2>
 
     <dl class="govuk-summary-list govuk-summary-list--no-border">
       <div class="govuk-summary-list__row">
@@ -242,7 +246,7 @@
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-    <h2 class="govuk-heading-xl">{{ i18n.sections.detailsOfProducts[i18n.languageCode] }}</h2>
+    <h2 class="govuk-heading-l">{{ i18n.sections.detailsOfProducts[i18n.languageCode] }}</h2>
 
     {% for productId, product in products %}
       {% set edit_product_path = "/%1/edit/%2" | replace("%1", routes.PRODUCT) | replace("%2", productId) %}
@@ -555,7 +559,7 @@
     }) }}
 
     {{ govukButton({
-        text: i18n.buttons.back[i18n.languageCode],
+        text: i18n.buttons.previous[i18n.languageCode],
         classes: "govuk-button--secondary",
         href: localisePath( routes.DETAILS_OF_PRODUCT, i18n.languageCode ),
         attributes : {

@@ -95,6 +95,10 @@
         "cy": "Gwlad",
         "en": "Country"
       },
+      "hint": {
+        "cy": "Pob gwlad ar restr o wledydd FCO",
+        "en": "All countries on the FCO country list."
+      },
       "values": {
         "defaultValue": {
           "cy": "Dewiswch wlad os gwelwch yn dda",
@@ -145,7 +149,7 @@
       "en": "Best-before date"
     },
     "hint": {
-      "cy": "Os oes mwy nag un, nodwch hyn yn y maes",
+      "cy": "Os oes mwy nag un, nodwch hyn yn y maes gwybodaeth ychwanegol",
       "en": "If there is more than one, please enter this in the additional information field"
     }
   },
@@ -166,6 +170,18 @@
     }
   },
   "buttons": {
+    "add": {
+      "cy": "Ychwanegu",
+      "en": "Add"
+    },
+    "addCompany": {
+      "cy": "Ychwanegu Cwmni",
+      "en": "Add Company"
+    },
+    "change": {
+      "cy": "Newid",
+      "en": "Change"
+    },
     "next": {
       "cy": "Nesaf",
       "en": "Next"
@@ -174,6 +190,14 @@
       "cy": "Blaenorol",
       "en": "Previous"
     },
+    "remove": {
+      "cy": "Tynnu",
+      "en": "Remove"
+    },
+    "save": {
+      "cy": "Arbed a pharhau",
+      "en": "Save and Continue"
+    },
     "start": {
       "cy": "Dechrau",
       "en": "Start"
@@ -181,40 +205,6 @@
     "submit": {
       "cy": "Cyflwyno",
       "en": "Submit"
-    },
-
-    "addProduct": {
-      "cy": "Ychwanegu cynnyrch",
-      "en": "Add Product"
-    },
-    "editProduct": {
-      "cy": "Golygu Cynnyrch",
-      "en": "Edit Product"
-    },
-    "removeProduct": {
-      "cy": "Tynnwch y cynnyrch",
-      "en": "Remove Product"
-    },
-    "save": {
-      "cy": "Arbed a Parhau",
-      "en": "Save and Continue"
-    },
-
-    "addCompany": {
-      "cy": "Ychwanegu Cwmni",
-      "en": "Add Company"
-    },
-    "back": {
-      "cy": "yn ôl",
-      "en": "Back"
-    },
-    "editCompany": {
-      "cy": "Golygu Cwmni",
-      "en": "Edit Company"
-    },
-    "removeCompany": {
-      "cy": "Dileu Cwmni",
-      "en": "Remove Company"
     }
   },
   "companies": {
@@ -295,12 +285,12 @@
   },
   "distributionDetails": {
     "label": {
-      "cy": "I ble mae'r cynnyrch wedi'i ddosbarthu?",
+      "cy": "I ble mae'r cynnyrch wedi'i ddosbarthu? ",
       "en": "Where has the product been distributed?"
     },
     "hint": {
-      "cy": "Cofiwch gynnwys gwledydd yr Undeb Ewropeaidd (UE) a thrydydd gwledydd",
-      "en": "Include EU and third countries"
+      "cy": "Cofiwch gynnwys manylion dosbarthiad yn y Deyrnas Unedig (DU) a thramor",
+      "en": "Include details of UK and foreign distribution"
     }
   },
   "email": {
@@ -373,7 +363,7 @@
   },
   "notifierType": {
     "label": {
-      "cy": "Math Hysbysydd",
+      "cy": "Math o hysbysydd",
       "en": "Notifier Type"
     },
     "values": {
@@ -393,6 +383,10 @@
     "label": {
       "cy": "Sefydliad",
       "en": "Organisation"
+    },
+    "hint": {
+      "cy": "Eich awdurdod lleol neu fusnes",
+      "en": "Your local authority or business"
     },
     "validation": {
       "invalidLength": {
@@ -441,7 +435,7 @@
   },
   "position": {
     "label": {
-      "cy": "Swydd",
+      "cy": "Safle",
       "en": "Position"
     },
     "validation": {
