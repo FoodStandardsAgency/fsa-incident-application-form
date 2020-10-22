@@ -41,7 +41,7 @@ jobs:
     steps:
     - uses: azure/login@v1
       with:
-        creds: ${{ secrets.PRD_AZURE_CREDENTIALS }}
+        creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
 
     - name: Default location + resource group
       uses: Azure/cli@v1.0.0
