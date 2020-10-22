@@ -92,7 +92,6 @@ module.exports = {
         ...validatedBatchCodes,
         bestBefore: validatedBestBefore.date,
         ...validatedBrand,
-        // companies,
         ...validatedCompanies,
         displayUntil: validatedDisplayUntil.date,
         originCountry: validatedOriginCountry.country,
