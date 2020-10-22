@@ -1,4 +1,4 @@
-const assembleAddress = ({ address }) => {
+const assembleAddress = (address) => {
   return {
     AddressLine1: address.line1.value,
     AddressLine2: address.line2.value,
@@ -11,7 +11,7 @@ const assembleAddress = ({ address }) => {
 
 const assembleCompany = (company) => {
   return {
-    Addresses: assembleAddress(company),
+    Addresses: assembleAddress(company.address),
     Contact: {
       Name: company.contactName.value,
       EmailAddress: company.email.value,
@@ -25,8 +25,8 @@ const assembleCompany = (company) => {
 const assembleProduct = (product) => {
   const Companies = [];
 
-  for (const companyId of Object.keys(product.companies)) {
-    Companies.push(assembleCompany(product.companies[companyId]));
+  for (const companyId of Object.keys(product.companies.value)) {
+    Companies.push(assembleCompany(product.companies.value[companyId]));
   }
 
   const formatBatchCodes = (batchCodes) =>
@@ -72,7 +72,7 @@ module.exports = {
     }
 
     return {
-      Addresses: assembleAddress(yourDetails),
+      Addresses: assembleAddress(yourDetails.address),
       Incidents: {
         IncidentTitle: referenceNumber,
         NotifierID: parseInt(yourDetails.notifierType.value, 10) || 0,

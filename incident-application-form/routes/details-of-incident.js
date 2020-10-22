@@ -1,5 +1,8 @@
 const express = require("express");
 const { validate } = require("../lib/validation/details-of-incident");
+const {
+  getErrorSummaryFromValidation,
+} = require("../lib/validation/error-summary");
 
 const router = express.Router();
 
@@ -54,6 +57,7 @@ router.post("/", async function (req, res, next) {
     res.render(template, {
       back: routes.YOUR_DETAILS,
       detailsOfIncident: req.session.detailsOfIncident || {},
+      errorSummary: getErrorSummaryFromValidation(validation),
       i18n,
       validation,
       routes,

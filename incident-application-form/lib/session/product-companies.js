@@ -4,7 +4,8 @@ module.exports = {
       (session &&
         session.products &&
         session.products[productId] &&
-        session.products[productId].companies) ||
+        session.products[productId].companies &&
+        session.products[productId].companies.value) ||
       {}
     );
   },
