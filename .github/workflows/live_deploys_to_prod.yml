@@ -1,20 +1,8 @@
-name: push to live triggers deploy to prd
+name: push to live triggers deploy to production
 
 on:
   push:
     branches: [ live ]
-
-env:
-  # From
-  registry_from: ${{ secrets.DEV_CONTAINER_REGISTRY_NAME }}
-  registry_from_username: ${{ secrets.DEV_CONTAINER_REGISTRY_USERNAME }}
-  registry_from_password: ${{ secrets.DEV_CONTAINER_REGISTRY_PASSWORD }}
-  tag_from: latest
-  # To
-  registry_to: ${{ secrets.PROD_CONTAINER_REGISTRY_NAME }}
-  registry_to_username: ${{ secrets.PROD_CONTAINER_REGISTRY_USERNAME }}
-  registry_to_password: ${{ secrets.PROD_CONTAINER_REGISTRY_PASSWORD }}
-  tag_to: prd
 
 jobs:
 
@@ -53,7 +41,7 @@ jobs:
     steps:
     - uses: azure/login@v1
       with:
-        creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
+        creds: ${{ secrets.PRD_AZURE_CREDENTIALS }}
 
     - name: Default location + resource group
       uses: Azure/cli@v1.0.0
@@ -105,42 +93,39 @@ jobs:
               GOV_NOTIFY_API_KEY=${{ secrets.PROD_GOV_NOTIFY_API_KEY }} \
               NOTIFICATION_EMAIL=${{ secrets.PROD_NOTIFICATION_EMAIL }}
 
-  deploy:
-    name: Promote incident report form to production
-    needs: [form-ui-appservice]
+  build:
+    name: Build application and push into Container registry
+    needs: form-ui-appservice
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+    - name: Build and push
+      uses: docker/build-push-action@v1
+      with:
+        registry: ${{ secrets.PROD_CONTAINER_REGISTRY_NAME }}.azurecr.io
+        username: ${{ secrets.PROD_CONTAINER_REGISTRY_USERNAME }}
+        password: ${{ secrets.PROD_CONTAINER_REGISTRY_PASSWORD }}
+        repository: form-ui
+        path: incident-application-form
+        tags: latest
+        build_args: GITHUB_SHA=${{ github.sha }}
+        add_git_labels: true
 
+  deploy:
+    name: Deploy container images to Production
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
 
-    - name: Defaults
+    - name: Default location + resource group
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
           az configure --defaults location=uksouth
           az configure --defaults group=RG-APP-FSA-PRD-IncidentReportForm-1
-
-    - name: Log in to source container registry
-      uses: azure/docker-login@v1
-      with:
-        login-server: ${{ env.registry_from }}.azurecr.io
-        username: ${{ env.registry_from_username }}
-        password: ${{ env.registry_from_password }}
-
-    - name: Log in to destination container registry
-      uses: azure/docker-login@v1
-      with:
-        login-server: ${{ env.registry_to }}.azurecr.io
-        username: ${{ env.registry_to_username }}
-        password: ${{ env.registry_to_password }}
-
-    - name: Promote container image
-      run: |
-        docker pull ${{ env.registry_from }}.azurecr.io/form-ui:${{ env.tag_from }}
-        docker tag ${{ env.registry_from }}.azurecr.io/form-ui:${{ env.tag_from }} ${{ env.registry_to }}.azurecr.io/form-ui:${{ env.tag_to }}
-        docker push ${{ env.registry_to }}.azurecr.io/form-ui:${{ env.tag_to }}
 
     - name: Create slot ${{ github.sha }}
       uses: Azure/cli@v1.0.0
@@ -152,7 +137,7 @@ jobs:
       uses: Azure/cli@v1.0.0
       with:
         inlineScript: |
-          az webapp deployment slot swap --name fsa-incident-report-form-prd --slot ${{ github.sha }} --action swap
+          az webapp deployment slot swap   --name fsa-incident-report-form-prd --slot ${{ github.sha }} --action swap
 
     - name: Delete slot ${{ github.sha }}
       # Clean up the slot regardless of errors
