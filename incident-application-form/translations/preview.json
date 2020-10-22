@@ -23,16 +23,6 @@
       "en": "Company"
     }
   },
-  "buttons": {
-    "submit": {
-      "cy": "Cyflwyno",
-      "en": "Submit"
-    },
-    "back": {
-      "cy": "yn ôl",
-      "en": "Back"
-    }
-  },
   "text": {
     "change": {
       "cy": "Newid",

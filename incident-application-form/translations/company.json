@@ -14,15 +14,5 @@
       "cy": "Ychwanegwch bob sefydliad rydych chi’n gwybod amdanynt sy’n gysylltiedig â gweithgynhyrchu, mewnforio, gwerthu a dosbarthu'r cynhyrchion dan sylw",
       "en": "Add every organisation that is known to be associated with the manufacture, import, sale and distribution of the affected product(s)"
     }
-  },
-  "buttons": {
-    "back": {
-      "cy": "yn ôl",
-      "en": "Back"
-    },
-    "save": {
-      "cy": "Arbed a Parhau",
-      "en": "Save and Continue"
-    }
   }
 }

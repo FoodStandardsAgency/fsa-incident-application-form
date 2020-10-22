@@ -9,28 +9,6 @@
       "en": "Product details"
     }
   },
-  "buttons": {
-    "addProduct": {
-      "cy": "Ychwanegu cynnyrch",
-      "en": "Add Product"
-    },
-    "back": {
-      "cy": "yn ôl",
-      "en": "Back"
-    },
-    "editProduct": {
-      "cy": "Golygu Cynnyrch",
-      "en": "Edit Product"
-    },
-    "removeProduct": {
-      "cy": "Tynnwch y cynnyrch",
-      "en": "Remove Product"
-    },
-    "save": {
-      "cy": "Arbed a Parhau",
-      "en": "Save and Continue"
-    }
-  },
   "headings": {
     "product": {
       "cy": "Cynnyrch",

@@ -1,6 +1,6 @@
 const { camelToKebab } = require("./camel-to-kebab");
 
-describe(`lib/validation/camel-to-kebab`, () => {
+describe(`lib/camel-to-kebab`, () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

@@ -16,16 +16,16 @@
 
     {% if tabularDetailsOfProducts | length > 0 %}
         {{ govukTable({
-          firstCellIsHeader: true,
-          head: [
-            {
-              text: i18n.headings.product[i18n.languageCode]
-            },
-            {
-              text: i18n.headings.action[i18n.languageCode]
-            }
-          ],
-          rows: tabularDetailsOfProducts
+            firstCellIsHeader: true,
+            head: [
+                {
+                    text: i18n.headings.product[i18n.languageCode]
+                },
+                {
+                    text: i18n.headings.action[i18n.languageCode]
+                }
+            ],
+            rows: tabularDetailsOfProducts
         }) }}
     {% else %}
         <div>
@@ -36,11 +36,11 @@
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-third">
             {{ govukButton({
-              text: i18n.buttons.addProduct[i18n.languageCode],
-              href: routes.PRODUCT,
-              attributes : {
-                  "data-cy": "add-product"
-              }
+                text: i18n.buttons.addProduct[i18n.languageCode],
+                href: localisePath( [ "/", routes.PRODUCT ] | join, i18n.languageCode),
+                attributes : {
+                    "data-cy": "add-product"
+                }
             }) }}
         </div>
     </div>
@@ -54,12 +54,12 @@
     }) }}
 
     {{ govukButton({
-      text: i18n.buttons.back[i18n.languageCode],
-      classes: "govuk-button--secondary",
-      href: routes.DETAILS_OF_INCIDENT,
-      attributes : {
-          "data-cy": "back"
-      }
+        text: i18n.buttons.back[i18n.languageCode],
+        classes: "govuk-button--secondary",
+        href: localisePath( [ "/", routes.DETAILS_OF_INCIDENT ] | join, i18n.languageCode),
+        attributes : {
+            "data-cy": "back"
+        }
     }) }}
 
 </form>

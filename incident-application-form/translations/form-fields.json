@@ -165,6 +165,54 @@
       }
     }
   },
+  "buttons": {
+    "next": {
+      "cy": "Nesaf",
+      "en": "Next"
+    },
+    "previous": {
+      "cy": "Blaenorol",
+      "en": "Previous"
+    },
+    "start": {
+      "cy": "Dechrau",
+      "en": "Start"
+    },
+
+    "addProduct": {
+      "cy": "Ychwanegu cynnyrch",
+      "en": "Add Product"
+    },
+    "editProduct": {
+      "cy": "Golygu Cynnyrch",
+      "en": "Edit Product"
+    },
+    "removeProduct": {
+      "cy": "Tynnwch y cynnyrch",
+      "en": "Remove Product"
+    },
+    "save": {
+      "cy": "Arbed a Parhau",
+      "en": "Save and Continue"
+    },
+
+    "addCompany": {
+      "cy": "Ychwanegu Cwmni",
+      "en": "Add Company"
+    },
+    "back": {
+      "cy": "yn ôl",
+      "en": "Back"
+    },
+    "editCompany": {
+      "cy": "Golygu Cwmni",
+      "en": "Edit Company"
+    },
+    "removeCompany": {
+      "cy": "Dileu Cwmni",
+      "en": "Remove Company"
+    }
+  },
   "companies": {
     "label": {
       "cy": "Cwmnïau",
