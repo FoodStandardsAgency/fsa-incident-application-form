@@ -36,7 +36,7 @@
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-third">
             {{ govukButton({
-                text: i18n.buttons.addProduct[i18n.languageCode],
+                text: i18n.buttons.add[i18n.languageCode],
                 href: localisePath( [ "/", routes.PRODUCT ] | join, i18n.languageCode),
                 attributes : {
                     "data-cy": "add-product"
@@ -54,7 +54,7 @@
     }) }}
 
     {{ govukButton({
-        text: i18n.buttons.back[i18n.languageCode],
+        text: i18n.buttons.previous[i18n.languageCode],
         classes: "govuk-button--secondary",
         href: localisePath( [ "/", routes.DETAILS_OF_INCIDENT ] | join, i18n.languageCode),
         attributes : {

@@ -2,7 +2,7 @@ name: pull_requests trigger tests
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ dev ]
 
 jobs:
 
