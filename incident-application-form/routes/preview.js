@@ -8,22 +8,22 @@ const { getProductTypes } = require("../lib/lookups/product-types");
 const { getUnits } = require("../lib/lookups/units");
 const send = require("../lib/email/send");
 const { generateReferenceId } = require("../lib/reference-id-generator");
+const { localisePath } = require("../lib/path-to-localised-path");
 
 const router = express.Router();
 
 const template = "preview";
 
-const languageCode = "en";
 const pageTranslations = require(`${__dirname}/../translations/${template}.json`);
 const formFieldTranslations = require(`${__dirname}/../translations/form-fields.json`);
 
 const routes = require(`${__dirname}/../routes/routes.json`);
 
-const i18n = {
+const getI18n = (languageCode) => ({
   languageCode,
   ...pageTranslations,
   ...formFieldTranslations,
-};
+});
 
 const sendConfirmationEmail = async (data) => {
   const email = data.yourDetails.email.value;
@@ -51,15 +51,15 @@ router.get("/", async function (req, res, next) {
     productTypes,
     units,
   ] = await Promise.all([
-    getCompanyTypes(languageCode),
-    getCountries(languageCode),
-    getNotifierTypes(languageCode),
-    getProductTypes(languageCode),
-    getUnits(languageCode),
+    getCompanyTypes(req.locale),
+    getCountries(req.locale),
+    getNotifierTypes(req.locale),
+    getProductTypes(req.locale),
+    getUnits(req.locale),
   ]);
 
   res.render(template, {
-    i18n,
+    i18n: getI18n(req.locale),
     companyTypes,
     countries,
     detailsOfIncident: req.session.detailsOfIncident || {},
@@ -86,7 +86,7 @@ router.post("/", async function (req, res, next) {
   // TODO post this off to Rainmaker
   const payload = assemblePayload(req.session);
 
-  res.redirect(routes.COMPLETE);
+  res.redirect(localisePath(`/${routes.COMPLETE}`, req.locale));
 });
 
 module.exports = router;

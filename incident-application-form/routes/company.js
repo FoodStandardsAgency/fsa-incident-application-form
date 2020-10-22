@@ -6,35 +6,35 @@ const { getCountries } = require("../lib/lookups/countries");
 const {
   getErrorSummaryFromValidation,
 } = require("../lib/validation/error-summary");
+const { localisePath } = require("../lib/path-to-localised-path");
 
 const router = express.Router({ mergeParams: true });
 
-const languageCode = "en";
 const pageTranslations = require(`${__dirname}/../translations/company.json`);
 const formFieldTranslations = require(`${__dirname}/../translations/form-fields.json`);
 
 const routes = require(`${__dirname}/../routes/routes.json`);
 
-const i18n = {
+const getI18n = (languageCode) => ({
   languageCode,
   ...pageTranslations,
   ...formFieldTranslations,
-};
+});
 
 router.get("/", async function (req, res, next) {
   const template = "add-company";
   const { productId } = req.params;
 
   const [companyTypes, countries] = await Promise.all([
-    await getCompanyTypes(languageCode),
-    await getCountries(languageCode),
+    await getCompanyTypes(req.locale),
+    await getCountries(req.locale),
   ]);
 
   res.render(template, {
     companyId: uuidv4(),
     companyTypes,
     countries,
-    i18n,
+    i18n: getI18n(req.locale),
     productId,
     routes,
     template,
@@ -42,6 +42,9 @@ router.get("/", async function (req, res, next) {
 });
 
 router.post("/", async function (req, res, next) {
+  const { locale } = req;
+  const i18n = getI18n(req.locale);
+
   const {
     template,
     companyId,
@@ -83,8 +86,8 @@ router.post("/", async function (req, res, next) {
   }
 
   const [companyTypes, countries] = await Promise.all([
-    await getCompanyTypes(languageCode, companyType),
-    await getCountries(languageCode, addressCountry),
+    await getCompanyTypes(locale, companyType),
+    await getCountries(locale, addressCountry),
   ]);
 
   if (!validation.isValid) {
@@ -116,7 +119,7 @@ router.post("/", async function (req, res, next) {
     },
   };
 
-  res.redirect(`${routes.PRODUCT}/edit/${productId}`);
+  res.redirect(localisePath(`/${routes.PRODUCT}/edit/${productId}`, locale));
 });
 
 router.get("/edit/:companyId", async function (req, res, next) {
@@ -134,12 +137,12 @@ router.get("/edit/:companyId", async function (req, res, next) {
     validation.validatedFields[companyId].address.country.value;
 
   const [companyTypes, countries] = await Promise.all([
-    await getCompanyTypes(languageCode, selectedCompanyType),
-    await getCountries(languageCode, selectedCountry),
+    await getCompanyTypes(req.locale, selectedCompanyType),
+    await getCountries(req.locale, selectedCountry),
   ]);
 
   res.render(template, {
-    i18n,
+    i18n: getI18n(req.locale),
     companyId,
     companyTypes,
     countries,
@@ -164,7 +167,9 @@ router.get("/remove/:companyId", async function (req, res, next) {
   }
   req.session.products = products;
 
-  res.redirect(`${routes.PRODUCT}/edit/${productId}`);
+  res.redirect(
+    localisePath(`/${routes.PRODUCT}/edit/${productId}`, req.locale)
+  );
 });
 
 module.exports = router;

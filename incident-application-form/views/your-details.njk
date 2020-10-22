@@ -32,6 +32,7 @@
     {{ govukSelect({
         id: "notifier-type",
         name: "notifier-type",
+        classes: "govuk-input govuk-!-width-one-third",
         attributes : {
             "data-cy": "notifier-type"
         },
@@ -106,6 +107,7 @@
 
     {% endcall %}
 
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     {% call govukFieldset({
         legend: {
@@ -161,7 +163,7 @@
 
     {% endcall %}
 
-
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     {% call govukFieldset({
         legend: {
@@ -272,6 +274,7 @@
     {{ govukSelect({
         id: "address.country",
         name: "address.country",
+        classes: "govuk-input govuk-!-width-one-half",
         attributes : {
             "data-cy": "address.country"
         },
@@ -291,10 +294,10 @@
 
 
     {{ govukButton({
-      text: i18n.buttons.save[i18n.languageCode],
-      attributes : {
-          "data-cy": "submit"
-      }
+        text: i18n.buttons.next[i18n.languageCode],
+        attributes : {
+            "data-cy": "submit"
+        }
     }) }}
 
 </form>

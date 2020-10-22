@@ -8,9 +8,11 @@
 {% if errorSummary.length > 0 %}{{ i18n.error[i18n.languageCode]}}: {% endif %}{{ i18n.pageTitles.addProduct[i18n.languageCode] }}
 {% endblock %}
 
+{% set form_action_path = localisePath( [ "/", routes.PRODUCT ] | join, i18n.languageCode) %}
+
 {% block content %}
 
-<form method="POST" action="{{ routes.PRODUCT }}" novalidate>
+<form method="POST" action="{{ form_action_path }}" novalidate>
 
     {% if validation.isValid == false %}
         {{ govukErrorSummary({
@@ -34,21 +36,21 @@
     {% include "partials/add-company.njk" %}
 
     {{ govukButton({
-      text: i18n.buttons.save[i18n.languageCode],
-      name: "submission-type",
-      value: SUBMISSION_TYPES.ADD_PRODUCT,
-      attributes : {
-          "data-cy": "submit"
-      }
+        text: i18n.buttons.save[i18n.languageCode],
+        name: "submission-type",
+        value: SUBMISSION_TYPES.ADD_PRODUCT,
+        attributes : {
+            "data-cy": "submit"
+        }
     }) }}
 
     {{ govukButton({
-      text: i18n.buttons.back[i18n.languageCode],
-      classes: "govuk-button--secondary",
-      href: routes.DETAILS_OF_PRODUCT,
-      attributes : {
-          "data-cy": "back"
-      }
+        text: i18n.buttons.back[i18n.languageCode],
+        classes: "govuk-button--secondary",
+        href: localisePath( [ "/", routes.DETAILS_OF_PRODUCT ] | join, i18n.languageCode),
+        attributes : {
+            "data-cy": "back"
+        }
     }) }}
 
 </form>

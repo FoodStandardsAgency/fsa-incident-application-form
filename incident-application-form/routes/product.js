@@ -20,20 +20,20 @@ const {
 const {
   getErrorSummaryFromValidation,
 } = require("../lib/validation/error-summary");
+const { localisePath } = require("../lib/path-to-localised-path");
 
 const router = express.Router();
 
-const languageCode = "en";
 const pageTranslations = require(`${__dirname}/../translations/product.json`);
 const formFieldTranslations = require(`${__dirname}/../translations/form-fields.json`);
 
 const routes = require(`${__dirname}/../routes/routes.json`);
 
-const i18n = {
+const getI18n = (languageCode) => ({
   languageCode,
   ...pageTranslations,
   ...formFieldTranslations,
-};
+});
 
 const SUBMISSION_TYPES = {
   ADD_PRODUCT: "add-product",
@@ -44,13 +44,13 @@ router.get("/", async function (req, res, next) {
   const template = "add-product";
 
   const [originCountries, productTypes, units] = await Promise.all([
-    getCountries(languageCode),
-    getProductTypes(languageCode),
-    getUnits(languageCode),
+    getCountries(req.locale),
+    getProductTypes(req.locale),
+    getUnits(req.locale),
   ]);
 
   res.render(template, {
-    i18n,
+    i18n: getI18n(req.locale),
     originCountries,
     productId: uuidv4(),
     productTypes,
@@ -62,6 +62,9 @@ router.get("/", async function (req, res, next) {
 });
 
 router.post("/", async function (req, res, next) {
+  const { locale } = req;
+  const i18n = getI18n(locale);
+
   const {
     "additional-information": additionalInformation,
     "amount-imported-distributed": amountImportedDistributed,
@@ -124,9 +127,9 @@ router.post("/", async function (req, res, next) {
 
   if (!validation.isValid) {
     const [productTypes, originCountries, units] = await Promise.all([
-      getProductTypes(languageCode, productType),
-      getCountries(languageCode, originCountry),
-      getUnits(languageCode, unitType),
+      getProductTypes(locale, productType),
+      getCountries(locale, originCountry),
+      getUnits(locale, unitType),
     ]);
 
     res.render(template, {
@@ -162,14 +165,20 @@ router.post("/", async function (req, res, next) {
   req.session.products = validatedProducts;
 
   if (submissionType === SUBMISSION_TYPES.ADD_COMPANY) {
-    res.redirect(`${routes.PRODUCT}/${productId}/company`);
+    res.redirect(
+      localisePath(`/${routes.PRODUCT}/${productId}/company`, locale)
+    );
+
     return;
   }
 
-  res.redirect(routes.PREVIEW);
+  res.redirect(localisePath(`/${routes.PREVIEW}`, locale));
 });
 
 router.get("/edit/:productId", async function (req, res, next) {
+  const { locale } = req;
+  const i18n = getI18n(locale);
+
   const template = "edit-product";
 
   const { productId } = req.params;
@@ -188,9 +197,9 @@ router.get("/edit/:productId", async function (req, res, next) {
   );
 
   const [productTypes, originCountries, units] = await Promise.all([
-    getProductTypes(languageCode, selectedProductType),
-    getCountries(languageCode, selectedOriginCountry),
-    getUnits(languageCode, selectedUnitType),
+    getProductTypes(locale, selectedProductType),
+    getCountries(locale, selectedOriginCountry),
+    getUnits(locale, selectedUnitType),
   ]);
 
   const validation = {
@@ -226,7 +235,7 @@ router.get("/remove/:productId", async function (req, res, next) {
   }
   req.session.products = products;
 
-  res.redirect(routes.DETAILS_OF_PRODUCT);
+  res.redirect(localisePath(`/${routes.DETAILS_OF_PRODUCT}`, req.locale));
 });
 
 module.exports = router;

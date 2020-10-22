@@ -3,28 +3,27 @@ const { validate } = require("../lib/validation/details-of-incident");
 const {
   getErrorSummaryFromValidation,
 } = require("../lib/validation/error-summary");
+const { localisePath } = require("../lib/path-to-localised-path");
 
 const router = express.Router();
 
 const template = "details-of-incident";
 
-const languageCode = "en";
-const pageTranslations = require(`${__dirname}/../translations/${template}.json`);
 const formFieldTranslations = require(`${__dirname}/../translations/form-fields.json`);
+const pageTranslations = require(`${__dirname}/../translations/${template}.json`);
 
 const routes = require(`${__dirname}/../routes/routes.json`);
 
-const i18n = {
+const getI18n = (languageCode) => ({
   languageCode,
-  ...pageTranslations,
   ...formFieldTranslations,
-};
+  ...pageTranslations,
+});
 
 router.get("/", async function (req, res, next) {
   res.render(template, {
-    back: routes.YOUR_DETAILS,
     detailsOfIncident: req.session.detailsOfIncident || {},
-    i18n,
+    i18n: getI18n(req.locale),
     routes,
   });
 });
@@ -50,27 +49,23 @@ router.post("/", async function (req, res, next) {
       localAuthorityNotified,
       additionalInformation,
     },
-    i18n
+    getI18n(req.locale)
   );
 
   if (!validation.isValid) {
     res.render(template, {
-      back: routes.YOUR_DETAILS,
       detailsOfIncident: req.session.detailsOfIncident || {},
       errorSummary: getErrorSummaryFromValidation(validation),
-      i18n,
+      i18n: getI18n(req.locale),
       validation,
       routes,
     });
     return;
   }
 
-  // the valid form submission data
-  // console.log(`validation`, validation.validatedFields);
-
   req.session.detailsOfIncident = validation.validatedFields;
 
-  res.redirect(routes.DETAILS_OF_PRODUCT);
+  res.redirect(localisePath(`/${routes.DETAILS_OF_PRODUCT}`, req.locale));
 });
 
 module.exports = router;

@@ -19,28 +19,6 @@
       "en": "Edit Product"
     }
   },
-  "buttons": {
-    "addCompany": {
-      "cy": "Ychwanegu Cwmni",
-      "en": "Add Company"
-    },
-    "back": {
-      "cy": "yn ôl",
-      "en": "Back"
-    },
-    "editCompany": {
-      "cy": "Golygu Cwmni",
-      "en": "Edit Company"
-    },
-    "removeCompany": {
-      "cy": "Dileu Cwmni",
-      "en": "Remove Company"
-    },
-    "save": {
-      "cy": "Arbed a Parhau",
-      "en": "Save and Continue"
-    }
-  },
   "headings": {
     "company": {
       "cy": "Cwmni",

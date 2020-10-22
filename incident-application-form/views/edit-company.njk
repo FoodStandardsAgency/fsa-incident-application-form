@@ -11,12 +11,15 @@
 {% if errorSummary.length > 0 %}{{ i18n.error[i18n.languageCode]}}: {% endif %}{{ i18n.pageTitles.editCompany[i18n.languageCode] }}
 {% endblock %}
 
-{% set action = "%1/%2/company" | replace("%1", routes.PRODUCT) | replace("%2",  productId) %}}
-{% set product_url = "%1/edit/%2" | replace("%1", routes.PRODUCT) | replace("%2",  productId) %}}
+{% set form_action_path = "/%1/%2/company" | replace("%1", routes.PRODUCT) | replace("%2",  productId) %}}
+{% set localised_form_action_path = localisePath( form_action_path, i18n.languageCode) %}
+
+{% set product_url = "/%1/edit/%2" | replace("%1", routes.PRODUCT) | replace("%2",  productId) %}}
+{% set localised_product_url = localisePath( product_url, i18n.languageCode) %}
 
 {% block content %}
 
-<form method="POST" action="{{ action }}" novalidate>
+<form method="POST" action="{{ localised_form_action_path }}" novalidate>
 
     {% if validation.isValid == false %}
         {{ govukErrorSummary({
@@ -34,7 +37,7 @@
     }) %}
 
     {{ govukInsetText({
-      text: i18n.hints.company[i18n.languageCode]
+        text: i18n.hints.company[i18n.languageCode]
     }) }}
 
     {% include "partials/company-form-fields.njk" %}
@@ -42,19 +45,19 @@
     {% endcall %}
 
     {{ govukButton({
-      text: i18n.buttons.save[i18n.languageCode],
-      attributes : {
-          "data-cy": "submit"
-      }
+        text: i18n.buttons.save[i18n.languageCode],
+        attributes : {
+            "data-cy": "submit"
+        }
     }) }}
 
     {{ govukButton({
-      text: i18n.buttons.back[i18n.languageCode],
-      classes: "govuk-button--secondary",
-      href: product_url,
-      attributes : {
-          "data-cy": "back"
-      }
+        text: i18n.buttons.back[i18n.languageCode],
+        classes: "govuk-button--secondary",
+        href: localised_product_url,
+        attributes : {
+            "data-cy": "back"
+        }
     }) }}
 
 </form>

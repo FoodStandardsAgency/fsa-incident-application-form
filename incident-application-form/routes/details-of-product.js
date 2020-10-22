@@ -7,34 +7,33 @@ const router = express.Router();
 
 const template = "details-of-product";
 
-const languageCode = "en";
 const pageTranslations = require(`${__dirname}/../translations/${template}.json`);
 const formFieldTranslations = require(`${__dirname}/../translations/form-fields.json`);
 
 const routes = require(`${__dirname}/../routes/routes.json`);
 
-const i18n = {
+const getI18n = (languageCode) => ({
   languageCode,
   ...pageTranslations,
   ...formFieldTranslations,
-};
+});
 
 router.get("/", async function (req, res, next) {
   const tabularDetailsOfProducts = formatProducts(
     req.session.products || {},
-    i18n,
+    getI18n(req.locale),
     routes
   );
 
   res.render(template, {
-    i18n,
+    i18n: getI18n(req.locale),
     routes,
     tabularDetailsOfProducts,
   });
 });
 
 router.post("/", async function (req, res, next) {
-  res.redirect(routes.PREVIEW);
+  res.redirect(localisePath(`/${routes.PREVIEW}`, req.locale));
 });
 
 module.exports = router;

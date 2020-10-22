@@ -8,15 +8,5 @@
       "cy": "Manylion y digwyddiad",
       "en": "Incident details"
     }
-  },
-  "buttons": {
-    "back": {
-      "cy": "yn ôl",
-      "en": "Back"
-    },
-    "save": {
-      "cy": "Arbed a Parhau",
-      "en": "Save and Continue"
-    }
   }
 }

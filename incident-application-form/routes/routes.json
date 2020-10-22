@@ -1,10 +1,10 @@
 {
   "HOME": "/",
-  "YOUR_DETAILS": "/your-details",
-  "DETAILS_OF_INCIDENT": "/details-of-incident",
-  "DETAILS_OF_PRODUCT": "/details-of-product",
-  "PRODUCT": "/product",
-  "COMPANY": "/company",
-  "PREVIEW": "/preview",
-  "COMPLETE": "/complete"
+  "YOUR_DETAILS": "your-details",
+  "DETAILS_OF_INCIDENT": "details-of-incident",
+  "DETAILS_OF_PRODUCT": "details-of-product",
+  "PRODUCT": "product",
+  "COMPANY": "company",
+  "PREVIEW": "preview",
+  "COMPLETE": "complete"
 }

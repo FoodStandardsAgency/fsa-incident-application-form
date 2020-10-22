@@ -11,35 +11,35 @@ const {
 const {
   getErrorSummaryFromValidation,
 } = require("../lib/validation/error-summary");
+const { localisePath } = require("../lib/path-to-localised-path");
 
 const router = express.Router();
 
 const template = "your-details";
 
-const languageCode = "en";
 const pageTranslations = require(`${__dirname}/../translations/${template}.json`);
 const formFieldTranslations = require(`${__dirname}/../translations/form-fields.json`);
 
 const routes = require(`${__dirname}/../routes/routes.json`);
 
-const i18n = {
+const getI18n = (languageCode) => ({
   languageCode,
   ...pageTranslations,
   ...formFieldTranslations,
-};
+});
 
 router.get("/", async function (req, res, next) {
   const addressCountry = getSelectedAddressCountryFromSession(req.session);
   const notifierType = getSelectedNotifierTypeFromSession(req.session);
 
   const [countries, notifierTypes] = await Promise.all([
-    await getCountries(languageCode, addressCountry),
-    await getNotifierTypes(languageCode, notifierType),
+    await getCountries(req.locale, addressCountry),
+    await getNotifierTypes(req.locale, notifierType),
   ]);
 
   res.render(template, {
     countries,
-    i18n,
+    i18n: getI18n(req.locale),
     notifierTypes,
     yourDetails: req.session.yourDetails || {},
   });
@@ -76,20 +76,20 @@ router.post("/", async function (req, res, next) {
       addressPostcode,
       addressCountry,
     },
-    i18n
+    getI18n(req.locale)
   );
 
   req.session.yourDetails = validation.validatedFields;
 
   if (!validation.isValid) {
     const [countries, notifierTypes] = await Promise.all([
-      await getCountries(languageCode, addressCountry),
-      await getNotifierTypes(languageCode, notifierType),
+      await getCountries(req.locale, addressCountry),
+      await getNotifierTypes(req.locale, notifierType),
     ]);
 
     res.render(template, {
       countries,
-      i18n,
+      i18n: getI18n(req.locale),
       errorSummary: getErrorSummaryFromValidation(validation),
       notifierTypes,
       validation,
@@ -98,10 +98,7 @@ router.post("/", async function (req, res, next) {
     return;
   }
 
-  // the valid form submission data
-  // console.log(`validation`, validation.validatedFields);
-
-  res.redirect(routes.DETAILS_OF_INCIDENT);
+  res.redirect(localisePath(`/${routes.DETAILS_OF_INCIDENT}`, req.locale));
 });
 
 module.exports = router;

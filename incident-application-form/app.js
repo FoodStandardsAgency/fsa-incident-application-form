@@ -25,17 +25,23 @@ var notifierTypeRouter = require("./lookupMocks/notifier-type");
 var productTypeRouter = require("./lookupMocks/product-type");
 var unitsRouter = require("./lookupMocks/units");
 
+var { localisePath } = require("./lib/path-to-localised-path");
+
 var app = express();
 
 var isProduction = app.get("env") === "production";
 
 // view engine setup
-nunjucks.configure(["node_modules/govuk-frontend/", "views"], {
-  autoescape: true,
-  express: app,
-  noCache: true,
-  watch: true,
-});
+var nunjucksEnv = nunjucks.configure(
+  ["node_modules/govuk-frontend/", "views"],
+  {
+    autoescape: true,
+    express: app,
+    noCache: true,
+    watch: true,
+  }
+);
+nunjucksEnv.addGlobal("localisePath", localisePath);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "njk");
 
@@ -58,14 +64,35 @@ if (isProduction) {
 
 app.use(session(sessionConfig));
 
-app.use("/", indexRouter);
-app.use(routes.YOUR_DETAILS, yourDetailsRouter);
-app.use(routes.DETAILS_OF_INCIDENT, detailsOfIncidentRouter);
-app.use(routes.DETAILS_OF_PRODUCT, detailsOfProductRouter);
-app.use(routes.PRODUCT, productRouter);
-app.use(`${routes.PRODUCT}/:productId/company`, companyRouter);
-app.use(routes.PREVIEW, previewRouter);
-app.use(routes.COMPLETE, thankyouRouter);
+function getLanguageStrings(req, res, next) {
+  req.locale = req.params.locale === "cy" ? "cy" : "en";
+  next();
+}
+
+app.use("/:locale(cy)?", getLanguageStrings, indexRouter);
+app.use(
+  `/:locale(cy)?/${routes.YOUR_DETAILS}`,
+  getLanguageStrings,
+  yourDetailsRouter
+);
+app.use(
+  `/:locale(cy)?/${routes.DETAILS_OF_INCIDENT}`,
+  getLanguageStrings,
+  detailsOfIncidentRouter
+);
+app.use(
+  `/:locale(cy)?/${routes.DETAILS_OF_PRODUCT}`,
+  getLanguageStrings,
+  detailsOfProductRouter
+);
+app.use(`/:locale(cy)?/${routes.PRODUCT}`, getLanguageStrings, productRouter);
+app.use(
+  `/:locale(cy)?/${routes.PRODUCT}/:productId/company`,
+  getLanguageStrings,
+  companyRouter
+);
+app.use(`/:locale(cy)?/${routes.PREVIEW}`, getLanguageStrings, previewRouter);
+app.use(`/:locale(cy)?/${routes.COMPLETE}`, getLanguageStrings, thankyouRouter);
 
 app.use("/lookup/companyType", companyTypeRouter);
 app.use("/lookup/country", countryRouter);
