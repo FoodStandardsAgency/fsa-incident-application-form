@@ -1,7 +1,8 @@
-name: pull_requests trigger tests
+name: pull_requests to dev trigger tests
 
 on:
-  pull_request
+  pull_request:
+    branches: [ dev ]
 
 jobs:
 
