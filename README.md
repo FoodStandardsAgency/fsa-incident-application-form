@@ -62,6 +62,7 @@ git status
 (note the `git status` - it's always worth checking that you've not got local changes floating around if you're a developer.. if this shows that your local 'dev' or 'production' branch isn't in perfect sync with origin you'll want to make it so before you do any merging.. google is your friend.)
 
 and from the production branch, merge dev.. + push the changes..
+
 ```
 git checkout production
 git merge dev
