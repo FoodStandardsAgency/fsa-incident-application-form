@@ -1,9 +1,16 @@
-const defaultFieldValues = {
+export const defaultFieldValues = {
   notifierType: "Industry",
   contactName: "my name here",
+  email: "my.email@somewhere.com",
+  organisation: "Test corp",
+  position: "my position",
   telephone1: "01234 445 667",
   address: {
-    town: "town",
+    line1: "123 Test Street",
+    line2: "Testfield",
+    town: "Testingtown",
+    county: "Testshire",
+    postcode: "TE1 5ST",
     country: "Norway",
   },
 };
@@ -33,14 +40,16 @@ Cypress.Commands.add(
       });
     }
 
-    cy.get('[data-cy="position"]').type('or should this be "role"?', {
+    cy.get('[data-cy="position"]').type(resolvedFieldValues.position, {
       force: true,
     });
 
-    cy.get('[data-cy="organisation"]').type("organisation", options);
+    cy.get('[data-cy="organisation"]').type(
+      resolvedFieldValues.organisation,
+      options
+    );
 
-    //Email, Telephone 1, Telephone 2, [Address] Line 1, Line 2, Line 3, Town, County, Postcode, Country
-    cy.get('[data-cy="email"]').type("my.email@somewhere.com", {
+    cy.get('[data-cy="email"]').type(resolvedFieldValues.email, {
       force: true,
     });
 
@@ -51,9 +60,15 @@ Cypress.Commands.add(
       );
     }
 
-    cy.get('[data-cy="address.line1"]').type("line1", options);
+    cy.get('[data-cy="address.line1"]').type(
+      resolvedFieldValues.address.line1,
+      options
+    );
 
-    cy.get('[data-cy="address.line2"]').type("line2", options);
+    cy.get('[data-cy="address.line2"]').type(
+      resolvedFieldValues.address.line2,
+      options
+    );
 
     if (!fieldsToSkip.includes("address.town")) {
       cy.get('[data-cy="address.town"]').type(
@@ -62,9 +77,15 @@ Cypress.Commands.add(
       );
     }
 
-    cy.get('[data-cy="address.county"]').type("county", options);
+    cy.get('[data-cy="address.county"]').type(
+      resolvedFieldValues.address.county,
+      options
+    );
 
-    cy.get('[data-cy="address.postcode"]').type("AB1 2CD", options);
+    cy.get('[data-cy="address.postcode"]').type(
+      resolvedFieldValues.address.postcode,
+      options
+    );
 
     if (!fieldsToSkip.includes("address.country")) {
       cy.get('[data-cy="address.country"]').select(

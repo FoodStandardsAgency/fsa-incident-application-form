@@ -1,4 +1,4 @@
-const defaultFieldValues = {
+export const defaultFieldValues = {
   additionalInformation: "Some additional info...",
   amountImportedDistributed: "183",
   batchCodes: `

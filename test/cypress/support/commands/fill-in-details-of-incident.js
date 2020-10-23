@@ -1,4 +1,9 @@
-const defaultFieldValues = {
+export const defaultFieldValues = {
+  actionTaken: "I have notified the authorities",
+  additionalInformation: "I also have told the police.",
+  distributionDetails: "This was distributed to the South East",
+  illnessDetails: "People are being sick",
+  localAuthorityNotified: "I notified the following...",
   natureOfProblem: "The nature of my problem is salmonella",
 };
 
@@ -22,27 +27,27 @@ Cypress.Commands.add(
     }
 
     cy.get('[data-cy="action-taken"]').type(
-      "I have notified the authorities",
+      resolvedFieldValues.actionTaken,
       options
     );
 
     cy.get('[data-cy="distribution-details"]').type(
-      "This was distributed to the South East",
+      resolvedFieldValues.distributionDetails,
       options
     );
 
     cy.get('[data-cy="illness-details"]').type(
-      "People are being sick",
+      resolvedFieldValues.illnessDetails,
       options
     );
 
     cy.get('[data-cy="local-authority-notified"]').type(
-      "I notified the following...",
+      resolvedFieldValues.localAuthorityNotified,
       options
     );
 
     cy.get('[data-cy="additional-information"]').type(
-      "I also have told the police.",
+      resolvedFieldValues.additionalInformation,
       options
     );
   }

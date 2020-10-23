@@ -15,7 +15,10 @@
 
     {{ govukPanel({
       titleText: i18n.text.reportComplete[i18n.languageCode],
-      html: "%1<br><strong>%2</strong>" | replace("%1", i18n.text.yourReferenceNumber[i18n.languageCode]) | replace("%2", referenceNumber)
+      html: "%1<br><strong>%2</strong>" | replace("%1", i18n.text.yourReferenceNumber[i18n.languageCode]) | replace("%2", referenceNumber),
+      attributes : {
+        "data-cy": "reference-number"
+      }
     }) }}
 
     <h3 class="govuk-heading-m">{{ i18n.sections.whatHappensNext[i18n.languageCode] }}</h3>

@@ -15,7 +15,7 @@
 
 <form method="POST" action="" novalidate>
 
-    <h1 class="govuk-heading-xl">{{ i18n.pageTitle[i18n.languageCode] }}</h1>
+    <h1 class="govuk-heading-xl" data-cy="page-heading">{{ i18n.pageTitle[i18n.languageCode] }}</h1>
   
     <p class="govuk-body-l">{{ i18n.text.makeSureAccurateBeforeSubmit[i18n.languageCode] }}</p>
 
@@ -250,7 +250,7 @@
 
     {% for productId, product in products %}
       {% set edit_product_path = "/%1/edit/%2" | replace("%1", routes.PRODUCT) | replace("%2", productId) %}
-      <h3 class="govuk-heading-l">Product #{{ loop.index }}</h3>
+      <h3 class="govuk-heading-l" data-cy="preview-product-heading-{{ loop.index }}">Product #{{ loop.index }}</h3>
       <dl class="govuk-summary-list govuk-summary-list--no-border">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-body-s">
@@ -296,7 +296,7 @@
           <dt class="govuk-summary-list__key govuk-body-s">
             {{ i18n.batchCodes.label[i18n.languageCode] }}
           </dt>
-          <dd data-cy="product-language-code-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+          <dd data-cy="product-batch-codes-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
             {{ batchCodesSeparatedByLineBreaks(product.batchCodes.value) }}
           </dd>
           <dd class="govuk-summary-list__actions">
@@ -413,7 +413,7 @@
 
       {% for companyId, company in product.companies.value %}
         {% set edit_company_path = "/%1/%2/company/edit/%3" | replace("%1", routes.PRODUCT) | replace("%2", productId) | replace("%3", companyId) %}
-        <h3 class="govuk-heading-m">Company #{{ loop.index }}</h3>
+        <h3 class="govuk-heading-m" data-cy="preview-company-heading-{{ loop.index }}">Company #{{ loop.index }}</h3>
         <dl class="govuk-summary-list govuk-summary-list--no-border">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-body-s">
