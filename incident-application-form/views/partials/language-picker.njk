@@ -3,21 +3,20 @@
         <div aria-label="Language selection" class="language-switcher-language-url"
              id="block-languageswitcher"
              role="navigation">
-
-
             <ul class="links">
                 <li class="en">
-                    <a class="language-link is-active"
+                    <a class="language-link {% if i18n.languageCode == 'en' %}is-active{% endif %}"
+                       data-cy="language-picker-en"
                        href="/"
                        hreflang="en">English</a>
                 </li>
                 <li class="cy">
-                    <a class="language-link"
+                    <a class="language-link {% if i18n.languageCode == 'cy' %}is-active{% endif %}"
+                       data-cy="language-picker-cy"
                        href="/cy"
                        hreflang="cy">Cymraeg</a>
                 </li>
             </ul>
         </div>
-
     </div>
 </div>
