@@ -4,6 +4,7 @@
   "detailsOfIncident": "details-of-incident",
   "detailsOfProduct": "details-of-product",
   "preview": "preview",
+  "product": "product",
   "testHook-url": "http://localhost:3069",
   "testFiles": "**/*.spec.js"
 }

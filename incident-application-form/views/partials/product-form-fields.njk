@@ -100,6 +100,7 @@
     label: {
         text: i18n.originCountry.label[i18n.languageCode]
     },
+    classes: "govuk-input govuk-!-width-one-half",
     items: originCountries,
     errorMessage: validation.validatedFields.originCountry.isValid == false and {
         text: validation.validatedFields.originCountry.messages | join(". "),
@@ -141,6 +142,7 @@
     label: {
         text: i18n.unitType.label[i18n.languageCode]
     },
+    classes: "govuk-input govuk-!-width-one-half",
     items: units,
     errorMessage: validation.validatedFields.unitType.isValid == false and {
         text: validation.validatedFields.unitType.messages | join(". "),
@@ -160,17 +162,26 @@
         {
             name: "day",
             value: validation.validatedFields.bestBefore.day,
-            classes: "govuk-input--width-2"
+            classes: "govuk-input--width-2",
+            attributes : {
+                "data-cy": "best-before-day"
+            }
         },
         {
             name: "month",
             value: validation.validatedFields.bestBefore.month,
-            classes: "govuk-input--width-2"
+            classes: "govuk-input--width-2",
+            attributes : {
+                "data-cy": "best-before-month"
+            }
         },
         {
             name: "year",
             value: validation.validatedFields.bestBefore.year,
-            classes: "govuk-input--width-4"
+            classes: "govuk-input--width-4",
+            attributes : {
+                "data-cy": "best-before-year"
+            }
         }
     ],
     fieldset: {
@@ -206,17 +217,26 @@
         {
             name: "day",
             value: validation.validatedFields.useBy.day,
-            classes: "govuk-input--width-2"
+            classes: "govuk-input--width-2",
+            attributes : {
+                "data-cy": "use-by-day"
+            }
         },
         {
             name: "month",
             value: validation.validatedFields.useBy.month,
-            classes: "govuk-input--width-2"
+            classes: "govuk-input--width-2",
+            attributes : {
+                "data-cy": "use-by-month"
+            }
         },
         {
             name: "year",
             value: validation.validatedFields.useBy.year,
-            classes: "govuk-input--width-4"
+            classes: "govuk-input--width-4",
+            attributes : {
+                "data-cy": "use-by-year"
+            }
         }
     ],
     hint: {
@@ -245,17 +265,26 @@
         {
             name: "day",
             value: validation.validatedFields.displayUntil.day,
-            classes: "govuk-input--width-2"
+            classes: "govuk-input--width-2",
+            attributes : {
+                "data-cy": "display-until-day"
+            }
         },
         {
             name: "month",
             value: validation.validatedFields.displayUntil.month,
-            classes: "govuk-input--width-2"
+            classes: "govuk-input--width-2",
+            attributes : {
+                "data-cy": "display-until-month"
+            }
         },
         {
             name: "year",
             value: validation.validatedFields.displayUntil.year,
-            classes: "govuk-input--width-4"
+            classes: "govuk-input--width-4",
+            attributes : {
+                "data-cy": "display-until-year"
+            }
         }
     ],
     hint: {
