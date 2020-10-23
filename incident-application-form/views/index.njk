@@ -33,7 +33,10 @@
       {{ govukButton({
         text: i18n.buttons.start[i18n.languageCode],
         href: localisePath( [ "/", routes.YOUR_DETAILS ] | join, i18n.languageCode),
-        classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8"
+        classes: "govuk-!-margin-top-2 govuk-!-margin-bottom-8",
+        attributes : {
+          "data-cy": "start-button"
+        }
       }) }}
     </div>
 
