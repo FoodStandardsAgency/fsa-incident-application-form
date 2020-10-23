@@ -1,5 +1,6 @@
 import "./commands/fill-in-contact-details";
 import "./commands/fill-in-details-of-incident";
+import "./commands/fill-in-product";
 
 // ***********************************************
 // This example commands.js shows you how to

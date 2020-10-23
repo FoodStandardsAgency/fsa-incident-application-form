@@ -3,6 +3,7 @@
   "contactDetails": "your-details",
   "detailsOfIncident": "details-of-incident",
   "preview": "preview",
+  "product": "product",
   "testHook-url": "http://localhost:3069",
   "testFiles": "**/*.spec.js"
 }
