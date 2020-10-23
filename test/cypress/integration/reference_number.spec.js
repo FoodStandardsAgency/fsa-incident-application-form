@@ -64,7 +64,7 @@ context(
     });
 
     describe("CY", () => {
-      it.only(`Visit /cy/${YOUR_DETAILS}, fill in some valid data, submit, prove it exists on the preview`, () => {
+      it(`Visit /cy/${YOUR_DETAILS}, fill in some valid data, submit, prove it exists on the preview`, () => {
         cy.visit(`/cy/${YOUR_DETAILS}`);
 
         cy.fillInContactDetails();

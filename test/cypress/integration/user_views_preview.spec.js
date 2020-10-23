@@ -30,7 +30,7 @@ context(
 
     describe("Invalid payload redirects back to Your Details", () => {
       describe("EN", () => {
-        it.only("should redirect back to Your Details if posting an invalid or incomplete payload", () => {
+        it("should redirect back to Your Details if posting an invalid or incomplete payload", () => {
           cy.visit(PREVIEW);
 
           cy.get('[data-cy="submit"]').click(options);
@@ -42,7 +42,7 @@ context(
       });
 
       describe("CY", () => {
-        it.only("should redirect back to Your Details if posting an invalid or incomplete payload", () => {
+        it("should redirect back to Your Details if posting an invalid or incomplete payload", () => {
           cy.visit(`/cy/${PREVIEW}`);
 
           cy.get('[data-cy="submit"]').click(options);
