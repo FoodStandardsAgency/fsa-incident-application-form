@@ -1,5 +1,20 @@
+const {
+  defaultFieldValues: contactDetails,
+} = require("../support/commands/fill-in-contact-details");
+const {
+  defaultFieldValues: detailsOfIncident,
+} = require("../support/commands/fill-in-details-of-incident");
+const {
+  defaultFieldValues: product,
+} = require("../support/commands/fill-in-product");
+const { optionalFields: companyOptionalFields } = require("./add_company.spec");
+const { optionalFields: productOptionalFields } = require("./add_product.spec");
+
 const YOUR_DETAILS = Cypress.config("contactDetails");
 const PREVIEW = Cypress.config("preview");
+const COMPLETE = Cypress.config("complete");
+
+const options = { force: true };
 
 context(
   "As a service user, I want to see a summary of my report, so that I can check it’s accurate.",
@@ -13,131 +28,341 @@ context(
       });
     });
 
-    it(`Visit ${YOUR_DETAILS}, fill in some valid data, submit, prove it exists on the preview`, () => {
-      cy.visit(YOUR_DETAILS);
+    describe("Invalid payload redirects back to Your Details", () => {
+      describe("EN", () => {
+        it.only("should redirect back to Your Details if posting an invalid or incomplete payload", () => {
+          cy.visit(PREVIEW);
 
-      cy.get('[data-cy="notifier-type"]').select("Industry", {force: true});
+          cy.get('[data-cy="submit"]').click(options);
 
-      cy.get('[data-cy="contact-name"]').type("my name here", {force: true});
+          cy.url().should("not.contain", `/${COMPLETE}`);
 
-      cy.get('[data-cy="position"]').type("or should this be role?", {force: true});
-
-      cy.get('[data-cy="organisation"]').type("organisation", {force: true});
-
-      cy.get('[data-cy="email"]').type("my.email@somewhere.com", {force: true});
-
-      cy.get('[data-cy="telephone1"]').type("01234 445 667", {force: true});
-
-      cy.get('[data-cy="address.line1"]').type("line1", {force: true});
-
-      cy.get('[data-cy="address.line2"]').type("line2", {force: true});
-
-      cy.get('[data-cy="address.town"]').type("town", {force: true});
-
-      cy.get('[data-cy="address.county"]').type("county", {force: true});
-
-      cy.get('[data-cy="address.postcode"]').type("AB1 2CD", {force: true});
-
-      cy.get('[data-cy="address.country"]').select("Norway", {force: true}); //?
-
-      cy.get('[data-cy="submit"]').click({force: true});
-
-      cy.get('[data-cy="nature-of-problem"]').type(
-        "The nature of my problem is salmonella", {force: true}
-      );
-
-      cy.get('[data-cy="action-taken"]').type(
-        "I have notified the authorities", {force: true}
-      );
-
-      cy.get('[data-cy="distribution-details"]').type(
-        "This was distributed to the South East", {force: true}
-      );
-
-      cy.get('[data-cy="illness-details"]').type("People are being sick", {force: true});
-
-      cy.get('[data-cy="local-authority-notified"]').type("Yes. I told Dave.", {force: true});
-
-      cy.get('[data-cy="additional-information"]').type(
-        "I also have told the police.", {force: true}
-      );
-
-      cy.get('[data-cy="submit"]').click({force: true});
-
-      // shortcut; this is all meant to be on the session
-      //  so for individual pages we can prove their content in isolation
-      cy.visit(PREVIEW);
-
-      //TODO sort dropdowns +retrofit this test step..
-      // cy.get('[data-cy="notifier-type"]')
-      //   .should( (text) => { expect(text).to.contain("Industry")});
-
-      cy.get('[data-cy="contact-name"]').should((text) => {
-        expect(text).to.contain("my name here");
+          cy.url().should("contain", `/${YOUR_DETAILS}`);
+        });
       });
 
-      cy.get('[data-cy="position"]').should((text) => {
-        expect(text).to.contain("or should this be role?");
+      describe("CY", () => {
+        it.only("should redirect back to Your Details if posting an invalid or incomplete payload", () => {
+          cy.visit(`/cy/${PREVIEW}`);
+
+          cy.get('[data-cy="submit"]').click(options);
+
+          cy.url().should("not.contain", `/cy/${COMPLETE}`);
+
+          cy.url().should("contain", `/cy/${YOUR_DETAILS}`);
+        });
       });
+    });
 
-      cy.get('[data-cy="organisation"]').should((text) => {
-        expect(text).to.contain("organisation");
+    describe("EN", () => {
+      it(`Visit ${YOUR_DETAILS}, fill in some valid data, submit, prove it exists on the preview`, () => {
+        cy.visit(YOUR_DETAILS);
+
+        cy.fillInContactDetails();
+        cy.get('[data-cy="submit"]').click(options);
+
+        cy.fillInDetailsOfIncident();
+        cy.get('[data-cy="submit"]').click(options);
+
+        cy.get('[data-cy="add-product"]').click(options);
+        cy.fillInProduct();
+
+        cy.get('[data-cy="add-company"]').click(options);
+        cy.fillInCompany();
+        cy.get('[data-cy="submit"]').click(options);
+
+        // submit the now valid product page
+        cy.get('[data-cy="submit"]').click(options);
+
+        cy.url().should("contain", `/${PREVIEW}`);
+
+        // buttons
+        cy.get('[data-cy="page-heading"]').should("contain", "Summary");
+        cy.get('[data-cy="back"]').should("contain", "Previous");
+        cy.get('[data-cy="submit"]').should("contain", "Submit");
+
+        // your details
+        cy.get('[data-cy="notifier-type"]').should(
+          "contain",
+          contactDetails.notifierType
+        );
+        cy.get('[data-cy="contact-name"]').should(
+          "contain",
+          contactDetails.contactName
+        );
+        cy.get('[data-cy="position"]').should(
+          "contain",
+          contactDetails.position
+        );
+        cy.get('[data-cy="organisation"]').should(
+          "contain",
+          contactDetails.organisation
+        );
+        cy.get('[data-cy="email"]').should("contain", contactDetails.email);
+        cy.get('[data-cy="address.line1"]').should(
+          "contain",
+          contactDetails.address.line1
+        );
+        cy.get('[data-cy="address.line2"]').should(
+          "contain",
+          contactDetails.address.line2
+        );
+        cy.get('[data-cy="address.town"]').should(
+          "contain",
+          contactDetails.address.town
+        );
+        cy.get('[data-cy="address.county"]').should(
+          "contain",
+          contactDetails.address.county
+        );
+        cy.get('[data-cy="address.postcode"]').should(
+          "contain",
+          contactDetails.address.postcode
+        );
+        cy.get('[data-cy="address.country"]').should(
+          "contain",
+          contactDetails.address.country
+        );
+        // end your details
+
+        // details of incident
+        cy.get('[data-cy="nature-of-problem"]').should(
+          "contain",
+          detailsOfIncident.natureOfProblem
+        );
+        cy.get('[data-cy="action-taken"]').should(
+          "contain",
+          detailsOfIncident.actionTaken
+        );
+        cy.get('[data-cy="distribution-details"]').should(
+          "contain",
+          detailsOfIncident.distributionDetails
+        );
+        cy.get('[data-cy="illness-details"]').should(
+          "contain",
+          detailsOfIncident.illnessDetails
+        );
+        cy.get('[data-cy="local-authority-notified"]').should(
+          "contain",
+          detailsOfIncident.localAuthorityNotified
+        );
+        cy.get('[data-cy="additional-information"]').should(
+          "contain",
+          detailsOfIncident.additionalInformation
+        );
+        // end details of incident
+
+        // details of company
+        cy.get('[data-cy="preview-product-heading-1"]').should("exist");
+
+        cy.get('[data-cy="product-additional-information-1"]').should(
+          "contain",
+          product.additionalInformation
+        );
+        cy.get('[data-cy="product-amount-imported-distributed-1"]').should(
+          "contain",
+          product.amountImportedDistributed
+        );
+        product.batchCodes.split("\n").forEach((batchCode) => {
+          cy.get('[data-cy="product-batch-codes-1"]').should(
+            "contain",
+            batchCode
+          );
+        });
+        cy.get('[data-cy="product-best-before-1"]').should(
+          "contain",
+          "Wednesday, February 1st, 2023"
+        );
+        cy.get('[data-cy="product-brand-1"]').should("contain", product.brand);
+        cy.get('[data-cy="product-display-until-1"]').should(
+          "contain",
+          `Saturday, April 3rd, 1999`
+        );
+        cy.get('[data-cy="product-origin-country-1"]').should(
+          "contain",
+          product.originCountry
+        );
+        cy.get('[data-cy="product-pack-size-1"]').should(
+          "contain",
+          product.packSize
+        );
+        cy.get('[data-cy="product-package-description-1"]').should(
+          "contain",
+          product.packageDescription
+        );
+        cy.get('[data-cy="product-name-1"]').should(
+          "contain",
+          product.productName
+        );
+        cy.get('[data-cy="product-type-1"]').should(
+          "contain",
+          product.productType
+        );
+        cy.get('[data-cy="product-units-1"]').should(
+          "contain",
+          product.unitType
+        );
+        cy.get('[data-cy="product-use-by-1"]').should(
+          "contain",
+          `Monday, December 11th, 2023`
+        );
+        cy.get('[data-cy="preview-company-heading-1"]').should("exist");
       });
+    });
 
-      cy.get('[data-cy="email"]').should((text) => {
-        expect(text).to.contain("my.email@somewhere.com");
-      });
+    describe("CY", () => {
+      it(`Visit /cy/${YOUR_DETAILS}, fill in some valid data, submit, prove it exists on the preview`, () => {
+        cy.visit(`/cy/${YOUR_DETAILS}`);
 
-      cy.get('[data-cy="telephone1"]').should((text) => {
-        expect(text).to.contain("01234 445 667");
-      });
+        cy.fillInContactDetails();
+        cy.get('[data-cy="submit"]').click(options);
 
-      cy.get('[data-cy="address.line1"]').should((text) => {
-        expect(text).to.contain("line1");
-      });
+        cy.fillInDetailsOfIncident();
+        cy.get('[data-cy="submit"]').click(options);
 
-      cy.get('[data-cy="address.line2"]').should((text) => {
-        expect(text).to.contain("line2");
-      });
+        cy.get('[data-cy="add-product"]').click(options);
+        cy.fillInProduct();
 
-      cy.get('[data-cy="address.town"]').should((text) => {
-        expect(text).to.contain("town");
-      });
+        cy.get('[data-cy="add-company"]').click(options);
+        cy.fillInCompany();
+        cy.get('[data-cy="submit"]').click(options);
 
-      cy.get('[data-cy="address.county"]').should((text) => {
-        expect(text).to.contain("county");
-      });
+        // submit the now valid product page
+        cy.get('[data-cy="submit"]').click(options);
 
-      cy.get('[data-cy="address.postcode"]').should((text) => {
-        expect(text).to.contain("AB1 2CD");
-      });
+        cy.url().should("contain", `/${PREVIEW}`);
 
-      //TODO sort dropdowns +retrofit this test step..
-      // cy.get('[data-cy="address.country"]')
-      //   .should( (text) => { expect(text).to.contain("Norway")});
+        // buttons
+        cy.get('[data-cy="page-heading"]').should("contain", "Crynodeb");
+        cy.get('[data-cy="back"]').should("contain", "Blaenorol");
+        cy.get('[data-cy="submit"]').should("contain", "Cyflwyno");
 
-      cy.get('[data-cy="nature-of-problem"]').should((text) => {
-        expect(text).to.contain("The nature of my problem is salmonella");
-      });
+        // your details
+        cy.get('[data-cy="notifier-type"]').should(
+          "contain",
+          contactDetails.notifierType
+        );
+        cy.get('[data-cy="contact-name"]').should(
+          "contain",
+          contactDetails.contactName
+        );
+        cy.get('[data-cy="position"]').should(
+          "contain",
+          contactDetails.position
+        );
+        cy.get('[data-cy="organisation"]').should(
+          "contain",
+          contactDetails.organisation
+        );
+        cy.get('[data-cy="email"]').should("contain", contactDetails.email);
+        cy.get('[data-cy="address.line1"]').should(
+          "contain",
+          contactDetails.address.line1
+        );
+        cy.get('[data-cy="address.line2"]').should(
+          "contain",
+          contactDetails.address.line2
+        );
+        cy.get('[data-cy="address.town"]').should(
+          "contain",
+          contactDetails.address.town
+        );
+        cy.get('[data-cy="address.county"]').should(
+          "contain",
+          contactDetails.address.county
+        );
+        cy.get('[data-cy="address.postcode"]').should(
+          "contain",
+          contactDetails.address.postcode
+        );
+        cy.get('[data-cy="address.country"]').should(
+          "contain",
+          contactDetails.address.country
+        );
+        // end your details
 
-      cy.get('[data-cy="action-taken"]').should((text) => {
-        expect(text).to.contain("I have notified the authorities");
-      });
+        // details of incident
+        cy.get('[data-cy="nature-of-problem"]').should(
+          "contain",
+          detailsOfIncident.natureOfProblem
+        );
+        cy.get('[data-cy="action-taken"]').should(
+          "contain",
+          detailsOfIncident.actionTaken
+        );
+        cy.get('[data-cy="distribution-details"]').should(
+          "contain",
+          detailsOfIncident.distributionDetails
+        );
+        cy.get('[data-cy="illness-details"]').should(
+          "contain",
+          detailsOfIncident.illnessDetails
+        );
+        cy.get('[data-cy="local-authority-notified"]').should(
+          "contain",
+          detailsOfIncident.localAuthorityNotified
+        );
+        cy.get('[data-cy="additional-information"]').should(
+          "contain",
+          detailsOfIncident.additionalInformation
+        );
+        // end details of incident
 
-      cy.get('[data-cy="distribution-details"]').should((text) => {
-        expect(text).to.contain("This was distributed to the South East");
-      });
+        // details of company
+        cy.get('[data-cy="preview-product-heading-1"]').should("exist");
 
-      cy.get('[data-cy="illness-details"]').should((text) => {
-        expect(text).to.contain("People are being sick");
-      });
-
-      cy.get('[data-cy="local-authority-notified"]').should((text) => {
-        expect(text).to.contain("Yes. I told Dave.");
-      });
-
-      cy.get('[data-cy="additional-information"]').should((text) => {
-        expect(text).to.contain("I also have told the police.");
+        cy.get('[data-cy="product-additional-information-1"]').should(
+          "contain",
+          product.additionalInformation
+        );
+        cy.get('[data-cy="product-amount-imported-distributed-1"]').should(
+          "contain",
+          product.amountImportedDistributed
+        );
+        product.batchCodes.split("\n").forEach((batchCode) => {
+          cy.get('[data-cy="product-batch-codes-1"]').should(
+            "contain",
+            batchCode
+          );
+        });
+        cy.get('[data-cy="product-best-before-1"]').should(
+          "contain",
+          "Wednesday, February 1st, 2023"
+        );
+        cy.get('[data-cy="product-brand-1"]').should("contain", product.brand);
+        cy.get('[data-cy="product-display-until-1"]').should(
+          "contain",
+          `Saturday, April 3rd, 1999`
+        );
+        cy.get('[data-cy="product-origin-country-1"]').should(
+          "contain",
+          product.originCountry
+        );
+        cy.get('[data-cy="product-pack-size-1"]').should(
+          "contain",
+          product.packSize
+        );
+        cy.get('[data-cy="product-package-description-1"]').should(
+          "contain",
+          product.packageDescription
+        );
+        cy.get('[data-cy="product-name-1"]').should(
+          "contain",
+          product.productName
+        );
+        cy.get('[data-cy="product-type-1"]').should(
+          "contain",
+          product.productType
+        );
+        cy.get('[data-cy="product-units-1"]').should(
+          "contain",
+          product.unitType
+        );
+        cy.get('[data-cy="product-use-by-1"]').should(
+          "contain",
+          `Monday, December 11th, 2023`
+        );
+        cy.get('[data-cy="preview-company-heading-1"]').should("exist");
       });
     });
   }

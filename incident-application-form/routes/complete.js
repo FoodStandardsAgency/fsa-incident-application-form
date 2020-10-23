@@ -17,6 +17,11 @@ router.get("/", function (req, res, next) {
 
   req.session.destroy();
 
+  if (!referenceNumber) {
+    res.redirect(routes.HOME);
+    return;
+  }
+
   res.render("complete", {
     i18n: getI18n(req.locale),
     referenceNumber,

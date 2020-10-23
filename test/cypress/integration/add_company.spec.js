@@ -1,25 +1,20 @@
+const { optionalFields: productOptionalFields } = require("./add_product.spec");
+
 const ADD_PRODUCT = Cypress.config("product");
 
 const options = { force: true };
 
-const optionalFields = [
-  "additional-information",
-  "amount-imported-distributed",
-  "batch-codes",
-  "best-before-day",
-  "best-before-month",
-  "best-before-year",
-  "brand",
-  "display-until-day",
-  "display-until-month",
-  "display-until-year",
-  "pack-size",
-  "package-description",
-  "product-type",
-  "unit-type",
-  "use-by-day",
-  "use-by-month",
-  "use-by-year",
+export const optionalFields = [
+  "company-name",
+  "contact-name",
+  "email",
+  "telephone1",
+  "address.line1",
+  "address.line2",
+  "address.town",
+  "address.county",
+  "address.postcode",
+  "address.country",
 ];
 
 context(
@@ -40,7 +35,7 @@ context(
       beforeEach(() => {
         cy.visit(ADD_PRODUCT);
         cy.fillInProduct({
-          fieldsToSkip: optionalFields,
+          fieldsToSkip: productOptionalFields,
         });
         cy.get('[data-cy="add-company"]').click(options);
       });
@@ -51,6 +46,16 @@ context(
 
       it("should have a save and continue button", () => {
         cy.get("[data-cy=submit]").should("contain", "Save and Continue");
+      });
+
+      it("should be valid with the minimal amount of data", () => {
+        cy.fillInCompany({
+          fieldsToSkip: optionalFields,
+        });
+
+        cy.get('[data-cy="submit"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("not.exist");
       });
 
       it(`should require the company type`, () => {
@@ -70,7 +75,7 @@ context(
       beforeEach(() => {
         cy.visit(`/cy/${ADD_PRODUCT}`);
         cy.fillInProduct({
-          fieldsToSkip: optionalFields,
+          fieldsToSkip: productOptionalFields,
         });
         cy.get('[data-cy="add-company"]').click(options);
       });

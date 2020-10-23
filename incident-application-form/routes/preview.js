@@ -73,6 +73,15 @@ router.get("/", async function (req, res, next) {
 });
 
 router.post("/", async function (req, res, next) {
+  if (
+    !req.session.yourDetails ||
+    !req.session.detailsOfIncident ||
+    !req.session.products
+  ) {
+    res.redirect(localisePath(`/${routes.YOUR_DETAILS}`, req.locale));
+    return;
+  }
+
   req.session.referenceNumber = generateReferenceId();
 
   //TODO? note- there's a strong argument that we should be using the payload to populate these
