@@ -61,6 +61,27 @@ describe(`lib/validation/error-summary`, () => {
           },
         ],
       ],
+      [
+        "nested fields",
+        {
+          validatedFields: {
+            "nested-key": {
+              "test-field-1": {
+                messages: [],
+              },
+              "test-field-2": {
+                messages: ["a nested error here"],
+              },
+            },
+          },
+        },
+        [
+          {
+            href: "#nested-key.test-field-2",
+            text: "a nested error here",
+          },
+        ],
+      ],
     ];
 
     test.each(testCases)(`%s`, (description, given, expected) => {
