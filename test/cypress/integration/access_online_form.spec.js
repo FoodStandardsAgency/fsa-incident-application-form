@@ -11,4 +11,5 @@ context('As a service user, I want to access an online form to report an inciden
   it(`Visit ${ONLINE_FORM}`, () => {
     cy.visit(ONLINE_FORM);
   });
+
 });
