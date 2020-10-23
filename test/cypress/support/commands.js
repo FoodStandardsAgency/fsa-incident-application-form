@@ -1,5 +1,6 @@
 import "./commands/fill-in-contact-details";
 import "./commands/fill-in-details-of-incident";
+import "./commands/fill-in-company";
 import "./commands/fill-in-product";
 
 // ***********************************************
