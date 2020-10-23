@@ -1,9 +1,13 @@
 const DETAILS_OF_INCIDENT = Cypress.config("detailsOfIncident");
 
+const options = { force: true };
+
 context(
   "As an incidents officer, I want to know what the incident is, so that I can effectively investigate and act.",
   () => {
     beforeEach(() => {
+      cy.clearCookies();
+
       // catches, logs and ignores any load-errors on the page..
       // can probably delete this but worth including in 1st template in case we need it..
       cy.on("uncaught:exception", (err, runnable) => {
@@ -12,31 +16,60 @@ context(
       });
     });
 
-    it(`Visit ${DETAILS_OF_INCIDENT}, fill in some valid data, submit.`, () => {
-      cy.visit(DETAILS_OF_INCIDENT);
+    describe("EN", () => {
+      beforeEach(() => {
+        cy.visit(DETAILS_OF_INCIDENT);
+      });
 
-      cy.get('[data-cy="nature-of-problem"]').type(
-        "The nature of my problem is salmonella", {force: true}
-      );
+      it(`should be valid when all data is provided`, () => {
+        cy.fillInDetailsOfIncident();
 
-      cy.get('[data-cy="action-taken"]').type(
-        "I have notified the authorities", {force: true}
-      );
+        cy.get('[data-cy="submit"]').click(options);
 
-      cy.get('[data-cy="distribution-details"]').type(
-        "This was distributed to the South East", {force: true}
-      );
+        cy.get('[data-cy="error-summary"]').should("not.exist");
+      });
 
-      cy.get('[data-cy="illness-details"]').type("People are being sick", {force: true});
+      it(`should required the nature of the problem`, () => {
+        cy.fillInDetailsOfIncident({
+          fieldsToSkip: ["nature-of-problem"],
+        });
 
-      // intentionally blank, still valid
-      // cy.get('[data-cy="local-authority-notified"]').type("");
+        cy.get('[data-cy="submit"]').click(options);
 
-      cy.get('[data-cy="additional-information"]').type(
-        "I also have told the police.", {force: true}
-      );
+        cy.get('[data-cy="error-summary"]')
+          .should("exist")
+          .should("contain", "The field is required");
 
-      cy.get('[data-cy="submit"]').click({force: true});
+        cy.get('[data-cy="nature-of-problem-errors"]').should("exist");
+      });
+    });
+
+    describe("CY", () => {
+      beforeEach(() => {
+        cy.visit(`/cy/${DETAILS_OF_INCIDENT}`);
+      });
+
+      it(`should be valid when all data is provided`, () => {
+        cy.fillInDetailsOfIncident();
+
+        cy.get('[data-cy="submit"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("not.exist");
+      });
+
+      it(`should required the nature of the problem`, () => {
+        cy.fillInDetailsOfIncident({
+          fieldsToSkip: ["nature-of-problem"],
+        });
+
+        cy.get('[data-cy="submit"]').click(options);
+
+        cy.get('[data-cy="error-summary"]')
+          .should("exist")
+          .should("contain", "Mae angen y cae");
+
+        cy.get('[data-cy="nature-of-problem-errors"]').should("exist");
+      });
     });
   }
 );
