@@ -21,6 +21,10 @@ context(
         cy.visit(DETAILS_OF_INCIDENT);
       });
 
+      it("should have a back button", () => {
+        cy.get("[data-cy=back]").should("contain", "Previous");
+      });
+
       it(`should be valid when all data is provided`, () => {
         cy.fillInDetailsOfIncident();
 
@@ -47,6 +51,10 @@ context(
     describe("CY", () => {
       beforeEach(() => {
         cy.visit(`/cy/${DETAILS_OF_INCIDENT}`);
+      });
+
+      it("should have a back button", () => {
+        cy.get("[data-cy=back]").should("contain", "Blaenorol");
       });
 
       it(`should be valid when all data is provided`, () => {
