@@ -1,8 +1,8 @@
-name: push to main triggers deploy to production
+name: push to production triggers deploy to production
 
 on:
   push:
-    branches: [ main ]
+    branches: [ production ]
 
 jobs:
 
