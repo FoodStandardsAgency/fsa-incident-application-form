@@ -2,6 +2,7 @@
   "baseUrl": "http://localhost:3000",
   "contactDetails": "your-details",
   "detailsOfIncident": "details-of-incident",
+  "detailsOfProduct": "details-of-product",
   "preview": "preview",
   "product": "product",
   "testHook-url": "http://localhost:3069",
