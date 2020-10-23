@@ -16,8 +16,11 @@
 
     {% if validation.isValid == false %}
         {{ govukErrorSummary({
-           titleText: i18n.problem[i18n.languageCode],
-           errorList: errorSummary
+            titleText: i18n.problem[i18n.languageCode],
+            errorList: errorSummary,
+            attributes : {
+                "data-cy": "error-summary"
+            }
         }) }}
     {% endif %}
 
