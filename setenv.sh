@@ -13,3 +13,7 @@ fi
 if [ -z "$NOTIFICATION_EMAIL" ]; then
     echo "warning, unset environment variable: NOTIFICATION_EMAIL"
 fi
+
+if [ -z "$SESSION_KEY" ]; then
+    echo "warning, unset environment variable: SESSION_KEY"
+fi

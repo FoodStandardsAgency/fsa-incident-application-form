@@ -16,6 +16,8 @@ context(
       cy.visit(ONLINE_FORM);
 
       cy.get("[data-cy=start-button]").should("contain", "Start");
+      cy.get("[data-cy=cookies]").should("contain", "Cookies");
+      cy.get("[data-cy=privacy]").should("contain", "Privacy");
     });
 
     it(`Visit ${ONLINE_FORM}/cy`, () => {
@@ -25,4 +27,3 @@ context(
     });
   }
 );
-
