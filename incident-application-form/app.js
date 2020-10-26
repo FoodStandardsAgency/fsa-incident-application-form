@@ -11,6 +11,7 @@ var session = require("express-session");
 var routes = require(`${__dirname}/routes/routes.json`);
 
 var indexRouter = require("./routes/index");
+var cookiesRouter = require("./routes/cookies");
 var yourDetailsRouter = require("./routes/your-details");
 var detailsOfIncidentRouter = require("./routes/details-of-incident");
 var detailsOfProductRouter = require("./routes/details-of-product");
@@ -99,6 +100,8 @@ app.use("/lookup/country", countryRouter);
 app.use("/lookup/notifierType", notifierTypeRouter);
 app.use("/lookup/productType", productTypeRouter);
 app.use("/lookup/units", unitsRouter);
+
+app.use("/cookies", cookiesRouter);
 
 app.use(
   "/assets",
