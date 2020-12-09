@@ -13,6 +13,8 @@ jobs:
       GOV_NOTIFY_API_KEY: ${{ secrets.DEV_GOV_NOTIFY_API_KEY }}
       NOTIFICATION_EMAIL: ${{ secrets.DEV_NOTIFICATION_EMAIL }}
       SESSION_KEY: ${{ secrets.DEV_SESSION_KEY }}
+      CYPRESS_VIDEOS: ./test/cypress/videos
+
     steps:
     - uses: actions/checkout@v2
     - name: Start Docker Compose
@@ -26,12 +28,13 @@ jobs:
         cd $GITHUB_WORKSPACE/test
         npm install
         npx cypress run
-    - name: Save Cypress screenshots
-      if: ${{ failure() }}
+
+    - name: Archive video evidence
+      if: ${{ always() }}
       uses: actions/upload-artifact@main
       with:
-        name: screenshots
-        path: './cypress/screenshots'
+        name: videos
+        path: ${{ env.CYPRESS_VIDEOS }}
 
   jest:
     name: "checkout; run jest."
