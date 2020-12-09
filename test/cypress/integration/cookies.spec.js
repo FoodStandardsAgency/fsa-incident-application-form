@@ -1,7 +1,7 @@
 const ONLINE_FORM = Cypress.config("baseUrl");
 
 context(
-  "As a service user, I want to access an online form to report an incident, so that I can fulfil my legal obligation in a convenient way.",
+  "As a service user, I want to know how this site uses cookies, so that I can be confident the FSA is treating my online identity with respect.",
   () => {
     beforeEach(() => {
       // catches, logs and ignores any load-errors on the page..
@@ -12,16 +12,16 @@ context(
       });
     });
 
-    it(`Visit ${ONLINE_FORM}`, () => {
+    it(`Visit ${ONLINE_FORM} and confirm the cookies link`, () => {
       cy.visit(ONLINE_FORM);
-
-      cy.get("[data-cy=start-button]").should("contain", "Start");
+      cy.get("[data-cy=cookies]")
+        .should("contain", "Cookies")
+        .click({ force: true });
+      cy.get("[data-cy=page-heading]").should("contain","Cookies");
     });
 
-    it(`Visit ${ONLINE_FORM}/cy`, () => {
+    xit(`Visit ${ONLINE_FORM}/cy and confirm the cookies link`, () => {
       cy.visit(`${ONLINE_FORM}/cy`);
-
-      cy.get("[data-cy=start-button]").should("contain", "Dechrau");
     });
   }
 );
