@@ -1,8 +1,9 @@
 # fsa-incident-application-form
 
 # pre-requisites:
-* node.js ^13.8.0
-* docker
+* `git` for version control (installation instructions: https://github.com/git-guides/install-git)
+* `node.js ^13.8.0` as our implementation language + dependency manager (installation instructions: (https://nodejs.org/en/download/))
+* `docker` to run everything locally (installation instructions https://docs.docker.com/get-docker/ or https://www.docker.com/products/docker-desktop)
 
 # getting started
 ```
@@ -10,6 +11,25 @@ git clone https://github.com/foundry4/fsa-incident-application-form.git
 cd fsa-incident-application-form
 npm test
 ```
+
+# running locally
+
+start everything with:
+```
+npm start
+```
+
+stop everything with:
+```
+npm stop
+```
+
+run everything with the logs still attached to the console:
+```
+npm run dev
+```
+(ctrl+C will terminate the docker images)
+
 
 # making changes
 make sure you're on the latest code
@@ -21,7 +41,7 @@ git pull
 
 create a branch for your work
 ```
-git checkout -b 'my_work_spaces_not_allowed'
+git checkout -b 'spaces_not_allowed_here'
 ```
 
 do your work...
