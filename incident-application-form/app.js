@@ -12,6 +12,7 @@ var routes = require(`${__dirname}/routes/routes.json`);
 
 var indexRouter = require("./routes/index");
 var cookiesRouter = require("./routes/cookies");
+var accessibilityRouter = require("./routes/accessibility");
 var yourDetailsRouter = require("./routes/your-details");
 var detailsOfIncidentRouter = require("./routes/details-of-incident");
 var detailsOfProductRouter = require("./routes/details-of-product");
@@ -102,6 +103,7 @@ app.use("/lookup/productType", productTypeRouter);
 app.use("/lookup/units", unitsRouter);
 
 app.use("/cookies", cookiesRouter);
+app.use("/accessibility", accessibilityRouter);
 
 app.use(
   "/assets",
