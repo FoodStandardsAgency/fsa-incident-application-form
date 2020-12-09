@@ -4,7 +4,10 @@
   "description": "incident application form",
   "scripts": {
     "start": "./start.sh",
-    "test": "./pipeline.sh"
+    "stop": "./stop.sh",
+    "test": "./pipeline.sh",
+
+    "dev": "source ./setenv.sh &&  docker-compose up --build"
   },
   "repository": {
     "type": "git",
