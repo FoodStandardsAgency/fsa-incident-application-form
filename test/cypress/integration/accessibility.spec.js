@@ -25,7 +25,7 @@ context(
 
     });
 
-    it(`Visit ${ONLINE_FORM}/cy and confirm the Accessibility link`, () => {
+    xit(`Visit ${ONLINE_FORM}/cy and confirm the Accessibility link`, () => {
       cy.visit(`${ONLINE_FORM}/cy`);
 
       cy.get("[data-cy=start-button]").should("contain", "Dechrau");
