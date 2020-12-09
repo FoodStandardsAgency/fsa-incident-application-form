@@ -2,21 +2,27 @@
 
 # pre-requisites:
 * `git` for version control (installation instructions: https://github.com/git-guides/install-git)
-* `node.js ^13.8.0` as our implementation language + dependency manager (installation instructions: (https://nodejs.org/en/download/))
+* `node.js ^13.8.0` as our implementation language + dependency manager (installation instructions: https://nodejs.org/en/download/)
 * `docker` to run everything locally (installation instructions https://docs.docker.com/get-docker/ or https://www.docker.com/products/docker-desktop)
 
 # getting started
 ```
 git clone https://github.com/foundry4/fsa-incident-application-form.git
 cd fsa-incident-application-form
-npm test
 ```
 
 # running locally
+Our pipeline code expects to find some number of .sh scripts in the `./secrets` folder within this project. (see `./start.sh` & `./setenv.sh`)
+There is a readme in `./secrets` with a list of the fields that are required for the app to run locally.
 
 start everything with:
 ```
 npm start
+```
+
+visit the application at:
+```
+http://localhost:3000
 ```
 
 stop everything with:
@@ -30,6 +36,10 @@ npm run dev
 ```
 (ctrl+C will terminate the docker images)
 
+# testing locally
+```
+npm test
+```
 
 # making changes
 make sure you're on the latest code
