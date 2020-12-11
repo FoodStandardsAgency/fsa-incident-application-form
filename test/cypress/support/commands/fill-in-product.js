@@ -21,8 +21,8 @@ export const defaultFieldValues = {
   packSize: "Packs of 6",
   packageDescription: "Plastic wrap",
   productName: "An example product name",
-  productType: "Nuts and Seeds",
-  unitType: "Kg",
+  productType: "Alcoholic Beverages",
+  unitType: "Kilograms (kg)",
   useBy: {
     day: "11",
     month: "12",

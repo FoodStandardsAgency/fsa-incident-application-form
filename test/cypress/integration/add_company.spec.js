@@ -1,3 +1,4 @@
+const SIMS_LOOKUP_DATA = require('../fixtures/sample-dropdown-data.json');
 const { optionalFields: productOptionalFields } = require("./add_product.spec");
 
 const ADD_PRODUCT = Cypress.config("product");
@@ -29,6 +30,8 @@ context(
         console.log(err.stack);
         return false;
       });
+
+      cy.setupSimsLookups(SIMS_LOOKUP_DATA);
     });
 
     describe("EN", () => {

@@ -1,3 +1,4 @@
+const SIMS_LOOKUP_DATA = require('../fixtures/sample-dropdown-data.json');
 const YOUR_DETAILS = Cypress.config("contactDetails");
 
 const options = {
@@ -16,6 +17,8 @@ context(
         console.log(err.stack);
         return false;
       });
+
+      cy.setupSimsLookups(SIMS_LOOKUP_DATA);
     });
 
     describe("EN", () => {

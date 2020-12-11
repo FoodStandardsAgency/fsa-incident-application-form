@@ -1,12 +1,16 @@
 const fetch = require("node-fetch");
 const formFieldTranslations = require(`${__dirname}/../../translations/form-fields.json`);
 
+const LOOKUP =`${process.env.LOOKUP_API_BASE_URL}${process.env.LOOKUP_API_PATH}`;
+
 module.exports = {
   getCountries: async (languageCode, selectedValue = 0) => {
     try {
-      const countriesResponse = await fetch(
-        `${process.env.LOOKUP_API_BASE_URL}/lookup/country`
-      );
+      const lookupResponse = await fetch(LOOKUP);
+      const responseJson = await lookupResponse.json();
+      const countries = responseJson.countries ? responseJson.countries.map( sims => ({id: sims.id, country:sims.title}))
+        : [];
+
       const rawCountries = [
         {
           id: 0,
@@ -15,7 +19,7 @@ module.exports = {
               languageCode
             ],
         },
-        ...(await countriesResponse.json()),
+        ...countries,
       ];
       return rawCountries.map(({ id, country }) => ({
         value: id,

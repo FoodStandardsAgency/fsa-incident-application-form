@@ -1,10 +1,9 @@
+const SIMS_LOOKUP_DATA = require('../fixtures/sample-dropdown-data.json');
 const A_PAYLOAD = {
   id:'123',
   field1:'456',
   field2:'789',
 };
-
-const SIMS_LOOKUP_DATA = require('../fixtures/sample-dropdown-data.json');
 
 context('throwaway example of how to get data out of our test-hook', () => {
 

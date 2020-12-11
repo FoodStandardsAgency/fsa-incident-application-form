@@ -6,10 +6,13 @@ services:
     image: fsa/incident-application-form
     restart: always
     environment:
-      - LOOKUP_API_BASE_URL=http://localhost:3000
       - SESSION_KEY
       - GOV_NOTIFY_API_KEY
       - NOTIFICATION_EMAIL
+      - LOOKUP_API_BASE_URL
+      - LOOKUP_API_PATH
+      - PAYLOAD_SUBMISSION_API_BASE_URL
+      - PAYLOAD_SUBMISSION_API_PATH
     ports:
       - "3000:3000"
     command: npm start

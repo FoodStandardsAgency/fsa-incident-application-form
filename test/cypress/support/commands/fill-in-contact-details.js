@@ -1,5 +1,5 @@
 export const defaultFieldValues = {
-  notifierType: "Industry",
+  notifierType: "Manufacturer",
   contactName: "my name here",
   email: "my.email@somewhere.com",
   organisation: "Test corp",

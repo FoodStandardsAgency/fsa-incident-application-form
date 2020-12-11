@@ -17,7 +17,7 @@ const assembleCompany = (company) => {
       EmailAddress: company.email.value,
       TelephoneNumber: company.telephone1.value,
     },
-    FBOSTypes: parseInt(company.companyType.value, 10) || 0,
+    FBOSTypes: [parseInt(company.companyType.value, 10) || 0],
     Name: company.companyName.value,
   };
 };

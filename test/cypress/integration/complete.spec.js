@@ -1,3 +1,4 @@
+const SIMS_LOOKUP_DATA = require('../fixtures/sample-dropdown-data.json');
 const COMPLETE = Cypress.config("complete");
 
 const options = { force: true };
@@ -12,6 +13,8 @@ context(
         console.log(err.stack);
         return false;
       });
+
+      cy.setupSimsLookups(SIMS_LOOKUP_DATA);
     });
 
     describe("EN", () => {

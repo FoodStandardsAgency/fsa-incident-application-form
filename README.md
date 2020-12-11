@@ -131,3 +131,15 @@ In production, once we've swapped to a production notify key: this restriction w
 
 ## [ENV]_SESSION_KEY
 any unique string. This is theoretically a key for decrypting our session data, and the only reason any human would ever need to see this value is to do so. This field should hold a random string of nonsense.
+
+## [ENV]_LOOKUP_API_BASE_URL
+host of sims lookup service, eg: `https://fsa-simsonlineformconnection.azurewebsites.net`
+
+## [ENV]_LOOKUP_API_PATH
+path to sims lookup service, eg: `/api/SimsLookups?code=VIgE2j6XqaKaGUbFzfa5XYdlHI6xInAMBLSaVLM0RIrT90YDJMSTGw==`
+
+## [ENV]_PAYLOAD_SUBMISSION_API_BASE_URL
+host of sims form service, eg: `https://fsa-simsonlineformconnection.azurewebsites.net`
+
+## [ENV]_PAYLOAD_SUBMISSION_API_PATH
+path to sims lookup service, eg: `/api/SendForm?code=i2ofve0ZiuaB4A8Cie0Op6abr77zryO5V4gaJ34IZ9ZurdDwR7RjTw==`

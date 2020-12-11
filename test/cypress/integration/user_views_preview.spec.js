@@ -1,3 +1,4 @@
+const SIMS_LOOKUP_DATA = require('../fixtures/sample-dropdown-data.json');
 const {
   defaultFieldValues: contactDetails,
 } = require("../support/commands/fill-in-contact-details");
@@ -26,6 +27,8 @@ context(
         console.log(err.stack);
         return false;
       });
+
+      cy.setupSimsLookups(SIMS_LOOKUP_DATA);
     });
 
     describe("Invalid payload redirects back to Your Details", () => {

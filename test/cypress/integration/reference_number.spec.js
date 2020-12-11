@@ -1,3 +1,4 @@
+const SIMS_LOOKUP_DATA = require('../fixtures/sample-dropdown-data.json');
 const {
   defaultFieldValues: contactDetails,
 } = require("../support/commands/fill-in-contact-details");
@@ -25,6 +26,9 @@ context(
         console.log(err.stack);
         return false;
       });
+
+      cy.flushPayloads();
+      cy.setupSimsLookups(SIMS_LOOKUP_DATA);
     });
 
     describe("EN", () => {
@@ -60,6 +64,84 @@ context(
           "contain",
           `reference number`
         );
+
+        // get a list of all the things that have been posted to our test-hook since we last flushed
+        cy.listPayloadsReceived().then((payloads) => {
+          expect(payloads[0].Addresses).to.deep.equal({
+            AddressLine1: "123 Test Street",
+            AddressLine2: "Testfield",
+            TownCity: "Testingtown",
+            County: "Testshire",
+            Postcode: "TE1 5ST",
+            CountryID: 184,
+          });
+
+          const incidentsWithoutTitle = { ...payloads[0].Incidents };
+          delete incidentsWithoutTitle.IncidentTitle;
+
+          const incidentTitle = payloads[0].Incidents.IncidentTitle;
+          delete payloads[0].Incidents.IncidentTitle;
+
+          expect(payloads[0].Incidents).to.deep.equal({
+            NotifierID: 4,
+            NatureOfProblem: "The nature of my problem is salmonella",
+            ActionTaken: "I have notified the authorities",
+            DistributionDetails: "This was distributed to the South East",
+            IllnessDetails: "People are being sick",
+            LocalAuthorityNotified: "I notified the following...",
+            AdditionalInformation: "I also have told the police.",
+          });
+
+          expect(incidentTitle).to.be.greaterThan(1607697310286);
+
+console.log(`incident-products :: `);
+console.log(payloads[0].IncidentProducts);
+          expect(payloads[0].IncidentProducts).to.deep.equal([
+            {
+              AdditionalInfo: "",
+              Amount: 0,
+              AmountUnitTypeId: 0,
+              BatchCodes: "",
+              Brand: "",
+              Companies: [
+                {
+                  Addresses: {
+                    AddressLine1: "",
+                    AddressLine2: "",
+                    TownCity: "",
+                    County: "",
+                    Postcode: "",
+                    CountryID: 0,
+                  },
+                  Contact: {
+                    Name: "",
+                    EmailAddress: "",
+                    TelephoneNumber: "",
+                  },
+                  FBOSTypes: [16],
+                  Name: "",
+                },
+              ],
+              CountryOfOriginId: 90,
+              IncidentProductDates: {
+                BestBeforeDate: "",
+                UseByDate: "",
+                DisplayUntil: "",
+              },
+              IncidentProductPackSizes: { Size: "" },
+              Name: "An example product name",
+              PackDescription: "",
+              ProductTypeId: 0,
+            },
+          ]);
+          expect(payloads[0].IncidentStakeholders).to.deep.equal({
+            Name: "my name here",
+            Role: "my position",
+            GovDept: "Test corp",
+            Email: "my.email@somewhere.com",
+            Phone: "01234 445 667",
+          });
+        });
       });
     });
 
@@ -96,6 +178,82 @@ context(
           "contain",
           `Eich cyfeirnod`
         );
+
+        // get a list of all the things that have been posted to our test-hook since we last flushed
+        cy.listPayloadsReceived().then((payloads) => {
+          expect(payloads[0].Addresses).to.deep.equal({
+            AddressLine1: "123 Test Street",
+            AddressLine2: "Testfield",
+            TownCity: "Testingtown",
+            County: "Testshire",
+            Postcode: "TE1 5ST",
+            CountryID: 184,
+          });
+
+          const incidentsWithoutTitle = { ...payloads[0].Incidents };
+          delete incidentsWithoutTitle.IncidentTitle;
+
+          const incidentTitle = payloads[0].Incidents.IncidentTitle;
+          delete payloads[0].Incidents.IncidentTitle;
+
+          expect(payloads[0].Incidents).to.deep.equal({
+            NotifierID: 4,
+            NatureOfProblem: "The nature of my problem is salmonella",
+            ActionTaken: "I have notified the authorities",
+            DistributionDetails: "This was distributed to the South East",
+            IllnessDetails: "People are being sick",
+            LocalAuthorityNotified: "I notified the following...",
+            AdditionalInformation: "I also have told the police.",
+          });
+
+          expect(incidentTitle).to.be.greaterThan(1607697310286);
+
+          expect(payloads[0].IncidentProducts).to.deep.equal([
+            {
+              AdditionalInfo: "",
+              Amount: 0,
+              AmountUnitTypeId: 0,
+              BatchCodes: "",
+              Brand: "",
+              Companies: [
+                {
+                  Addresses: {
+                    AddressLine1: "",
+                    AddressLine2: "",
+                    TownCity: "",
+                    County: "",
+                    Postcode: "",
+                    CountryID: 0,
+                  },
+                  Contact: {
+                    Name: "",
+                    EmailAddress: "",
+                    TelephoneNumber: "",
+                  },
+                  FBOSTypes: [16],
+                  Name: "",
+                },
+              ],
+              CountryOfOriginId: 90,
+              IncidentProductDates: {
+                BestBeforeDate: "",
+                UseByDate: "",
+                DisplayUntil: "",
+              },
+              IncidentProductPackSizes: { Size: "" },
+              Name: "An example product name",
+              PackDescription: "",
+              ProductTypeId: 0,
+            },
+          ]);
+          expect(payloads[0].IncidentStakeholders).to.deep.equal({
+            Name: "my name here",
+            Role: "my position",
+            GovDept: "Test corp",
+            Email: "my.email@somewhere.com",
+            Phone: "01234 445 667",
+          });
+        });
       });
     });
   }
