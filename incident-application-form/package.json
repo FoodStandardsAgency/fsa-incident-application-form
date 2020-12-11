@@ -6,6 +6,7 @@
     "updateFSAStyles": "mkdir -p ./public/fsastyles && npm install fsastyles && cd ./node_modules/fsastyles && npm install && npm run build && cp -R ./dist/* ../../public/fsastyles",
     "build": "webpack",
     "start": "node ./bin/www",
+    "start:dev": "nodemon ./bin/www",
     "test": "jest",
     "test:watch": "jest --watchAll --runInBand"
   },

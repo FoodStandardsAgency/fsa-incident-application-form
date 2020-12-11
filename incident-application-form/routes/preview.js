@@ -9,6 +9,7 @@ const { getUnits } = require("../lib/lookups/units");
 const send = require("../lib/email/send");
 const { generateReferenceId } = require("../lib/reference-id-generator");
 const { localisePath } = require("../lib/path-to-localised-path");
+const payloadSubmission = require("../lib/payload-submission");
 
 const router = express.Router();
 
@@ -92,8 +93,9 @@ router.post("/", async function (req, res, next) {
   await sendConfirmationEmail(req.session);
   await sendNotificationEmail(req.session);
 
-  // TODO post this off to Rainmaker
+  // post this off to Rainmaker
   const payload = assemblePayload(req.session);
+  await payloadSubmission(payload);
 
   res.redirect(localisePath(`/${routes.COMPLETE}`, req.locale));
 });
