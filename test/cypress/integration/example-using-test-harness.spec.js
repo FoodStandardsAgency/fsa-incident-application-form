@@ -4,6 +4,8 @@ const A_PAYLOAD = {
   field2:'789',
 };
 
+const SIMS_LOOKUP_DATA = require('../fixtures/sample-dropdown-data.json');
+
 context('throwaway example of how to get data out of our test-hook', () => {
 
   beforeEach(() => {
@@ -14,6 +16,7 @@ context('throwaway example of how to get data out of our test-hook', () => {
     // if we don't have a mechanism like this it becomes painfull to
     //  repeatedly re-run tests locally
     cy.flushPayloads();
+    cy.flushSimsLookups();
   });
 
   it(`post some things to a test hook and get them back again...`, () => {
@@ -31,4 +34,16 @@ context('throwaway example of how to get data out of our test-hook', () => {
     });
 
   });
+
+  it(`post some lookups and get them back again...`, () => {
+    // give it some lookup data
+    cy.setupSimsLookups(SIMS_LOOKUP_DATA);
+
+    // when the app hits that endpoint it gets back the lookup data we gave it
+    cy.getSimsLookups().then( (lookups) => {
+      expect(lookups).to.deep.equal(SIMS_LOOKUP_DATA);
+    });
+
+  });
+
 });
