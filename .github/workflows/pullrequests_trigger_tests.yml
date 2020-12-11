@@ -10,9 +10,16 @@ jobs:
     name: "checkout; launch docker-compose; execute cypress tests."
     runs-on: ubuntu-latest
     env:
+      SESSION_KEY: ${{ secrets.DEV_SESSION_KEY }}
+
       GOV_NOTIFY_API_KEY: ${{ secrets.DEV_GOV_NOTIFY_API_KEY }}
       NOTIFICATION_EMAIL: ${{ secrets.DEV_NOTIFICATION_EMAIL }}
-      SESSION_KEY: ${{ secrets.DEV_SESSION_KEY }}
+
+      LOOKUP_API_BASE_URL: ${{ secrets.CI_LOOKUP_API_BASE_URL }}
+      LOOKUP_API_PATH: ${{ secrets.CI_LOOKUP_API_PATH }}
+      PAYLOAD_SUBMISSION_API_BASE_URL: ${{ secrets.CI_PAYLOAD_SUBMISSION_API_BASE_URL }}
+      PAYLOAD_SUBMISSION_API_PATH: ${{ secrets.CI_PAYLOAD_SUBMISSION_API_PATH }}
+
       CYPRESS_VIDEOS: ./test/cypress/videos
 
     steps:
