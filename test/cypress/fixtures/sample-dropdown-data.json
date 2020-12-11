@@ -1,0 +1,1428 @@
+{
+  "countries": [
+    {
+      "id": 1,
+      "title": "Andorra"
+    },
+    {
+      "id": 2,
+      "title": "United Arab Emirates"
+    },
+    {
+      "id": 3,
+      "title": "Ajman"
+    },
+    {
+      "id": 4,
+      "title": "Abu Dhabi"
+    },
+    {
+      "id": 5,
+      "title": "Dubai"
+    },
+    {
+      "id": 6,
+      "title": "Fujairah"
+    },
+    {
+      "id": 7,
+      "title": "Ras al-Khaimah"
+    },
+    {
+      "id": 8,
+      "title": "Sharjah"
+    },
+    {
+      "id": 9,
+      "title": "Umm al-Quwain"
+    },
+    {
+      "id": 10,
+      "title": "Afghanistan"
+    },
+    {
+      "id": 11,
+      "title": "Antigua and Barbuda"
+    },
+    {
+      "id": 12,
+      "title": "Anguilla"
+    },
+    {
+      "id": 13,
+      "title": "Albania"
+    },
+    {
+      "id": 14,
+      "title": "Armenia"
+    },
+    {
+      "id": 15,
+      "title": "Angola"
+    },
+    {
+      "id": 16,
+      "title": "Antarctica"
+    },
+    {
+      "id": 17,
+      "title": "Argentina"
+    },
+    {
+      "id": 18,
+      "title": "American Samoa"
+    },
+    {
+      "id": 19,
+      "title": "Austria"
+    },
+    {
+      "id": 20,
+      "title": "Australia"
+    },
+    {
+      "id": 21,
+      "title": "Aruba"
+    },
+    {
+      "id": 22,
+      "title": "Aland Islands"
+    },
+    {
+      "id": 23,
+      "title": "Azerbaijan"
+    },
+    {
+      "id": 24,
+      "title": "Bosnia and Herzegovina"
+    },
+    {
+      "id": 25,
+      "title": "British Antarctic Territory"
+    },
+    {
+      "id": 26,
+      "title": "Barbados"
+    },
+    {
+      "id": 27,
+      "title": "Bangladesh"
+    },
+    {
+      "id": 28,
+      "title": "Belgium"
+    },
+    {
+      "id": 29,
+      "title": "Burkina Faso"
+    },
+    {
+      "id": 30,
+      "title": "Bulgaria"
+    },
+    {
+      "id": 31,
+      "title": "Bahrain"
+    },
+    {
+      "id": 32,
+      "title": "Burundi"
+    },
+    {
+      "id": 33,
+      "title": "Benin"
+    },
+    {
+      "id": 34,
+      "title": "Saint Barthelemy"
+    },
+    {
+      "id": 35,
+      "title": "Bermuda"
+    },
+    {
+      "id": 36,
+      "title": "Brunei"
+    },
+    {
+      "id": 37,
+      "title": "Bolivia"
+    },
+    {
+      "id": 38,
+      "title": "Bonaire"
+    },
+    {
+      "id": 39,
+      "title": "Saba"
+    },
+    {
+      "id": 40,
+      "title": "Sint Eustatius"
+    },
+    {
+      "id": 41,
+      "title": "Brazil"
+    },
+    {
+      "id": 42,
+      "title": "The Bahamas"
+    },
+    {
+      "id": 43,
+      "title": "Bhutan"
+    },
+    {
+      "id": 44,
+      "title": "Bouvet Island"
+    },
+    {
+      "id": 45,
+      "title": "Botswana"
+    },
+    {
+      "id": 46,
+      "title": "Belarus"
+    },
+    {
+      "id": 47,
+      "title": "Belize"
+    },
+    {
+      "id": 48,
+      "title": "Canada"
+    },
+    {
+      "id": 49,
+      "title": "Cocos (Keeling) Islands"
+    },
+    {
+      "id": 50,
+      "title": "Congo (Democratic Republic)"
+    },
+    {
+      "id": 51,
+      "title": "Central African Republic"
+    },
+    {
+      "id": 52,
+      "title": "Congo"
+    },
+    {
+      "id": 53,
+      "title": "Switzerland"
+    },
+    {
+      "id": 54,
+      "title": "Ivory Coast"
+    },
+    {
+      "id": 55,
+      "title": "Cook Islands"
+    },
+    {
+      "id": 56,
+      "title": "Chile"
+    },
+    {
+      "id": 57,
+      "title": "Cameroon"
+    },
+    {
+      "id": 58,
+      "title": "China"
+    },
+    {
+      "id": 59,
+      "title": "Colombia"
+    },
+    {
+      "id": 60,
+      "title": "Costa Rica"
+    },
+    {
+      "id": 61,
+      "title": "Cuba"
+    },
+    {
+      "id": 62,
+      "title": "Cape Verde"
+    },
+    {
+      "id": 63,
+      "title": "Curacao"
+    },
+    {
+      "id": 64,
+      "title": "Christmas Island"
+    },
+    {
+      "id": 65,
+      "title": "Cyprus"
+    },
+    {
+      "id": 66,
+      "title": "Czechia"
+    },
+    {
+      "id": 67,
+      "title": "Germany"
+    },
+    {
+      "id": 68,
+      "title": "Djibouti"
+    },
+    {
+      "id": 69,
+      "title": "Denmark"
+    },
+    {
+      "id": 70,
+      "title": "Dominica"
+    },
+    {
+      "id": 71,
+      "title": "Dominican Republic"
+    },
+    {
+      "id": 72,
+      "title": "Algeria"
+    },
+    {
+      "id": 73,
+      "title": "Ecuador"
+    },
+    {
+      "id": 74,
+      "title": "Estonia"
+    },
+    {
+      "id": 75,
+      "title": "Egypt"
+    },
+    {
+      "id": 76,
+      "title": "Western Sahara"
+    },
+    {
+      "id": 77,
+      "title": "Eritrea"
+    },
+    {
+      "id": 78,
+      "title": "Spain"
+    },
+    {
+      "id": 79,
+      "title": "Ceuta"
+    },
+    {
+      "id": 80,
+      "title": "Melilla"
+    },
+    {
+      "id": 81,
+      "title": "Ethiopia"
+    },
+    {
+      "id": 82,
+      "title": "European Union"
+    },
+    {
+      "id": 83,
+      "title": "Finland"
+    },
+    {
+      "id": 84,
+      "title": "Fiji"
+    },
+    {
+      "id": 85,
+      "title": "Falkland Islands"
+    },
+    {
+      "id": 86,
+      "title": "Micronesia"
+    },
+    {
+      "id": 87,
+      "title": "Faroe Islands"
+    },
+    {
+      "id": 88,
+      "title": "France"
+    },
+    {
+      "id": 89,
+      "title": "Gabon"
+    },
+    {
+      "id": 90,
+      "title": "United Kingdom"
+    },
+    {
+      "id": 91,
+      "title": "England"
+    },
+    {
+      "id": 92,
+      "title": "Northern Ireland"
+    },
+    {
+      "id": 93,
+      "title": "Scotland"
+    },
+    {
+      "id": 94,
+      "title": "Wales"
+    },
+    {
+      "id": 95,
+      "title": "Grenada"
+    },
+    {
+      "id": 96,
+      "title": "Georgia"
+    },
+    {
+      "id": 97,
+      "title": "French Guiana"
+    },
+    {
+      "id": 98,
+      "title": "Guernsey"
+    },
+    {
+      "id": 99,
+      "title": "Ghana"
+    },
+    {
+      "id": 100,
+      "title": "Gibraltar"
+    },
+    {
+      "id": 101,
+      "title": "Greenland"
+    },
+    {
+      "id": 102,
+      "title": "The Gambia"
+    },
+    {
+      "id": 103,
+      "title": "Guinea"
+    },
+    {
+      "id": 104,
+      "title": "Guadeloupe"
+    },
+    {
+      "id": 105,
+      "title": "Equatorial Guinea"
+    },
+    {
+      "id": 106,
+      "title": "Greece"
+    },
+    {
+      "id": 107,
+      "title": "South Georgia and South Sandwich Islands"
+    },
+    {
+      "id": 108,
+      "title": "Guatemala"
+    },
+    {
+      "id": 109,
+      "title": "Guam"
+    },
+    {
+      "id": 110,
+      "title": "Guinea-Bissau"
+    },
+    {
+      "id": 111,
+      "title": "Guyana"
+    },
+    {
+      "id": 112,
+      "title": "Hong Kong"
+    },
+    {
+      "id": 113,
+      "title": "Heard Island and McDonald Islands"
+    },
+    {
+      "id": 114,
+      "title": "Honduras"
+    },
+    {
+      "id": 115,
+      "title": "Croatia"
+    },
+    {
+      "id": 116,
+      "title": "Haiti"
+    },
+    {
+      "id": 117,
+      "title": "Hungary"
+    },
+    {
+      "id": 118,
+      "title": "Indonesia"
+    },
+    {
+      "id": 119,
+      "title": "Ireland"
+    },
+    {
+      "id": 120,
+      "title": "Israel"
+    },
+    {
+      "id": 121,
+      "title": "Isle of Man"
+    },
+    {
+      "id": 122,
+      "title": "India"
+    },
+    {
+      "id": 123,
+      "title": "British Indian Ocean Territory"
+    },
+    {
+      "id": 124,
+      "title": "Iraq"
+    },
+    {
+      "id": 125,
+      "title": "Iran"
+    },
+    {
+      "id": 126,
+      "title": "Iceland"
+    },
+    {
+      "id": 127,
+      "title": "Italy"
+    },
+    {
+      "id": 128,
+      "title": "Jersey"
+    },
+    {
+      "id": 129,
+      "title": "Jamaica"
+    },
+    {
+      "id": 130,
+      "title": "Jordan"
+    },
+    {
+      "id": 131,
+      "title": "Japan"
+    },
+    {
+      "id": 132,
+      "title": "Kenya"
+    },
+    {
+      "id": 133,
+      "title": "Kyrgyzstan"
+    },
+    {
+      "id": 134,
+      "title": "Cambodia"
+    },
+    {
+      "id": 135,
+      "title": "Kiribati"
+    },
+    {
+      "id": 136,
+      "title": "Comoros"
+    },
+    {
+      "id": 137,
+      "title": "St Kitts and Nevis"
+    },
+    {
+      "id": 138,
+      "title": "North Korea"
+    },
+    {
+      "id": 139,
+      "title": "South Korea"
+    },
+    {
+      "id": 140,
+      "title": "Kuwait"
+    },
+    {
+      "id": 141,
+      "title": "Cayman Islands"
+    },
+    {
+      "id": 142,
+      "title": "Kazakhstan"
+    },
+    {
+      "id": 143,
+      "title": "Laos"
+    },
+    {
+      "id": 144,
+      "title": "Lebanon"
+    },
+    {
+      "id": 145,
+      "title": "St Lucia"
+    },
+    {
+      "id": 146,
+      "title": "Liechtenstein"
+    },
+    {
+      "id": 147,
+      "title": "Sri Lanka"
+    },
+    {
+      "id": 148,
+      "title": "Liberia"
+    },
+    {
+      "id": 149,
+      "title": "Lesotho"
+    },
+    {
+      "id": 150,
+      "title": "Lithuania"
+    },
+    {
+      "id": 151,
+      "title": "Luxembourg"
+    },
+    {
+      "id": 152,
+      "title": "Latvia"
+    },
+    {
+      "id": 153,
+      "title": "Libya"
+    },
+    {
+      "id": 154,
+      "title": "Morocco"
+    },
+    {
+      "id": 155,
+      "title": "Monaco"
+    },
+    {
+      "id": 156,
+      "title": "Moldova"
+    },
+    {
+      "id": 157,
+      "title": "Montenegro"
+    },
+    {
+      "id": 158,
+      "title": "Saint-Martin (French part)"
+    },
+    {
+      "id": 159,
+      "title": "Madagascar"
+    },
+    {
+      "id": 160,
+      "title": "Marshall Islands"
+    },
+    {
+      "id": 161,
+      "title": "Macedonia"
+    },
+    {
+      "id": 162,
+      "title": "Mali"
+    },
+    {
+      "id": 163,
+      "title": "Burma"
+    },
+    {
+      "id": 164,
+      "title": "Mongolia"
+    },
+    {
+      "id": 165,
+      "title": "Macao"
+    },
+    {
+      "id": 166,
+      "title": "Northern Mariana Islands"
+    },
+    {
+      "id": 167,
+      "title": "Martinique"
+    },
+    {
+      "id": 168,
+      "title": "Mauritania"
+    },
+    {
+      "id": 169,
+      "title": "Montserrat"
+    },
+    {
+      "id": 170,
+      "title": "Malta"
+    },
+    {
+      "id": 171,
+      "title": "Mauritius"
+    },
+    {
+      "id": 172,
+      "title": "Maldives"
+    },
+    {
+      "id": 173,
+      "title": "Malawi"
+    },
+    {
+      "id": 174,
+      "title": "Mexico"
+    },
+    {
+      "id": 175,
+      "title": "Malaysia"
+    },
+    {
+      "id": 176,
+      "title": "Mozambique"
+    },
+    {
+      "id": 177,
+      "title": "Namibia"
+    },
+    {
+      "id": 178,
+      "title": "New Caledonia"
+    },
+    {
+      "id": 179,
+      "title": "Niger"
+    },
+    {
+      "id": 180,
+      "title": "Norfolk Island"
+    },
+    {
+      "id": 181,
+      "title": "Nigeria"
+    },
+    {
+      "id": 182,
+      "title": "Nicaragua"
+    },
+    {
+      "id": 183,
+      "title": "Netherlands"
+    },
+    {
+      "id": 184,
+      "title": "Norway"
+    },
+    {
+      "id": 185,
+      "title": "Nepal"
+    },
+    {
+      "id": 186,
+      "title": "Nauru"
+    },
+    {
+      "id": 187,
+      "title": "Niue"
+    },
+    {
+      "id": 188,
+      "title": "New Zealand"
+    },
+    {
+      "id": 189,
+      "title": "Oman"
+    },
+    {
+      "id": 190,
+      "title": "Panama"
+    },
+    {
+      "id": 191,
+      "title": "Peru"
+    },
+    {
+      "id": 192,
+      "title": "French Polynesia"
+    },
+    {
+      "id": 193,
+      "title": "Papua New Guinea"
+    },
+    {
+      "id": 194,
+      "title": "Philippines"
+    },
+    {
+      "id": 195,
+      "title": "Pakistan"
+    },
+    {
+      "id": 196,
+      "title": "Poland"
+    },
+    {
+      "id": 197,
+      "title": "Saint Pierre and Miquelon"
+    },
+    {
+      "id": 198,
+      "title": "Pitcairn, Henderson, Ducie and Oeno Islands"
+    },
+    {
+      "id": 199,
+      "title": "Puerto Rico"
+    },
+    {
+      "id": 200,
+      "title": "Occupied Palestinian Territories"
+    },
+    {
+      "id": 201,
+      "title": "Portugal"
+    },
+    {
+      "id": 202,
+      "title": "Palau"
+    },
+    {
+      "id": 203,
+      "title": "Paraguay"
+    },
+    {
+      "id": 204,
+      "title": "Qatar"
+    },
+    {
+      "id": 205,
+      "title": "Reunion"
+    },
+    {
+      "id": 206,
+      "title": "Romania"
+    },
+    {
+      "id": 207,
+      "title": "Serbia"
+    },
+    {
+      "id": 208,
+      "title": "Russia"
+    },
+    {
+      "id": 209,
+      "title": "Rwanda"
+    },
+    {
+      "id": 210,
+      "title": "Saudi Arabia"
+    },
+    {
+      "id": 211,
+      "title": "Solomon Islands"
+    },
+    {
+      "id": 212,
+      "title": "Seychelles"
+    },
+    {
+      "id": 213,
+      "title": "Sudan"
+    },
+    {
+      "id": 214,
+      "title": "Sweden"
+    },
+    {
+      "id": 215,
+      "title": "Singapore"
+    },
+    {
+      "id": 216,
+      "title": "Ascension"
+    },
+    {
+      "id": 217,
+      "title": "Saint Helena"
+    },
+    {
+      "id": 218,
+      "title": "Tristan da Cunha"
+    },
+    {
+      "id": 219,
+      "title": "Slovenia"
+    },
+    {
+      "id": 220,
+      "title": "Svalbard and Jan Mayen"
+    },
+    {
+      "id": 221,
+      "title": "Slovakia"
+    },
+    {
+      "id": 222,
+      "title": "Sierra Leone"
+    },
+    {
+      "id": 223,
+      "title": "San Marino"
+    },
+    {
+      "id": 224,
+      "title": "Senegal"
+    },
+    {
+      "id": 225,
+      "title": "Somalia"
+    },
+    {
+      "id": 226,
+      "title": "Suriname"
+    },
+    {
+      "id": 227,
+      "title": "South Sudan"
+    },
+    {
+      "id": 228,
+      "title": "Sao Tome and Principe"
+    },
+    {
+      "id": 229,
+      "title": "El Salvador"
+    },
+    {
+      "id": 230,
+      "title": "Sint Maarten (Dutch part)"
+    },
+    {
+      "id": 231,
+      "title": "Syria"
+    },
+    {
+      "id": 232,
+      "title": "Swaziland"
+    },
+    {
+      "id": 233,
+      "title": "Turks and Caicos Islands"
+    },
+    {
+      "id": 234,
+      "title": "Chad"
+    },
+    {
+      "id": 235,
+      "title": "French Southern Territories"
+    },
+    {
+      "id": 236,
+      "title": "Togo"
+    },
+    {
+      "id": 237,
+      "title": "Thailand"
+    },
+    {
+      "id": 238,
+      "title": "Tajikistan"
+    },
+    {
+      "id": 239,
+      "title": "Tokelau"
+    },
+    {
+      "id": 240,
+      "title": "East Timor"
+    },
+    {
+      "id": 241,
+      "title": "Turkmenistan"
+    },
+    {
+      "id": 242,
+      "title": "Tunisia"
+    },
+    {
+      "id": 243,
+      "title": "Tonga"
+    },
+    {
+      "id": 244,
+      "title": "Turkey"
+    },
+    {
+      "id": 245,
+      "title": "Trinidad and Tobago"
+    },
+    {
+      "id": 246,
+      "title": "Tuvalu"
+    },
+    {
+      "id": 247,
+      "title": "Taiwan"
+    },
+    {
+      "id": 248,
+      "title": "Tanzania"
+    },
+    {
+      "id": 249,
+      "title": "Ukraine"
+    },
+    {
+      "id": 250,
+      "title": "Uganda"
+    },
+    {
+      "id": 251,
+      "title": "Johnston Atoll"
+    },
+    {
+      "id": 252,
+      "title": "Midway Islands"
+    },
+    {
+      "id": 253,
+      "title": "Navassa Island"
+    },
+    {
+      "id": 254,
+      "title": "Wake Island"
+    },
+    {
+      "id": 255,
+      "title": "Baker Island"
+    },
+    {
+      "id": 256,
+      "title": "Howland Island"
+    },
+    {
+      "id": 257,
+      "title": "Jarvis Island"
+    },
+    {
+      "id": 258,
+      "title": "Kingman Reef"
+    },
+    {
+      "id": 259,
+      "title": "Palmyra Atoll"
+    },
+    {
+      "id": 260,
+      "title": "United States"
+    },
+    {
+      "id": 261,
+      "title": "Uruguay"
+    },
+    {
+      "id": 262,
+      "title": "Uzbekistan"
+    },
+    {
+      "id": 263,
+      "title": "Vatican City"
+    },
+    {
+      "id": 264,
+      "title": "St Vincent"
+    },
+    {
+      "id": 265,
+      "title": "Venezuela"
+    },
+    {
+      "id": 266,
+      "title": "British Virgin Islands"
+    },
+    {
+      "id": 267,
+      "title": "United States Virgin Islands"
+    },
+    {
+      "id": 268,
+      "title": "Vietnam"
+    },
+    {
+      "id": 269,
+      "title": "Vanuatu"
+    },
+    {
+      "id": 270,
+      "title": "Wallis and Futuna"
+    },
+    {
+      "id": 271,
+      "title": "Samoa"
+    },
+    {
+      "id": 272,
+      "title": "Kosovo"
+    },
+    {
+      "id": 273,
+      "title": "Akrotiri"
+    },
+    {
+      "id": 274,
+      "title": "Dhekelia"
+    },
+    {
+      "id": 275,
+      "title": "Yemen"
+    },
+    {
+      "id": 276,
+      "title": "Mayotte"
+    },
+    {
+      "id": 277,
+      "title": "South Africa"
+    },
+    {
+      "id": 278,
+      "title": "Zambia"
+    },
+    {
+      "id": 279,
+      "title": "Zimbabwe"
+    },
+    {
+      "id": 280,
+      "title": "Country"
+    },
+    {
+      "id": 281,
+      "title": "non-EU"
+    },
+    {
+      "id": 282,
+      "title": "Not Easily Identified"
+    },
+    {
+      "id": 283,
+      "title": "Other"
+    },
+    {
+      "id": 284,
+      "title": "Territory"
+    }
+  ],
+  "productTypes": [
+    {
+      "id": 1,
+      "title": "Undefined"
+    },
+    {
+      "id": 2,
+      "title": "Animal by-Products"
+    },
+    {
+      "id": 3,
+      "title": "Alcoholic Beverages"
+    },
+    {
+      "id": 4,
+      "title": "Bivalve Molluscs & Products Thereof"
+    },
+    {
+      "id": 5,
+      "title": "Cephalopods & Products Thereof"
+    },
+    {
+      "id": 6,
+      "title": "Cereals & Bakery Products"
+    },
+    {
+      "id": 7,
+      "title": "Cocoa / Cocoa Preparations / Coffee / Tea"
+    },
+    {
+      "id": 8,
+      "title": "Compound Feeds"
+    },
+    {
+      "id": 9,
+      "title": "Confectionery"
+    },
+    {
+      "id": 10,
+      "title": "Crustaceans & Products Thereof"
+    },
+    {
+      "id": 11,
+      "title": "Dietetic Foods / Food Supplements / Fortified Foods"
+    },
+    {
+      "id": 12,
+      "title": "Egg & Egg Products"
+    },
+    {
+      "id": 13,
+      "title": "Fats & Oils"
+    },
+    {
+      "id": 14,
+      "title": "Feed Additives"
+    },
+    {
+      "id": 15,
+      "title": "Feed Materials"
+    },
+    {
+      "id": 16,
+      "title": "Feed Premixtures"
+    },
+    {
+      "id": 17,
+      "title": "Fish & Fish Products"
+    },
+    {
+      "id": 18,
+      "title": "Food Additives & Flavourings"
+    },
+    {
+      "id": 19,
+      "title": "Food Contact Materials"
+    },
+    {
+      "id": 20,
+      "title": "Fruits & Vegetables"
+    },
+    {
+      "id": 21,
+      "title": "Gastropods"
+    },
+    {
+      "id": 22,
+      "title": "Herbs & Spices"
+    },
+    {
+      "id": 23,
+      "title": "Honey & Royal Jelly"
+    },
+    {
+      "id": 24,
+      "title": "Ices & Desserts"
+    },
+    {
+      "id": 25,
+      "title": "Meat & Meat Products (other than poultry)"
+    },
+    {
+      "id": 26,
+      "title": "Milk & Milk Products"
+    },
+    {
+      "id": 27,
+      "title": "N/A"
+    },
+    {
+      "id": 28,
+      "title": "Non-Alcoholic Beverages"
+    },
+    {
+      "id": 29,
+      "title": "Nuts / Nut Products / Seeds"
+    },
+    {
+      "id": 30,
+      "title": "Other Food Product / Mixed"
+    },
+    {
+      "id": 31,
+      "title": "Pet Food"
+    },
+    {
+      "id": 32,
+      "title": "Poultry Meat & Poultry Meat Products"
+    },
+    {
+      "id": 33,
+      "title": "Prepared Dishes & Snacks"
+    },
+    {
+      "id": 34,
+      "title": "Soups / Broths / Sauces & Condiments"
+    },
+    {
+      "id": 35,
+      "title": "Water"
+    },
+    {
+      "id": 36,
+      "title": "Wine"
+    },
+    {
+      "id": 37,
+      "title": "Unmapped SPT Signal Value"
+    }
+  ],
+  "fboTypes": [
+    {
+      "id": 1,
+      "title": "Consignor"
+    },
+    {
+      "id": 2,
+      "title": "e-platform/e-market place"
+    },
+    {
+      "id": 4,
+      "title": "e-trader"
+    },
+    {
+      "id": 8,
+      "title": "Exporter"
+    },
+    {
+      "id": 16,
+      "title": "Farmer"
+    },
+    {
+      "id": 32,
+      "title": "Hospitality/Food service"
+    },
+    {
+      "id": 64,
+      "title": "Importer"
+    },
+    {
+      "id": 128,
+      "title": "Manufacturer"
+    },
+    {
+      "id": 256,
+      "title": "Packer/filler"
+    },
+    {
+      "id": 512,
+      "title": "Processor"
+    },
+    {
+      "id": 1024,
+      "title": "Producer"
+    },
+    {
+      "id": 2048,
+      "title": "Retailer"
+    },
+    {
+      "id": 4096,
+      "title": "Storage"
+    },
+    {
+      "id": 8192,
+      "title": "Supplier"
+    },
+    {
+      "id": 16384,
+      "title": "Trader/Broker"
+    },
+    {
+      "id": 32768,
+      "title": "Transporter"
+    },
+    {
+      "id": 65536,
+      "title": "Wholesaler"
+    }
+  ],
+  "units": [
+    {
+      "id": 1,
+      "title": "Undefined"
+    },
+    {
+      "id": 8,
+      "title": "Gallons (gal)"
+    },
+    {
+      "id": 9,
+      "title": "Grams (g)"
+    },
+    {
+      "id": 10,
+      "title": "Kilograms (kg)"
+    },
+    {
+      "id": 11,
+      "title": "Litres (l)"
+    },
+    {
+      "id": 19,
+      "title": "Tonnes (t)"
+    },
+    {
+      "id": 20,
+      "title": "Millilitres (ml)"
+    },
+    {
+      "id": 21,
+      "title": "Ounces (oz)"
+    },
+    {
+      "id": 22,
+      "title": "Pints (pt)"
+    },
+    {
+      "id": 23,
+      "title": "Pounds (lb)"
+    },
+    {
+      "id": 24,
+      "title": "Units"
+    }
+  ],
+  "notifierTypes": [
+    {
+      "id": 1,
+      "title": "Public individual"
+    },
+    {
+      "id": 2,
+      "title": "Local Authority"
+    },
+    {
+      "id": 3,
+      "title": "Retailer"
+    },
+    {
+      "id": 4,
+      "title": "Manufacturer"
+    },
+    {
+      "id": 5,
+      "title": "Undefined"
+    }
+  ]
+}

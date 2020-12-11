@@ -23,3 +23,7 @@ Cypress.Commands.add("sendPayloadToTestHook", require('./sendPayloadToTestHook')
 Cypress.Commands.add("listPayloadsReceived", require('./listPayloadsReceived'));
 Cypress.Commands.add("receivedPayloadById", require('./receivedPayloadById'));
 Cypress.Commands.add("flushPayloads", require('./flushPayloads'));
+
+Cypress.Commands.add("flushSimsLookups", require('./flushSimsLookups'));
+Cypress.Commands.add("setupSimsLookups", require('./setupSimsLookups'));
+Cypress.Commands.add("getSimsLookups", require('./getSimsLookups'));
