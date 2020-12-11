@@ -91,7 +91,6 @@ jobs:
               SESSION_KEY=${{ secrets.DEV_SESSION_KEY }} \
               GOV_NOTIFY_API_KEY=${{ secrets.DEV_GOV_NOTIFY_API_KEY }} \
               NOTIFICATION_EMAIL=${{ secrets.DEV_NOTIFICATION_EMAIL }} \
-
               LOOKUP_API_BASE_URL=${{ secrets.DEV_LOOKUP_API_BASE_URL }} \
               LOOKUP_API_PATH=${{ secrets.DEV_LOOKUP_API_PATH }} \
               PAYLOAD_SUBMISSION_API_BASE_URL=${{ secrets.DEV_PAYLOAD_SUBMISSION_API_BASE_URL }} \
