@@ -1,6 +1,6 @@
 const defaultFieldValues = {
   companyName: "A test company name",
-  companyType: "Distributor",
+  companyType: "Farmer",
   contactName: "Johnny Tester",
   email: "johnny.tester@example.com",
   telephone1: "+44 1883 123 456",

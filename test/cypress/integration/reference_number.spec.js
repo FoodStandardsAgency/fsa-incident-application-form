@@ -1,3 +1,4 @@
+const SIMS_LOOKUP_DATA = require('../fixtures/sample-dropdown-data.json');
 const {
   defaultFieldValues: contactDetails,
 } = require("../support/commands/fill-in-contact-details");
@@ -27,6 +28,7 @@ context(
       });
 
       cy.flushPayloads();
+      cy.setupSimsLookups(SIMS_LOOKUP_DATA);
     });
 
     describe("EN", () => {
@@ -71,7 +73,7 @@ context(
             TownCity: "Testingtown",
             County: "Testshire",
             Postcode: "TE1 5ST",
-            CountryID: 60,
+            CountryID: 184,
           });
 
           const incidentsWithoutTitle = { ...payloads[0].Incidents };
@@ -92,6 +94,8 @@ context(
 
           expect(incidentTitle).to.be.greaterThan(1607697310286);
 
+console.log(`incident-products :: `);
+console.log(payloads[0].IncidentProducts);
           expect(payloads[0].IncidentProducts).to.deep.equal([
             {
               AdditionalInfo: "",
@@ -114,11 +118,11 @@ context(
                     EmailAddress: "",
                     TelephoneNumber: "",
                   },
-                  FBOSTypes: [1],
+                  FBOSTypes: [16],
                   Name: "",
                 },
               ],
-              CountryOfOriginId: 17,
+              CountryOfOriginId: 90,
               IncidentProductDates: {
                 BestBeforeDate: "",
                 UseByDate: "",
@@ -183,7 +187,7 @@ context(
             TownCity: "Testingtown",
             County: "Testshire",
             Postcode: "TE1 5ST",
-            CountryID: 60,
+            CountryID: 184,
           });
 
           const incidentsWithoutTitle = { ...payloads[0].Incidents };
@@ -226,11 +230,11 @@ context(
                     EmailAddress: "",
                     TelephoneNumber: "",
                   },
-                  FBOSTypes: [1],
+                  FBOSTypes: [16],
                   Name: "",
                 },
               ],
-              CountryOfOriginId: 17,
+              CountryOfOriginId: 90,
               IncidentProductDates: {
                 BestBeforeDate: "",
                 UseByDate: "",

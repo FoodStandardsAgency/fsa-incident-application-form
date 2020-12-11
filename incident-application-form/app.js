@@ -21,12 +21,6 @@ var companyRouter = require("./routes/company");
 var previewRouter = require("./routes/preview");
 var thankyouRouter = require("./routes/complete");
 
-var companyTypeRouter = require("./lookupMocks/company-type");
-var countryRouter = require("./lookupMocks/country");
-var notifierTypeRouter = require("./lookupMocks/notifier-type");
-var productTypeRouter = require("./lookupMocks/product-type");
-var unitsRouter = require("./lookupMocks/units");
-
 var { localisePath } = require("./lib/path-to-localised-path");
 
 var app = express();
@@ -95,12 +89,6 @@ app.use(
 );
 app.use(`/:locale(cy)?/${routes.PREVIEW}`, getLanguageStrings, previewRouter);
 app.use(`/:locale(cy)?/${routes.COMPLETE}`, getLanguageStrings, thankyouRouter);
-
-app.use("/lookup/companyType", companyTypeRouter);
-app.use("/lookup/country", countryRouter);
-app.use("/lookup/notifierType", notifierTypeRouter);
-app.use("/lookup/productType", productTypeRouter);
-app.use("/lookup/units", unitsRouter);
 
 app.use("/cookies", cookiesRouter);
 app.use("/accessibility", accessibilityRouter);
