@@ -1,4 +1,4 @@
-const SIMS_LOOKUP_DATA = require('../fixtures/sample-dropdown-data.json');
+const SIMS_LOOKUP_DATA = require("../fixtures/sample-dropdown-data.json");
 const {
   defaultFieldValues: contactDetails,
 } = require("../support/commands/fill-in-contact-details");
@@ -92,10 +92,9 @@ context(
             AdditionalInformation: "I also have told the police.",
           });
 
-          expect(incidentTitle).to.be.greaterThan(1607697310286);
+          expect(typeof incidentTitle === "string").to.be.true;
+          expect(parseInt(incidentTitle, 10)).to.be.greaterThan(1607697310286);
 
-console.log(`incident-products :: `);
-console.log(payloads[0].IncidentProducts);
           expect(payloads[0].IncidentProducts).to.deep.equal([
             {
               AdditionalInfo: "",
@@ -206,7 +205,8 @@ console.log(payloads[0].IncidentProducts);
             AdditionalInformation: "I also have told the police.",
           });
 
-          expect(incidentTitle).to.be.greaterThan(1607697310286);
+          expect(typeof incidentTitle === "string").to.be.true;
+          expect(parseInt(incidentTitle, 10)).to.be.greaterThan(1607697310286);
 
           expect(payloads[0].IncidentProducts).to.deep.equal([
             {
