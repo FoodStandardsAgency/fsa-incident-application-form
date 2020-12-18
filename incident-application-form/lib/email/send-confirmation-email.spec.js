@@ -10,25 +10,16 @@ describe(`lib/email/send-confirmation-email`, () => {
     false,
     {},
     {
-      yourDetails: {},
+      IncidentStakeholders: {},
     },
     {
-      yourDetails: {
+      IncidentStakeholders: {
         email: false,
       },
     },
     {
-      yourDetails: {
-        email: {
-          value: false,
-        },
-      },
-    },
-    {
-      yourDetails: {
-        email: {
-          value: undefined,
-        },
+      IncidentStakeholders: {
+        email: undefined,
       },
     },
   ].forEach((given) => {
@@ -44,15 +35,13 @@ describe(`lib/email/send-confirmation-email`, () => {
     const fakeRefNo = "abc-123";
 
     await sendConfirmationEmail({
-      yourDetails: {
-        contactName: {
-          value: fakeContactName,
-        },
-        email: {
-          value: fakeEmail,
-        },
+      IncidentStakeholders: {
+        Name: fakeContactName,
+        Email: fakeEmail,
       },
-      referenceNumber: fakeRefNo,
+      Incidents: {
+        IncidentTitle: fakeRefNo,
+      }
     });
     expect(send).toHaveBeenCalledWith("en-confirmation-email", fakeEmail, {
       contactName: fakeContactName,
