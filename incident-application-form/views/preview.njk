@@ -35,7 +35,7 @@
           {% endif %}
         </dd>
         <dd class="govuk-summary-list__value">
-          <a class="govuk-link" href="{{ localisePath( routes.YOUR_DETAILS, i18n.languageCode) }}">
+          <a class="govuk-link" href="{{ localisePath( ["/", routes.YOUR_DETAILS].join(""), i18n.languageCode) }}">
             {{ i18n.text.change[i18n.languageCode] }}<span class="govuk-visually-hidden"> {{ i18n.sections.yourDetails[i18n.languageCode] }}</span>
           </a>
         </dd>
@@ -181,7 +181,7 @@
           {{ detailsOfIncident.natureOfProblem.value or not_provided }}
         </dd>
         <dd class="govuk-summary-list__value">
-          <a class="govuk-link" href="{{ localisePath( routes.DETAILS_OF_INCIDENT, i18n.languageCode ) }}">
+          <a class="govuk-link" href="{{ localisePath( ["/", routes.DETAILS_OF_INCIDENT].join(""), i18n.languageCode ) }}" data-cy="change-details-of-incident">
             {{ i18n.text.change[i18n.languageCode] }}<span class="govuk-visually-hidden"> {{ i18n.sections.detailsOfIncident[i18n.languageCode] }}</span>
           </a>
         </dd>
