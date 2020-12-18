@@ -1,4 +1,5 @@
 const express = require("express");
+
 const { assemblePayload } = require("../lib/formatting/final-payload-assembly");
 const { validate } = require("../lib/validation/your-details");
 const { getCompanyTypes } = require("../lib/lookups/company-types");
@@ -68,21 +69,22 @@ router.post("/", async function (req, res, next) {
 
   req.session.referenceNumber = generateReferenceId();
 
+  // post this off to Rainmaker
+  const payload = assemblePayload(req.session);
+
+  await payloadSubmission(payload);
+
   try {
-    await sendConfirmationEmail(req.session);
+    await sendConfirmationEmail(payload);
   } catch (e) {
     console.warn("sendConfirmationEmail failed", e);
   }
 
   try {
-    await sendNotificationEmail(req.session);
+    await sendNotificationEmail(payload);
   } catch (e) {
     console.warn("sendNotificationEmail failed", e);
   }
-
-  // post this off to Rainmaker
-  const payload = assemblePayload(req.session);
-  await payloadSubmission(payload);
 
   res.redirect(localisePath(`/${routes.COMPLETE}`, req.locale));
 });
