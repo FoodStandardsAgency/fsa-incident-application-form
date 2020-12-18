@@ -6,9 +6,10 @@ const { getCountries } = require("../lib/lookups/countries");
 const { getNotifierTypes } = require("../lib/lookups/notifier-types");
 const { getProductTypes } = require("../lib/lookups/product-types");
 const { getUnits } = require("../lib/lookups/units");
-const send = require("../lib/email/send");
 const { generateReferenceId } = require("../lib/reference-id-generator");
 const { localisePath } = require("../lib/path-to-localised-path");
+const sendConfirmationEmail = require("../lib/email/send-confirmation-email");
+const sendNotificationEmail = require("../lib/email/send-notification-email");
 const payloadSubmission = require("../lib/payload-submission");
 
 const router = express.Router();
@@ -25,24 +26,6 @@ const getI18n = (languageCode) => ({
   ...pageTranslations,
   ...formFieldTranslations,
 });
-
-const sendConfirmationEmail = async (data) => {
-  const email = data.yourDetails.email.value;
-  const personalisation = {
-    contactName: data.yourDetails.contactName.value,
-    referenceNumber: data.referenceNumber,
-  };
-  await send("en-confirmation-email", email, personalisation);
-};
-
-const sendNotificationEmail = async (data) => {
-  const email = process.env.NOTIFICATION_EMAIL;
-  const personalisation = {
-    contactName: data.yourDetails.contactName.value,
-    referenceNumber: data.referenceNumber,
-  };
-  await send("en-notification-of-incident-email", email, personalisation);
-};
 
 router.get("/", async function (req, res, next) {
   const [
@@ -85,16 +68,21 @@ router.post("/", async function (req, res, next) {
 
   req.session.referenceNumber = generateReferenceId();
 
-  //TODO? note- there's a strong argument that we should be using the payload to populate these
-  //  .. at the point i was testing i only had tests covering some of the pages so the
-  //  payload wasn't building properly; i just stuck these in here so i could prove the integration
-  //  you can see inside those methods that it's not like it particularly matters where the
-  //  data comes from..
-  await sendConfirmationEmail(req.session);
-  await sendNotificationEmail(req.session);
+  try {
+    await sendConfirmationEmail(req.session);
+  } catch (e) {
+    console.warn("sendConfirmationEmail failed", e);
+  }
+
+  try {
+    await sendNotificationEmail(req.session);
+  } catch (e) {
+    console.warn("sendNotificationEmail failed", e);
+  }
 
   // post this off to Rainmaker
   const payload = assemblePayload(req.session);
+  console.log(`payload`, payload);
   await payloadSubmission(payload);
 
   res.redirect(localisePath(`/${routes.COMPLETE}`, req.locale));

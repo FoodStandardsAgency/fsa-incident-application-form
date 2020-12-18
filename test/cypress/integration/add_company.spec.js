@@ -1,22 +1,11 @@
-const SIMS_LOOKUP_DATA = require('../fixtures/sample-dropdown-data.json');
-const { optionalFields: productOptionalFields } = require("./add_product.spec");
+const SIMS_LOOKUP_DATA = require("../fixtures/sample-dropdown-data.json");
+const {
+  optionalFields: productOptionalFields,
+} = require("../support/optional-fields/add-product");
 
 const ADD_PRODUCT = Cypress.config("product");
 
 const options = { force: true };
-
-export const optionalFields = [
-  "company-name",
-  "contact-name",
-  "email",
-  "telephone1",
-  "address.line1",
-  "address.line2",
-  "address.town",
-  "address.county",
-  "address.postcode",
-  "address.country",
-];
 
 context(
   "As an incidents officer, I want to know which companies are associated with the affected products, so I can effectively investigate and act.",
@@ -53,7 +42,7 @@ context(
 
       it("should be valid with the minimal amount of data", () => {
         cy.fillInCompany({
-          fieldsToSkip: optionalFields,
+          fieldsToSkip: addCompany,
         });
 
         cy.get('[data-cy="submit"]').click(options);
