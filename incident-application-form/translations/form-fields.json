@@ -95,14 +95,10 @@
         "cy": "Gwlad",
         "en": "Country"
       },
-      "hint": {
-        "cy": "Pob gwlad ar restr o wledydd FCO",
-        "en": "All countries on the FCO country list."
-      },
       "values": {
         "defaultValue": {
           "cy": "Dewiswch wlad os gwelwch yn dda",
-          "en": "Please choose a country"
+          "en": "Please choose"
         }
       },
       "validation": {
@@ -403,7 +399,7 @@
     "values": {
       "defaultValue": {
         "cy": "Dewiswch wlad os gwelwch yn dda",
-        "en": "Please choose a country"
+        "en": "Please choose"
       }
     }
   },

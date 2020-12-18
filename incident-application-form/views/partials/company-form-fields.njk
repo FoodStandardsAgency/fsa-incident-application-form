@@ -212,7 +212,10 @@
         "data-cy": "address.country"
     },
     label: {
-        text: i18n.address.country.label[i18n.languageCode]
+        text: i18n.address.country.label[i18n.languageCode],
+        attributes : {
+            "data-cy": "label.address.country"
+        }
     },
     items: countries,
     errorMessage: validation.validatedFields[companyId].address.country.isValid == false and {

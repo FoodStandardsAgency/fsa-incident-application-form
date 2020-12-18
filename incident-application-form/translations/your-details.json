@@ -21,6 +21,10 @@
     "areYouLocal": {
       "cy": "Ydych chi'n gynrychiolydd awdurdod lleol neu'n weithredwr busnes bwyd?",
       "en": "Are you a local authority representative or a food business operator?"
+    },
+    "countryToLocation": {
+      "cy": "Lleoliad",
+      "en": "Location"
     }
   }
 }
