@@ -8,7 +8,6 @@ const templates = require("./templates");
 module.exports = async (templateName, sendTo, personalisation) => {
   if (!sendTo) {
     return true;
-    throw "no sendTo address provided";
   }
 
   const templateId = templates[templateName];

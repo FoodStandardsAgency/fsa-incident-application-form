@@ -82,7 +82,6 @@ router.post("/", async function (req, res, next) {
 
   // post this off to Rainmaker
   const payload = assemblePayload(req.session);
-  console.log(`payload`, payload);
   await payloadSubmission(payload);
 
   res.redirect(localisePath(`/${routes.COMPLETE}`, req.locale));

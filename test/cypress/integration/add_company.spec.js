@@ -1,5 +1,8 @@
 const SIMS_LOOKUP_DATA = require("../fixtures/sample-dropdown-data.json");
 const {
+  optionalFields: companyOptionalFields,
+} = require("./../support/optional-fields/add-company");
+const {
   optionalFields: productOptionalFields,
 } = require("../support/optional-fields/add-product");
 
@@ -42,7 +45,7 @@ context(
 
       it("should be valid with the minimal amount of data", () => {
         cy.fillInCompany({
-          fieldsToSkip: addCompany,
+          fieldsToSkip: companyOptionalFields,
         });
 
         cy.get('[data-cy="submit"]').click(options);
