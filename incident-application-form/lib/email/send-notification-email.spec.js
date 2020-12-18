@@ -1,6 +1,8 @@
 const sendNotificationEmail = require("./send-notification-email");
 const send = require("./send");
 
+const aPayload = require("./aPayload.json");
+
 jest.mock("./send");
 
 describe(`lib/email/send-notification-email`, () => {
@@ -24,25 +26,32 @@ describe(`lib/email/send-notification-email`, () => {
 
   it("should send when given valid data", async () => {
     const fakeEmail = "a@b.com";
-    const fakeContactName = "timmy tester";
-    const fakeRefNo = "abc-123";
 
     process.env.NOTIFICATION_EMAIL = fakeEmail;
 
-    await sendNotificationEmail({
-      yourDetails: {
-        contactName: {
-          value: fakeContactName,
-        },
-      },
-      referenceNumber: fakeRefNo,
-    });
+    await sendNotificationEmail(aPayload);
+
     expect(send).toHaveBeenCalledWith(
       "en-notification-of-incident-email",
       fakeEmail,
       {
-        contactName: fakeContactName,
-        referenceNumber: fakeRefNo,
+        'Addresses.AddressLine1': aPayload.Addresses.AddressLine1,
+        'Addresses.AddressLine2': aPayload.Addresses.AddressLine2,
+        'Addresses.TownCity': aPayload.Addresses.TownCity,
+        'Addresses.County': aPayload.Addresses.County,
+        'Addresses.Postcode': aPayload.Addresses.Postcode,
+        'Incidents.IncidentTitle': aPayload.Incidents.IncidentTitle,
+        'Incidents.NatureOfProblem': aPayload.Incidents.NatureOfProblem,
+        'Incidents.ActionTaken': aPayload.Incidents.ActionTaken,
+        'Incidents.DistributionDetails': aPayload.Incidents.DistributionDetails,
+        'Incidents.IllnessDetails': aPayload.Incidents.IllnessDetails,
+        'Incidents.LocalAuthorityNotified': aPayload.Incidents.LocalAuthorityNotified,
+        'Incidents.AdditionalInformation': aPayload.Incidents.AdditionalInformation,
+        'IncidentStakeholders.Name': aPayload.IncidentStakeholders.Name,
+        'IncidentStakeholders.Role': aPayload.IncidentStakeholders.Role,
+        'IncidentStakeholders.GovDept': aPayload.IncidentStakeholders.GovDept,
+        'IncidentStakeholders.Email': aPayload.IncidentStakeholders.Email,
+        'IncidentStakeholders.Phone': aPayload.IncidentStakeholders.Phone,
       }
     );
   });
