@@ -1,27 +1,7 @@
-const SIMS_LOOKUP_DATA = require('../fixtures/sample-dropdown-data.json');
+const SIMS_LOOKUP_DATA = require("../fixtures/sample-dropdown-data.json");
 const ADD_PRODUCT = Cypress.config("product");
 
 const options = { force: true };
-
-export const optionalFields = [
-  "additional-information",
-  "amount-imported-distributed",
-  "batch-codes",
-  "best-before-day",
-  "best-before-month",
-  "best-before-year",
-  "brand",
-  "display-until-day",
-  "display-until-month",
-  "display-until-year",
-  "pack-size",
-  "package-description",
-  "product-type",
-  "unit-type",
-  "use-by-day",
-  "use-by-month",
-  "use-by-year",
-];
 
 context(
   "As an incidents officer, I want to know about the products affected, so I can effectively investigate and act.",

@@ -40,18 +40,24 @@ Cypress.Commands.add(
       });
     }
 
-    cy.get('[data-cy="position"]').type(resolvedFieldValues.position, {
-      force: true,
-    });
+    if (!fieldsToSkip.includes("position")) {
+      cy.get('[data-cy="position"]').type(resolvedFieldValues.position, {
+        force: true,
+      });
+    }
 
-    cy.get('[data-cy="organisation"]').type(
-      resolvedFieldValues.organisation,
-      options
-    );
+    if (!fieldsToSkip.includes("organisation")) {
+      cy.get('[data-cy="organisation"]').type(
+        resolvedFieldValues.organisation,
+        options
+      );
+    }
 
-    cy.get('[data-cy="email"]').type(resolvedFieldValues.email, {
-      force: true,
-    });
+    if (!fieldsToSkip.includes("email")) {
+      cy.get('[data-cy="email"]').type(resolvedFieldValues.email, {
+        force: true,
+      });
+    }
 
     if (!fieldsToSkip.includes("telephone1")) {
       cy.get('[data-cy="telephone1"]').type(
@@ -60,15 +66,19 @@ Cypress.Commands.add(
       );
     }
 
-    cy.get('[data-cy="address.line1"]').type(
-      resolvedFieldValues.address.line1,
-      options
-    );
+    if (!fieldsToSkip.includes("address.line1")) {
+      cy.get('[data-cy="address.line1"]').type(
+        resolvedFieldValues.address.line1,
+        options
+      );
+    }
 
-    cy.get('[data-cy="address.line2"]').type(
-      resolvedFieldValues.address.line2,
-      options
-    );
+    if (!fieldsToSkip.includes("address.line2")) {
+      cy.get('[data-cy="address.line2"]').type(
+        resolvedFieldValues.address.line2,
+        options
+      );
+    }
 
     if (!fieldsToSkip.includes("address.town")) {
       cy.get('[data-cy="address.town"]').type(
@@ -77,15 +87,19 @@ Cypress.Commands.add(
       );
     }
 
-    cy.get('[data-cy="address.county"]').type(
-      resolvedFieldValues.address.county,
-      options
-    );
+    if (!fieldsToSkip.includes("address.county")) {
+      cy.get('[data-cy="address.county"]').type(
+        resolvedFieldValues.address.county,
+        options
+      );
+    }
 
-    cy.get('[data-cy="address.postcode"]').type(
-      resolvedFieldValues.address.postcode,
-      options
-    );
+    if (!fieldsToSkip.includes("address.postcode")) {
+      cy.get('[data-cy="address.postcode"]').type(
+        resolvedFieldValues.address.postcode,
+        options
+      );
+    }
 
     if (!fieldsToSkip.includes("address.country")) {
       cy.get('[data-cy="address.country"]').select(

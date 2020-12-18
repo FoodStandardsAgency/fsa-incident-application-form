@@ -1,15 +1,10 @@
 const SIMS_LOOKUP_DATA = require("../fixtures/sample-dropdown-data.json");
 const {
-  defaultFieldValues: contactDetails,
-} = require("../support/commands/fill-in-contact-details");
+  optionalFields: companyOptionalFields,
+} = require("./../support/optional-fields/add-company");
 const {
-  defaultFieldValues: detailsOfIncident,
-} = require("../support/commands/fill-in-details-of-incident");
-const {
-  defaultFieldValues: product,
-} = require("../support/commands/fill-in-product");
-const { optionalFields: companyOptionalFields } = require("./add_company.spec");
-const { optionalFields: productOptionalFields } = require("./add_product.spec");
+  optionalFields: productOptionalFields,
+} = require("./../support/optional-fields/add-product");
 
 const YOUR_DETAILS = Cypress.config("contactDetails");
 const COMPLETE = Cypress.config("complete");

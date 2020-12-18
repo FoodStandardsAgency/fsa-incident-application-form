@@ -26,29 +26,39 @@ Cypress.Commands.add(
       );
     }
 
-    cy.get('[data-cy="action-taken"]').type(
-      resolvedFieldValues.actionTaken,
-      options
-    );
+    if (!fieldsToSkip.includes("action-taken")) {
+      cy.get('[data-cy="action-taken"]').type(
+        resolvedFieldValues.actionTaken,
+        options
+      );
+    }
 
-    cy.get('[data-cy="distribution-details"]').type(
-      resolvedFieldValues.distributionDetails,
-      options
-    );
+    if (!fieldsToSkip.includes("distribution-details")) {
+      cy.get('[data-cy="distribution-details"]').type(
+        resolvedFieldValues.distributionDetails,
+        options
+      );
+    }
 
-    cy.get('[data-cy="illness-details"]').type(
-      resolvedFieldValues.illnessDetails,
-      options
-    );
+    if (!fieldsToSkip.includes("illness-details")) {
+      cy.get('[data-cy="illness-details"]').type(
+        resolvedFieldValues.illnessDetails,
+        options
+      );
+    }
 
-    cy.get('[data-cy="local-authority-notified"]').type(
-      resolvedFieldValues.localAuthorityNotified,
-      options
-    );
+    if (!fieldsToSkip.includes("local-authority-notified")) {
+      cy.get('[data-cy="local-authority-notified"]').type(
+        resolvedFieldValues.localAuthorityNotified,
+        options
+      );
+    }
 
-    cy.get('[data-cy="additional-information"]').type(
-      resolvedFieldValues.additionalInformation,
-      options
-    );
+    if (!fieldsToSkip.includes("additional-information")) {
+      cy.get('[data-cy="additional-information"]').type(
+        resolvedFieldValues.additionalInformation,
+        options
+      );
+    }
   }
 );

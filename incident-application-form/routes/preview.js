@@ -1,5 +1,4 @@
 const express = require("express");
-const dot = require("dot-object");
 
 const { assemblePayload } = require("../lib/formatting/final-payload-assembly");
 const { validate } = require("../lib/validation/your-details");
@@ -8,9 +7,10 @@ const { getCountries } = require("../lib/lookups/countries");
 const { getNotifierTypes } = require("../lib/lookups/notifier-types");
 const { getProductTypes } = require("../lib/lookups/product-types");
 const { getUnits } = require("../lib/lookups/units");
-const send = require("../lib/email/send");
 const { generateReferenceId } = require("../lib/reference-id-generator");
 const { localisePath } = require("../lib/path-to-localised-path");
+const sendConfirmationEmail = require("../lib/email/send-confirmation-email");
+const sendNotificationEmail = require("../lib/email/send-notification-email");
 const payloadSubmission = require("../lib/payload-submission");
 
 const router = express.Router();
@@ -27,43 +27,6 @@ const getI18n = (languageCode) => ({
   ...pageTranslations,
   ...formFieldTranslations,
 });
-
-const sendConfirmationEmail = async (data) => {
-  const email = data.IncidentStakeholders.Email;
-  const personalisation = {
-    contactName: data.IncidentStakeholders.Name,
-    referenceNumber: data.Incidents.IncidentTitle,
-  };
-  await send("en-confirmation-email", email, personalisation);
-};
-
-const sendNotificationEmail = async (data) => {
-  const email = process.env.NOTIFICATION_EMAIL;
-
-  // note - i'm relying on the fact that the payload has been normalised
-  // so fields that were ignored in the form should have been pre-populated
-  //   with ""s
-  // then i'm using 'dot-object' to flatten the non-list bits of data
-  // + passing them straight in as the 'personalisation' for govnotify
-
-  // there is an argument to be made for assembling this manually as
-  // changes to the payload structure -could- have effects on whether
-  // or not we're sending all the required fields to govnotify..
-  const easyFields = {
-    Addresses: {...data.Addresses},
-    Incidents: {...data.Incidents},
-    IncidentStakeholders: {...data.IncidentStakeholders},
-  }
-
-  const easyFieldsInDotNotation = dot.dot(easyFields);
-
-  const personalisation = {
-    contactName: data.IncidentStakeholders.Name,
-    referenceNumber: data.Incidents.IncidentTitle,
-    ...easyFieldsInDotNotation,
-  };
-  await send("en-notification-of-incident-email", email, personalisation);
-};
 
 router.get("/", async function (req, res, next) {
   const [
@@ -111,8 +74,17 @@ router.post("/", async function (req, res, next) {
 
   await payloadSubmission(payload);
 
-  await sendConfirmationEmail(payload);
-  await sendNotificationEmail(payload);
+  try {
+    await sendConfirmationEmail(payload);
+  } catch (e) {
+    console.warn("sendConfirmationEmail failed", e);
+  }
+
+  try {
+    await sendNotificationEmail(payload);
+  } catch (e) {
+    console.warn("sendNotificationEmail failed", e);
+  }
 
   res.redirect(localisePath(`/${routes.COMPLETE}`, req.locale));
 });
