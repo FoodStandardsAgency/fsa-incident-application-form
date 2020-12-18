@@ -3,6 +3,8 @@ const {
   formatProducts,
 } = require("../lib/formatting/details-of-products-table-display");
 
+const { localisePath } = require("../lib/path-to-localised-path");
+
 const router = express.Router();
 
 const template = "details-of-product";
