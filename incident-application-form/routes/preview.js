@@ -1,4 +1,6 @@
 const express = require("express");
+const dot = require("dot-object");
+
 const { assemblePayload } = require("../lib/formatting/final-payload-assembly");
 const { validate } = require("../lib/validation/your-details");
 const { getCompanyTypes } = require("../lib/lookups/company-types");
@@ -27,19 +29,38 @@ const getI18n = (languageCode) => ({
 });
 
 const sendConfirmationEmail = async (data) => {
-  const email = data.yourDetails.email.value;
+  const email = data.IncidentStakeholders.Email;
   const personalisation = {
-    contactName: data.yourDetails.contactName.value,
-    referenceNumber: data.referenceNumber,
+    contactName: data.IncidentStakeholders.Name,
+    referenceNumber: data.Incidents.IncidentTitle,
   };
   await send("en-confirmation-email", email, personalisation);
 };
 
 const sendNotificationEmail = async (data) => {
   const email = process.env.NOTIFICATION_EMAIL;
+
+  // note - i'm relying on the fact that the payload has been normalised
+  // so fields that were ignored in the form should have been pre-populated
+  //   with ""s
+  // then i'm using 'dot-object' to flatten the non-list bits of data
+  // + passing them straight in as the 'personalisation' for govnotify
+
+  // there is an argument to be made for assembling this manually as
+  // changes to the payload structure -could- have effects on whether
+  // or not we're sending all the required fields to govnotify..
+  const easyFields = {
+    Addresses: {...data.Addresses},
+    Incidents: {...data.Incidents},
+    IncidentStakeholders: {...data.IncidentStakeholders},
+  }
+
+  const easyFieldsInDotNotation = dot.dot(easyFields);
+
   const personalisation = {
-    contactName: data.yourDetails.contactName.value,
-    referenceNumber: data.referenceNumber,
+    contactName: data.IncidentStakeholders.Name,
+    referenceNumber: data.Incidents.IncidentTitle,
+    ...easyFieldsInDotNotation,
   };
   await send("en-notification-of-incident-email", email, personalisation);
 };
@@ -85,17 +106,13 @@ router.post("/", async function (req, res, next) {
 
   req.session.referenceNumber = generateReferenceId();
 
-  //TODO? note- there's a strong argument that we should be using the payload to populate these
-  //  .. at the point i was testing i only had tests covering some of the pages so the
-  //  payload wasn't building properly; i just stuck these in here so i could prove the integration
-  //  you can see inside those methods that it's not like it particularly matters where the
-  //  data comes from..
-  await sendConfirmationEmail(req.session);
-  await sendNotificationEmail(req.session);
-
   // post this off to Rainmaker
   const payload = assemblePayload(req.session);
+
   await payloadSubmission(payload);
+
+  await sendConfirmationEmail(payload);
+  await sendNotificationEmail(payload);
 
   res.redirect(localisePath(`/${routes.COMPLETE}`, req.locale));
 });
