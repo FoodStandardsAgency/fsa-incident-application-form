@@ -39,9 +39,11 @@ describe(`lib/email/send-notification-email`, () => {
         'Addresses.AddressLine2': aPayload.Addresses.AddressLine2,
         'Addresses.TownCity': aPayload.Addresses.TownCity,
         'Addresses.County': aPayload.Addresses.County,
+        'Addresses.CountryID': aPayload.Addresses.CountryID,
         'Addresses.Postcode': aPayload.Addresses.Postcode,
         'Incidents.IncidentTitle': aPayload.Incidents.IncidentTitle,
         'Incidents.NatureOfProblem': aPayload.Incidents.NatureOfProblem,
+        'Incidents.NotifierID': aPayload.Incidents.NotifierID,
         'Incidents.ActionTaken': aPayload.Incidents.ActionTaken,
         'Incidents.DistributionDetails': aPayload.Incidents.DistributionDetails,
         'Incidents.IllnessDetails': aPayload.Incidents.IllnessDetails,
@@ -52,6 +54,8 @@ describe(`lib/email/send-notification-email`, () => {
         'IncidentStakeholders.GovDept': aPayload.IncidentStakeholders.GovDept,
         'IncidentStakeholders.Email': aPayload.IncidentStakeholders.Email,
         'IncidentStakeholders.Phone': aPayload.IncidentStakeholders.Phone,
+        'contactName': aPayload.IncidentStakeholders.Name,
+        'referenceNumber': aPayload.Incidents.IncidentTitle,
       }
     );
   });
