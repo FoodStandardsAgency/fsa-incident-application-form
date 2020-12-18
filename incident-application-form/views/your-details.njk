@@ -287,10 +287,10 @@
             "data-cy": "address.country"
         },
         label: {
-            text: i18n.address.country.label[i18n.languageCode]
-        },
-        hint: {
-            text: i18n.address.country.hint[i18n.languageCode]
+            text: i18n.text.countryToLocation[i18n.languageCode],
+            attributes : {
+                "data-cy": "label.address.country"
+            }
         },
         items: countries,
         errorMessage: validation.validatedFields.address.country.isValid == false and {
