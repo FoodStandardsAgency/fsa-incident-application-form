@@ -51,8 +51,7 @@ module.exports = {
         ...validated,
         isValid: validated.messages.length === 0,
         value:
-          (amountImportedDistributed &&
-            validator.escape(amountImportedDistributed.toString())) ||
+          (amountImportedDistributed && amountImportedDistributed.toString()) ||
           "",
       },
     };

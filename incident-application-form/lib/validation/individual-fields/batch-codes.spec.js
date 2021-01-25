@@ -49,13 +49,13 @@ describe(`lib/validation/individual-fields/batch-codes`, () => {
       },
     ],
     [
-      "ensure values are escaped",
+      "ensure input values are not escaped - https://trello.com/c/pBU5DhFV",
       "<script>tag here</script>",
       {
         batchCodes: {
           isValid: true,
           messages: [],
-          value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
+          value: "<script>tag here</script>",
         },
       },
     ],

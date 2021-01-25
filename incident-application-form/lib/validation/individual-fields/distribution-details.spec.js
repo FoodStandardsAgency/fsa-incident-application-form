@@ -38,13 +38,13 @@ describe(`lib/validation/individual-fields/distribution-details`, () => {
       },
     ],
     [
-      "ensure values are escaped",
+      "ensure input values are not escaped - https://trello.com/c/pBU5DhFV",
       "<script>tag here</script>",
       {
         distributionDetails: {
           isValid: true,
           messages: [],
-          value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
+          value: "<script>tag here</script>",
         },
       },
     ],

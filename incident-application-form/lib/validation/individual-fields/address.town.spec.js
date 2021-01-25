@@ -85,7 +85,7 @@ describe(`lib/validation/individual-fields/address.town`, () => {
       },
     ],
     [
-      "ensure values are escaped",
+      "ensure input values are not escaped - https://trello.com/c/pBU5DhFV",
       {
         input: "<script>tag here</script>",
         options: undefined,
@@ -94,7 +94,7 @@ describe(`lib/validation/individual-fields/address.town`, () => {
         town: {
           isValid: true,
           messages: [],
-          value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
+          value: "<script>tag here</script>",
         },
       },
     ],

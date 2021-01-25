@@ -29,7 +29,7 @@ module.exports = {
       postcode: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value: (postcode && validator.escape(postcode.toString())) || "",
+        value: (postcode && postcode.toString()) || "",
       },
     };
   },

@@ -7,9 +7,7 @@ module.exports = {
         isValid: true,
         messages: [],
         value:
-          (additionalInformation &&
-            validator.escape(additionalInformation.toString())) ||
-          "",
+          (additionalInformation && additionalInformation.toString()) || "",
       },
     };
   },

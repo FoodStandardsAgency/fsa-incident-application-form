@@ -40,13 +40,13 @@ describe(`lib/validation/individual-fields/local-authority-notified`, () => {
       },
     ],
     [
-      "ensure values are escaped",
+      "ensure input values are not escaped - https://trello.com/c/pBU5DhFV",
       "<script>tag here</script>",
       {
         localAuthorityNotified: {
           isValid: true,
           messages: [],
-          value: "&lt;script&gt;tag here&lt;&#x2F;script&gt;",
+          value: "<script>tag here</script>",
         },
       },
     ],

@@ -7,9 +7,7 @@ module.exports = {
         isValid: true,
         messages: [],
         value:
-          (localAuthorityNotified &&
-            validator.escape(localAuthorityNotified.toString())) ||
-          "",
+          (localAuthorityNotified && localAuthorityNotified.toString()) || "",
       },
     };
   },

@@ -31,8 +31,7 @@ module.exports = {
       organisation: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value:
-          (organisation && validator.escape(organisation.toString())) || "",
+        value: (organisation && organisation.toString()) || "",
       },
     };
   },

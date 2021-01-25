@@ -57,7 +57,7 @@ module.exports = {
       country: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value: (country && validator.escape(country.toString())) || "",
+        value: (country && country.toString()) || "",
       },
     };
   },

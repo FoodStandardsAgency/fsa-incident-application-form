@@ -6,8 +6,7 @@ module.exports = {
       illnessDetails: {
         isValid: true,
         messages: [],
-        value:
-          (illnessDetails && validator.escape(illnessDetails.toString())) || "",
+        value: (illnessDetails && illnessDetails.toString()) || "",
       },
     };
   },

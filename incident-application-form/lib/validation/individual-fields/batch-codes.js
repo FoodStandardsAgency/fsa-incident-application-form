@@ -22,8 +22,7 @@ module.exports = {
       batchCodes: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value:
-          (batchCodes && validator.escape(batchCodes.toString().trim())) || "",
+        value: (batchCodes && batchCodes.toString().trim()) || "",
       },
     };
   },

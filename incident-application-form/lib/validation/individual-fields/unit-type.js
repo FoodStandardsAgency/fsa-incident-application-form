@@ -21,7 +21,7 @@ module.exports = {
       unitType: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value: (unitType && validator.escape(unitType.toString())) || "",
+        value: (unitType && unitType.toString()) || "",
       },
     };
   },

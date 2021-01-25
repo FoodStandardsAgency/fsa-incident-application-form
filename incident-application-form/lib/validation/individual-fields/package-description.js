@@ -25,10 +25,7 @@ module.exports = {
       packageDescription: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value:
-          (packageDescription &&
-            validator.escape(packageDescription.toString())) ||
-          "",
+        value: (packageDescription && packageDescription.toString()) || "",
       },
     };
   },

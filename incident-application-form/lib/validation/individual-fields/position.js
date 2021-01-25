@@ -31,7 +31,7 @@ module.exports = {
       position: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value: (position && validator.escape(position.toString())) || "",
+        value: (position && position.toString()) || "",
       },
     };
   },
