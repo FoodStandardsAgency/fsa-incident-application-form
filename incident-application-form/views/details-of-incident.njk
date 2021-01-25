@@ -137,18 +137,18 @@
     {% endcall %}
 
     {{ govukButton({
-        text: i18n.buttons.next[i18n.languageCode],
-        attributes : {
-            "data-cy": "submit"
-        }
-    }) }}
-
-    {{ govukButton({
         text: i18n.buttons.previous[i18n.languageCode],
         classes: "govuk-button--secondary",
         href: localisePath( [ "/", routes.YOUR_DETAILS ] | join , i18n.languageCode ),
         attributes : {
             "data-cy": "back"
+        }
+    }) }}
+
+    {{ govukButton({
+        text: i18n.buttons.next[i18n.languageCode],
+        attributes : {
+            "data-cy": "submit"
         }
     }) }}
 

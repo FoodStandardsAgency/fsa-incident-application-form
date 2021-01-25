@@ -48,18 +48,18 @@
     {% endcall %}
 
     {{ govukButton({
-        text: i18n.buttons.save[i18n.languageCode],
-        attributes : {
-            "data-cy": "submit"
-        }
-    }) }}
-
-    {{ govukButton({
         text: i18n.buttons.previous[i18n.languageCode],
         classes: "govuk-button--secondary",
         href: localised_product_url,
         attributes : {
             "data-cy": "back"
+        }
+    }) }}
+
+    {{ govukButton({
+        text: i18n.buttons.save[i18n.languageCode],
+        attributes : {
+            "data-cy": "submit"
         }
     }) }}
 
