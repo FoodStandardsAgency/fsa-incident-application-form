@@ -33,19 +33,10 @@
     }) %}
 
     {% include "partials/product-form-fields.njk" %}
-    
+
     {% endcall %}
 
     {% include "partials/add-company.njk" %}
-
-    {{ govukButton({
-        text: i18n.buttons.save[i18n.languageCode],
-        name: "submission-type",
-        value: SUBMISSION_TYPES.ADD_PRODUCT,
-        attributes : {
-            "data-cy": "submit"
-        }
-    }) }}
 
     {{ govukButton({
         text: i18n.buttons.previous[i18n.languageCode],
@@ -53,6 +44,15 @@
         href: localisePath( [ "/", routes.DETAILS_OF_PRODUCT ] | join, i18n.languageCode),
         attributes : {
             "data-cy": "back"
+        }
+    }) }}
+
+    {{ govukButton({
+        text: i18n.buttons.save[i18n.languageCode],
+        name: "submission-type",
+        value: SUBMISSION_TYPES.ADD_PRODUCT,
+        attributes : {
+            "data-cy": "submit"
         }
     }) }}
 
