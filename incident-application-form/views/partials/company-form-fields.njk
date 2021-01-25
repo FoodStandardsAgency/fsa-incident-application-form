@@ -52,7 +52,7 @@
         "data-cy": "contact-name"
     },
     label: {
-        text: i18n.contactName.label[i18n.languageCode]
+        text: i18n.contactName_optional.label[i18n.languageCode]
     },
     errorMessage: validation.validatedFields[companyId].contactName.isValid == false and {
         text: validation.validatedFields[companyId].contactName.messages | join(". "),
@@ -93,7 +93,7 @@
         "data-cy": "telephone1"
     },
     label: {
-        text: i18n.telephone1.label[i18n.languageCode]
+        text: i18n.telephone1_optional.label[i18n.languageCode]
     },
     type: "tel",
     autocomplete: "tel",
@@ -212,7 +212,7 @@
         "data-cy": "address.country"
     },
     label: {
-        text: i18n.address.country.label[i18n.languageCode],
+        text: i18n.address.country_optional.label[i18n.languageCode],
         attributes : {
             "data-cy": "label.address.country"
         }
