@@ -27,7 +27,7 @@ module.exports = {
       productName: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value: (productName && validator.escape(productName.toString())) || "",
+        value: (productName && productName.toString()) || "",
       },
     };
   },

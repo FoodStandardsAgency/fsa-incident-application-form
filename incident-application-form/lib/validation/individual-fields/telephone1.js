@@ -58,7 +58,7 @@ module.exports = {
       telephone1: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value: (telephone && validator.escape(telephone.toString())) || "",
+        value: (telephone && telephone.toString()) || "",
       },
     };
   },

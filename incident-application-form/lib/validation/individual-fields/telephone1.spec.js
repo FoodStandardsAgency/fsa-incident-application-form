@@ -77,7 +77,7 @@ describe(`lib/validation/individual-fields/telephone1`, () => {
       },
     ],
     [
-      "only valid characters",
+      "only valid characters - no escaping https://trello.com/c/pBU5DhFV",
       {
         input: "text is not 01998 123 456 <script>cheeky</script>allowed",
         options: {},
@@ -86,8 +86,7 @@ describe(`lib/validation/individual-fields/telephone1`, () => {
         telephone1: {
           isValid: false,
           messages: [translations.telephone1.validation.invalid[languageCode]],
-          value:
-            "text is not 01998 123 456 &lt;script&gt;cheeky&lt;&#x2F;script&gt;allowed",
+          value: "text is not 01998 123 456 <script>cheeky</script>allowed",
         },
       },
     ],

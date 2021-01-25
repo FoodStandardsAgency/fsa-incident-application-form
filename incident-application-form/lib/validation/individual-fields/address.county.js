@@ -31,7 +31,7 @@ module.exports = {
       county: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value: (county && validator.escape(county.toString())) || "",
+        value: (county && county.toString()) || "",
       },
     };
   },

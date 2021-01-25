@@ -6,10 +6,7 @@ module.exports = {
       distributionDetails: {
         isValid: true,
         messages: [],
-        value:
-          (distributionDetails &&
-            validator.escape(distributionDetails.toString())) ||
-          "",
+        value: (distributionDetails && distributionDetails.toString()) || "",
       },
     };
   },

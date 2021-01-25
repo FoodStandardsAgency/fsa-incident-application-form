@@ -31,7 +31,7 @@ module.exports = {
       packSize: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value: (packSize && validator.escape(packSize.toString())) || "",
+        value: (packSize && packSize.toString()) || "",
       },
     };
   },

@@ -6,7 +6,7 @@ module.exports = {
       actionTaken: {
         isValid: true,
         messages: [],
-        value: (actionTaken && validator.escape(actionTaken.toString())) || "",
+        value: (actionTaken && actionTaken.toString()) || "",
       },
     };
   },

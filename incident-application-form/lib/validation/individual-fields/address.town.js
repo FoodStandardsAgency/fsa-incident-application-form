@@ -43,7 +43,7 @@ module.exports = {
       town: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value: (town && validator.escape(town.toString())) || "",
+        value: (town && town.toString()) || "",
       },
     };
   },

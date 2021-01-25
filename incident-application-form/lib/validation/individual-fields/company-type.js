@@ -24,7 +24,7 @@ module.exports = {
       companyType: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value: (companyType && validator.escape(companyType.toString())) || "",
+        value: (companyType && companyType.toString()) || "",
       },
     };
   },

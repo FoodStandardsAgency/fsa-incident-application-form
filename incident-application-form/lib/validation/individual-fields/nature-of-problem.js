@@ -18,9 +18,7 @@ module.exports = {
       natureOfProblem: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value:
-          (natureOfProblem && validator.escape(natureOfProblem.toString())) ||
-          "",
+        value: (natureOfProblem && natureOfProblem.toString()) || "",
       },
     };
   },

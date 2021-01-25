@@ -49,7 +49,7 @@ module.exports = {
       contactName: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value: (contactName && validator.escape(contactName.toString())) || "",
+        value: (contactName && contactName.toString()) || "",
       },
     };
   },

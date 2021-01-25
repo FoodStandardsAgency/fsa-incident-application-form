@@ -25,8 +25,7 @@ module.exports = {
       notifierType: {
         ...validated,
         isValid: validated.messages.length === 0,
-        value:
-          (notifierType && validator.escape(notifierType.toString())) || "",
+        value: (notifierType && notifierType.toString()) || "",
       },
     };
   },
