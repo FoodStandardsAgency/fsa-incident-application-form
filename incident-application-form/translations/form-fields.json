@@ -66,6 +66,22 @@
         }
       }
     },
+    "town_optional": {
+      "label": {
+        "cy": "Tref neu ddinas (dewisol)",
+        "en": "Town or city (optional)"
+      },
+      "validation": {
+        "required": {
+          "cy": "Rhaid i chi ddarparu tref neu ddinas",
+          "en": "You must provide a town or city"
+        },
+        "invalidLength": {
+          "cy": "Rhaid i'r dref neu'r ddinas fod rhwng 1 a 255 nod",
+          "en": "Town or city must be between 1 and 255 characters"
+        }
+      }
+    },
     "county": {
       "label": {
         "cy": "Sir (dewisol)",
