@@ -1,7 +1,5 @@
-label {
-    text-transform: none !important;
-}
+label { text-transform: none !important; }
 
-a {
-    text-decoration: underline !important;
-}
+a { text-decoration: underline !important; }
+
+.govuk-button { text-decoration: none !important; }
