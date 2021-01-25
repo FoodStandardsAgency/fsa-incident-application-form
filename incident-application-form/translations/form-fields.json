@@ -1,8 +1,8 @@
 {
   "additionalInformation": {
     "label": {
-      "cy": "Unrhyw wybodaeth ychwanegol",
-      "en": "Any additional information"
+      "cy": "Unrhyw wybodaeth ychwanegol (dewisol)",
+      "en": "Any additional information (optional)"
     },
     "hint": {
       "cy": "Bydd e-bost cadarnhau yn rhoi gwybod sut i ddarparu dogfennau",
@@ -11,14 +11,14 @@
   },
   "additionalInformationProduct": {
     "label": {
-      "cy": "Unrhyw wybodaeth ychwanegol",
-      "en": "Any additional information"
+      "cy": "Unrhyw wybodaeth ychwanegol (dewisol)",
+      "en": "Any additional information (optional)"
     }
   },
   "actionTaken": {
     "label": {
-      "cy": "Pa gamau sydd wedi’u cymryd neu sydd ar y gweill?",
-      "en": "What action has taken place or is planned?"
+      "cy": "Pa gamau sydd wedi’u cymryd neu sydd ar y gweill? (dewisol)",
+      "en": "What action has taken place or is planned? (optional)"
     },
     "hint": {
       "cy": "Er enghraifft, 'Wedi dechrau galw’r cynnyrch yn ôl'",
@@ -28,8 +28,8 @@
   "address": {
     "line1": {
       "label": {
-        "cy": "Llinell cyfeiriad 1",
-        "en": "Address Line 1"
+        "cy": "Llinell cyfeiriad 1 (dewisol)",
+        "en": "Address Line 1 (optional)"
       },
       "validation": {
         "invalidLength": {
@@ -40,8 +40,8 @@
     },
     "line2": {
       "label": {
-        "cy": "Llinell cyfeiriad 2",
-        "en": "Address Line 2"
+        "cy": "Llinell cyfeiriad 2 (dewisol)",
+        "en": "Address Line 2 (optional)"
       },
       "validation": {
         "invalidLength": {
@@ -68,8 +68,8 @@
     },
     "county": {
       "label": {
-        "cy": "Sir",
-        "en": "County"
+        "cy": "Sir (dewisol)",
+        "en": "County (optional)"
       },
       "validation": {
         "invalidLength": {
@@ -80,8 +80,8 @@
     },
     "postcode": {
       "label": {
-        "cy": "Cod post",
-        "en": "Postcode"
+        "cy": "Cod post (dewisol)",
+        "en": "Postcode (optional)"
       },
       "validation": {
         "invalid": {
@@ -111,8 +111,8 @@
   },
   "amountImportedDistributed": {
     "label": {
-      "cy": "Faint o gynnyrch mae’r digwyddiad wedi effeithio arno?",
-      "en": "How much product was affected?"
+      "cy": "Faint o gynnyrch mae’r digwyddiad wedi effeithio arno? (dewisol)",
+      "en": "How much product was affected? (optional)"
     },
     "hint": {
       "cy": "Nodwch y rhif yma a'r unedau isod",
@@ -131,8 +131,8 @@
   },
   "batchCodes": {
     "label": {
-      "cy": "Codau swp",
-      "en": "Batch codes"
+      "cy": "Codau swp (dewisol)",
+      "en": "Batch codes (optional)"
     },
     "hint": {
       "cy": "Nodwch yr holl godau swp yr ydych chi’n gwybod mae’r digwyddiad hwn wedi effeithio arnynt, un y llinell",
@@ -141,8 +141,8 @@
   },
   "bestBefore": {
     "label": {
-      "cy": "Dyddiad ar ei orau cyn",
-      "en": "Best-before date"
+      "cy": "Dyddiad ar ei orau cyn (dewisol)",
+      "en": "Best-before date (optional)"
     },
     "hint": {
       "cy": "Os oes mwy nag un, nodwch hyn yn y maes gwybodaeth ychwanegol",
@@ -151,8 +151,8 @@
   },
   "brand": {
     "label": {
-      "cy": "Brand",
-      "en": "Brand"
+      "cy": "Brand (dewisol)",
+      "en": "Brand (optional)"
     },
     "hint": {
       "cy": "Er enghraifft, Tesco",
@@ -271,8 +271,8 @@
   },
   "displayUntil": {
     "label": {
-      "cy": "Dyddiad arddangos tan",
-      "en": "Display-until date"
+      "cy": "Dyddiad arddangos tan (dewisol)",
+      "en": "Display-until date (optional)"
     },
     "hint": {
       "cy": "Os oes mwy nag un, nodwch hyn yn y maes",
@@ -281,8 +281,8 @@
   },
   "distributionDetails": {
     "label": {
-      "cy": "I ble mae'r cynnyrch wedi'i ddosbarthu? ",
-      "en": "Where has the product been distributed?"
+      "cy": "I ble mae'r cynnyrch wedi'i ddosbarthu? (dewisol)",
+      "en": "Where has the product been distributed? (optional)"
     },
     "hint": {
       "cy": "Cofiwch gynnwys manylion dosbarthiad yn y Deyrnas Unedig (DU) a thramor",
@@ -291,8 +291,8 @@
   },
   "email": {
     "label": {
-      "cy": "E-bost",
-      "en": "Email"
+      "cy": "E-bost (dewisol)",
+      "en": "Email (optional)"
     },
     "validation": {
       "invalidEmailAddress": {
@@ -307,8 +307,8 @@
   },
   "illnessDetails": {
     "label": {
-      "cy": "Pa salwch mae'r digwyddiad wedi'i achosi?",
-      "en": "What illness has the incident caused?"
+      "cy": "Pa salwch mae'r digwyddiad wedi'i achosi? (dewisol)",
+      "en": "What illness has the incident caused? (optional)"
     },
     "hint": {
       "cy": "Cofiwch gynnwys symptomau a nifer y defnyddwyr mae’r digwyddiad wedi effeithio arnynt, lle bo hynny'n hysbys",
@@ -333,8 +333,8 @@
   },
   "localAuthorityNotified": {
     "label": {
-      "cy": "Pa awdurdod lleol sydd wedi'i hysbysu?",
-      "en": "Which local authority has been notified?"
+      "cy": "Pa awdurdod lleol sydd wedi'i hysbysu? (dewisol)",
+      "en": "Which local authority has been notified? (optional)"
     },
     "hint": {
       "cy": "Nodwch enw’r awdurdod lleol neu nodwch 'dim un'",
@@ -377,8 +377,8 @@
   },
   "organisation": {
     "label": {
-      "cy": "Sefydliad",
-      "en": "Organisation"
+      "cy": "Sefydliad (dewisol)",
+      "en": "Organisation (optional)"
     },
     "hint": {
       "cy": "Eich awdurdod lleol neu fusnes",
@@ -405,8 +405,8 @@
   },
   "packageDescription": {
     "label": {
-      "cy": "Disgrifiad o'r pecyn",
-      "en": "Package description"
+      "cy": "Disgrifiad o'r pecyn (dewisol)",
+      "en": "Package description (optional)"
     },
     "hint": {
       "cy": "Disgrifiwch sut roedd y cynnyrch yn edrych wrth ei werthu",
@@ -415,8 +415,8 @@
   },
   "packSize": {
     "label": {
-      "cy": "Maint y pecyn",
-      "en": "Pack size"
+      "cy": "Maint y pecyn (dewisol)",
+      "en": "Pack size (optional)"
     },
     "hint": {
       "cy": "Pwysau, maint neu gyfaint pob cynnyrch. Er enghraifft, pecyn 200g",
@@ -431,8 +431,8 @@
   },
   "position": {
     "label": {
-      "cy": "Safle",
-      "en": "Position"
+      "cy": "Safle (dewisol)",
+      "en": "Position (optional)"
     },
     "validation": {
       "invalidLength": {
@@ -467,8 +467,8 @@
   },
   "productType": {
     "label": {
-      "cy": "Math o gynnyrch",
-      "en": "Product Type"
+      "cy": "Math o gynnyrch (dewisol)",
+      "en": "Product Type (optional)"
     },
     "values": {
       "defaultValue": {
@@ -495,8 +495,8 @@
   },
   "unitType": {
     "label": {
-      "cy": "Unedau",
-      "en": "Units"
+      "cy": "Unedau (dewisol)",
+      "en": "Units (optional)"
     },
     "values": {
       "defaultValue": {
@@ -507,8 +507,8 @@
   },
   "useBy": {
     "label": {
-      "cy": "Dyddiad defnyddio erbyn",
-      "en": "Use-by date"
+      "cy": "Dyddiad defnyddio erbyn (dewisol)",
+      "en": "Use-by date (optional)"
     },
     "hint": {
       "cy": "Os oes mwy nag un, nodwch hyn yn y maes",
