@@ -1,7 +1,7 @@
 const ONLINE_FORM = Cypress.config("baseUrl");
 
-const ENGLISH_PAGE_HEADING = "Report a food safety incident";
-const WELSH_PAGE_HEADING = "Rhoi gwybod am ddigwyddiad diogelwch bwyd";
+const ENGLISH_PAGE_HEADING = "Report a food safety Report a food or feed safety incident";
+const WELSH_PAGE_HEADING = "Rhoi gwybod am ddigwyddiad diogelwch bwyd neu fwyd anifeiliaid";
 
 context(
   "As a Welsh or English service user, I want to access an online form in my own language, so I know what to do.",
