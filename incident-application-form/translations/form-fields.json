@@ -17,12 +17,12 @@
   },
   "actionTaken": {
     "label": {
-      "cy": "Pa gamau sydd wedi’u cymryd neu sydd ar y gweill? (dewisol)",
-      "en": "What action has taken place or is planned? (optional)"
+      "cy": "Pa gamau sydd wedi’u cymryd neu sydd ar y gweill gan y busnes neu gan yr awdurdod lleol/prif awdurdod? (dewisol)",
+      "en": "What action has taken place or is planned by the business or the LA/PA? (optional)"
     },
     "hint": {
-      "cy": "Er enghraifft, 'Wedi dechrau galw’r cynnyrch yn ôl'",
-      "en": "For example, ‘product recall initiated’"
+      "cy": "Er enghraifft, 'busnes wedi dechrau galw’r cynnyrch yn ôl, yr awdurdod lleol wedi samplu, disgwyl am y canlyniadau samplu’. Cofiwch gynnwys dyddiadau os ydynt yn hysbys, a manylion asiantaethau eraill sydd wedi cael gwybod am y digwyddiad, fel yr heddlu neu awdurdodau lleol eraill ac ati.",
+      "en": "For example, ‘product recall initiated by the business, LA sampling undertaken, sampling results expected’ Include dates if known. Include details of other agencies informed of the incident e.g. police, other LAs etc. "
     }
   },
   "address": {
@@ -335,8 +335,8 @@
       "en": "Where has the product been distributed? (optional)"
     },
     "hint": {
-      "cy": "Cofiwch gynnwys manylion dosbarthiad yn y Deyrnas Unedig (DU) a thramor",
-      "en": "Include details of UK and foreign distribution"
+      "cy": "Cofiwch gynnwys manylion pob gwlad y mae’r mater yn effeithio arni yn y Deyrnas Unedig ac wrth ddosbarthu tramor.",
+      "en": "Include details of each country affected in the UK and foreign distribution."
     }
   },
   "email": {
@@ -357,12 +357,12 @@
   },
   "illnessDetails": {
     "label": {
-      "cy": "Pa salwch mae'r digwyddiad wedi'i achosi? (dewisol)",
-      "en": "What illness has the incident caused? (optional)"
+      "cy": "Pa salwch neu farwolaeth mae'r digwyddiad wedi'i achosi? (dewisol)",
+      "en": "What illness or death has the incident caused? (optional)"
     },
     "hint": {
-      "cy": "Cofiwch gynnwys symptomau a nifer y defnyddwyr mae’r digwyddiad wedi effeithio arnynt, lle bo hynny'n hysbys",
-      "en": "Include symptoms and the number of consumers affected, where known"
+      "cy": "Cofiwch achosion neu farwolaethau tybiedig neu rai sydd wedi’u cadarnhau. Cofiwch gynnwys symptomau a nifer y defnyddwyr mae’r digwyddiad wedi effeithio arnynt, lle bo hynny'n hysbys. Lle mae marwolaethau wedi digwydd yr amheuir eu bod o ganlyniad i'r digwyddiad, rhowch fanylion pa swyddfeydd crwneriaid sy'n delio â'r farwolaeth, neu gofnod anhysbys.",
+      "en": "Include suspected or confirmed cases of illness or deaths. Include details of symptoms and the number of consumers affected, where known. Where deaths have occurred that are suspected to be as a result of the incident, provide details of which coroners offices are dealing with the death, or record unknown."
     }
   },
   "incidentTitle": {
@@ -383,22 +383,22 @@
   },
   "localAuthorityNotified": {
     "label": {
-      "cy": "Pa awdurdod lleol sydd wedi'i hysbysu? (dewisol)",
-      "en": "Which local authority has been notified? (optional)"
+      "cy": "Pa awdurdod Lleol a/neu brif awdurdod, gan gynnwys enw cyswllt lle bo’n briodol, sydd wedi'i hysbysu? (dewisol)",
+      "en": "Which local authority and/or primary authority, including a named contact where applicable, has been notified? (optional)"
     },
     "hint": {
-      "cy": "Nodwch enw’r awdurdod lleol neu nodwch 'dim un'",
-      "en": "Name the local authority or write ‘none’"
+      "cy": "Nodwch enw’r awdurdod lleol a/neu brif awdurdod a’r enw cyswllt neu nodwch 'dim un'",
+      "en": "Name the local authority and/or primary authority and named contact, or write ‘none’"
     }
   },
   "natureOfProblem": {
     "label": {
-      "cy": "Beth ddigwyddodd?",
-      "en": "What happened?"
+      "cy": "Beth ddigwyddodd, a phryd?",
+      "en": "What happened, and when?"
     },
     "hint": {
-      "cy": "Ewch ati i ddisgrifio’r digwyddiad. Er enghraifft, ‘Wedi canfod Salmonela’",
-      "en": "Describe the incident that has taken place. For example, ‘Salmonella found’"
+      "cy": "Ewch ati i ddisgrifio’r digwyddiad. Er enghraifft, ‘Wedi canfod Salmonela yn ystod arolygiad awdurdod lleol arferol heddiw’",
+      "en": "Describe the incident that has taken place. For example, ‘Salmonella found during a planned LA inspection today’"
     },
     "validation": {
       "required": {
