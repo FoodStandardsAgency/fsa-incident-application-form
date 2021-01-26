@@ -28,7 +28,15 @@
         <li>{{ i18n.text.bullet4[i18n.languageCode] }}</li>
       </ul>
 
-      <p class="govuk-body">{{ i18n.text.intro3[i18n.languageCode] }} <a href="{{ reportAFoodProblemServiceUrl }}">{{ i18n.links.reportAFoodProblemService[i18n.languageCode] }}</a>.</p>
+      <p class="govuk-body">{{ i18n.text.intro3[i18n.languageCode] }}</p>
+
+      <p class="govuk-body">{{ i18n.text.intro4[i18n.languageCode] }}</p>
+
+      {% if i18n.text.intro5[i18n.languageCode]|length %}
+      <p class="govuk-body">{{ i18n.text.intro5[i18n.languageCode] }}</p>
+      {% endif %}
+
+      <p class="govuk-body">{{ i18n.text.intro6[i18n.languageCode] }} <a href="{{ reportAFoodProblemServiceUrl }}">{{ i18n.links.reportAFoodProblemService[i18n.languageCode] }}</a>.</p>
 
       {{ govukButton({
         text: i18n.buttons.start[i18n.languageCode],
