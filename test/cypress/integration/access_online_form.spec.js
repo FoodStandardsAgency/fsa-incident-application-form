@@ -1,4 +1,7 @@
 const ONLINE_FORM = Cypress.config("baseUrl");
+const YOUR_DETAILS = Cypress.config("contactDetails");
+
+const options = { force: true };
 
 context(
   "As a service user, I want to access an online form to report an incident, so that I can fulfil my legal obligation in a convenient way.",
@@ -12,16 +15,30 @@ context(
       });
     });
 
-    it(`Visit ${ONLINE_FORM}`, () => {
-      cy.visit(ONLINE_FORM);
+    describe("EN", () => {
+      it(`Visit ${ONLINE_FORM}`, () => {
+        cy.visit(ONLINE_FORM);
 
-      cy.get("[data-cy=start-button]").should("contain", "Start");
+        const startButton = cy.get("[data-cy=start-button]");
+
+        startButton.should("contain", "Start");
+        startButton.click(options);
+
+        cy.url().should("contain", `/${YOUR_DETAILS}`);
+      });
     });
 
-    it(`Visit ${ONLINE_FORM}/cy`, () => {
-      cy.visit(`${ONLINE_FORM}/cy`);
+    describe("CY", () => {
+      it(`Visit ${ONLINE_FORM}/cy`, () => {
+        cy.visit(`${ONLINE_FORM}/cy`);
 
-      cy.get("[data-cy=start-button]").should("contain", "Dechrau");
+        const startButton = cy.get("[data-cy=start-button]");
+
+        startButton.should("contain", "Dechrau");
+        startButton.click(options);
+
+        cy.url().should("contain", `/cy/${YOUR_DETAILS}`);
+      });
     });
   }
 );

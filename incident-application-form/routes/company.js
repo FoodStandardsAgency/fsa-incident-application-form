@@ -7,6 +7,7 @@ const {
   getErrorSummaryFromValidation,
 } = require("../lib/validation/error-summary");
 const { localisePath } = require("../lib/path-to-localised-path");
+const formSubmitChoices = require("../lib/form-submit-choices");
 
 const router = express.Router({ mergeParams: true });
 
@@ -60,6 +61,7 @@ router.post("/", async function (req, res, next) {
     "address.county": addressCounty,
     "address.postcode": addressPostcode,
     "address.country": addressCountry,
+    "submission-type": submissionType,
   } = req.body;
 
   const validation = validate(
@@ -83,6 +85,13 @@ router.post("/", async function (req, res, next) {
 
   if (!products) {
     throw new Error("Cannot add a company if no product.");
+  }
+
+  const productPath = `/${routes.PRODUCT}/edit/${productId}`;
+
+  if (validation.isEmpty && submissionType === formSubmitChoices.PREVIOUS) {
+    res.redirect(localisePath(productPath, req.locale));
+    return;
   }
 
   const [companyTypes, countries] = await Promise.all([
@@ -119,7 +128,7 @@ router.post("/", async function (req, res, next) {
     },
   };
 
-  res.redirect(localisePath(`/${routes.PRODUCT}/edit/${productId}`, locale));
+  res.redirect(localisePath(productPath, locale));
 });
 
 router.get("/edit/:companyId", async function (req, res, next) {

@@ -41,7 +41,8 @@
     {{ govukButton({
         text: i18n.buttons.previous[i18n.languageCode],
         classes: "govuk-button--secondary",
-        href: localisePath( [ "/", routes.DETAILS_OF_PRODUCT ] | join, i18n.languageCode),
+        name: "submission-type",
+        value: formSubmitChoices.PREVIOUS,
         attributes : {
             "data-cy": "back"
         }

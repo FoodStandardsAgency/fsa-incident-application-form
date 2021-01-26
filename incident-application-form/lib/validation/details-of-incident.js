@@ -15,6 +15,7 @@ const {
 const {
   validateLocalAuthorityNotified,
 } = require("./individual-fields/local-authority-notified");
+const isEmptyFn = require("./is-empty");
 
 module.exports = {
   validate: (
@@ -59,6 +60,15 @@ module.exports = {
       validatedLocalAuthorityNotified,
     ]);
 
+    const isEmpty = isEmptyFn([
+      natureOfProblem,
+      actionTaken,
+      distributionDetails,
+      illnessDetails,
+      localAuthorityNotified,
+      additionalInformation,
+    ]);
+
     return {
       isValid,
       validatedFields: {
@@ -69,6 +79,7 @@ module.exports = {
         ...validatedIllnessDetails,
         ...validatedLocalAuthorityNotified,
       },
+      isEmpty,
     };
   },
 };

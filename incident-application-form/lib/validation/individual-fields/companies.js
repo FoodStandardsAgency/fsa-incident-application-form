@@ -4,7 +4,13 @@ const defaultOptions = {
 
 module.exports = {
   validateCompanies: (companies, i18n, options) => {
+    const isEmpty =
+      !companies ||
+      companies.constructor !== Object ||
+      Object.entries(companies).length === 0;
+
     let validated = {
+      isEmpty,
       isValid: false,
       messages: [],
       value: {},
@@ -15,12 +21,7 @@ module.exports = {
       ...options,
     };
 
-    if (
-      (!companies ||
-        companies.constructor !== Object ||
-        Object.entries(companies).length === 0) &&
-      resolvedOptions.required
-    ) {
+    if (isEmpty && resolvedOptions.required) {
       return {
         companies: {
           ...validated,

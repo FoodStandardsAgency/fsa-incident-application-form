@@ -42,7 +42,12 @@ describe(`lib/formatting/details-of-products-table-display`, () => {
       {
         expectedValue: [
           [
-            { text: testProducts["123-abc"].productName.value },
+            {
+              text: testProducts["123-abc"].productName.value,
+              attributes: {
+                "data-cy": "product-name-0",
+              },
+            },
             { html: undefined },
           ],
         ],
@@ -53,6 +58,7 @@ describe(`lib/formatting/details-of-products-table-display`, () => {
               i18n,
               id: "123-abc",
               routes: routesStub,
+              index: 0,
             }
           );
           expect(nunjucks.render.mock.calls.length).toBe(1);
@@ -68,11 +74,21 @@ describe(`lib/formatting/details-of-products-table-display`, () => {
       {
         expectedValue: [
           [
-            { text: testProducts["123-abc"].productName.value },
+            {
+              text: testProducts["123-abc"].productName.value,
+              attributes: {
+                "data-cy": "product-name-0",
+              },
+            },
             { html: undefined },
           ],
           [
-            { text: testProducts["456-xyz"].productName.value },
+            {
+              text: testProducts["456-xyz"].productName.value,
+              attributes: {
+                "data-cy": "product-name-1",
+              },
+            },
             { html: undefined },
           ],
         ],
@@ -83,6 +99,7 @@ describe(`lib/formatting/details-of-products-table-display`, () => {
               i18n,
               id: "123-abc",
               routes: routesStub,
+              index: 0,
             }
           );
           expect(nunjucks.render).toHaveBeenCalledWith(
@@ -91,6 +108,7 @@ describe(`lib/formatting/details-of-products-table-display`, () => {
               i18n,
               id: "456-xyz",
               routes: routesStub,
+              index: 1,
             }
           );
           expect(nunjucks.render.mock.calls.length).toBe(2);
