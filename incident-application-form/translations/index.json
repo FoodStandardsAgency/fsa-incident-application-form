@@ -11,8 +11,8 @@
   },
   "text": {
     "intro1": {
-      "cy": "Defnyddiwch y gwasanaeth hwn i roi gwybod am ddigwyddiad diogelwch bwyd i Gangen Digwyddiadau'r Asiantaeth Safonau Bwyd. Mae'r ffurflen hon ar gyfer cynrychiolwyr awdurdodau lleol a gweithredwyr busnesau bwyd.",
-      "en": "Use this service to report a food safety incident to the Incidents Branch of the Food Standards Agency. This form is for local authority representatives and food business operators."
+      "cy": "Defnyddiwch y gwasanaeth hwn i roi gwybod am ddigwyddiad diogelwch bwyd neu fwyd anifeiliaid i Gangen Digwyddiadau'r Asiantaeth Safonau Bwyd. Mae'r ffurflen hon ar gyfer cynrychiolwyr awdurdodau Lleol, adrannau eraill y llywodraeth a gweithredwyr busnesau bwyd. ",
+      "en": "Use this service to report a food or feed safety incident to the Incidents Branch of the Food Standards Agency. This form is for local authority representatives, other government departments and food business operators."
     },
     "intro2": {
       "cy": "Gofynnir i chi ddarparu eich manylion cyswllt a gwybodaeth am y digwyddiad. Bydd hyn yn cynnwys:",
@@ -31,12 +31,24 @@
       "en": "Details of the product(s) affected"
     },
     "bullet4": {
-      "cy": "Y busnesau sy'n ymwneud â chyflenwi a dosbarthu'r cynnyrch neu gynhyrchion",
-      "en": "The businesses involved with the supply and distribution of the product(s)"
+      "cy": "Pob busnes sy'n ymwneud â chynhyrchu, cyflenwi a dosbarthu'r cynnyrch neu gynhyrchion",
+      "en": "Each business involved with the production, supply and distribution of the product(s)"
     },
     "intro3": {
-      "cy": "Os ydych chi'n ddefnyddiwr ac yn rhoi gwybod am broblem gyda bwyd, defnyddiwch y",
-      "en": "If you are a consumer with a food problem to report, please use the"
+      "cy": "Rhowch gymaint o fanylion â phosibl, bydd hyn yn galluogi'r Gangen Digwyddiadau i’ch cynghori mor gyflym â phosibl.",
+      "en": "Please provide as much detail as possible, this will enable the Incidents Branch to provide advice as promptly as possible. "
+    },
+    "intro4": {
+      "cy": "Gellir anfon gwybodaeth ddilynol nad oedd ar gael wrth roi gwybod am y digwyddiad at foodincidents@food.gov.uk. Cofiwch ddyfynnu’r cyfeirnod a gewch ar ôl llenwi'r ffurflen mewn unrhyw ohebiaeth yn y dyfodol. Efallai y bydd y Gangen Digwyddiadau yn cysylltu â chi i ofyn am wybodaeth ychwanegol.",
+      "en": "Information that is unavailable at the time of reporting can be sent in follow up to the form to foodincidents@food.gov.uk, please quote the reference number that you will receive on completion of the form in future correspondence. The Incidents Branch may contact you to request additional information."
+    },
+    "intro5": {
+      "cy": "Oherwydd cyfyngiadau technegol, dim ond yn Saesneg mae’r cwymplenni ar gael ar hyn o bryd. Rydym ni’n bwriadu diweddaru’r rhain maes o law yn unol â’n hymrwymiadau i’r Gymraeg.",
+      "en": ""
+    },
+    "intro6": {
+      "cy": "Os ydych chi'n ddefnyddiwr ac yn rhoi gwybod am broblem gyda bwyd, defnyddiwch y ",
+      "en": "If you are a consumer with a food problem to report, please use the "
     }
   },
   "links": {

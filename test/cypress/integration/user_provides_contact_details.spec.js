@@ -61,7 +61,7 @@ context(
 
         cy.get('[data-cy="error-summary"]')
           .should("exist")
-          .should("contain", "Contact name is required");
+          .should("contain", "Full name is required");
 
         cy.get('[data-cy="contact-name-errors"]').should("exist");
       });
@@ -147,7 +147,7 @@ context(
 
         cy.get('[data-cy="error-summary"]')
           .should("exist")
-          .should("contain", "Mae angen enw cyswllt");
+          .should("contain", "Mae angen enw llawn");
 
         cy.get('[data-cy="contact-name-errors"]').should("exist");
       });
