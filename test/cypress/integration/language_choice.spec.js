@@ -1,6 +1,6 @@
 const ONLINE_FORM = Cypress.config("baseUrl");
 
-const ENGLISH_PAGE_HEADING = "Report a food safety Report a food or feed safety incident";
+const ENGLISH_PAGE_HEADING = "Report a food or feed safety incident";
 const WELSH_PAGE_HEADING = "Rhoi gwybod am ddigwyddiad diogelwch bwyd neu fwyd anifeiliaid";
 
 context(
