@@ -281,13 +281,13 @@
   },
   "contactName": {
     "label": {
-      "cy": "Enw cyswllt",
-      "en": "Contact Name"
+      "cy": "Enw llawn",
+      "en": "Full name"
     },
     "validation": {
       "required": {
-        "cy": "Mae angen enw cyswllt",
-        "en": "Contact name is required"
+        "cy": "Mae angen enw llawn",
+        "en": "Full name is required"
       },
       "invalidLength": {
         "cy": "Rhaid i'r enw cyswllt fod rhwng 1 a 255 nod",
@@ -481,13 +481,13 @@
   },
   "position": {
     "label": {
-      "cy": "Safle (dewisol)",
-      "en": "Position (optional)"
+      "cy": "Rôl (dewisol)",
+      "en": "Role (optional)"
     },
     "validation": {
       "invalidLength": {
-        "cy": "Rhaid i'r swydd fod rhwng 1 a 255 nod",
-        "en": "Position must be between 1 and 255 characters"
+        "cy": "Rôl i'r swydd fod rhwng 1 a 255 nod",
+        "en": "Role must be between 1 and 255 characters"
       }
     }
   },
