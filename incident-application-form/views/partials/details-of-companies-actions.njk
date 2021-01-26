@@ -6,11 +6,17 @@
 {{ govukButton({
     text: i18n.buttons.change[i18n.languageCode],
     classes: "govuk-button govuk-button--secondary",
-    href: localisePath( company_edit_path, i18n.languageCode)
+    href: localisePath( company_edit_path, i18n.languageCode),
+    attributes : {
+        "data-cy": "edit-company-%1" | replace("%1", index)
+    }
 }) }}
 
 {{ govukButton({
     text: i18n.buttons.remove[i18n.languageCode],
     classes: "govuk-button govuk-button--warning",
-    href: localisePath( company_remove_path, i18n.languageCode)
+    href: localisePath( company_remove_path, i18n.languageCode),
+    attributes : {
+        "data-cy": "remove-company-%1" | replace("%1", index)
+    }
 }) }}

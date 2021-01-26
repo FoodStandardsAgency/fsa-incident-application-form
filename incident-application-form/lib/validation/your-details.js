@@ -15,6 +15,7 @@ const {
 const {
   validateAddressCountry,
 } = require("./individual-fields/address.country");
+const isEmptyFn = require("./is-empty");
 
 module.exports = {
   validate: (
@@ -68,6 +69,21 @@ module.exports = {
       validatedAddressCountry,
     ]);
 
+    const isEmpty = isEmptyFn([
+      notifierType,
+      contactName,
+      position,
+      organisation,
+      email,
+      telephone1,
+      addressLine1,
+      addressLine2,
+      addressTown,
+      addressCounty,
+      addressPostcode,
+      addressCountry,
+    ]);
+
     return {
       isValid,
       validatedFields: {
@@ -86,6 +102,7 @@ module.exports = {
           ...validatedAddressCountry,
         },
       },
+      isEmpty,
     };
   },
 };

@@ -5,6 +5,25 @@ const translations = require(`${__dirname}/../../translations/form-fields.json`)
 describe(`lib/validation/your-details`, () => {
   const testCases = (languageCode) => [
     [
+      "all empty",
+      {
+        contactName: "",
+        notifierType: "",
+        position: "",
+        organisation: "",
+        email: "",
+        telephone1: "",
+        addressLine1: "",
+        addressLine2: "",
+        addressTown: "",
+        addressCounty: "",
+        addressPostcode: "",
+        addressCountry: "",
+      },
+      false,
+      true,
+    ],
+    [
       "invalid path",
       {
         contactName: "valid",
@@ -20,6 +39,7 @@ describe(`lib/validation/your-details`, () => {
         addressPostcode: "TE1 5ST",
         addressCountry: "valid",
       },
+      false,
       false,
     ],
     [
@@ -39,19 +59,23 @@ describe(`lib/validation/your-details`, () => {
         addressCountry: "valid",
       },
       true,
+      false,
     ],
   ];
 
   ["en", "cy"].forEach((languageCode) => {
     test.each(testCases(languageCode))(
       `%s - ${languageCode}`,
-      (description, given, expected) => {
+      (description, given, expectedIsValidOutcome, expectedIsEmptyOutcome) => {
         const i18n = {
           languageCode,
           ...translations,
         };
 
-        expect(validate(given, i18n).isValid).toEqual(expected);
+        const outcome = validate(given, i18n);
+
+        expect(outcome.isValid).toEqual(expectedIsValidOutcome);
+        expect(outcome.isEmpty).toEqual(expectedIsEmptyOutcome);
       }
     );
   });

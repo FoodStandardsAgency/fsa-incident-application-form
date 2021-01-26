@@ -22,6 +22,7 @@ var previewRouter = require("./routes/preview");
 var thankyouRouter = require("./routes/complete");
 
 var { localisePath } = require("./lib/path-to-localised-path");
+var formSubmitChoices = require("./lib/form-submit-choices");
 
 var app = express();
 
@@ -38,6 +39,7 @@ var nunjucksEnv = nunjucks.configure(
   }
 );
 nunjucksEnv.addGlobal("localisePath", localisePath);
+nunjucksEnv.addGlobal("formSubmitChoices", formSubmitChoices);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "njk");
 

@@ -11,6 +11,7 @@ describe(`lib/validation/details-of-incident`, () => {
         actionTaken: "",
       },
       false,
+      true,
     ],
     [
       "not every field is required",
@@ -22,6 +23,7 @@ describe(`lib/validation/details-of-incident`, () => {
         localAuthorityNotified: "",
       },
       true,
+      false,
     ],
     [
       "happiest path",
@@ -35,19 +37,23 @@ describe(`lib/validation/details-of-incident`, () => {
         additionalInformation: "valid",
       },
       true,
+      false,
     ],
   ];
 
   ["en", "cy"].forEach((languageCode) => {
     test.each(testCases(languageCode))(
       `%s - ${languageCode}`,
-      (description, given, expected) => {
+      (description, given, expectedIsValidOutcome, expectedIsEmptyOutcome) => {
         const i18n = {
           languageCode,
           ...translations,
         };
 
-        expect(validate(given, i18n).isValid).toEqual(expected);
+        const outcome = validate(given, i18n);
+
+        expect(outcome.isValid).toEqual(expectedIsValidOutcome);
+        expect(outcome.isEmpty).toEqual(expectedIsEmptyOutcome);
       }
     );
   });

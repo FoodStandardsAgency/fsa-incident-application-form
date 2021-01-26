@@ -43,7 +43,12 @@ describe(`lib/formatting/details-of-companies-table-display`, () => {
       {
         expectedValue: [
           [
-            { text: testCompanies["123-abc"].companyName.value },
+            {
+              text: testCompanies["123-abc"].companyName.value,
+              attributes: {
+                "data-cy": "company-name-0",
+              },
+            },
             { html: undefined },
           ],
         ],
@@ -55,6 +60,7 @@ describe(`lib/formatting/details-of-companies-table-display`, () => {
               companyId: "123-abc",
               productId: mockProductId,
               routes: routesStub,
+              index: 0,
             }
           );
           expect(nunjucks.render.mock.calls.length).toBe(1);
@@ -70,11 +76,21 @@ describe(`lib/formatting/details-of-companies-table-display`, () => {
       {
         expectedValue: [
           [
-            { text: testCompanies["123-abc"].companyName.value },
+            {
+              text: testCompanies["123-abc"].companyName.value,
+              attributes: {
+                "data-cy": "company-name-0",
+              },
+            },
             { html: undefined },
           ],
           [
-            { text: testCompanies["456-xyz"].companyName.value },
+            {
+              text: testCompanies["456-xyz"].companyName.value,
+              attributes: {
+                "data-cy": "company-name-1",
+              },
+            },
             { html: undefined },
           ],
         ],
@@ -86,6 +102,7 @@ describe(`lib/formatting/details-of-companies-table-display`, () => {
               companyId: "123-abc",
               routes: routesStub,
               productId: mockProductId,
+              index: 0,
             }
           );
           expect(nunjucks.render).toHaveBeenCalledWith(
@@ -95,6 +112,7 @@ describe(`lib/formatting/details-of-companies-table-display`, () => {
               companyId: "456-xyz",
               routes: routesStub,
               productId: mockProductId,
+              index: 1,
             }
           );
           expect(nunjucks.render.mock.calls.length).toBe(2);

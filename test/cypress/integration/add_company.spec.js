@@ -64,6 +64,30 @@ context(
           .should("exist")
           .should("contain", "Company type is required");
       });
+
+      it(`should allow navigating to the previous page, without triggering validation, if all form fields are empty`, () => {
+        cy.get('[data-cy="back"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("not.exist");
+
+        cy.url().should("contain", `/${ADD_PRODUCT}`);
+      });
+
+      it(`should enforce validation rules when navigating to the previous page if any field has data`, () => {
+        cy.fillInCompany({
+          fieldsToSkip: ["company-type"],
+        });
+
+        cy.get('[data-cy="back"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("exist");
+      });
+
+      it(`should not allow navigating to the next page if all form fields are empty`, () => {
+        cy.get('[data-cy="submit"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("exist");
+      });
     });
 
     describe("CY", () => {
@@ -93,6 +117,30 @@ context(
         cy.get('[data-cy="error-summary"]')
           .should("exist")
           .should("contain", "Mae angen math o gwmni");
+      });
+
+      it(`should allow navigating to the previous page, without triggering validation, if all form fields are empty`, () => {
+        cy.get('[data-cy="back"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("not.exist");
+
+        cy.url().should("contain", `/cy/${ADD_PRODUCT}`);
+      });
+
+      it(`should enforce validation rules when navigating to the previous page if any field has data`, () => {
+        cy.fillInCompany({
+          fieldsToSkip: ["company-type"],
+        });
+
+        cy.get('[data-cy="back"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("exist");
+      });
+
+      it(`should not allow navigating to the next page if all form fields are empty`, () => {
+        cy.get('[data-cy="submit"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("exist");
       });
     });
   }

@@ -1,5 +1,6 @@
 const SIMS_LOOKUP_DATA = require("../fixtures/sample-dropdown-data.json");
 const ADD_PRODUCT = Cypress.config("product");
+const DETAILS_OF_PRODUCT = Cypress.config("detailsOfProduct");
 
 const options = { force: true };
 
@@ -69,6 +70,32 @@ context(
           .should("exist")
           .should("contain", "Country is required");
       });
+
+      it(`should allow navigating to the previous page, without triggering validation, if all form fields are empty`, () => {
+        cy.get('[data-cy="back"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("not.exist");
+
+        cy.url().should("contain", `/${DETAILS_OF_PRODUCT}`);
+      });
+
+      it(`should enforce validation rules when navigating to the previous page if any field has data`, () => {
+        cy.fillInProduct({
+          fieldsToSkip: ["product-name"],
+        });
+
+        cy.get('[data-cy="back"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("exist");
+
+        cy.url().should("contain", `/${ADD_PRODUCT}`);
+      });
+
+      it(`should not allow navigating to the next page if all form fields are empty`, () => {
+        cy.get('[data-cy="submit"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("exist");
+      });
     });
 
     describe("CY", () => {
@@ -120,6 +147,32 @@ context(
         cy.get('[data-cy="error-summary"]')
           .should("exist")
           .should("contain", "Mae angen gwlad");
+      });
+
+      it(`should allow navigating to the previous page, without triggering validation, if all form fields are empty`, () => {
+        cy.get('[data-cy="back"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("not.exist");
+
+        cy.url().should("contain", `/${DETAILS_OF_PRODUCT}`);
+      });
+
+      it(`should enforce validation rules when navigating to the previous page if any field has data`, () => {
+        cy.fillInProduct({
+          fieldsToSkip: ["product-name"],
+        });
+
+        cy.get('[data-cy="back"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("exist");
+
+        cy.url().should("contain", `/${ADD_PRODUCT}`);
+      });
+
+      it(`should not allow navigating to the next page if all form fields are empty`, () => {
+        cy.get('[data-cy="submit"]').click(options);
+
+        cy.get('[data-cy="error-summary"]').should("exist");
       });
     });
   }

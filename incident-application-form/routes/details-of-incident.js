@@ -4,6 +4,7 @@ const {
   getErrorSummaryFromValidation,
 } = require("../lib/validation/error-summary");
 const { localisePath } = require("../lib/path-to-localised-path");
+const formSubmitChoices = require("../lib/form-submit-choices");
 
 const router = express.Router();
 
@@ -13,6 +14,9 @@ const formFieldTranslations = require(`${__dirname}/../translations/form-fields.
 const pageTranslations = require(`${__dirname}/../translations/${template}.json`);
 
 const routes = require(`${__dirname}/../routes/routes.json`);
+
+const previousPage = `/${routes.YOUR_DETAILS}`;
+const nextPage = `/${routes.DETAILS_OF_PRODUCT}`;
 
 const getI18n = (languageCode) => ({
   languageCode,
@@ -30,6 +34,7 @@ router.get("/", async function (req, res, next) {
 
 router.post("/", async function (req, res, next) {
   const {
+    "submit-action": submitAction,
     "incident-title": incidentTitle,
     "nature-of-problem": natureOfProblem,
     "action-taken": actionTaken,
@@ -52,9 +57,14 @@ router.post("/", async function (req, res, next) {
     getI18n(req.locale)
   );
 
+  if (validation.isEmpty && submitAction === formSubmitChoices.PREVIOUS) {
+    res.redirect(localisePath(previousPage, req.locale));
+    return;
+  }
+
   if (!validation.isValid) {
     res.render(template, {
-      detailsOfIncident: req.session.detailsOfIncident || {},
+      detailsOfIncident: validation.validatedFields || {},
       errorSummary: getErrorSummaryFromValidation(validation),
       i18n: getI18n(req.locale),
       validation,
@@ -65,7 +75,10 @@ router.post("/", async function (req, res, next) {
 
   req.session.detailsOfIncident = validation.validatedFields;
 
-  res.redirect(localisePath(`/${routes.DETAILS_OF_PRODUCT}`, req.locale));
+  const redirectTo =
+    submitAction === formSubmitChoices.PREVIOUS ? previousPage : nextPage;
+
+  res.redirect(localisePath(redirectTo, req.locale));
 });
 
 module.exports = router;
