@@ -21,6 +21,7 @@ const {
   getErrorSummaryFromValidation,
 } = require("../lib/validation/error-summary");
 const { localisePath } = require("../lib/path-to-localised-path");
+const formSubmitChoices = require("../lib/form-submit-choices");
 
 const router = express.Router();
 
@@ -125,6 +126,11 @@ router.post("/", async function (req, res, next) {
     isCreate
   );
 
+  if (validation.isEmpty && submissionType === formSubmitChoices.PREVIOUS) {
+    res.redirect(localisePath(`/${routes.DETAILS_OF_PRODUCT}`, req.locale));
+    return;
+  }
+
   if (!validation.isValid) {
     const [productTypes, originCountries, units] = await Promise.all([
       getProductTypes(locale, productType),
@@ -168,7 +174,11 @@ router.post("/", async function (req, res, next) {
     res.redirect(
       localisePath(`/${routes.PRODUCT}/${productId}/company`, locale)
     );
+    return;
+  }
 
+  if (submissionType === formSubmitChoices.PREVIOUS) {
+    res.redirect(localisePath(`/${routes.DETAILS_OF_PRODUCT}`, req.locale));
     return;
   }
 

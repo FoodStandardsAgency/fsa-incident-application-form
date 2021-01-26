@@ -1,6 +1,8 @@
 const SIMS_LOOKUP_DATA = require("../fixtures/sample-dropdown-data.json");
 const YOUR_DETAILS = Cypress.config("contactDetails");
 
+const DETAILS_OF_INCIDENT = Cypress.config("detailsOfIncident");
+
 const options = {
   force: true,
 };
@@ -32,6 +34,8 @@ context(
         cy.get('[data-cy="submit"]').click(options);
 
         cy.get('[data-cy="error-summary"]').should("not.exist");
+
+        cy.url().should("contain", `/${DETAILS_OF_INCIDENT}`);
       });
 
       it("should require the Notifier Type field", () => {
@@ -116,6 +120,8 @@ context(
         cy.get('[data-cy="submit"]').click(options);
 
         cy.get('[data-cy="error-summary"]').should("not.exist");
+
+        cy.url().should("contain", `/cy/${DETAILS_OF_INCIDENT}`);
       });
 
       it("should require the Notifier Type field", () => {
