@@ -87,7 +87,7 @@ router.post("/", async function (req, res, next) {
     throw new Error("Cannot add a company if no product.");
   }
 
-  const productPath = `/${routes.PRODUCT}/edit/${productId}`;
+  const productPath = `/${routes.PRODUCT}/edit/${productId}#companies`;
 
   if (validation.isEmpty && submissionType === formSubmitChoices.PREVIOUS) {
     res.redirect(localisePath(productPath, req.locale));

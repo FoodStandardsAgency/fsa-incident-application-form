@@ -5,7 +5,7 @@ const A_PAYLOAD = {
   field2:'789',
 };
 
-context('throwaway example of how to get data out of our test-hook', () => {
+context('example of how to get data in/out of our test-hook', () => {
 
   beforeEach(() => {
     // catches, logs and ignores any load-errors on the page..
