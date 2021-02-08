@@ -80,7 +80,7 @@ context(
         cy.get('[data-cy="telephone1-errors"]').should("exist");
       });
 
-      it("should require a town or city", () => {
+      it("should require a town", () => {
         cy.fillInContactDetails({
           fieldsToSkip: ["address.town"],
         });
@@ -89,7 +89,7 @@ context(
 
         cy.get('[data-cy="error-summary"]')
           .should("exist")
-          .should("contain", "You must provide a town or city");
+          .should("contain", "You must provide a town");
 
         cy.get('[data-cy="address.town-errors"]').should("exist");
       });
@@ -166,7 +166,7 @@ context(
         cy.get('[data-cy="telephone1-errors"]').should("exist");
       });
 
-      it("should require a town or city", () => {
+      it("should require a town", () => {
         cy.fillInContactDetails({
           fieldsToSkip: ["address.town"],
         });
@@ -175,7 +175,7 @@ context(
 
         cy.get('[data-cy="error-summary"]')
           .should("exist")
-          .should("contain", "Rhaid i chi ddarparu tref neu ddinas");
+          .should("contain", "Rhaid i chi ddarparu tref");
 
         cy.get('[data-cy="address.town-errors"]').should("exist");
       });
