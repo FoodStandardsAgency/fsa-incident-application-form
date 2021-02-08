@@ -54,7 +54,7 @@ context(
 
       it("should have a disabled save and continue button", () => {
         cy.get("[data-cy=submit]")
-          .should("contain", "Arbed a pharhau")
+          .should("contain", "Arbed a Nesaf")
           .should("be.disabled");
       });
     });
