@@ -59,7 +59,11 @@ context(
           .should("contain", "Product name is required");
       });
 
-      it("should require a country", () => {
+      it("should have a valid default selected country", () => {
+        cy.get('[data-cy="origin-country"]')
+          .find("option:selected")
+          .should("have.text", "United Kingdom");
+
         cy.fillInProduct({
           fieldsToSkip: ["origin-country"],
         });
@@ -68,21 +72,14 @@ context(
 
         cy.get('[data-cy="error-summary"]')
           .should("exist")
-          .should("contain", "Country is required");
+          .should("not.contain", "Country is required");
+
+        cy.get('[data-cy="address.country-errors"]').should("not.exist");
       });
 
-      it(`should allow navigating to the previous page, without triggering validation, if all form fields are empty`, () => {
-        cy.get('[data-cy="back"]').click(options);
-
-        cy.get('[data-cy="error-summary"]').should("not.exist");
-
-        cy.url().should("contain", `/${DETAILS_OF_PRODUCT}`);
-      });
-
-      it(`should enforce validation rules when navigating to the previous page if any field has data`, () => {
-        cy.fillInProduct({
-          fieldsToSkip: ["product-name"],
-        });
+      it(`should enforce validation rules when navigating to the previous page`, () => {
+        // country is now default selected to United Kingdom, and is a mandatory field.
+        // Validation must always be enforced.
 
         cy.get('[data-cy="back"]').click(options);
 
@@ -137,7 +134,11 @@ context(
           .should("contain", "Mae angen enw'r cynnyrch");
       });
 
-      it("should require a country", () => {
+      it("should have a valid default selected country", () => {
+        cy.get('[data-cy="origin-country"]')
+          .find("option:selected")
+          .should("have.text", "United Kingdom");
+
         cy.fillInProduct({
           fieldsToSkip: ["origin-country"],
         });
@@ -146,21 +147,14 @@ context(
 
         cy.get('[data-cy="error-summary"]')
           .should("exist")
-          .should("contain", "Mae angen gwlad");
+          .should("not.contain", "Mae angen gwlad");
+
+        cy.get('[data-cy="address.country-errors"]').should("not.exist");
       });
 
-      it(`should allow navigating to the previous page, without triggering validation, if all form fields are empty`, () => {
-        cy.get('[data-cy="back"]').click(options);
-
-        cy.get('[data-cy="error-summary"]').should("not.exist");
-
-        cy.url().should("contain", `/${DETAILS_OF_PRODUCT}`);
-      });
-
-      it(`should enforce validation rules when navigating to the previous page if any field has data`, () => {
-        cy.fillInProduct({
-          fieldsToSkip: ["product-name"],
-        });
+      it(`should enforce validation rules when navigating to the previous page`, () => {
+        // country is now default selected to United Kingdom, and is a mandatory field.
+        // Validation must always be enforced.
 
         cy.get('[data-cy="back"]').click(options);
 

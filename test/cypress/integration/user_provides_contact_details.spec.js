@@ -94,18 +94,20 @@ context(
         cy.get('[data-cy="address.town-errors"]').should("exist");
       });
 
-      it("should require a country", () => {
+      it("should have a valid default selected country", () => {
+        cy.get('[data-cy="address.country"]')
+          .find("option:selected")
+          .should("have.text", "United Kingdom");
+
         cy.fillInContactDetails({
           fieldsToSkip: ["address.country"],
         });
 
         cy.get('[data-cy="submit"]').click(options);
 
-        cy.get('[data-cy="error-summary"]')
-          .should("exist")
-          .should("contain", "Country is required");
+        cy.get('[data-cy="error-summary"]').should("not.exist");
 
-        cy.get('[data-cy="address.country-errors"]').should("exist");
+        cy.get('[data-cy="address.country-errors"]').should("not.exist");
       });
     });
 
@@ -180,18 +182,20 @@ context(
         cy.get('[data-cy="address.town-errors"]').should("exist");
       });
 
-      it("should require a country", () => {
+      it("should have a valid default selected country", () => {
+        cy.get('[data-cy="address.country"]')
+          .find("option:selected")
+          .should("have.text", "United Kingdom");
+
         cy.fillInContactDetails({
           fieldsToSkip: ["address.country"],
         });
 
         cy.get('[data-cy="submit"]').click(options);
 
-        cy.get('[data-cy="error-summary"]')
-          .should("exist")
-          .should("contain", "Mae angen gwlad");
+        cy.get('[data-cy="error-summary"]').should("not.exist");
 
-        cy.get('[data-cy="address.country-errors"]').should("exist");
+        cy.get('[data-cy="address.country-errors"]').should("not.exist");
       });
     });
   }

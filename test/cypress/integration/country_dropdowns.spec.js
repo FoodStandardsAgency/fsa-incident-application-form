@@ -78,7 +78,7 @@ context(
           cy.get('[data-cy="add-product"]').click(options);
 
           cy.get('[data-cy="origin-country"]')
-            .should("contain", "Please choose")
+            .should("not.contain", "Please choose")
             .should("not.contain", "Please choose a country");
 
           cy.fillInProduct({
@@ -92,8 +92,12 @@ context(
             .should("not.contain", "Location");
 
           cy.get('[data-cy="address.country"]')
-            .should("contain", "Please choose")
+            .should("not.contain", "Please choose")
             .should("not.contain", "Please choose a country");
+
+          cy.get('[data-cy="address.country"]')
+            .find("option:selected")
+            .should("have.text", "United Kingdom");
         });
       });
     });
@@ -148,7 +152,7 @@ context(
           cy.get('[data-cy="add-product"]').click(options);
 
           cy.get('[data-cy="origin-country"]')
-            .should("contain", "Dewiswch wlad os gwelwch yn dda")
+            .should("not.contain", "Dewiswch wlad os gwelwch yn dda")
             .should("not.contain", "Please choose");
 
           cy.fillInProduct({
@@ -163,8 +167,12 @@ context(
             .should("not.contain", "Lleoliad");
 
           cy.get('[data-cy="address.country"]')
-            .should("contain", "Dewiswch wlad os gwelwch yn dda")
+            .should("not.contain", "Dewiswch wlad os gwelwch yn dda")
             .should("not.contain", "Please choose");
+
+          cy.get('[data-cy="address.country"]')
+            .find("option:selected")
+            .should("have.text", "United Kingdom");
         });
       });
     });
