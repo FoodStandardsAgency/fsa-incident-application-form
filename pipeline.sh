@@ -5,5 +5,5 @@ source ./start.sh
 cd test && npm install && npx cypress run
 cypressResult=$?
 
-source ./stop.sh
+cd .. ^^ source ./stop.sh
 exit $cypressResult
