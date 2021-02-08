@@ -3,13 +3,13 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% block pageTitle %}
-{{ i18n.pageTitle[i18n.languageCode] }}
+  {{ i18n.pageTitle[i18n.languageCode] }}
 {% endblock %}
 
 {% if i18n.languageCode == 'cy' %}
-{% set reportAFoodProblemServiceUrl = "https://www.food.gov.uk/cy/contact/consumers/report-problem" %}
+  {% set reportAFoodProblemServiceUrl = "https://www.food.gov.uk/cy/contact/consumers/report-problem" %}
 {% else %}
-{% set reportAFoodProblemServiceUrl = "https://www.food.gov.uk/contact/consumers/report-problem" %}
+  {% set reportAFoodProblemServiceUrl = "https://www.food.gov.uk/contact/consumers/report-problem" %}
 {% endif %}
 
 {% block content %}
@@ -33,7 +33,7 @@
       <p class="govuk-body">{{ i18n.text.intro4[i18n.languageCode] }}</p>
 
       {% if i18n.text.intro5[i18n.languageCode]|length %}
-      <p class="govuk-body">{{ i18n.text.intro5[i18n.languageCode] }}</p>
+        <p class="govuk-body">{{ i18n.text.intro5[i18n.languageCode] }}</p>
       {% endif %}
 
       <p class="govuk-body">{{ i18n.text.intro6[i18n.languageCode] }} <a href="{{ reportAFoodProblemServiceUrl }}">{{ i18n.links.reportAFoodProblemService[i18n.languageCode] }}</a>.</p>

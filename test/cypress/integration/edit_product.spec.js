@@ -132,6 +132,7 @@ context(
 
           it('should save changes on clicking "add company"', () => {
             cy.get('[data-cy="add-company"]').click(options);
+            cy.get('[data-cy="company-type"]').select("Wholesaler", options);
 
             // return from the "add company" form with no changes
             cy.get('[data-cy="back"]').click(options);

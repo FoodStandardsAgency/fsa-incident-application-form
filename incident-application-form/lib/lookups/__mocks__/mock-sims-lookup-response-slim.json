@@ -1,0 +1,320 @@
+{
+  "countries": [
+    {
+      "id": 1,
+      "title": "Andorra"
+    },
+    {
+      "id": 2,
+      "title": "United Arab Emirates"
+    },
+    {
+      "id": 90,
+      "title": "United Kingdom"
+    },
+    {
+      "id": 91,
+      "title": "England"
+    },
+    {
+      "id": 92,
+      "title": "Northern Ireland"
+    },
+    {
+      "id": 93,
+      "title": "Scotland"
+    },
+    {
+      "id": 94,
+      "title": "Wales"
+    },
+    {
+      "id": 282,
+      "title": "Not Easily Identified"
+    },
+    {
+      "id": 283,
+      "title": "Other"
+    },
+    {
+      "id": 284,
+      "title": "Territory"
+    }
+  ],
+  "productTypes": [
+    {
+      "id": 1,
+      "title": "Undefined"
+    },
+    {
+      "id": 2,
+      "title": "Animal by-Products"
+    },
+    {
+      "id": 3,
+      "title": "Alcoholic Beverages"
+    },
+    {
+      "id": 4,
+      "title": "Bivalve Molluscs & Products Thereof"
+    },
+    {
+      "id": 5,
+      "title": "Cephalopods & Products Thereof"
+    },
+    {
+      "id": 6,
+      "title": "Cereals & Bakery Products"
+    },
+    {
+      "id": 7,
+      "title": "Cocoa / Cocoa Preparations / Coffee / Tea"
+    },
+    {
+      "id": 8,
+      "title": "Compound Feeds"
+    },
+    {
+      "id": 9,
+      "title": "Confectionery"
+    },
+    {
+      "id": 10,
+      "title": "Crustaceans & Products Thereof"
+    },
+    {
+      "id": 11,
+      "title": "Dietetic Foods / Food Supplements / Fortified Foods"
+    },
+    {
+      "id": 12,
+      "title": "Egg & Egg Products"
+    },
+    {
+      "id": 13,
+      "title": "Fats & Oils"
+    },
+    {
+      "id": 14,
+      "title": "Feed Additives"
+    },
+    {
+      "id": 15,
+      "title": "Feed Materials"
+    },
+    {
+      "id": 16,
+      "title": "Feed Premixtures"
+    },
+    {
+      "id": 17,
+      "title": "Fish & Fish Products"
+    },
+    {
+      "id": 18,
+      "title": "Food Additives & Flavourings"
+    },
+    {
+      "id": 19,
+      "title": "Food Contact Materials"
+    },
+    {
+      "id": 20,
+      "title": "Fruits & Vegetables"
+    },
+    {
+      "id": 21,
+      "title": "Gastropods"
+    },
+    {
+      "id": 22,
+      "title": "Herbs & Spices"
+    },
+    {
+      "id": 23,
+      "title": "Honey & Royal Jelly"
+    },
+    {
+      "id": 24,
+      "title": "Ices & Desserts"
+    },
+    {
+      "id": 25,
+      "title": "Meat & Meat Products (other than poultry)"
+    },
+    {
+      "id": 26,
+      "title": "Milk & Milk Products"
+    },
+    {
+      "id": 27,
+      "title": "N/A"
+    },
+    {
+      "id": 28,
+      "title": "Non-Alcoholic Beverages"
+    },
+    {
+      "id": 29,
+      "title": "Nuts / Nut Products / Seeds"
+    },
+    {
+      "id": 30,
+      "title": "Other Food Product / Mixed"
+    },
+    {
+      "id": 31,
+      "title": "Pet Food"
+    },
+    {
+      "id": 32,
+      "title": "Poultry Meat & Poultry Meat Products"
+    },
+    {
+      "id": 33,
+      "title": "Prepared Dishes & Snacks"
+    },
+    {
+      "id": 34,
+      "title": "Soups / Broths / Sauces & Condiments"
+    },
+    {
+      "id": 35,
+      "title": "Water"
+    },
+    {
+      "id": 36,
+      "title": "Wine"
+    },
+    {
+      "id": 37,
+      "title": "Unmapped SPT Signal Value"
+    }
+  ],
+  "fboTypes": [
+    {
+      "id": 1,
+      "title": "Consignor"
+    },
+    {
+      "id": 2,
+      "title": "e-platform/e-market place"
+    },
+    {
+      "id": 4,
+      "title": "e-trader"
+    },
+    {
+      "id": 8,
+      "title": "Exporter"
+    },
+    {
+      "id": 16,
+      "title": "Farmer"
+    },
+    {
+      "id": 32,
+      "title": "Hospitality/Food service"
+    },
+    {
+      "id": 64,
+      "title": "Importer"
+    },
+    {
+      "id": 128,
+      "title": "Manufacturer"
+    },
+    {
+      "id": 256,
+      "title": "Packer/filler"
+    },
+    {
+      "id": 512,
+      "title": "Processor"
+    },
+    {
+      "id": 1024,
+      "title": "Producer"
+    },
+    {
+      "id": 2048,
+      "title": "Retailer"
+    },
+    {
+      "id": 4096,
+      "title": "Storage"
+    },
+    {
+      "id": 8192,
+      "title": "Supplier"
+    },
+    {
+      "id": 16384,
+      "title": "Trader/Broker"
+    },
+    {
+      "id": 32768,
+      "title": "Transporter"
+    },
+    {
+      "id": 65536,
+      "title": "Wholesaler"
+    }
+  ],
+  "units": [
+    {
+      "id": 1,
+      "title": "Undefined"
+    },
+    {
+      "id": 8,
+      "title": "Gallons (gal)"
+    },
+    {
+      "id": 9,
+      "title": "Grams (g)"
+    },
+    {
+      "id": 10,
+      "title": "Kilograms (kg)"
+    },
+    {
+      "id": 11,
+      "title": "Litres (l)"
+    },
+    {
+      "id": 19,
+      "title": "Tonnes (t)"
+    },
+    {
+      "id": 20,
+      "title": "Millilitres (ml)"
+    },
+    {
+      "id": 21,
+      "title": "Ounces (oz)"
+    },
+    {
+      "id": 22,
+      "title": "Pints (pt)"
+    },
+    {
+      "id": 23,
+      "title": "Pounds (lb)"
+    },
+    {
+      "id": 24,
+      "title": "Units"
+    }
+  ],
+  "notifierTypes": [
+    {
+      "id": 1,
+      "title": "Industry"
+    },
+    {
+      "id": 2,
+      "title": "Local Authority"
+    }
+  ]
+}
