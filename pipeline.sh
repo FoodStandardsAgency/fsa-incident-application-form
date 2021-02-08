@@ -5,5 +5,5 @@ source ./start.sh
 cd test && npm install && npx cypress run
 cypressResult=$?
 
-cd .. ^^ source ./stop.sh
+echo "Exiting tests; docker-compose is still running with suitable test-data in it, you can use 'npm stop' to stop it."
 exit $cypressResult

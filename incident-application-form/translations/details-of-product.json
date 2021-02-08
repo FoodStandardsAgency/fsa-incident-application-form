@@ -7,6 +7,10 @@
     "details": {
       "cy": "Manylion y cynnyrch",
       "en": "Product details"
+    },
+    "detailsHints": {
+      "cy": "Ewch ati i nodi manylion y cynnyrch dan sylw. Cofiwch ychwanegu cwmnïau cysylltiedig ar waelod y dudalen.",
+      "en": "Complete the details for the product affected. Add related companies at the bottom of the page."
     }
   },
   "headings": {
