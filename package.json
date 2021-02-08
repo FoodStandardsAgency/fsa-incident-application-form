@@ -6,8 +6,8 @@
     "start": "./start.sh",
     "stop": "./stop.sh",
     "test": "./pipeline.sh",
-
-    "dev": "source ./setenv.sh &&  docker-compose up --build"
+    "dev": "source ./setenv.sh &&  docker-compose up --build",
+    "dummyData": "cd ./test && npx cypress run --spec **/put-example-data-into-test-harness.spec.js"
   },
   "repository": {
     "type": "git",

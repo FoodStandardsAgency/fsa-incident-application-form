@@ -37,29 +37,29 @@
 
     {% endcall %}
 
+    <div id="companies">
+      {% if tabularDetailsOfCompanies | length > 0 %}
+          {{ govukTable({
+              caption: i18n.sections.companies[i18n.languageCode],
+              firstCellIsHeader: true,
+              head: [
+                  {
+                      text: i18n.headings.company[i18n.languageCode]
+                  },
+                  {
+                      text: i18n.headings.action[i18n.languageCode]
+                  }
+              ],
+              rows: tabularDetailsOfCompanies
+          }) }}
+      {% else %}
+          <div>
+          </div>
+      {% endif %}
 
-    {% if tabularDetailsOfCompanies | length > 0 %}
-        {{ govukTable({
-            caption: i18n.sections.companies[i18n.languageCode],
-            firstCellIsHeader: true,
-            head: [
-                {
-                    text: i18n.headings.company[i18n.languageCode]
-                },
-                {
-                    text: i18n.headings.action[i18n.languageCode]
-                }
-            ],
-            rows: tabularDetailsOfCompanies
-        }) }}
-    {% else %}
-        <div>
-        </div>
-    {% endif %}
 
-
-    {% include "partials/add-company.njk" %}
-
+      {% include "partials/add-company.njk" %}
+    <div>
 
     {{ govukButton({
         text: i18n.buttons.previous[i18n.languageCode],
