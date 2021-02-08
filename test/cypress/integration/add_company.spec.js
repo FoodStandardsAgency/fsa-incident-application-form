@@ -65,21 +65,17 @@ context(
           .should("contain", "Company type is required");
       });
 
-      it(`should allow navigating to the previous page, without triggering validation, if all form fields are empty`, () => {
-        cy.get('[data-cy="back"]').click(options);
-
-        cy.get('[data-cy="error-summary"]').should("not.exist");
-
-        cy.url().should("contain", `/${ADD_PRODUCT}`);
+      it("should have a valid default selected country", () => {
+        cy.get('[data-cy="address.country"]')
+          .find("option:selected")
+          .should("have.text", "United Kingdom");
       });
 
-      it(`should enforce validation rules when navigating to the previous page if any field has data`, () => {
-        cy.fillInCompany({
-          fieldsToSkip: ["company-type"],
-        });
+      it(`should enforce validation rules when navigating to the previous page`, () => {
+        // country is now default selected to United Kingdom, and is a mandatory field.
+        // Validation must always be enforced.
 
         cy.get('[data-cy="back"]').click(options);
-
         cy.get('[data-cy="error-summary"]').should("exist");
       });
 
@@ -119,21 +115,17 @@ context(
           .should("contain", "Mae angen math o gwmni");
       });
 
-      it(`should allow navigating to the previous page, without triggering validation, if all form fields are empty`, () => {
-        cy.get('[data-cy="back"]').click(options);
-
-        cy.get('[data-cy="error-summary"]').should("not.exist");
-
-        cy.url().should("contain", `/cy/${ADD_PRODUCT}`);
+      it("should have a valid default selected country", () => {
+        cy.get('[data-cy="address.country"]')
+          .find("option:selected")
+          .should("have.text", "United Kingdom");
       });
 
-      it(`should enforce validation rules when navigating to the previous page if any field has data`, () => {
-        cy.fillInCompany({
-          fieldsToSkip: ["company-type"],
-        });
+      it(`should enforce validation rules when navigating to the previous page`, () => {
+        // country is now default selected to United Kingdom, and is a mandatory field.
+        // Validation must always be enforced.
 
         cy.get('[data-cy="back"]').click(options);
-
         cy.get('[data-cy="error-summary"]').should("exist");
       });
 
