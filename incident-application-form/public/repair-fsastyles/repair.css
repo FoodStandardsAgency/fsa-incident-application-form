@@ -3,3 +3,13 @@ label { text-transform: none !important; }
 a { text-decoration: underline !important; }
 
 .govuk-button { text-decoration: none !important; }
+
+.header__region ul.links li a {
+    padding: .5em .75em;
+}
+
+.header__region ul.links li:not(:last-child):after {
+    content: "|";
+    margin: 0 .25em;
+    color: #dee2e5;
+}
