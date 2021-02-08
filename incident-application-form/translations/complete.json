@@ -21,6 +21,23 @@
     "yourReferenceNumber": {
       "cy": "Eich cyfeirnod",
       "en": "Your reference number"
+    },
+    "returnTextBeforeLink": {
+      "cy": "Ewch yn ôl i’r ",
+      "en": "Return to the Food incidents, product withdrawals and recalls "
+    },
+    "returnLink": {
+      "cy": "Canllawiau",
+      "en": "guidance"
+    },
+    "returnTextAfterLink": {
+      "cy": " ar ddigwyddiadau bwyd a galw neu dynnu cynnyrch bwyd yn ôl.",
+      "en": "."
+    },
+    "returnHref": {
+      "cy": "https://www.food.gov.uk/cy/canllawiau-busnes/digwyddiadau-bwyd-a-galw-neu-dynnu-cynnyrch-bwyd-yn-ol",
+      "en": "https://www.food.gov.uk/business-guidance/food-incidents-product-withdrawals-and-recalls"
     }
+
   }
 }
