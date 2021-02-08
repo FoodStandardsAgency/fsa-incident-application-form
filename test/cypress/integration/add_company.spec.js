@@ -104,7 +104,7 @@ context(
       });
 
       it("should have a save and continue button", () => {
-        cy.get("[data-cy=submit]").should("contain", "Arbed a pharhau");
+        cy.get("[data-cy=submit]").should("contain", "Arbed a Nesaf");
       });
 
       it(`should require the company type`, () => {

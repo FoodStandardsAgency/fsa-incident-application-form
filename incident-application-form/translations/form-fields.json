@@ -52,33 +52,33 @@
     },
     "town": {
       "label": {
-        "cy": "Tref neu ddinas",
-        "en": "Town or city"
+        "cy": "Tref",
+        "en": "Town"
       },
       "validation": {
         "required": {
-          "cy": "Rhaid i chi ddarparu tref neu ddinas",
-          "en": "You must provide a town or city"
+          "cy": "Rhaid i chi ddarparu tref",
+          "en": "You must provide a town"
         },
         "invalidLength": {
-          "cy": "Rhaid i'r dref neu'r ddinas fod rhwng 1 a 255 nod",
-          "en": "Town or city must be between 1 and 255 characters"
+          "cy": "Rhaid i'r dref fod rhwng 1 a 255 nod",
+          "en": "Town must be between 1 and 255 characters"
         }
       }
     },
     "town_optional": {
       "label": {
-        "cy": "Tref neu ddinas (dewisol)",
-        "en": "Town or city (optional)"
+        "cy": "Tref (dewisol)",
+        "en": "Town (optional)"
       },
       "validation": {
         "required": {
-          "cy": "Rhaid i chi ddarparu tref neu ddinas",
-          "en": "You must provide a town or city"
+          "cy": "Rhaid i chi ddarparu tref",
+          "en": "You must provide a town"
         },
         "invalidLength": {
-          "cy": "Rhaid i'r dref neu'r ddinas fod rhwng 1 a 255 nod",
-          "en": "Town or city must be between 1 and 255 characters"
+          "cy": "Rhaid i'r dref fod rhwng 1 a 255 nod",
+          "en": "Town must be between 1 and 255 characters"
         }
       }
     },
@@ -213,7 +213,7 @@
       "en": "Change"
     },
     "next": {
-      "cy": "Parhau",
+      "cy": "Nesaf",
       "en": "Continue"
     },
     "previous": {
@@ -225,7 +225,7 @@
       "en": "Remove"
     },
     "save": {
-      "cy": "Arbed a pharhau",
+      "cy": "Arbed a Nesaf",
       "en": "Save and Continue"
     },
     "start": {
