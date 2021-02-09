@@ -365,6 +365,38 @@
       "en": "Include suspected or confirmed cases of illness or deaths. Include details of symptoms and the number of consumers affected, where known. Where deaths have occurred that are suspected to be as a result of the incident, provide details of which coroners offices are dealing with the death, or record unknown."
     }
   },
+  "incidentProductPackSize": {
+    "label": {
+      "cy": "Maint y pecyn (dewisol)",
+      "en": "Pack size (optional)"
+    },
+    "hint": {
+      "cy": "Pwysau, maint neu gyfaint pob cynnyrch. Er enghraifft, pecyn 200g",
+      "en": "The weight, size or volume of each product. For example, a 200g pack"
+    },
+    "validation": {
+      "invalidLength": {
+        "cy": "Rhaid i'r maint pecyn fod rhwng 1 a 255 nod",
+        "en": "Pack size must be between 1 and 255 characters"
+      },
+      "invalidNumber": {
+        "cy": "Nid yw hwn yn rhif dilys",
+        "en": "This is not a valid number"
+      }
+    }
+  },
+  "incidentProductPackUnits": {
+    "label": {
+      "cy": "Unedau (dewisol)",
+      "en": "Units (optional)"
+    },
+    "values": {
+      "defaultValue": {
+        "cy": "Dewiswch opsiwn",
+        "en": "Please choose an option"
+      }
+    }
+  },
   "incidentTitle": {
     "label": {
       "cy": "Teitl y Digwyddiad",

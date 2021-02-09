@@ -1,14 +1,14 @@
-const { validatePackSize } = require("./pack-size");
+const { validatePackUnitType } = require("./pack-unit-type");
 
 const translations = require(`${__dirname}/../../../translations/form-fields.json`);
 
-describe(`lib/validation/individual-fields/pack-size`, () => {
+describe(`lib/validation/individual-fields/pack-unit-type`, () => {
   const testCases = (languageCode) => [
     [
-      "missing field is allowed",
+      "missing field",
       undefined,
       {
-        packSize: {
+        packUnitType: {
           isValid: true,
           messages: [],
           value: "",
@@ -16,10 +16,10 @@ describe(`lib/validation/individual-fields/pack-size`, () => {
       },
     ],
     [
-      "wrong data type returns an empty string",
+      "wrong data type",
       false,
       {
-        packSize: {
+        packUnitType: {
           isValid: true,
           messages: [],
           value: "",
@@ -30,7 +30,7 @@ describe(`lib/validation/individual-fields/pack-size`, () => {
       "provided field is empty",
       "",
       {
-        packSize: {
+        packUnitType: {
           isValid: true,
           messages: [],
           value: "",
@@ -38,42 +38,35 @@ describe(`lib/validation/individual-fields/pack-size`, () => {
       },
     ],
     [
-      "given a number returns a string",
-      6665,
+      "using the default value",
+      "0",
       {
-        packSize: {
+        packUnitType: {
           isValid: true,
           messages: [],
-          value: "6665",
+          value: "",
         },
       },
     ],
     [
-      "is too long",
-      "a".repeat(256),
+      "ensure input values are not escaped - https://trello.com/c/pBU5DhFV",
+      "<script>tag here</script>",
       {
-        packSize: {
-          isValid: false,
-          messages: [
-            translations.incidentProductPackSize.validation.invalidLength[
-              languageCode
-            ],
-            translations.incidentProductPackSize.validation.invalidNumber[
-              languageCode
-            ],
-          ],
-          value: "a".repeat(256),
+        packUnitType: {
+          isValid: true,
+          messages: [],
+          value: "<script>tag here</script>",
         },
       },
     ],
     [
       "happy path",
-      "12345",
+      "valid",
       {
-        packSize: {
+        packUnitType: {
           isValid: true,
           messages: [],
-          value: "12345",
+          value: "valid",
         },
       },
     ],
@@ -88,7 +81,7 @@ describe(`lib/validation/individual-fields/pack-size`, () => {
           ...translations,
         };
 
-        expect(validatePackSize(given, i18n)).toEqual(expected);
+        expect(validatePackUnitType(given, i18n)).toEqual(expected);
       }
     );
   });

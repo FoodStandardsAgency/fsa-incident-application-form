@@ -13,6 +13,7 @@ const {
   validateAddressCountry,
 } = require("./individual-fields/address.country");
 const { validatePackSize } = require("./individual-fields/pack-size");
+const { validatePackUnitType } = require("./individual-fields/pack-unit-type");
 const {
   validatePackageDescription,
 } = require("./individual-fields/package-description");
@@ -50,6 +51,7 @@ module.exports = {
       displayUntil,
       originCountry,
       packSize,
+      packUnitType,
       packageDescription,
       productName,
       productType,
@@ -76,6 +78,7 @@ module.exports = {
     const validatedDisplayUntil = validateDate(displayUntil, i18n);
     const validatedOriginCountry = validateAddressCountry(originCountry, i18n);
     const validatedPackSize = validatePackSize(packSize, i18n);
+    const validatedPackUnitType = validatePackUnitType(packUnitType, i18n);
     const validatedPackageDescription = validatePackageDescription(
       packageDescription,
       i18n
@@ -95,6 +98,7 @@ module.exports = {
       validatedDisplayUntil,
       validatedOriginCountry,
       validatedPackSize,
+      validatedPackUnitType,
       validatedPackageDescription,
       validatedProductName,
       validatedProductType,
@@ -116,6 +120,7 @@ module.exports = {
         (displayUntil && displayUntil.year) || undefined,
         originCountry !== "0" ? originCountry : undefined,
         packSize,
+        packUnitType,
         packageDescription,
         productName,
         productType !== "0" ? productType : undefined,
@@ -137,6 +142,7 @@ module.exports = {
         displayUntil: validatedDisplayUntil.date,
         originCountry: validatedOriginCountry.country,
         ...validatedPackSize,
+        ...validatedPackUnitType,
         ...validatedPackageDescription,
         ...validatedProductName,
         ...validatedProductType,

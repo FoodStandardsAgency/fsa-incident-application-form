@@ -28,7 +28,7 @@
           {{ i18n.notifierType.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="notifier-type" class="govuk-summary-list__value govuk-body-s">
-          {% if yourDetails.notifierType.value == "0" %}
+          {% if yourDetails.notifierType.value == "0" or yourDetails.notifierType.value == "" %}
             {{ not_provided }}
           {% else %}
             {{ getHumanReadableValueFromItems(notifierTypes, yourDetails.notifierType.value) }}
@@ -156,7 +156,7 @@
           {{ i18n.address.country.label[i18n.languageCode] }}
         </dt>
         <dd data-cy="address.country" class="govuk-summary-list__value govuk-body-s">
-          {% if yourDetails.address.country.value == "0" %}
+          {% if yourDetails.address.country.value == "0" or yourDetails.address.country.value == "" %}
             {{ not_provided }}
           {% else %}
             {{ getHumanReadableValueFromItems(countries, yourDetails.address.country.value) }}
@@ -282,7 +282,7 @@
             {{ i18n.productType.label[i18n.languageCode] }}
           </dt>
           <dd data-cy="product-type-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
-            {% if product.productType.value == "0" %}
+            {% if product.productType.value == "0" or product.productType.value == "" %}
               {{ not_provided }}
             {% else %}
               {{ getHumanReadableValueFromItems(productTypes, product.productType.value) }}
@@ -308,7 +308,7 @@
             {{ i18n.originCountry.label[i18n.languageCode] }}
           </dt>
           <dd data-cy="product-origin-country-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
-            {% if product.originCountry.value == "0" %}
+            {% if product.originCountry.value == "0" or product.originCountry.value == "" %}
               {{ not_provided }}
             {% else %}
               {{ getHumanReadableValueFromItems(countries, product.originCountry.value) }}
@@ -334,7 +334,7 @@
             {{ i18n.unitType.label[i18n.languageCode] }}
           </dt>
           <dd data-cy="product-units-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
-            {% if product.unitType.value == "0" %}
+            {% if product.unitType.value == "0" or product.unitType.value == "" %}
               {{ not_provided }}
             {% else %}
               {{ getHumanReadableValueFromItems(units, product.unitType.value) }}
@@ -379,10 +379,25 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key govuk-body-s">
-            {{ i18n.packSize.label[i18n.languageCode] }}
+            {{ i18n.incidentProductPackSize.label[i18n.languageCode] }}
           </dt>
           <dd data-cy="product-pack-size-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
             {{ product.packSize.value or not_provided }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-body-s">
+            {{ i18n.incidentProductPackUnits.label[i18n.languageCode] }}
+          </dt>
+          <dd data-cy="product-pack-unit-type-{{ loop.index }}" class="govuk-summary-list__value govuk-body-s">
+            {% if product.packUnitType.value == "0" or product.packUnitType.value == "" %}
+              {{ not_provided }}
+            {% else %}
+              {{ getHumanReadableValueFromItems(units, product.packUnitType.value) }}
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
           </dd>
@@ -420,7 +435,7 @@
               {{ i18n.companyType.label[i18n.languageCode] }}
             </dt>
             <dd data-cy="product-company-{{ loop.index }}-company-type" class="govuk-summary-list__value govuk-body-s">
-              {% if company.companyType.value == "0" %}
+              {% if company.companyType.value == "0" or company.companyType.value == "" %}
                 {{ not_provided }}
               {% else %}
                 {{ getHumanReadableValueFromItems(companyTypes, company.companyType.value) }}
@@ -537,7 +552,7 @@
               {{ i18n.address.country.label[i18n.languageCode] }}
             </dt>
             <dd data-cy="product-company-{{ loop.index }}-address-country" class="govuk-summary-list__value govuk-body-s">
-              {% if company.address.country.value == "0" %}
+              {% if company.address.country.value == "0" or company.address.country.value == "" %}
                 {{ not_provided }}
               {% else %}
                 {{ getHumanReadableValueFromItems(countries, company.address.country.value) }}

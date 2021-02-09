@@ -20,10 +20,19 @@ module.exports = {
 
     if (
       packSize &&
-      !validator.isLength(packSize.toString(), { min: 1, max: 255 })
+      !validator.isLength(packSize.toString(), {
+        min: 1,
+        max: 255,
+      })
     ) {
       validated.messages.push(
-        i18n.packSize.validation.invalidLength[i18n.languageCode]
+        i18n.incidentProductPackSize.validation.invalidLength[i18n.languageCode]
+      );
+    }
+
+    if (packSize && !validator.isNumeric(packSize.toString())) {
+      validated.messages.push(
+        i18n.incidentProductPackSize.validation.invalidNumber[i18n.languageCode]
       );
     }
 

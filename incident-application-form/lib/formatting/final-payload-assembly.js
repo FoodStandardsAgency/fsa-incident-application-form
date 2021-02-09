@@ -51,6 +51,7 @@ const assembleProduct = (product) => {
     },
     IncidentProductPackSizes: {
       Size: product.packSize.value,
+      UnitId: parseInt(product.packUnitType.value, 10) || 0,
     },
     Name: product.productName.value,
     PackDescription: product.packageDescription.value,
