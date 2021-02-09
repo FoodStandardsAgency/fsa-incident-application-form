@@ -1,0 +1,151 @@
+name: push to link triggers deploy to link
+
+on:
+  push:
+    branches: [ link ]
+
+jobs:
+
+  link-rg:
+    name: Creating Dev app-service plan and container registry
+    runs-on: ubuntu-latest
+    steps:
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
+
+    - name: Default location + resource group
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az configure --defaults location=uksouth
+          az configure --defaults group=RG-APP-FSA-DEV-IncidentReportForm-1
+
+    - name: Create App Service plan
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az appservice plan create --name link --is-linux --sku p1v2
+
+    - name: Create Container registry
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          # Admin needs to be enabled for App Service continuous deployment
+          az acr create --name ${{ secrets.LINK_CONTAINER_REGISTRY_NAME }} --sku Standard --admin-enabled true
+
+  form-ui-appservice:
+    name: Creating and configuring Web Application
+    needs: [link-rg]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
+
+    - name: Default location + resource group
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az configure --defaults location=uksouth
+          az configure --defaults group=RG-APP-FSA-DEV-IncidentReportForm-1
+
+    - name: Create web application
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp create --name fsa-incident-report-form-link \
+            --plan dev \
+            --deployment-container-image-name ${{ secrets.LINK_CONTAINER_REGISTRY_NAME }}.azurecr.io/form-ui
+
+    - name: Switch on Continuous deployment
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp deployment container config --name fsa-incident-report-form-link \
+            --enable-cd true
+
+    - name: Enable container logging
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp log config --name fsa-incident-report-form-link \
+            --docker-container-logging filesystem
+
+    - name: Always-on
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp config set --name fsa-incident-report-form-link \
+            --always-on true
+
+    - name: Applying Environment variables
+      uses: Azure/cli@v1.0.0
+      with:
+        # NB we're setting PORT for the container and WEBSITES_PORT for Azure.
+        inlineScript: |
+          az webapp config appsettings set --name fsa-incident-report-form-link \
+            --settings \
+              PORT=3000 \
+              WEBSITES_PORT=3000 \
+              SESSION_KEY=${{ secrets.DEV_SESSION_KEY }} \
+              GOV_NOTIFY_API_KEY=${{ secrets.DEV_GOV_NOTIFY_API_KEY }} \
+              NOTIFICATION_EMAIL=${{ secrets.DEV_NOTIFICATION_EMAIL }} \
+              LOOKUP_API_BASE_URL="${{ secrets.DEV_LOOKUP_API_BASE_URL }}" \
+              LOOKUP_API_PATH="${{ secrets.DEV_LOOKUP_API_PATH }}" \
+              PAYLOAD_SUBMISSION_API_BASE_URL="${{ secrets.DEV_PAYLOAD_SUBMISSION_API_BASE_URL }}" \
+              PAYLOAD_SUBMISSION_API_PATH="${{ secrets.DEV_PAYLOAD_SUBMISSION_API_PATH }}"
+
+  build:
+    name: Build application and push into Container registry
+    needs: form-ui-appservice
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build and push
+      uses: docker/build-push-action@v1
+      with:
+        registry: ${{ secrets.LINK_CONTAINER_REGISTRY_NAME }}.azurecr.io
+        username: ${{ secrets.LINK_CONTAINER_REGISTRY_USERNAME }}
+        password: ${{ secrets.LINK_CONTAINER_REGISTRY_PASSWORD }}
+        repository: form-ui
+        path: incident-application-form
+        tags: latest
+        build_args: GITHUB_SHA=${{ github.sha }}
+        add_git_labels: true
+
+  deploy:
+    name: Deploy container images to Dev
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
+
+    - name: Default location + resource group
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az configure --defaults location=uksouth
+          az configure --defaults group=RG-APP-FSA-DEV-IncidentReportForm-1
+
+    - name: Create slot ${{ github.sha }}
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp deployment slot create --name fsa-incident-report-form-link --slot ${{ github.sha }} --configuration-source fsa-incident-report-form-link
+
+    - name: Swap slot ${{ github.sha }} into production
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp deployment slot swap   --name fsa-incident-report-form-link --slot ${{ github.sha }} --action swap
+
+    - name: Delete slot ${{ github.sha }}
+      # Clean up the slot regardless of errors
+      if: ${{ always() }}
+      uses: Azure/cli@v1.0.0
+      with:
+        inlineScript: |
+          az webapp deployment slot delete --name fsa-incident-report-form-link --slot ${{ github.sha }}
