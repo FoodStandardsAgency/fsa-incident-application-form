@@ -187,6 +187,10 @@ context(
           "contain",
           product.packSize
         );
+        cy.get('[data-cy="product-pack-unit-type-1"]').should(
+          "contain",
+          product.packUnitType
+        );
         cy.get('[data-cy="product-package-description-1"]').should(
           "contain",
           product.packageDescription
@@ -342,6 +346,10 @@ context(
         cy.get('[data-cy="product-pack-size-1"]').should(
           "contain",
           product.packSize
+        );
+        cy.get('[data-cy="product-pack-unit-type-1"]').should(
+          "contain",
+          product.packUnitType
         );
         cy.get('[data-cy="product-package-description-1"]').should(
           "contain",

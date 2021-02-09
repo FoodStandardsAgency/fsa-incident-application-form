@@ -300,23 +300,43 @@
 
 {{ govukInput({
     classes: "govuk-!-width-full",
-    id: "pack-size",
-    name: "pack-size",
+    id: "incident-product-pack-size",
+    name: "incident-product-pack-size",
+    type: "number",
     value: validation.validatedFields.packSize.value,
     attributes : {
-        "data-cy": "pack-size"
+        "data-cy": "incident-product-pack-size"
     },
     label: {
-        text: i18n.packSize.label[i18n.languageCode]
+        text: i18n.incidentProductPackSize.label[i18n.languageCode]
+    },
+    hint: {
+        text: i18n.incidentProductPackSize.hint[i18n.languageCode]
     },
     errorMessage: validation.validatedFields.packSize.isValid == false and {
         text: validation.validatedFields.packSize.messages | join(". "),
         "attributes" : {
-            "data-cy": "pack-size-errors"
+            "data-cy": "incident-product-pack-size-errors"
         }
+    }
+}) }}
+
+{{ govukSelect({
+    id: "incident-product-pack-unit-type",
+    name: "incident-product-pack-unit-type",
+    attributes : {
+        "data-cy": "incident-product-pack-unit-type"
     },
-    hint: {
-        text: i18n.packSize.hint[i18n.languageCode]
+    label: {
+        text: i18n.incidentProductPackUnits.label[i18n.languageCode]
+    },
+    classes: "govuk-input govuk-!-width-one-half",
+    items: packUnits,
+    errorMessage: validation.validatedFields.packUnitType.isValid == false and {
+        text: validation.validatedFields.packUnitType.messages | join(". "),
+        attributes : {
+            "data-cy": "incident-product-pack-unit-type-errors"
+        }
     }
 }) }}
 

@@ -59,6 +59,7 @@ describe(`lib/validation/product`, () => {
             value: "",
           },
           packSize: { isValid: true, messages: [], value: "" },
+          packUnitType: { isValid: true, messages: [], value: "" },
           packageDescription: { isValid: true, messages: [], value: "" },
           productName: {
             isValid: false,
@@ -131,6 +132,7 @@ describe(`lib/validation/product`, () => {
           },
           originCountry: { isValid: true, messages: [], value: "17" },
           packSize: { isValid: true, messages: [], value: "" },
+          packUnitType: { isValid: true, messages: [], value: "" },
           packageDescription: { isValid: true, messages: [], value: "" },
           productName: { isValid: true, messages: [], value: "valid" },
           productType: { isValid: true, messages: [], value: "" },
@@ -201,6 +203,7 @@ describe(`lib/validation/product`, () => {
           },
           originCountry: { isValid: true, messages: [], value: "17" },
           packSize: { isValid: true, messages: [], value: "" },
+          packUnitType: { isValid: true, messages: [], value: "" },
           packageDescription: { isValid: true, messages: [], value: "" },
           productName: { isValid: true, messages: [], value: "valid" },
           productType: { isValid: true, messages: [], value: "" },
@@ -285,6 +288,7 @@ describe(`lib/validation/product`, () => {
             value: "0",
           },
           packSize: { isValid: true, messages: [], value: "" },
+          packUnitType: { isValid: true, messages: [], value: "" },
           packageDescription: { isValid: true, messages: [], value: "" },
           productName: {
             isValid: false,
@@ -375,6 +379,7 @@ describe(`lib/validation/product`, () => {
             value: "0",
           },
           packSize: { isValid: true, messages: [], value: "" },
+          packUnitType: { isValid: true, messages: [], value: "" },
           packageDescription: { isValid: true, messages: [], value: "" },
           productName: {
             isValid: false,
@@ -451,6 +456,7 @@ describe(`lib/validation/product`, () => {
           },
           originCountry: { isValid: true, messages: [], value: "17" },
           packSize: { isValid: true, messages: [], value: "" },
+          packUnitType: { isValid: true, messages: [], value: "" },
           packageDescription: { isValid: true, messages: [], value: "" },
           productName: { isValid: true, messages: [], value: "valid" },
           productType: { isValid: true, messages: [], value: "" },

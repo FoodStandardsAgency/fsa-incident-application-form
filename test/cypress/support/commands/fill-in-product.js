@@ -18,7 +18,8 @@ export const defaultFieldValues = {
     year: "1999",
   },
   originCountry: "United Kingdom",
-  packSize: "Packs of 6",
+  packSize: "6",
+  packUnitType: "Tonnes (t)",
   packageDescription: "Plastic wrap",
   productName: "An example product name",
   productType: "Alcoholic Beverages",
@@ -152,8 +153,15 @@ Cypress.Commands.add(
     }
 
     if (!fieldsToSkip.includes("pack-size")) {
-      cy.get('[data-cy="pack-size"]').type(
+      cy.get('[data-cy="incident-product-pack-size"]').type(
         resolvedFieldValues.packSize,
+        options
+      );
+    }
+
+    if (!fieldsToSkip.includes("pack-unit-type")) {
+      cy.get('[data-cy="incident-product-pack-unit-type"]').select(
+        resolvedFieldValues.packUnitType,
         options
       );
     }
