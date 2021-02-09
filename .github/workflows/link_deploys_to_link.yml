@@ -7,7 +7,7 @@ on:
 jobs:
 
   link-rg:
-    name: Creating Dev app-service plan and container registry
+    name: Creating Link app-service plan and container registry
     runs-on: ubuntu-latest
     steps:
     - uses: azure/login@v1
@@ -115,7 +115,7 @@ jobs:
         add_git_labels: true
 
   deploy:
-    name: Deploy container images to Dev
+    name: Deploy container images to Link
     needs: build
     runs-on: ubuntu-latest
     steps:
