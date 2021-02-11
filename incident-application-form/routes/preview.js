@@ -39,8 +39,8 @@ router.get("/", async function (req, res, next) {
     getCompanyTypes(req.locale),
     getCountries(req.locale),
     getNotifierTypes(req.locale),
-    getProductTypes(req.locale),
-    getUnits(req.locale),
+    getProductTypes(req.locale, 1),
+    getUnits(req.locale, 1),
   ]);
 
   res.render(template, {
@@ -72,6 +72,7 @@ router.post("/", async function (req, res, next) {
   // post this off to Rainmaker
   const payload = assemblePayload(req.session);
 
+    console.log(payload);
   await payloadSubmission(payload);
 
   try {
