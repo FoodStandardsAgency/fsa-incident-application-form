@@ -79,7 +79,10 @@ describe(`lib/formatting/final-payload-assembly`, () => {
               UseByDate: "2021-12-01T00:00:00.000Z",
               DisplayUntil: "2022-08-30T23:00:00.000Z",
             },
-            IncidentProductPackSizes: { Size: "200g pack" },
+            IncidentProductPackSizes: {
+              Size: "200",
+              UnitId: 5,
+            },
             Name: "Impacted product here",
             PackDescription: "The product looked fine",
             ProductTypeId: 15,
@@ -115,7 +118,10 @@ describe(`lib/formatting/final-payload-assembly`, () => {
               UseByDate: "2033-03-03T00:00:00.000Z",
               DisplayUntil: "1999-11-11T00:00:00.000Z",
             },
-            IncidentProductPackSizes: { Size: "400 to a pack" },
+            IncidentProductPackSizes: {
+              Size: "400",
+              UnitId: 0,
+            },
             Name: "Second product",
             PackDescription: "A big pack of things",
             ProductTypeId: 24,

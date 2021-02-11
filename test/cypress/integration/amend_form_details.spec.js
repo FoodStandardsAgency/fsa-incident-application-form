@@ -163,7 +163,10 @@ context(
                   UseByDate: "",
                   DisplayUntil: "",
                 },
-                IncidentProductPackSizes: { Size: "" },
+                IncidentProductPackSizes: {
+                  Size: "",
+                  UnitId: 0,
+                },
                 Name: "An example product name",
                 PackDescription: "",
                 ProductTypeId: 0,

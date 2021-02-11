@@ -1,6 +1,5 @@
 const SIMS_LOOKUP_DATA = require("../fixtures/sample-dropdown-data.json");
 const ADD_PRODUCT = Cypress.config("product");
-const DETAILS_OF_PRODUCT = Cypress.config("detailsOfProduct");
 
 const options = { force: true };
 

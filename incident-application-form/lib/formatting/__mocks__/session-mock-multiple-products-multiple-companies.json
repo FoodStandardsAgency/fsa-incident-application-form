@@ -276,7 +276,12 @@
       "packSize": {
         "isValid": true,
         "messages": [],
-        "value": "200g pack"
+        "value": "200"
+      },
+      "packUnitType": {
+        "isValid": true,
+        "messages": [],
+        "value": "5"
       },
       "packageDescription": {
         "isValid": true,
@@ -423,7 +428,12 @@
       "packSize": {
         "isValid": true,
         "messages": [],
-        "value": "400 to a pack"
+        "value": "400"
+      },
+      "packUnitType": {
+        "isValid": true,
+        "messages": [],
+        "value": "0"
       },
       "packageDescription": {
         "isValid": true,

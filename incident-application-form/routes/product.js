@@ -15,6 +15,9 @@ const { getProductTypes } = require("../lib/lookups/product-types");
 const { getUnits } = require("../lib/lookups/units");
 const { getSelectedUnitTypeFromSession } = require("../lib/session/unit-type");
 const {
+  getSelectedPackUnitTypeFromSession,
+} = require("../lib/session/pack-unit-type");
+const {
   getSelectedOriginCountryFromSession,
 } = require("../lib/session/origin-country");
 const {
@@ -44,15 +47,17 @@ const SUBMISSION_TYPES = {
 router.get("/", async function (req, res, next) {
   const template = "add-product";
 
-  const [originCountries, productTypes, units] = await Promise.all([
+  const [originCountries, productTypes, units, packUnits] = await Promise.all([
     getCountries(req.locale),
     getProductTypes(req.locale),
+    getUnits(req.locale),
     getUnits(req.locale),
   ]);
 
   res.render(template, {
     i18n: getI18n(req.locale),
     originCountries,
+    packUnits,
     productId: uuidv4(),
     productTypes,
     routes,
@@ -77,8 +82,9 @@ router.post("/", async function (req, res, next) {
     "display-until-day": displayUntilDay,
     "display-until-month": displayUntilMonth,
     "display-until-year": displayUntilYear,
+    "incident-product-pack-size": packSize,
+    "incident-product-pack-unit-type": packUnitType,
     "origin-country": originCountry,
-    "pack-size": packSize,
     "package-description": packageDescription,
     "product-name": productName,
     "product-type": productType,
@@ -112,6 +118,7 @@ router.post("/", async function (req, res, next) {
       },
       originCountry,
       packSize,
+      packUnitType,
       packageDescription,
       productName,
       productType,
@@ -132,10 +139,16 @@ router.post("/", async function (req, res, next) {
   }
 
   if (!validation.isValid) {
-    const [productTypes, originCountries, units] = await Promise.all([
+    const [
+      productTypes,
+      originCountries,
+      units,
+      packUnits,
+    ] = await Promise.all([
       getProductTypes(locale, productType),
       getCountries(locale, originCountry),
       getUnits(locale, unitType),
+      getUnits(locale, packUnitType),
     ]);
 
     res.render(template, {
@@ -147,6 +160,7 @@ router.post("/", async function (req, res, next) {
       ),
       errorSummary: getErrorSummaryFromValidation(validation),
       i18n,
+      packUnits,
       productId,
       productTypes,
       originCountries,
@@ -205,11 +219,16 @@ router.get("/edit/:productId", async function (req, res, next) {
     req.session,
     productId
   );
+  const selectedPackUnitType = getSelectedPackUnitTypeFromSession(
+    req.session,
+    productId
+  );
 
-  const [productTypes, originCountries, units] = await Promise.all([
+  const [productTypes, originCountries, units, packUnits] = await Promise.all([
     getProductTypes(locale, selectedProductType),
     getCountries(locale, selectedOriginCountry),
     getUnits(locale, selectedUnitType),
+    getUnits(locale, selectedPackUnitType),
   ]);
 
   const validation = {
@@ -226,6 +245,7 @@ router.get("/edit/:productId", async function (req, res, next) {
     errorSummary: getErrorSummaryFromValidation(validation),
     i18n,
     originCountries,
+    packUnits,
     productId,
     productTypes,
     routes,

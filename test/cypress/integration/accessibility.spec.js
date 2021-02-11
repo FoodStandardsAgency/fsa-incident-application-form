@@ -1,7 +1,7 @@
 const ONLINE_FORM = Cypress.config("baseUrl");
 
 context(
-  "As a service user with additional accessiblity needs, I want to understand the FSA's accessibility stance, so that I know when my specific accessibility-needs will be met.",
+  "As a service user with additional accessibility needs, I want to understand the FSA's accessibility stance, so that I know when my specific accessibility-needs will be met.",
   () => {
     beforeEach(() => {
       // catches, logs and ignores any load-errors on the page..
@@ -12,23 +12,30 @@ context(
       });
     });
 
-    it(`Visit ${ONLINE_FORM} and confirm the Accessibility link`, () => {
-      cy.visit(ONLINE_FORM);
-      cy.get("[data-cy=accessibility]")
-        .should("contain", "Accessibility")
-        .click({ force: true });
-      cy.get("[data-cy=page-heading]").should("contain","Accessibility");
+    [
+      {
+        languageCode: "en",
+        homepage: ONLINE_FORM,
+      },
+      {
+        languageCode: "cy",
+        homepage: `${ONLINE_FORM}/cy`,
+      },
+    ].forEach(({ languageCode, homepage }) => {
+      describe(languageCode.toUpperCase(), () => {
+        it(`Visit ${homepage} and confirm the Accessibility link`, () => {
+          cy.visit(homepage);
 
-      // confirm the presence of the privacy link, although since it redirects away from our site: we shouldn't follow it in our test
-      cy.visit(ONLINE_FORM);
-      cy.get("[data-cy=privacy]").should("contain", "Privacy");
+          cy.get("[data-cy=accessibility]")
+            .should("contain", "Accessibility")
+            .click({ force: true });
 
-    });
+          cy.get("[data-cy=page-heading]").should("contain", "Accessibility");
 
-    xit(`Visit ${ONLINE_FORM}/cy and confirm the Accessibility link`, () => {
-      cy.visit(`${ONLINE_FORM}/cy`);
-
-      cy.get("[data-cy=start-button]").should("contain", "Dechrau");
+          // confirm the presence of the privacy link, although since it redirects away from our site: we shouldn't follow it in our test
+          cy.get("[data-cy=privacy]").should("contain", "Privacy");
+        });
+      });
     });
   }
 );

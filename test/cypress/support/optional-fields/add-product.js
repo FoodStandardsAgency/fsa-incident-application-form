@@ -10,6 +10,7 @@ export const optionalFields = [
   "display-until-month",
   "display-until-year",
   "pack-size",
+  "pack-unit-type",
   "package-description",
   "product-type",
   "unit-type",
