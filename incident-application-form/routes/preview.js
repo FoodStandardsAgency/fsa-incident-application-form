@@ -72,7 +72,6 @@ router.post("/", async function (req, res, next) {
   // post this off to Rainmaker
   const payload = assemblePayload(req.session);
 
-    console.log(payload);
   await payloadSubmission(payload);
 
   try {
