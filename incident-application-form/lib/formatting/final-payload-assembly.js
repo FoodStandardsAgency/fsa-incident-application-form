@@ -29,6 +29,10 @@ const assembleProduct = (product) => {
     Companies.push(assembleCompany(product.companies.value[companyId]));
   }
 
+  // Set 0 lookup codes to undefined.
+  setZeroOptionToUndefined(product.unitType);
+  setZeroOptionToUndefined(product.productType);
+
   const formatBatchCodes = (batchCodes) =>
     batchCodes
       .replace(/\r?\n|\r/, "\n")
@@ -57,6 +61,11 @@ const assembleProduct = (product) => {
     ProductTypeId: parseInt(product.productType.value, 10) || 0,
   };
 };
+
+// Here we are making the assumption that the SIMS lookup data is consistantly using "1" = "Undefined".
+const setZeroOptionToUndefined = (option) => {
+    if (!option.value || option.value == "0") option.value = "1";
+}
 
 module.exports = {
   assemblePayload({
