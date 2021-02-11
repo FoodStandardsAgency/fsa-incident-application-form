@@ -32,6 +32,7 @@ const assembleProduct = (product) => {
   // Set 0 lookup codes to undefined.
   setZeroOptionToUndefined(product.unitType);
   setZeroOptionToUndefined(product.productType);
+  setZeroOptionToUndefined(product.packUnitType);
 
   const formatBatchCodes = (batchCodes) =>
     batchCodes
